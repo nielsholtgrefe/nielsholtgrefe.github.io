@@ -376,6 +376,42 @@ year = {2025}
     </div>
   </li>
 
-  
 </ul>
 
+
+<h2>Theses</h2>
+
+<ul class="no-bullets"> 
+  <li><span class="pubnum">[2]</span>
+    <span class="authors">Niels Holtgrefe.</span><br>
+    <span class="title">Computing the Scanwidth of Directed Acyclic Graphs.</span><br>
+    <i>MSc thesis</i>, Delft University of Technology, Delft, The Netherlands, 2023. url:http://resolver.tudelft.nl/uuid:9c82fd2a-5841-4aac-8e40-d4d22542cdf5.<br>
+    <div class="button-group">
+      <a class="link-button" href="http://resolver.tudelft.nl/uuid:9c82fd2a-5841-4aac-8e40-d4d22542cdf5" target="_blank">repository</a>
+      <button class="toggle-button" onclick="toggleBox('abs_holtgrefe2023computing')">abstract</button>
+      <button class="toggle-button" onclick="toggleBox('bib_holtgrefe2023computing')">bibtex</button>
+    </div>
+
+    <div id="abs_holtgrefe2023computing" class="abstract-box noshow">
+Phylogenetic networks are a specific type of directed acyclic graph (DAG), used to depict evolutionary relationships among, for example, species or other groups of organisms. To solve computationally hard problems, treewidth has been used to parametrize algorithms in phylogenetics. In the hope of simplifying the algorithmic design process, Berry, Scornavacca and Weller [BSW20] recently proposed a new measure of tree-likeness that takes into account the directions of the arcs: <i>scanwidth</i>. They showed that the corresponding decision problem of this parameter - which can be seen as a variant of directed cutwidth, using a tree instead of a linear ordering - is NP-complete. This thesis aims to widen the structural knowledge of scanwidth and to find efficient ways of computing it on general DAGs, both by exact and heuristic algorithms.<br>
+With the help of reduction rules, we construct an explicit dynamic programming algorithm that computes scanwidth exactly, along with its corresponding <i>tree extension</i>, in \( O(k \cdot n^k \cdot m) \) time for rooted DAGs of scanwidth \( k \). This slicewise polynomial algorithm proves that computing the scanwidth is in the complexity class XP. The algorithm also functions as an FPT algorithm for networks of level-\(ell\), with the complexity bounded by \(O(2^{4 \ell - 1} \cdot \ell \cdot n + n^2) \). It performs well in practice, being able to compute the scanwidth of networks up to 30 reticulations and 100 leaves within 500 seconds.<br>
+On the heuristic side, an algorithm that repeatedly splits at a specific type of smallest cut is proposed. Enhanced with simulated annealing, this heuristic shows promising results, obtaining an average approximation ratio of 1.5 for large synthetic networks of 30 reticulations and 100 leaves. Applied to a real-world dataset of networks, the heuristic performs near-optimal. Although we prove that the scanwidth is always greater than or equal to the treewidth, experiments show that they are close to each other in practice. This further motivates the use of scanwidth over treewidth as a parameter in algorithms.
+</div>
+
+    <div id="bib_holtgrefe2023computing" class="bibtex noshow">
+      <pre>
+@mastersthesis{holtgrefe2023computing,
+  title={Computing the Scanwidth of Directed Acyclic Graphs},
+  author={Niels Holtgrefe},
+  year={2023},
+  address={Delft, The Netherlands},
+  note={Available at \url{http://resolver.tudelft.nl/uuid:9c82fd2a-5841-4aac-8e40-d4d22542cdf5}},
+  school={Delft University of Technology},
+  type= {MSc thesis}
+}
+      </pre>
+    </div>
+  </li>
+
+
+</ul>
