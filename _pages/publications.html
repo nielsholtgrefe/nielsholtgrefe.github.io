@@ -50,18 +50,6 @@ author_profile: true
 .toggle-button:hover, .link-button:hover {
   background-color: #ddd;
 }
-
-/* Year header bar */
-.year-label {
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  padding: 0.5em;
-  background-color: #f0f0f0;
-  font-weight: bold;
-  font-size: 1.1em;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
 </style>
 
 <script>
@@ -73,97 +61,37 @@ function toggleBox(id) {
 
 <h2>Publications</h2>
 
-<!-- === YEAR: 2024 === -->
-<div class="year-label">2024</div>
-<ol reversed start="5">
-  <li>
-    J. Smith, A. Example<br>
-    <strong>New Directions in AI</strong><br>
-    <i>NeurIPS</i>, 2024.<br>
-
-    <div class="button-group">
-      <button class="toggle-button" onclick="toggleBox('abs_Smith2024')">[Abstract]</button>
-      <button class="toggle-button" onclick="toggleBox('bib_Smith2024')">[BibTeX]</button>
-      <a class="link-button" href="https://arxiv.org/abs/2401.12345" target="_blank">[arXiv]</a>
-      <a class="link-button" href="https://neurips.cc/paper/2024/hash/abc123.html" target="_blank">[Journal]</a>
-    </div>
-
-    <div id="abs_Smith2024" class="abstract-box noshow">
-      This paper introduces a new architecture...
-    </div>
-    <div id="bib_Smith2024" class="bibtex noshow">
-      <pre>
-@inproceedings{Smith2024,
-  author = {J. Smith and A. Example},
-  title = {New Directions in AI},
-  booktitle = {NeurIPS},
-  year = {2024}
-}
-      </pre>
-    </div>
-  </li>
-  <!-- Add more for 2024 -->
-</ol>
-
-<!-- === YEAR: 2023 === -->
-<div class="year-label">2023</div>
-<ol reversed start="3">
-  <li>
-    L. Zhang, M. Lee<br>
-    <strong>On the Limits of Transformers</strong><br>
-    <i>ICML</i>, 2023.<br>
-
-    <div class="button-group">
-      <button class="toggle-button" onclick="toggleBox('abs_Zhang2023')">[Abstract]</button>
-      <button class="toggle-button" onclick="toggleBox('bib_Zhang2023')">[BibTeX]</button>
-      <a class="link-button" href="https://arxiv.org/abs/2305.12345" target="_blank">[arXiv]</a>
-      <a class="link-button" href="https://icml.cc/paper/2023/hash/xyz987.html" target="_blank">[Journal]</a>
-    </div>
-
-    <div id="abs_Zhang2023" class="abstract-box noshow">
-      We analyze the failure modes of large transformers...
-    </div>
-    <div id="bib_Zhang2023" class="bibtex noshow">
-      <pre>
-@inproceedings{Zhang2023,
-  author = {L. Zhang and M. Lee},
-  title = {On the Limits of Transformers},
-  booktitle = {ICML},
-  year = {2023}
-}
-      </pre>
-    </div>
-  </li>
-  <!-- Add more for 2023 -->
-</ol>
-
-<!-- === YEAR: 2022 === -->
-<div class="year-label">2022</div>
-<ol reversed start="1">
+<ol reversed>
   <li>
     A. Kuznetsova, H. Rom, et al.<br>
     <strong>The Open Images Dataset V4</strong><br>
-    <i>IJCV</i>, 2022.<br>
+    <i>IJCV</i>, 2020.<br>
 
     <div class="button-group">
-      <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2022')">[Abstract]</button>
-      <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2022')">[BibTeX]</button>
+      <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2020')">[Abstract]</button>
+      <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2020')">[BibTeX]</button>
       <a class="link-button" href="https://arxiv.org/abs/2001.00001" target="_blank">[arXiv]</a>
       <a class="link-button" href="https://link.springer.com/article/10.1007/s11263-020-01369-z" target="_blank">[Journal]</a>
     </div>
 
-    <div id="abs_Kuznetsova2022" class="abstract-box noshow">
-      We present Open Images V4, a large-scale dataset...
+    <div id="abs_Kuznetsova2020" class="abstract-box noshow">
+      We present Open Images V4, a large-scale dataset with unified annotations for image classification, object detection, and visual relationship detection. This enables multi-task learning and benchmarking at scale.
     </div>
-    <div id="bib_Kuznetsova2022" class="bibtex noshow">
+
+    <div id="bib_Kuznetsova2020" class="bibtex noshow">
       <pre>
-@article{Kuznetsova2022,
-  author = {Alina Kuznetsova and ...},
-  title = {The Open Images Dataset V4},
+@article{Kuznetsova2020,
+  author = {Alina Kuznetsova and Hassan Rom and Neil Alldrin and Jasper Uijlings and Ivan Krasin and Jordi Pont-Tuset and Shahab Kamali and Stefan Popov and Matteo Malloci and Alexander Kolesnikov and Tom Duerig and Vittorio Ferrari},
+  title = {The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale},
   journal = {IJCV},
-  year = {2022}
+  volume = {128},
+  number = {7},
+  pages = {1956–1981},
+  year = {2020}
 }
       </pre>
     </div>
   </li>
+
+  <!-- Add more <li> entries below in reverse order -->
 </ol>
