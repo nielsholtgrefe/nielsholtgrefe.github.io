@@ -58,17 +58,16 @@ author_profile: true
   }
 
   ul.pub-list li {
-    counter-increment: pubnum -1;
+    counter-increment: pubnum 1;
     margin-bottom: 1em;
   }
 
   ul.pub-list li::before {
-    content: "[" counter(pubnum) "] ";
     font-weight: bold;
     display: inline-block;
     width: 3em;
   }
-
+  
   .year-label {
     background-color: #f5f5f5;
     padding: 0.4em 0.8em;
@@ -79,6 +78,31 @@ author_profile: true
   }
   
 </style>
+
+<script>
+  document.querySelectorAll('ul.pub-list').forEach(ul => {
+    const start = parseInt(ul.getAttribute('data-start'), 10);
+    const items = ul.querySelectorAll('li');
+    const count = items.length;
+
+    // We'll set a CSS variable on ul with max number for calculation
+    ul.style.counterReset = `pubnum ${start - 1}`;
+
+    items.forEach((li, idx) => {
+      // The number to display:
+      const number = start + count - 1 - idx;
+      // Inject the number inside the ::before using a span:
+      const numberSpan = document.createElement('span');
+      numberSpan.textContent = `[${number}] `;
+      numberSpan.style.fontWeight = 'bold';
+      numberSpan.style.display = 'inline-block';
+      numberSpan.style.width = '3em';
+
+      // Insert the numberSpan before the content of li
+      li.prepend(numberSpan);
+    });
+  });
+</script>
 
 <script>
 function toggleBox(id) {
