@@ -52,18 +52,9 @@ author_profile: true
 }
 
 <style>
-  ul.pub-list {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  ul.pub-list li {
-    counter-increment: pubnum 1;
-    margin-bottom: 1em;
-  }
-
-  ul.pub-list li::before {
+  .pubnum {
     font-weight: bold;
+    margin-right: 0.5em;
     display: inline-block;
     width: 3em;
   }
@@ -79,30 +70,6 @@ author_profile: true
   
 </style>
 
-<script>
-  document.querySelectorAll('ul.pub-list').forEach(ul => {
-    const start = parseInt(ul.getAttribute('data-start'), 10);
-    const items = ul.querySelectorAll('li');
-    const count = items.length;
-
-    // We'll set a CSS variable on ul with max number for calculation
-    ul.style.counterReset = `pubnum ${start - 1}`;
-
-    items.forEach((li, idx) => {
-      // The number to display:
-      const number = start + count - 1 - idx;
-      // Inject the number inside the ::before using a span:
-      const numberSpan = document.createElement('span');
-      numberSpan.textContent = `[${number}] `;
-      numberSpan.style.fontWeight = 'bold';
-      numberSpan.style.display = 'inline-block';
-      numberSpan.style.width = '3em';
-
-      // Insert the numberSpan before the content of li
-      li.prepend(numberSpan);
-    });
-  });
-</script>
 
 <script>
 function toggleBox(id) {
@@ -120,8 +87,8 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 <h2>Publications</h2>
 
 <div class="year-label">2024</div>
-<ul class="pub-list" data-start="14"> 
-  <li>
+<ul> 
+  <li><span class="pubnum">[24]</span>
     Niels Holtgrefe, Leo van Iersel, Mark Jones<br>
     <strong>Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs</strong><br>
     <i>IJCV</i>, 2024.<br>
@@ -161,14 +128,14 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
 
 <div class="year-label">2023</div>
-<ul class="pub-list" data-start="20"> 
-  <li>
+<ul> 
+  <li><span class="pubnum">[1]</span>
     <strong>A. Author</strong><br>
     <em>Earlier Work</em><br>
     <i>Journal Name</i>, 2023.
   </li>
 
-  <li>
+  <li><span class="pubnum">[99]</span>
     <strong>A. Author</strong><br>
     <em>Earlier Work</em><br>
     <i>Journal Name</i>, 2023.
