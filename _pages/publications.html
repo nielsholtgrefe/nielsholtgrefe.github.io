@@ -146,10 +146,47 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
 <h2>Publications</h2>
 
+<div class="year-label"><span>2025</span></div>
+
+<ul class="no-bullets"> 
+  <li><span class="pubnum">[3]</span>
+    <span class="authors">Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin and Vincent Moulton.</span><br>
+    <span class="title"><span style="font-variant: small-caps;">Squirrel</span>: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments.</span><br>
+    <i>Molecular Biology and Evolution</i>, 2(4):msaf067, 2025. doi:10.1093/molbev/msaf067.<br>
+
+    <div class="button-group">
+      <a class="link-button" href="https://doi.org/10.1093/molbev/msaf067" target="_blank">journal</a>
+      <a class="link-button" href="https://www.biorxiv.org/content/10.1101/2024.11.01.621567v2" target="_blank">bioRxiv</a>
+      <a class="link-button" href="https://github.com/nholtgrefe/squirrel" target="_blank">software</a>
+      <button class="toggle-button" onclick="toggleBox('abs_frohn2024invariants')">abstract</button>
+      <button class="toggle-button" onclick="toggleBox('bib_frohn2024invariants')">bibtex</button>
+    </div>
+
+    <div id="abs_holtgrefe2025squirrel" class="abstract-box noshow">
+    With the increasing availability of genomic data, biologists aim to find more accurate descriptions of evolutionary histories influenced by secondary contact, where diverging lineages reconnect before diverging again. Such reticulate evolutionary events can be more accurately represented in phylogenetic networks than in phylogenetic trees. Since the root location of phylogenetic networks cannot be inferred from biological data under several evolutionary models, we consider semi-directed (phylogenetic) networks: partially directed graphs without a root in which the directed edges represent reticulate evolutionary events. By specifying a known outgroup, the rooted topology can be recovered from such networks. We introduce the algorithm <span style="font-variant: small-caps;">Squirrel</span> (<u>S</u>emi-directed <u>Qu</u>arnet-based <u>I</u>nfe<u>r</u>ence to <u>Re</u>construct <u>L</u>evel-1 Networks), which constructs a semi-directed level-1 network from a full set of quarnets (four-leaf semi-directed networks). Our method also includes a heuristic to construct such a quarnet set directly from sequence alignments. We demonstrate <span style="font-variant: small-caps;">Squirrel</span>'s performance through simulations and on real sequence datasets, the largest of which contains 29 aligned sequences close to 1.7 Mbp long. The resulting networks are obtained on a standard laptop within a few minutes. Lastly, we prove that <span style="font-variant: small-caps;">Squirrel</span> is combinatorially consistent: given a full set of quarnets coming from a triangle-free semi-directed level-1 network, it is guaranteed to reconstruct the original network. <span style="font-variant: small-caps;">Squirrel</span> is implemented in Python, has an easy-to-use graphical user interface that takes sequence alignments or quarnets as input, and is freely available at <a href="https://github.com/nholtgrefe/squirrel" target="_blank">https://github.com/nholtgrefe/squirrel</a>.
+    </div>
+
+    <div id="bib_holtgrefe2025squirrel" class="bibtex noshow">
+      <pre>
+@article{holtgrefe2025squirrel,
+  title={Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments},
+  author={Holtgrefe, Niels and Huber, Katharina T and van Iersel, Leo and Jones, Mark and Martin, Samuel and Moulton, Vincent},
+journal={Molecular Biology and Evolution},
+doi={10.1093/molbev/msaf067},
+volume = {42},
+number = {4},
+pages = {msaf067},
+year = {2025}
+}
+      </pre>
+    </div>
+  </li>
+</ul>
+
 <div class="year-label"><span>2024</span></div>
 
 <ul class="no-bullets"> 
-  <li><span class="pubnum">[1]</span>
+  <li><span class="pubnum">[2]</span>
     <span class="authors">Martin Frohn, Niels Holtgrefe, Leo van Iersel, Mark Jones and Steven Kelk.</span><br>
     <span class="title">Invariants for level-1 phylogenetic networks under the random walk 4-state Markov model.</span><br>
     <i>Preprint</i>, 2024. arXiv:2407.11720.<br>
@@ -218,18 +255,3 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
   
 </ul>
 
-
-<div class="year-label">2023</div>
-<ul class="no-bullets"> 
-  <li><span class="pubnum">[1]</span>
-    <span class="authors">A. Author, Niels Holtgrefe, B. Coauthor</span>
-    <em>Earlier Work</em><br>
-    <i>Journal Name</i>, 2023.
-  </li>
-
-  <li><span class="pubnum">[99]</span>
-    <strong>A. Author</strong><br>
-    <em>Earlier Work</em><br>
-    <i>Journal Name</i>, 2023.
-  </li>
-</ul>
