@@ -5,32 +5,124 @@ permalink: /publications/
 author_profile: true
 ---
 
+<style>
+.noshow { display: none; }
+
+.bibtex, .abstract-box {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  padding: 1em;
+  background: #fdfdfd;
+  position: relative;
+}
+
+.bibtex pre {
+  font-size: 85%;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.abstract-box {
+  font-size: 95%;
+  line-height: 1.4em;
+}
+
+.button-group {
+  margin-top: 0.5em;
+}
+
+.toggle-button, .link-button {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 4px 10px;
+  margin-right: 6px;
+  margin-top: 4px;
+  background-color: #eee;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.toggle-button:hover, .link-button:hover {
+  background-color: #ddd;
+}
+</style>
+
+<script>
+function toggleBox(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('noshow');
+}
+</script>
+
 <h2>Publications</h2>
 
-{% assign sorted_pubs = site.data.publications | sort: "year" | reverse %}
-
-<ul>
-{% for pub in sorted_pubs %}
+<ol reversed>
   <li>
-    {{ pub.authors }}<br>
-    <strong>{{ pub.title }}</strong><br>
-    <i>{{ pub.journal }}</i>, {{ pub.year }}.<br>
+    A. Kuznetsova, H. Rom, et al.<br>
+    <strong>The Open Images Dataset V4</strong><br>
+    <i>IJCV</i>, 2020.<br>
 
-    <!-- Buttons -->
     <div class="button-group">
-      <button class="toggle-button" onclick="toggleBox('abs_{{ pub.id }}')">[Abstract]</button>
-      <button class="toggle-button" onclick="toggleBox('bib_{{ pub.id }}')">[BibTeX]</button>
-      <a class="link-button" href="{{ pub.arxiv_url }}" target="_blank">[arXiv]</a>
-      <a class="link-button" href="{{ pub.journal_url }}" target="_blank">[Journal]</a>
+      <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2020')">[Abstract]</button>
+      <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2020')">[BibTeX]</button>
+      <a class="link-button" href="https://arxiv.org/abs/2001.00001" target="_blank">[arXiv]</a>
+      <a class="link-button" href="https://link.springer.com/article/10.1007/s11263-020-01369-z" target="_blank">[Journal]</a>
     </div>
 
-    <div id="abs_{{ pub.id }}" class="abstract-box noshow">
-      {{ pub.abstract }}
+    <div id="abs_Kuznetsova2020" class="abstract-box noshow">
+      We present Open Images V4, a large-scale dataset with unified annotations for image classification, object detection, and visual relationship detection. This enables multi-task learning and benchmarking at scale.
     </div>
 
-    <div id="bib_{{ pub.id }}" class="bibtex noshow">
-      <pre>{{ pub.bibtex }}</pre>
+    <div id="bib_Kuznetsova2020" class="bibtex noshow">
+      <pre>
+@article{Kuznetsova2020,
+  author = {Alina Kuznetsova and Hassan Rom and Neil Alldrin and Jasper Uijlings and Ivan Krasin and Jordi Pont-Tuset and Shahab Kamali and Stefan Popov and Matteo Malloci and Alexander Kolesnikov and Tom Duerig and Vittorio Ferrari},
+  title = {The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale},
+  journal = {IJCV},
+  volume = {128},
+  number = {7},
+  pages = {1956–1981},
+  year = {2020}
+}
+      </pre>
     </div>
   </li>
-{% endfor %}
-</ul>
+
+    <li>
+    A. Kuznetsova2, H. Rom, et al.<br>
+    <strong>The Open Images Dataset V4</strong><br>
+    <i>IJCV</i>, 2020.<br>
+
+    <div class="button-group">
+      <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2020')">[Abstract]</button>
+      <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2020')">[BibTeX]</button>
+      <a class="link-button" href="https://arxiv.org/abs/2001.00001" target="_blank">[arXiv]</a>
+      <a class="link-button" href="https://link.springer.com/article/10.1007/s11263-020-01369-z" target="_blank">[Journal]</a>
+    </div>
+
+    <div id="abs_Kuznetsova2020" class="abstract-box noshow">
+      We present Open Images V4, a large-scale dataset with unified annotations for image classification, object detection, and visual relationship detection. This enables multi-task learning and benchmarking at scale.
+    </div>
+
+    <div id="bib_Kuznetsova2020" class="bibtex noshow">
+      <pre>
+@article{Kuznetsova2020,
+  author = {Alina Kuznetsova and Hassan Rom and Neil Alldrin and Jasper Uijlings and Ivan Krasin and Jordi Pont-Tuset and Shahab Kamali and Stefan Popov and Matteo Malloci and Alexander Kolesnikov and Tom Duerig and Vittorio Ferrari},
+  title = {The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale},
+  journal = {IJCV},
+  volume = {128},
+  number = {7},
+  pages = {1956–1981},
+  year = {2020}
+}
+      </pre>
+    </div>
+  </li>
+
+  <!-- Add more <li> entries below in reverse order -->
+</ol>
