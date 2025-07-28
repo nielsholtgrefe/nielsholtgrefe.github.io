@@ -75,7 +75,14 @@ function toggleBox(id) {
     </div>
 
     <div id="abs_holtgrefe2024exact" class="abstract-box noshow">
-      We present Open Images V4, a large-scale dataset with unified annotations for image classification, object detection, and visual relationship detection. This enables multi-task learning and benchmarking at scale.
+  To measure the tree-likeness of a directed acyclic graph (DAG), a new width parameter that considers the directions of the arcs was recently introduced:
+  <em>scanwidth</em>. We present the first algorithm that efficiently computes the exact scanwidth of general DAGs. For DAGs with one root and scanwidth
+  \( k \), it runs in \( O(k \cdot n^k \cdot m) \) time. The algorithm also functions as an FPT algorithm with complexity
+  \( O(2^{4\ell - 1} \cdot \ell \cdot n + n^2) \) for phylogenetic networks of level-\( \ell \), a type of DAG used to depict evolutionary
+  relationships among species. Our algorithm performs well in practice, being able to compute the scanwidth of synthetic networks up to 30 reticulations
+  and 100 leaves within 500 seconds. Furthermore, we propose a heuristic that obtains an average practical approximation ratio of 1.5 on these networks.
+  While we prove that the scanwidth is bounded from below by the treewidth of the underlying undirected graph, experiments suggest that for networks
+  the parameters are close in practice.    
     </div>
 
     <div id="bib_holtgrefe2024exact" class="bibtex noshow">
