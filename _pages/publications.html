@@ -52,12 +52,24 @@ author_profile: true
 }
 
 <style>
-  .pubnum {
-    font-weight: bold;
-    margin-right: 0.5em;
-    display: inline-block;
-    width: 3em;
-  }
+ul.no-bullets {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.no-bullets li {
+  display: flex;
+  align-items: flex-start;
+}
+
+ul.no-bullets li .pubnum {
+  display: inline-block;
+  width: 3em;
+  text-align: right;
+  margin-right: 0.5em;
+  font-weight: bold;
+  flex-shrink: 0;
+}
   
   .year-label {
     background-color: #f5f5f5;
@@ -87,7 +99,7 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 <h2>Publications</h2>
 
 <div class="year-label">2024</div>
-<ul> 
+<ul class="no-bullets"> 
   <li><span class="pubnum">[24]</span>
     Niels Holtgrefe, Leo van Iersel, Mark Jones<br>
     <strong>Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs</strong><br>
@@ -128,7 +140,7 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
 
 <div class="year-label">2023</div>
-<ul> 
+<ul class="no-bullets"> 
   <li><span class="pubnum">[1]</span>
     <strong>A. Author</strong><br>
     <em>Earlier Work</em><br>
