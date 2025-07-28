@@ -6,10 +6,8 @@ author_profile: true
 ---
 
 <style>
-/* Toggle visibility */
 .noshow { display: none; }
 
-/* BibTeX block styling */
 .bibtex, .abstract-box {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -19,7 +17,6 @@ author_profile: true
   position: relative;
 }
 
-/* BibTeX text style */
 .bibtex pre {
   font-size: 85%;
   overflow: auto;
@@ -27,43 +24,38 @@ author_profile: true
   font-family: monospace;
 }
 
-/* Abstract uses default font (non-typewriter) */
 .abstract-box {
   font-size: 95%;
   line-height: 1.4em;
 }
 
-/* Buttons */
-.copy-button, .toggle-button {
-  position: relative;
+.button-group {
+  margin-top: 0.5em;
+}
+
+.toggle-button, .link-button {
+  display: inline-block;
   font-size: 0.8em;
   padding: 4px 10px;
-  margin-right: 5px;
+  margin-right: 6px;
+  margin-top: 4px;
   background-color: #eee;
   border: none;
-  cursor: pointer;
   border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
-.copy-button:hover, .toggle-button:hover {
+
+.toggle-button:hover, .link-button:hover {
   background-color: #ddd;
 }
 </style>
 
 <script>
-// Toggle abstract or bibtex box
 function toggleBox(id) {
   const el = document.getElementById(id);
   if (el) el.classList.toggle('noshow');
-}
-
-// Copy BibTeX text from <pre> tag
-function copyBibtex(id) {
-  const pre = document.getElementById(id).querySelector('pre');
-  if (pre) {
-    navigator.clipboard.writeText(pre.innerText)
-      .then(() => alert("BibTeX copied to clipboard!"))
-      .catch(err => alert("Copy failed: " + err));
-  }
 }
 </script>
 
@@ -73,29 +65,29 @@ function copyBibtex(id) {
   <li>
     A. Kuznetsova, H. Rom, et al.<br>
     <strong>The Open Images Dataset V4</strong><br>
-    <i>IJCV</i>, 2020.<br>
+    <i>International Journal of Computer Vision (IJCV)</i>, 2020.<br>
 
-    <!-- Buttons -->
-    <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2020')">[Abstract]</button>
-    <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2020')">[BibTeX]</button>
-    <button class="copy-button" onclick="copyBibtex('bib_Kuznetsova2020')">Copy BibTeX</button>
-
-    <!-- Abstract box (normal font) -->
-    <div id="abs_Kuznetsova2020" class="abstract-box noshow">
-      We present Open Images V4, a dataset of 9 million images annotated with image-level labels, object bounding boxes, and visual relationships. The dataset enables unified training and evaluation for image classification, object detection, and visual relationship detection at scale.
+    <div class="button-group">
+      <button class="toggle-button" onclick="toggleBox('abs_Kuznetsova2020')">[Abstract]</button>
+      <button class="toggle-button" onclick="toggleBox('bib_Kuznetsova2020')">[BibTeX]</button>
+      <a class="link-button" href="https://arxiv.org/abs/2001.00001" target="_blank">[arXiv]</a>
+      <a class="link-button" href="https://link.springer.com/article/10.1007/s11263-020-01369-z" target="_blank">[Journal]</a>
     </div>
 
-    <!-- BibTeX box (monospace font) -->
+    <div id="abs_Kuznetsova2020" class="abstract-box noshow">
+      We present Open Images V4, a large-scale dataset with unified annotations for image classification, object detection, and visual relationship detection. This resource enables comprehensive multi-task learning and benchmarking at unprecedented scale.
+    </div>
+
     <div id="bib_Kuznetsova2020" class="bibtex noshow">
       <pre>
 @article{Kuznetsova2020,
   author = {Alina Kuznetsova and Hassan Rom and Neil Alldrin and Jasper Uijlings and Ivan Krasin and Jordi Pont-Tuset and Shahab Kamali and Stefan Popov and Matteo Malloci and Alexander Kolesnikov and Tom Duerig and Vittorio Ferrari},
   title = {The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale},
-  year = {2020},
-  number = {7},
+  journal = {International Journal of Computer Vision},
   volume = {128},
-  pages = {1956-1981},
-  journal = {IJCV}
+  number = {7},
+  pages = {1956–1981},
+  year = {2020}
 }
       </pre>
     </div>
