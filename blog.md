@@ -1,9 +1,9 @@
 ---
 layout: post-index
-permalink: /blog/
-title: All Posts
+permalink: /conferences/
+title: Conferences
 tagline: A List of Posts
-tags: [blog]
+tags: [conferences]
 comments: false
 ---
 
