@@ -20,11 +20,14 @@ classes: wide
   position: relative;
 }
 
+/* BibTeX content */
 .bibtex pre {
   font-size: 85%;
-  overflow: auto;
-  white-space: pre-wrap;
+  overflow-x: auto;          /* Enable horizontal scroll */
+  overflow-y: hidden;
+  white-space: pre;          /* Don't wrap lines */
   font-family: monospace;
+  margin: 0;                 /* Remove default pre margin */
 }
 
  /* abstract box */
