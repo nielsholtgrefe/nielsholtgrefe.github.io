@@ -30,11 +30,6 @@ classes: wide
   margin: 0;                 /* Remove default pre margin */
 }
 
-.bib-keyword { color: #007acc; font-weight: bold; }
-.bib-field   { color: #a626a4; }
-.bib-value   { color: #50a14f; }
-  
-
  /* abstract box */
 .abstract-box {
   font-size: 95%;
@@ -145,18 +140,6 @@ ul.no-bullets li {
 </style>
 
 
-<script>
-  /* style bibtex */
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".bibtex pre").forEach((pre) => {
-    let content = pre.innerText
-      .replace(/(@\w+)/g, '<span class="bib-keyword">$1</span>')
-      .replace(/([a-zA-Z]+)(\s*=\s*)/g, '<span class="bib-field">$1</span>$2')
-      .replace(/\"(.*?)\"/g, '<span class="bib-value">"$1"</span>');
-    pre.innerHTML = content;
-  });
-});
-</script>
 
 <script>
   /*copy button*/
