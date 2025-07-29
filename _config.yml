@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Niels Holtgrefe"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "PhD candidate in applied mathematics at <a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/people/nal-niels-holtgrefe-msc" target="_blank" rel="noopener">TU Delft</a>, working on algorithmic and mathematical phylogenetics."
+  bio    : "PhD candidate at <a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/people/nal-niels-holtgrefe-msc" target="_blank" rel="noopener">TU Delft</a>, working on algorithmic and mathematical phylogenetics."
   links:
     #- label: "Delft University of Technology"
     #  icon: "fas fa-fw fa-university"
