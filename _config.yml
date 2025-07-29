@@ -80,7 +80,7 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/nholtgrefe"
-    - label: "ORCID: 0009-0001-6162-9668"
+    - label: "ORCID"
       icon: "fab fa-fw fa-orcid"
       url: "https://orcid.org/0009-0001-6162-9668"
 
