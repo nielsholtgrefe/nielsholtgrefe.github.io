@@ -39,6 +39,24 @@ classes: wide
   overflow-x: hidden;
 }
 
+/* copy button */
+  .copy-btn {
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 1;
+}
+.copy-btn:hover {
+  background: #ddd;
+}
+  
+  
 /* toggle buttons */
 .button-group {
   margin-top: 0.1em;
@@ -120,6 +138,31 @@ ul.no-bullets li {
 }
   
 </style>
+
+
+<script>
+  /*copy button*/
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".bibtex").forEach((bib) => {
+    // Skip if already has a button
+    if (bib.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "📋";
+    btn.onclick = () => {
+      const pre = bib.querySelector("pre");
+      if (!pre) return;
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = "✔️";
+        setTimeout(() => (btn.textContent = "📋"), 1500);
+      });
+    };
+
+    bib.appendChild(btn);
+  });
+});
+</script>
 
 
 <script>
