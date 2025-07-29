@@ -60,7 +60,7 @@ plugins:
 
 author:
   name   : "Niels Holtgrefe"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/bio_pic.jpg"
   bio    : "PhD candidate in applied mathematics, working on algorithmic and mathematical phylogenetics."
   links:
     - label: "TU Delft"
