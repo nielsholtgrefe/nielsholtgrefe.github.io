@@ -73,7 +73,7 @@ author:
       icon: "fas fa-fw fa-envelope"
       url: "mailto:your@email.com"
     - label: "Google Scholar"
-      icon: "fas fa-fw fa-google-scholar"
+      icon: "fas fa-brands fa-google-scholar"
       url: "https://scholar.google.com/yourprofile"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
@@ -82,7 +82,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/yourusername"
     - label: "ORCID"
-      icon: "fas fa-fw fa-orcid"
+      icon: "fas fa-brands fa-orcid"
       url: "https://orcid.org/0000-0000-0000-0000"
 
 footer:
