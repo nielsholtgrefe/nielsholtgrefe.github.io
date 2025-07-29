@@ -382,7 +382,7 @@ year = {2025}
 <h2>Theses</h2>
 
 <ul class="no-bullets"> 
-  <li><span class="pubnum">[2]</span>
+  <li><span class="pubnum">\( \bullet \)</span>
     <span class="authors">Niels Holtgrefe.</span><br>
     <span class="title">Computing the Scanwidth of Directed Acyclic Graphs.</span><br>
     <i>MSc thesis</i>, Delft University of Technology, Delft, The Netherlands, 2023. url:http://resolver.tudelft.nl/uuid:9c82fd2a-5841-4aac-8e40-d4d22542cdf5.<br>
@@ -413,5 +413,36 @@ On the heuristic side, an algorithm that repeatedly splits at a specific type of
     </div>
   </li>
 
+
+
+  <li><span class="pubnum">\( \bullet \)</span>
+    <span class="authors">Niels Holtgrefe.</span><br>
+    <span class="title">Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection.</span><br>
+    <i>MSc thesis</i>, Delft University of Technology, Delft, The Netherlands, 2021. url:https://resolver.tudelft.nl/uuid:9d222076-f3e6-4a36-9325-40de3dde0e9d.<br>
+    <div class="button-group">
+      <a class="link-button" href="https://resolver.tudelft.nl/uuid:9d222076-f3e6-4a36-9325-40de3dde0e9d" target="_blank">repository</a>
+      <button class="toggle-button" onclick="toggleBox('abs_holtgrefe2021maximum')">abstract</button>
+      <button class="toggle-button" onclick="toggleBox('bib_holtgrefe2021maximum')">bibtex</button>
+    </div>
+
+    <div id="abs_holtgrefe2021maximum" class="abstract-box noshow">
+In this thesis we analyse the class of <i>maximum coverage</i> problems. For all discussed problems, linear programs are formulated. Using the notion of <i>submodularity</i>, we prove that for the weighted version of the basic <i>Maximum Coverage</i> problem, where the weights differ per set, a polynomial-time greedy algorithm guarantees a \((1 - 1/e)\)-approximation of the optimal solution. This improves the already known bound of \((1 - 1/e - \varepsilon)\), for all \(\varepsilon > 0) \). We then show that the same result holds true, if we allow elements to be covered by multiple sets. Furthermore, a completely novel extension is introduced, where weights differ per combination of sets. It is proved that, under the assumption that the weights are submodular and increasing, a greedy algorithm still provides a \((1 – 1/e)\)-approximation.<br>
+The latter algorithm is tested in the framework of optimal sensor selection. To this end, we consider all official weather stations in the Netherlands as our sensor group. We test the performance of the approximation algorithm, if some of the assumptions do not hold and no theoretical bounds exists. Corresponding weights are calculated, using two approaches: <i>inverse distance weighting</i> and <i>multiple linear regression</i>. For both approaches the in practice performance of the greedy algorithm is shown to be even higher than \((1 – 1/e)\), even though not all assumptions hold. Finally, the corresponding selection of weather stations is shown.
+</div>
+
+    <div id="bib_holtgrefe2021maximum" class="bibtex noshow">
+      <pre>
+@bachelorssthesis{holtgrefe2021maximum,
+  title={Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection},
+  author={Niels Holtgrefe},
+  year={2021},
+  address={Delft, The Netherlands},
+  note={Available at \url{https://resolver.tudelft.nl/uuid:9d222076-f3e6-4a36-9325-40de3dde0e9d}},
+  school={Delft University of Technology},
+  type= {BSc thesis}
+}
+      </pre>
+    </div>
+  </li>
 
 </ul>
