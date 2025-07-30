@@ -142,9 +142,20 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
   /* toggle */
 function toggleBox(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('noshow');
+  // Close all toggles first
+  document.querySelectorAll('.abstract-box, .bibtex').forEach(box => {
+    if (box.id !== id) {
+      box.classList.add('noshow');
+    }
+  });
+
+  // Then toggle the clicked one
+  const box = document.getElementById(id);
+  if (box) {
+    box.classList.toggle('noshow');
+  }
 }
+
 </script>
 
 <!-- ------------- -->
