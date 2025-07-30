@@ -116,7 +116,7 @@
 
 - title: "Title D"
   release-date: "2022-05-10"
-  type: "msc-thesis"  # will be excluded
+  type: "thesis"  # will be excluded
   authors:
     - Eve
 
