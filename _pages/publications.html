@@ -221,58 +221,6 @@ ul.no-bullets li {
 <!-- ------------ -->
 
 
-
 On this page you can find my publications (including preprints), with links to the journal version, preprint version and corresponding software. Toggle the abstract/bibtex button to see the abstract / bibtex entry.<br>
 At the bottom of the page my MSc and BSc theses are listed.<br>
 You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
-
-
-{% comment %}
-Filter entries: only type journal/preprint/conference
-{% endcomment %}
-{% assign filtered = site.data.pubs | where_exp: "pub", "pub.type == 'journal' or pub.type == 'preprint' or pub.type == 'conference'" %}
-{% assign sorted_pubs = filtered | sort: "release-date" | reverse %}
-{% assign total = sorted_pubs | size %}
-{% assign current_year = "" %}
-
-{% for pub in sorted_pubs %}
-  {% assign year = pub.release-date | slice: 0, 4 %}
-  {% assign pubnum = total | minus: forloop.index0 %}
-
-  {% if year != current_year %}
-    <div class="year-label"><span>{{ year }}</span></div>
-    {% assign current_year = year %}
-  {% endif %}
-
-  {% include pub_entry.html pub=pub pubnum=pubnum %}
-{% endfor %}
-
-## Theses
-
-{% assign theses = site.data.pubs | where: "type", "thesis" %}
-{% assign sorted_theses = theses | sort: "release-date" | reverse %}
-
-{% for thesis in sorted_theses %}
-    {% include pub_entry.html pub=thesis pubnum="•" %}
-{% endfor %}
-
-
-<!-- script to underline name
-<style>
-.authors .underline {
-  text-decoration: underline;
-}
-</style>
-<script>
-  /* underline my name */
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.authors').forEach(el => {
-    const authorName = "Niels Holtgrefe";
-    const regex = new RegExp(`(${authorName})`, "g");
-
-    // Replace only the name with the underlined span
-    //el.innerHTML = el.innerHTML.replace(regex, '<span class="underline">$1</span>');
-  });
-});
-</script>
--->
