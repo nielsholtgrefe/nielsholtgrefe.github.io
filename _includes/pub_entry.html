@@ -2,8 +2,8 @@
   {% assign pub = include.pub %}
   {% assign pubnum = include.pubnum %}
   <span class="pubnum">[{{ pubnum }}]</span>
-  <span class="authors">{{ pub.authors | join: ", " }}</span><br>
   <span class="title">{{ pub.title }}</span><br>
+  <span class="authors">{{ pub.authors | join: ", " }}</span><br>
   <span class="info">
     <i>{{ pub.type }}</i>{% if pub.year %}, {{ pub.year }}{% endif %}.
     {% if pub.pubinfo %} {{ pub.pubinfo }}{% endif %}
