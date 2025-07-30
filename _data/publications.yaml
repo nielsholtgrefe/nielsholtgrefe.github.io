@@ -21,10 +21,10 @@
       archivePrefix={arXiv},
       eprint={2507.18772}
     }
-  doi:
+  doi-identifier:
   doi-url:
   preprint-server: arXiv
   preprint-identifier: 2507.18772
   preprint-url: https://arxiv.org/abs/2507.18772
   software-url:
-  pubinfo: "arXiv:2507.18772"
+  misc: "Test"
