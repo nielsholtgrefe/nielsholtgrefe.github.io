@@ -40,9 +40,10 @@
           {%- assign name = name | append: " " | append: author.tussenvoegsel -%}
         {%- endif %}
         {%- assign name = name | append: " " | append: author.last -%}
-        {{ name }}{%- unless forloop.last %}, {% endunless %}
+        <span style="white-space: nowrap;">{{ name }}</span>{%- unless forloop.last %}, {% endunless %}
       {% endfor %}
     </span><br>
+
 
     
     <div class="info-row" style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
