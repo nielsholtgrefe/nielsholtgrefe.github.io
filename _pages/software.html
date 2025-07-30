@@ -213,14 +213,21 @@ On this page you can find my publications (including preprints), with links to t
 At the bottom of the page my MSc and BSc theses are listed.<br>
 You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
 
-{% assign pubs = site.data.pubs | sort: "pubnum" | reverse %}
-{% assign current_year = nil %}
+{% assign sorted_pubs = site.data.pub | sort: "release-date" | reverse %}
+{% assign total = sorted_pubs | size %}
+{% assign pubnum = total %}
+{% assign current_year = "" %}
 
-{% for pub in pubs %}
-  {% if forloop.first or pub.year != pubs[forloop.index0 | minus: 1].year %}
-    <div class="year-label"><span>{{ pub.year }}</span></div>
+{% for pub in sorted_pubs %}
+  {% assign year = pub.year}
+
+  {% if year != current_year %}
+    <div class="year-label"><span>{{ year }}</span></div>
+    {% assign current_year = year %}
   {% endif %}
-  {% include pub_entry.html pub=pub pubnum=36%}
+
+  {% include pub_entry.html pub=pub pubnum=pubnum %}
+  {% assign pubnum = pubnum | minus: 1 %}
 {% endfor %}
 
 <!-- script to underline name
