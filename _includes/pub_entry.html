@@ -1,22 +1,27 @@
 <div class="pub-entry">
   {% assign pub = include.pub %}
   {% assign pubnum = include.pubnum %}
+  
   <span class="pubnum">[{{ pubnum }}]</span>
+  
   <span class="title">{{ pub.title }}</span><br>
   
   <span class="authors">
-  {% for author in pub.authors %}
-    {%- assign full = author.first -%}
-    {%- if author.middle %}
-      {%- for m in author.middle %} {{ m }}.{% endfor -%}
-    {%- endif -%}
-    {%- if author.tussenvoegsel %}
-      {{ " " }}{{ author.tussenvoegsel }}
-    {%- endif -%}
-    {{ " " }}{{ author.last }}
-    {%- unless forloop.last %}, {% endunless %}
-  {% endfor %}
+    {% for author in pub.authors %}
+      {%- assign name = author.first -%}
+      {%- if author.middle %}
+        {%- for m in author.middle %}
+          {%- assign name = name | append: " " | append: m | append: "." -%}
+        {%- endfor %}
+      {%- endif %}
+      {%- if author.tussenvoegsel %}
+        {%- assign name = name | append: " " | append: author.tussenvoegsel -%}
+      {%- endif %}
+      {%- assign name = name | append: " " | append: author.last -%}
+      {{ name }}{%- unless forloop.last %}, {% endunless %}
+    {% endfor %}
   </span><br>
+
   
   <span class="info">
     {% if pub.type == "journal" %}
