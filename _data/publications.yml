@@ -29,3 +29,37 @@
       archivePrefix={arXiv},
       eprint={2507.18772}
     }
+
+
+
+- pubnum: 10
+  authors:
+    - Test
+    - Katharina T. Huber
+    - Leo van Iersel
+    - Mark Jones
+    - Vincent Moulton
+  title: "Test"
+  year: 2025
+  type: Preprint
+  journal:
+  volume:
+  issue:
+  pages:
+  doi-identifier:
+  doi-url:
+  preprint-server: arXiv
+  preprint-identifier: 2507.18772
+  preprint-url: https://arxiv.org/abs/2507.18772
+  software-url:
+  misc: "Test"
+  abstract: |
+    In evolutionary biology, phylogenetic networks are graphs that provide a flexible framework for representing complex evolutionary histories that involve reticulate evolutionary events. Recently phylogenetic studies have started to focus on a special class of such networks called semi-directed networks. These graphs are defined as mixed graphs that can be obtained by de-orienting some of the arcs in some rooted phylogenetic network, that is, a directed acyclic graph whose leaves correspond to a collection of species and that has a single source or root vertex. However, this definition of semi-directed networks is implicit in nature since it is not clear when a mixed-graph enjoys this property or not. In this paper, we introduce novel, explicit mathematical characterizations of semi-directed networks, and also multi-semi-directed networks, that is mixed graphs that can be obtained from directed phylogenetic networks that may have more than one root. In addition, through extending foundational tools from the theory of rooted networks into the semi-directed setting - such as cherry picking sequences, omnians, and path partitions - we characterize when a (multi-)semi-directed network can be obtained by de-orienting some rooted network that is contained in one of the well-known classes of tree-child, orchard, tree-based or forest-based networks. These results address structural aspects of (multi-)semi-directed networks and pave the way to improved theoretical and computational analyses of such networks, for example, within the development of algebraic evolutionary models that are based on such networks.
+  bibtex: |
+    @misc{holtgrefe2025charachterizing,
+      author = {Holtgrefe, Niels and Huber, Katharina T and van Iersel, Leo and Jones, Mark and Moulton, Vincent},
+      title = {Characterizing (multi-)semi-directed phylogenetic networks},
+      year={2025},
+      archivePrefix={arXiv},
+      eprint={2507.18772}
+    }
