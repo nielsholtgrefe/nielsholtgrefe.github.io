@@ -1,11 +1,18 @@
 - title: "Characterizing (multi-)semi-directed phylogenetic networks"
   release-date: 2025-07-24
   authors:
-    - Niels Holtgrefe
-    - Katharina T. Huber
-    - Leo van Iersel
-    - Mark Jones
-    - Vincent Moulton
+    - first: Niels
+      last: Holtgrefe
+    - first: Katharina
+      middle: ["T"]
+      last: Huber
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
+    - first: Vincent
+      last: Moulton
   year: 2025
   type: "preprint"
   journal:
@@ -33,13 +40,23 @@
 - title: "Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances"
   release-date: 2025-07-23
   authors:
-    - Niels Holtgrefe
-    - Elizabeth S. Allman
-    - Hector Baños
-    - Leo van Iersel
-    - Vincent Moulton
-    - John A. Rhodes
-    - Kristina Wicke
+    - first: Niels
+      last: Holtgrefe
+    - first: Elizabeth
+      middle: ["S"]
+      last: Allman
+    - first: Hector
+      last: Baños
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Vincent
+      last: Moulton
+    - first: John
+      middle: ["A"]
+      last: Rhodes
+    - first: Kristina
+      last: Wicke
   year: 2025
   type: "preprint"
   journal:
@@ -67,10 +84,15 @@
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
   release-date: 2025-06-05
   authors:
-    - Samuel Martin
-    - Niels Holtgrefe
-    - Vincent Moulton
-    - Richard M. Legget
+    - first: Samuel
+      last: Martin
+    - first: Niels
+      last: Holtgrefe
+    - first: Vincent
+      last: Moulton
+    - first: Richard
+      middle: ["M"]
+      last: Legget
   year: 2025
   type: "preprint"
   journal:
@@ -98,13 +120,22 @@
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
   release-date: 2025-04-24
   authors:
-    - Aviva K. Englander
-    - Martin Frohn
-    - Elizabeth Gross
-    - Niels Holtgrefe
-    - Leo van Iersel
-    - Mark Jones
-    - Seth Sullivant
+    - first: Aviva
+      middle: ["K"]
+      last: Englander
+    - first: Martin
+      last: Frohn
+    - first: Elizabeth
+      last: Gross
+    - first: Niels
+      last: Holtgrefe
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
+    - first: Seth
+      last: Sullivant
   year: 2025
   type: "preprint"
   journal:
@@ -135,11 +166,17 @@
 - title: "Reconstructing semi-directed level-1 networks using few quarnets"
   release-date: 2025-03-28
   authors:
-    - Martin Frohn
-    - Niels Holtgrefe
-    - Leo van Iersel
-    - Mark Jones
-    - Steven Kelk
+    - first: Martin
+      last: Frohn
+    - first: Niels
+      last: Holtgrefe
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
+    - first: Steven
+      last: Kelk
   year: 2025
   type: "journal"
   journal: "Journal of Computer and System Sciences"
@@ -169,12 +206,20 @@
 - title: "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
   release-date: 2025-03-27
   authors:
-    - Niels Holtgrefe
-    - Katharina T. Huber
-    - Leo van Iersel
-    - Mark Jones
-    - Samuel Martin
-    - Vincent Moulton
+    - first: Niels
+      last: Holtgrefe
+    - first: Katharina
+      middle: ["T"]
+      last: Huber
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
+    - first: Samuel
+      last: Martin
+    - first: Vincent
+      last: Moulton
   year: 2025
   type: "journal"
   journal: "Molecular Biology and Evolution"
@@ -205,11 +250,17 @@
 - title: "Invariants for level-1 phylogenetic networks under the random walk 4-state Markov model"
   release-date: 2024-07-16
   authors:
-    - Martin Frohn
-    - Niels Holtgrefe
-    - Leo van Iersel
-    - Mark Jones
-    - Steven Kelk
+    - first: Martin
+      last: Frohn
+    - first: Niels
+      last: Holtgrefe
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
+    - first: Steven
+      last: Kelk
   year: 2024
   type: "preprint"
   journal:
@@ -237,9 +288,13 @@
 - title: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
   release-date: 2024-03-19
   authors:
-    - Niels Holtgrefe
-    - Leo van Iersel
-    - Mark Jones
+    - first: Niels
+      last: Holtgrefe
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Mark
+      last: Jones
   year: 2024
   type: "preprint"
   journal:
@@ -267,7 +322,8 @@
 - title: "Computing the Scanwidth of Directed Acyclic Graphs"
   release-date: 2023-07-12
   authors:
-    - Niels Holtgrefe
+    - first: Niels
+      last: Holtgrefe
   supervisors:
     - Leo van Iersel
     - Mark Jones
@@ -303,7 +359,8 @@
 - title: "Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
   release-date: 2021-07-12
   authors:
-    - Niels Holtgrefe
+    - first: Niels
+      last: Holtgrefe
   supervisors:
     - Teun Janssen
   year: 2024
