@@ -62,7 +62,12 @@
       {% endif %}
     </span>
 
-    <div class="lowkey-button-group" style="position: absolute; bottom: 0.5em; left: 0.5em;">
+    <div class="lowkey-button-group" style="
+      position: absolute;
+      bottom: -0.6em;
+      left: -0.6em;
+      z-index: 2;
+    ">
       {% if pub.abstract %}
         <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abs</button>
       {% endif %}
@@ -70,6 +75,7 @@
         <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bib</button>
       {% endif %}
     </div>
+
 
   </div>
 </div>
