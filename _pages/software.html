@@ -6,11 +6,11 @@ author_profile: true
 classes: wide
 ---
 
+<!-- INFO BOXES -->
 <style>
-
-/* bibtext block */
 .noshow { display: none; }
 
+/* box definition */
 .bibtex, .abstract-box {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -30,7 +30,7 @@ classes: wide
   margin: 0;                 /* Remove default pre margin */
 }
 
- /* abstract box */
+ /* abstract content */
 .abstract-box {
   font-size: 95%;
   line-height: 1.4em;
@@ -55,13 +55,40 @@ classes: wide
 .copy-btn:hover {
   background: #ddd;
 }
+</style>
+
+<script>
+  /*copy button*/
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".bibtex").forEach((bib) => {
+    // Skip if already has a button
+    if (bib.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "📋";
+    btn.onclick = () => {
+      const pre = bib.querySelector("pre");
+      if (!pre) return;
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = "✔️";
+        setTimeout(() => (btn.textContent = "📋"), 1500);
+      });
+    };
+
+    bib.appendChild(btn);
+  });
+});
+</script>
   
-  
-/* toggle buttons */
+
+<style>
+/* button group */
 .button-group {
   margin-top: 0.1em;
 }
 
+/* button look */
 .toggle-button, .link-button {
   display: inline-block;
   font-size: 0.8em;
@@ -79,8 +106,7 @@ classes: wide
 .toggle-button:hover, .link-button:hover {
   background-color: #ddd;
 }
-
-<style>
+  
   /* ref list custom */
 ul.no-bullets {
   list-style: none;
@@ -95,7 +121,7 @@ ul.no-bullets li {
   margin-bottom: 0.6em;
 }
 
-  /* year blocks */
+/* year blocks */
 .year-label {
   position: relative;
   text-align: right;
@@ -147,29 +173,7 @@ ul.no-bullets li {
 
 
 
-<script>
-  /*copy button*/
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".bibtex").forEach((bib) => {
-    // Skip if already has a button
-    if (bib.querySelector(".copy-btn")) return;
 
-    const btn = document.createElement("button");
-    btn.className = "copy-btn";
-    btn.textContent = "📋";
-    btn.onclick = () => {
-      const pre = bib.querySelector("pre");
-      if (!pre) return;
-      navigator.clipboard.writeText(pre.innerText).then(() => {
-        btn.textContent = "✔️";
-        setTimeout(() => (btn.textContent = "📋"), 1500);
-      });
-    };
-
-    bib.appendChild(btn);
-  });
-});
-</script>
 
 
 <script>
