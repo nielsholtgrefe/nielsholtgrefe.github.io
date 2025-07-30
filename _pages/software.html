@@ -1,4 +1,4 @@
-p---
+---
 layout: single
 title: "Test"
 permalink: /software/
@@ -219,7 +219,7 @@ On this page you can find my publications (including preprints), with links to t
 At the bottom of the page my MSc and BSc theses are listed.<br>
 You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
 
-<!--
+
 {% comment %}
 Filter entries: only type journal/preprint/conference
 {% endcomment %}
@@ -242,7 +242,12 @@ Filter entries: only type journal/preprint/conference
 
 ## Theses
 
--->
+{% assign theses = site.data.pubs | where: "type", "thesis" %}
+{% assign sorted_theses = theses | sort: "release-date" | reverse %}
+
+{% for thesis in sorted_theses %}
+    {% include pub_entry.html pub=thesis pubnum="•" %}
+{% endfor %}
 
 
 <!-- script to underline name
