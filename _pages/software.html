@@ -215,48 +215,14 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
 {% assign pubs = site.data.publications | sort: "pubnum" | reverse %}
 {% assign current_year = nil %}
+{% assign pubs = site.data.pub | sort: "pubnum" | reverse %}
 
-<ul class="no-bullets">
-  {% for pub in pubs %}
-    {% if pub.year != current_year %}
-      {% assign current_year = pub.year %}
-      </ul><div class="year-label"><span>{{ current_year }}</span></div><ul class="no-bullets">
-    {% endif %}
-
-    <li>
-      <span class="pubnum">[{{ pub.pubnum }}]</span>
-      <span class="authors">{{ pub.authors | join: ", " }}</span><br>
-      <span class="title">{{ pub.title }}</span><br>
-      <span class="info"><i>{{ pub.type }}</i>{% if pub.year %}, {{ pub.year }}{% endif %}. {{ pub.pubinfo }}</span><br>
-
-      <div class="button-group">
-        {% if pub.preprint-url %}
-          <a class="link-button" href="{{ pub.preprint-url }}" target="_blank">{{ pub.preprint-server }}</a>
-        {% endif %}
-        {% if pub.software-url %}
-          <a class="link-button" href="{{ pub.software-url }}" target="_blank">software</a>
-        {% endif %}
-        {% if pub.abstract %}
-          <button class="toggle-button" onclick="toggleBox('abs_{{ pub.pubnum }}')">abstract</button>
-        {% endif %}
-        {% if pub.bibtex %}
-          <button class="toggle-button" onclick="toggleBox('bib_{{ pub.pubnum }}')">bibtex</button>
-        {% endif %}
-      </div>
-
-      {% if pub.abstract %}
-        <div id="abs_{{ pub.pubnum }}" class="abstract-box noshow">{{ pub.abstract }}</div>
-      {% endif %}
-
-      {% if pub.bibtex %}
-        <div id="bib_{{ pub.pubnum }}" class="bibtex noshow">
-          <pre>{{ pub.bibtex }}</pre>
-        </div>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
-
+{% for pub in pubs %}
+  {% if forloop.first or pub.year != pubs[forloop.index0 | minus: 1].year %}
+    <div class="year-label"><span>{{ pub.year }}</span></div>
+  {% endif %}
+  {% include pub_entry.html pub=pub %}
+{% endfor %}
 
 <!-- script to underline name
 <style>
