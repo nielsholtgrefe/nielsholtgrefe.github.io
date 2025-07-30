@@ -1,12 +1,11 @@
-- release-date: 2025-04-22
-  pubnum: 42
+- title: "Characterizing (multi-)semi-directed phylogenetic networks"
+  release-date: 2025-04-22
   authors:
     - Niels Holtgrefe
     - Katharina T. Huber
     - Leo van Iersel
     - Mark Jones
     - Vincent Moulton
-  title: "Characterizing (multi-)semi-directed phylogenetic networks"
   year: 2025
   type: Preprint
   journal:
@@ -95,4 +94,30 @@
       archivePrefix={arXiv},
       eprint={2507.18772}
     }
+
+- title: "Title A"
+  release-date: "2025-07-01"
+  type: "journal"
+  authors:
+    - Alice
+    - Bob
+
+- title: "Title B"
+  release-date: "2024-03-15"
+  type: "preprint"
+  authors:
+    - Claire
+
+- title: "Title C"
+  release-date: "2023-09-22"
+  type: "conference"
+  authors:
+    - David
+
+- title: "Title D"
+  release-date: "2022-05-10"
+  type: "msc-thesis"  # will be excluded
+  authors:
+    - Eve
+
 
