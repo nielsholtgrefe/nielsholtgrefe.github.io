@@ -97,10 +97,10 @@
       z-index: 2;
     ">
       {% if pub.abstract %}
-        <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abs</button>
+        <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abstract</button>
       {% endif %}
       {% if pub.bibtex %}
-        <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bib</button>
+        <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bibtex</button>
       {% endif %}
     </div>
 
