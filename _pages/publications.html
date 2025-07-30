@@ -123,10 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
 .toggle-button.lowkey {
   font-family: monospace;
   color: #666;
-  background-color: #f5f5f5;
+  background-color: white;      /* white background */
+  border: 1px solid #ddd;       /* same border as pub border, adjust #ccc if your pub border uses a different color */
   padding: 2px 6px;
   margin-top: 2px;
+  border-radius: 3px;           /* keep rounded corners consistent */
 }
+
 
 
 .toggle-button:hover, .link-button:hover {
