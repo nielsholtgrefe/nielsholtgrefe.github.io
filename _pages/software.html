@@ -189,43 +189,25 @@ ul.no-bullets li {
 </style>
 <!-- ------------- -->
 
-<!-- REFERENCE STYLE -->
+
+<!-- PUBITEM GLOBAL STYLE -->
 
 <style>
   /* author fields */
   .authors {
     font-size:0.8em
 }
-.authors .underline {
-  text-decoration: underline;
-}
-
   /* title field */
   .title {
   font-weight: bold;
   font-size: 1.0em;
 }
-
+/* bubliographic info */
   .info {
   font-size: 0.7em;
 }
-  
 </style>
 
-<!-- script to underline name
-<script>
-  /* underline my name */
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.authors').forEach(el => {
-    const authorName = "Niels Holtgrefe";
-    const regex = new RegExp(`(${authorName})`, "g");
-
-    // Replace only the name with the underlined span
-    //el.innerHTML = el.innerHTML.replace(regex, '<span class="underline">$1</span>');
-  });
-});
-</script>
--->
 
 On this page you can find my publications (including preprints), with links to the journal version, preprint version and corresponding software. Toggle the abstract/bibtex button to see the abstract / bibtex entry.<br>
 At the bottom of the page my MSc and BSc theses are listed.<br>
@@ -274,3 +256,24 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
     </li>
   {% endfor %}
 </ul>
+
+
+<!-- script to underline name
+<style>
+.authors .underline {
+  text-decoration: underline;
+}
+</style>
+<script>
+  /* underline my name */
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.authors').forEach(el => {
+    const authorName = "Niels Holtgrefe";
+    const regex = new RegExp(`(${authorName})`, "g");
+
+    // Replace only the name with the underlined span
+    //el.innerHTML = el.innerHTML.replace(regex, '<span class="underline">$1</span>');
+  });
+});
+</script>
+-->
