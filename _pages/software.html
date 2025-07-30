@@ -219,12 +219,17 @@ On this page you can find my publications (including preprints), with links to t
 At the bottom of the page my MSc and BSc theses are listed.<br>
 You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
 
-{% assign sorted_pubs = site.data.pubs | sort: "release-date" | reverse %}
+
+{% comment %}
+Filter entries: only type journal/preprint/conference
+{% endcomment %}
+{% assign filtered = site.data.pubs | where_exp: "pub", "pub.type == 'journal' or pub.type == 'preprint' or pub.type == 'conference'" %}
+{% assign sorted_pubs = filtered | sort: "release-date" | reverse %}
 {% assign total = sorted_pubs | size %}
 {% assign current_year = "" %}
 
 {% for pub in sorted_pubs %}
-  {% assign year = pub.year %}
+  {% assign year = pub.release-date | slice: 0, 4 %}
   {% assign pubnum = total | minus: forloop.index0 %}
 
   {% if year != current_year %}
@@ -234,6 +239,19 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
   {% include pub_entry.html pub=pub pubnum=pubnum %}
 {% endfor %}
+
+## Theses
+
+{% assign theses = site.data.pubs | where: "type", "thesis" %}
+{% assign sorted_theses = theses | sort: "release-date" | reverse %}
+
+<ul class="no-bullets">
+  {% for thesis in sorted_theses %}
+    <li>
+      {% include pub_entry.html pub=thesis pubnum="•" %}
+    </li>
+  {% endfor %}
+</ul>
 
 <!-- script to underline name
 <style>
