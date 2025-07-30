@@ -6,6 +6,16 @@ author_profile: true
 classes: wide
 ---
 
+
+<!-- ENABLE LATEX -->
+<script type="text/javascript" async
+  /* latex */
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<!-- ------------ -->
+
+
+
 <!-- INFO BOXES -->
 <style>
 .noshow { display: none; }
@@ -82,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
   
 
+
+<!-- BUTTONS -->
+
 <style>
 /* button group */
 .button-group {
@@ -106,22 +119,25 @@ document.addEventListener("DOMContentLoaded", () => {
 .toggle-button:hover, .link-button:hover {
   background-color: #ddd;
 }
-  
-  /* ref list custom */
-ul.no-bullets {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0; /* also reset margin */
-}
 
-ul.no-bullets li {
-  list-style: none;    /* important: remove bullet from li */
-  margin-left: 0;      /* reset default li indent */
-  padding-left: 0;
-  margin-bottom: 0.6em;
-}
+</style>
 
-/* year blocks */
+<script>
+  /* toggle */
+function toggleBox(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('noshow');
+}
+</script>
+
+<!-- ------------- -->
+
+
+
+
+<!-- YEAR SEPARATORS -->
+<style>
+  /* year blocks */
 .year-label {
   position: relative;
   text-align: right;
@@ -150,7 +166,32 @@ ul.no-bullets li {
   z-index: 1;
 }
 
+</style>
 
+
+
+
+<!-- PUBLIST -->
+<style>
+  /* ref list custom */
+ul.no-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0; /* also reset margin */
+}
+
+ul.no-bullets li {
+  list-style: none;    /* important: remove bullet from li */
+  margin-left: 0;      /* reset default li indent */
+  padding-left: 0;
+  margin-bottom: 0.6em;
+}
+</style>
+<!-- ------------- -->
+
+<!-- REFERENCE STYLE -->
+
+<style>
   /* author fields */
   .authors {
     font-size:0.8em
@@ -171,24 +212,7 @@ ul.no-bullets li {
   
 </style>
 
-
-
-
-
-
-<script>
-  /* toggle */
-function toggleBox(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('noshow');
-}
-</script>
-
-<script type="text/javascript" async
-  /* latex */
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
+<!-- script to underline name
 <script>
   /* underline my name */
 document.addEventListener("DOMContentLoaded", function() {
@@ -201,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+-->
 
 On this page you can find my publications (including preprints), with links to the journal version, preprint version and corresponding software. Toggle the abstract/bibtex button to see the abstract / bibtex entry.<br>
 At the bottom of the page my MSc and BSc theses are listed.<br>
