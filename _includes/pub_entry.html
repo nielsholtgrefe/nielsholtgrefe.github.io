@@ -3,19 +3,10 @@
   <!-- Left Column: pubnum and abs/bib buttons -->
   <div class="pub-left" style="width: 3em; text-align: right; padding-right: 1em; flex-shrink: 0;">
     <span class="pubnum">{{ include.pubnum }}</span><br>
-    <div class="button-group">
-      {% assign pub = include.pub %}
-      {% if pub.abstract %}
-        <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abs</button><br>
-      {% endif %}
-      {% if pub.bibtex %}
-        <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bib</button><br>
-      {% endif %}
-    </div>
   </div>
 
   <!-- Middle Column: Title, Authors, Info, preprint -->
-  <div class="pub-middle" style="flex: 1; border: 1px solid #ddd; border-radius: 5px; padding: 0.8em; background-color: #fafafa;">
+  <div class="pub-middle" style="flex: 1; border: 1px solid #ddd; border-radius: 5px; padding: 0.8em; background-color: #fafafa; position: relative;">
     <span class="title">{{ pub.title }}</span><br>
 
     <span class="authors">
@@ -70,6 +61,16 @@
         {% endif %}
       {% endif %}
     </span>
+
+    <div class="lowkey-button-group" style="position: absolute; bottom: 0.5em; left: 0.5em;">
+      {% if pub.abstract %}
+        <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abs</button>
+      {% endif %}
+      {% if pub.bibtex %}
+        <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bib</button>
+      {% endif %}
+    </div>
+
   </div>
 </div>
 
