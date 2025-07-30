@@ -1,4 +1,5 @@
-- pubnum: 42
+- release: 2025-04-22
+  pubnum: 42
   authors:
     - Niels Holtgrefe
     - Katharina T. Huber
@@ -32,7 +33,8 @@
 
 
 
-- pubnum: 10
+- release: 2025-01-22
+  pubnum: 10
   authors:
     - Test
     - Katharina T. Huber
@@ -65,7 +67,8 @@
     }
 
 
-- pubnum: 420
+- release: 1999-04-22
+  pubnum: 420
   authors:
     - Niels
   title: "JA"
