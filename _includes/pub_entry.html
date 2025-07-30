@@ -1,14 +1,21 @@
 <div class="pub-entry" style="display: flex; align-items: flex-start; margin-bottom: 1.5em;">
 
-  <!-- Left Column: pubnum -->
+  <!-- Left Column: pubnum and abs/bib buttons -->
   <div class="pub-left" style="width: 3em; text-align: right; padding-right: 1em; flex-shrink: 0;">
-    <span class="pubnum">{{ include.pubnum }}</span>
+    <span class="pubnum">{{ include.pubnum }}</span><br>
+    <div class="button-group">
+      {% assign pub = include.pub %}
+      {% if pub.abstract %}
+        <button class="toggle-button" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abs</button><br>
+      {% endif %}
+      {% if pub.bibtex %}
+        <button class="toggle-button" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bib</button><br>
+      {% endif %}
+    </div>
   </div>
 
-  <!-- Middle Column: Title, Authors, Info -->
+  <!-- Middle Column: Title, Authors, Info, preprint -->
   <div class="pub-middle" style="flex: 1;">
-    {% assign pub = include.pub %}
-
     <span class="title">{{ pub.title }}</span><br>
 
     <span class="authors">
@@ -35,22 +42,10 @@
       {% elsif pub.type == "thesis" %}
         {% if pub.note %}{{ pub.note }}{% endif %}{% if pub.year %}, {{ pub.year }}{% endif %}.
       {% endif %}
-    </span>
-  </div>
-
-  <!-- Right Column: Buttons -->
-  <div class="pub-right" style="width: 8em; text-align: right; flex-shrink: 0; padding-left: 1em;">
-    <div class="button-group">
       {% if pub.preprint-url %}
-        <a class="link-button" href="{{ pub.preprint-url }}" target="_blank">preprint</a><br>
+        <a class="link-button" href="{{ pub.preprint-url }}" target="_blank">preprint</a>
       {% endif %}
-      {% if pub.abstract %}
-        <button class="toggle-button" onclick="toggleBox('abs_{{ pub.title | slugify }}')">abstract</button><br>
-      {% endif %}
-      {% if pub.bibtex %}
-        <button class="toggle-button" onclick="toggleBox('bib_{{ pub.title | slugify }}')">bibtex</button><br>
-      {% endif %}
-    </div>
+    </span>
   </div>
 </div>
 
