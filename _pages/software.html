@@ -220,7 +220,7 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
   {% if forloop.first or pub.year != pubs[forloop.index0 | minus: 1].year %}
     <div class="year-label"><span>{{ pub.year }}</span></div>
   {% endif %}
-  {% include pub_entry.html pub=pub %}
+  {% include pub_entry.html pub=pub pubnum=36%}
 {% endfor %}
 
 <!-- script to underline name
