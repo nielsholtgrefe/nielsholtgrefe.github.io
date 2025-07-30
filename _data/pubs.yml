@@ -72,7 +72,7 @@
     - Niels
   title: "JA"
   year: 1999
-  type: "preprint"
+  type: "thesis"
   journal:
   volume:
   issue:
@@ -94,30 +94,5 @@
       archivePrefix={arXiv},
       eprint={2507.18772}
     }
-
-- title: "Title A"
-  release-date: "2025-07-01"
-  type: "journal"
-  authors:
-    - Alice
-    - Bob
-
-- title: "Title B"
-  release-date: "2024-03-15"
-  type: "preprint"
-  authors:
-    - Claire
-
-- title: "Title C"
-  release-date: "2023-09-22"
-  type: "conference"
-  authors:
-    - David
-
-- title: "Title D"
-  release-date: "2022-05-10"
-  type: "thesis"  # will be excluded
-  authors:
-    - Eve
 
 
