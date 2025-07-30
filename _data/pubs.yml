@@ -1,4 +1,4 @@
-- release: 2025-04-22
+- release-date: 2025-04-22
   pubnum: 42
   authors:
     - Niels Holtgrefe
@@ -33,7 +33,7 @@
 
 
 
-- release: 2025-01-22
+- release-date: 2025-01-22
   pubnum: 10
   authors:
     - Test
@@ -67,7 +67,7 @@
     }
 
 
-- release: 1999-04-22
+- release-date: 1999-04-22
   pubnum: 420
   authors:
     - Niels
