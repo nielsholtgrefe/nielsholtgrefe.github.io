@@ -14,3 +14,265 @@ On this page you can find my publications (including preprints), with links to t
 At the bottom of the page my MSc and BSc theses are listed.<br>
 You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
 
+<!-- ENABLE LATEX -->
+<script type="text/javascript" async
+  /* latex */
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<!-- ------------ -->
+
+
+
+<!-- INFO BOXES -->
+<style>
+.noshow { display: none; }
+
+/* box definition */
+.bibtex, .abstract-box {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  padding: 1em;
+  background: #fdfdfd;
+  position: relative;
+}
+
+/* BibTeX content */
+.bibtex pre {
+  font-size: 85%;
+  overflow-x: auto;          /* Enable horizontal scroll */
+  overflow-y: auto;
+  white-space: pre;          /* Don't wrap lines */
+  font-family: monospace;
+  margin: 0;                 /* Remove default pre margin */
+}
+
+ /* abstract content */
+.abstract-box {
+  font-size: 95%;
+  line-height: 1.4em;
+  max-height: 20em;     /* Adjust height as needed */
+  overflow-y: auto;     /* Only vertical scroll */
+  overflow-x: hidden;
+}
+
+/* copy button */
+  .copy-btn {
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 1;
+}
+.copy-btn:hover {
+  background: #ddd;
+}
+</style>
+
+<script>
+  /*copy button*/
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".bibtex").forEach((bib) => {
+    // Skip if already has a button
+    if (bib.querySelector(".copy-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "📋";
+    btn.onclick = () => {
+      const pre = bib.querySelector("pre");
+      if (!pre) return;
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = "✔️";
+        setTimeout(() => (btn.textContent = "📋"), 1500);
+      });
+    };
+
+    bib.appendChild(btn);
+  });
+});
+</script>
+<!-- ------------ -->
+
+
+
+
+<!-- BUTTONS -->
+<style>
+/* button group */
+.button-group {
+  margin-top: 0.1em;
+}
+
+/* button look */
+.toggle-button, .link-button {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 4px 10px;
+  margin-right: 6px;
+  margin-top: 4px;
+  background-color: #eee;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.toggle-button:hover, .link-button:hover {
+  background-color: #ddd;
+}
+
+</style>
+
+<script>
+  /* toggle */
+function toggleBox(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('noshow');
+}
+</script>
+
+<!-- ------------- -->
+
+
+
+
+<!-- YEAR SEPARATORS -->
+<style>
+  /* year blocks */
+.year-label {
+  position: relative;
+  text-align: right;
+  margin: 2em 0 1.5em;
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #888;
+}
+
+.year-label::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.year-label span {
+  position: relative;
+  background: white; /* match your background */
+  padding: 0 0.5em;
+  z-index: 1;
+}
+
+</style>
+<!-- ------------ -->
+
+
+
+
+<!-- PUBLIST -->
+<style>
+  /* ref list custom */
+ul.no-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0; /* also reset margin */
+}
+
+ul.no-bullets li {
+  list-style: none;    /* important: remove bullet from li */
+  margin-left: 0;      /* reset default li indent */
+  padding-left: 0;
+  margin-bottom: 0.6em;
+}
+</style>
+<!-- ------------- -->
+
+
+
+
+<!-- PUBITEM GLOBAL STYLE -->
+
+<style>
+  /* author fields */
+  .authors {
+    font-size:0.8em
+}
+  /* title field */
+  .title {
+  font-weight: bold;
+  font-size: 1.0em;
+}
+/* bubliographic info */
+  .info {
+  font-size: 0.7em;
+}
+</style>
+<!-- ------------ -->
+
+
+
+On this page you can find my publications (including preprints), with links to the journal version, preprint version and corresponding software. Toggle the abstract/bibtex button to see the abstract / bibtex entry.<br>
+At the bottom of the page my MSc and BSc theses are listed.<br>
+You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.
+
+
+{% comment %}
+Filter entries: only type journal/preprint/conference
+{% endcomment %}
+{% assign filtered = site.data.pubs | where_exp: "pub", "pub.type == 'journal' or pub.type == 'preprint' or pub.type == 'conference'" %}
+{% assign sorted_pubs = filtered | sort: "release-date" | reverse %}
+{% assign total = sorted_pubs | size %}
+{% assign current_year = "" %}
+
+{% for pub in sorted_pubs %}
+  {% assign year = pub.release-date | slice: 0, 4 %}
+  {% assign pubnum = total | minus: forloop.index0 %}
+
+  {% if year != current_year %}
+    <div class="year-label"><span>{{ year }}</span></div>
+    {% assign current_year = year %}
+  {% endif %}
+
+  {% include pub_entry.html pub=pub pubnum=pubnum %}
+{% endfor %}
+
+## Theses
+
+{% assign theses = site.data.pubs | where: "type", "thesis" %}
+{% assign sorted_theses = theses | sort: "release-date" | reverse %}
+
+{% for thesis in sorted_theses %}
+    {% include pub_entry.html pub=thesis pubnum="•" %}
+{% endfor %}
+
+
+<!-- script to underline name
+<style>
+.authors .underline {
+  text-decoration: underline;
+}
+</style>
+<script>
+  /* underline my name */
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.authors').forEach(el => {
+    const authorName = "Niels Holtgrefe";
+    const regex = new RegExp(`(${authorName})`, "g");
+
+    // Replace only the name with the underlined span
+    //el.innerHTML = el.innerHTML.replace(regex, '<span class="underline">$1</span>');
+  });
+});
+</script>
+-->
