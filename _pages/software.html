@@ -242,12 +242,6 @@ Filter entries: only type journal/preprint/conference
 
 ## Theses
 
-{% assign theses = site.data.pubs | where_exp: "pub", "pub.type == 'thesis'" %}
-{% assign sorted_theses = theses | sort: "release-date" | reverse %}
-
-{% for thesis in sorted_theses %}
-    {% include pub_entry.html pub=thesis pubnum="•" %}
-{% endfor %}
 
 <!-- script to underline name
 <style>
