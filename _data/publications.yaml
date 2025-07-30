@@ -1,0 +1,29 @@
+- pubnum: 42
+  authors:
+    - Niels Holtgrefe
+    - Katharina T. Huber
+    - Leo van Iersel
+    - Mark Jones
+    - Vincent Moulton
+  title: "Characterizing (multi-)semi-directed phylogenetic networks"
+  year: 2025
+  type: "Preprint"
+  journal:
+  volume:
+  issue:
+  pages:
+  abstract: "We explore the structure of semi-directed networks..."
+  bibtex: |
+    @article{holtgrefe2025semi,
+      title={Characterizing (multi-)semi-directed phylogenetic networks},
+      author={Holtgrefe, Niels and others},
+      journal={},
+      year={2025}
+    }
+  doi:
+  doi-url:
+  preprint-server: arXiv
+  preprint-identifier: 2507.18772
+  preprint-url: https://arxiv.org/abs/2507.18772
+  software-url:
+  pubinfo: "arXiv:2507.18772"
