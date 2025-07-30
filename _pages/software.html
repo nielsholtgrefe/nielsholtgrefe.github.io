@@ -215,7 +215,6 @@ You can also browse my <a href="https://scholar.google.com/citations?user=wJh7R3
 
 {% assign pubs = site.data.pubs | sort: "pubnum" | reverse %}
 {% assign current_year = nil %}
-{% assign pubs = site.data.pub | sort: "pubnum" | reverse %}
 
 {% for pub in pubs %}
   {% if forloop.first or pub.year != pubs[forloop.index0 | minus: 1].year %}
