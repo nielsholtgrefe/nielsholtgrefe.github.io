@@ -8,28 +8,58 @@ classes: wide
 
 <h2>Co-authors</h2>
 <ul>
-  {% assign all_authors = "" | split: "," %}
+ ---
+layout: default
+title: Co-authors
+permalink: /coauthors/
+---
+
+<h2>Co-authors</h2>
+<ul>
+  {% assign author_map = {} %}
 
   {% for pub in site.data.pubs %}
     {% for a in pub.authors %}
-      {% assign fullname = a.first %}
-      {% if a.middle %}
-        {% for m in a.middle %}
-          {% assign fullname = fullname | append: " " | append: m | append: "." %}
-        {% endfor %}
+      {%- assign first = a.first -%}
+      {%- assign initials = "" -%}
+      {%- if a.middle %}
+        {%- for m in a.middle %}
+          {%- assign initials = initials | append: m | slice: 0,1 | append: "." -%}
+        {%- endfor %}
+      {%- endif %}
+      {%- assign initials = first | slice: 0,1 | append: "." | append: initials -%}
+
+      {%- assign last = a.last -%}
+      {%- assign tussen = a.tussenvoegsel | default: "" -%}
+      {%- assign key = last | append: "_" | append: tussen | append: "_" | append: first -%}
+      {%- assign display_name = "" -%}
+      {%- if tussen != "" %}
+        {%- assign display_name = tussen | append: " " -%}
+      {%- endif %}
+      {%- assign display_name = display_name | append: last | append: ", " | append: first | append: " " | append: initials -%}
+
+      {% if author_map[key] %}
+        {% assign old_count = author_map[key].count %}
+        {% assign new_count = old_count | plus: 1 %}
+        {% assign author_map = author_map | merge: 
+          {{ key | jsonify }}: 
+          { "name": display_name, "count": new_count } 
+        %}
+      {% else %}
+        {% assign author_map = author_map | merge: 
+          {{ key | jsonify }}: 
+          { "name": display_name, "count": 1 } 
+        %}
       {% endif %}
-      {% if a.tussenvoegsel %}
-        {% assign fullname = fullname | append: " " | append: a.tussenvoegsel %}
-      {% endif %}
-      {% assign fullname = fullname | append: " " | append: a.last %}
-      {% unless all_authors contains fullname %}
-        {% assign all_authors = all_authors | push: fullname %}
-      {% endunless %}
     {% endfor %}
   {% endfor %}
 
-  {% assign sorted_authors = all_authors | sort %}
-  {% for name in sorted_authors %}
-    <li>{{ name }}</li>
+  {% assign sorted_keys = author_map | keys | sort %}
+
+  {% for key in sorted_keys %}
+    {% assign entry = author_map[key] %}
+    <li>{{ entry.name }} ({{ entry.count }} x)</li>
   {% endfor %}
+</ul>
+
 </ul>
