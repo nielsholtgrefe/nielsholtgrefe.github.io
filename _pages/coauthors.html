@@ -6,83 +6,50 @@ author_profile: true
 classes: wide
 ---
 
+
 <h2>Co-authors</h2>
 
-{% assign coauthors = "" %}
-
-{%- comment -%}
-  Step 1: Create a string of keys with a delimiter, each key is:
-  last_name|tussenvoegsel|first|initials
-{%- endcomment -%}
+{% assign coauthors = {} %}
 
 {% for pub in site.data.pubs %}
   {% for a in pub.authors %}
-    {% assign first = a.first %}
-    {% assign initials = first | slice: 0, 1 %}
-    {% if a.middle %}
-      {% for m in a.middle %}
-        {% assign initials = initials | append: m | slice: 0,1 %}
-      {% endfor %}
+    {% assign is_self = a.first | downcase | append: " " | append: a.last | downcase %}
+    {% if is_self != "niels holtgrefe" %}
+
+      {% assign name = a.first %}
+
+      {% if a.middle %}
+        {% for m in a.middle %}
+          {% assign name = name | append: " " | append: m | append: "." %}
+        {% endfor %}
+      {% endif %}
+
+      {% if a.tussenvoegsel %}
+        {% assign name = name | append: " " | append: a.tussenvoegsel %}
+      {% endif %}
+
+      {% assign name = name | append: " " | append: a.last %}
+
+      {% assign current = coauthors[name] | default: 0 %}
+      {% assign current = current | plus: 1 %}
+      {% assign coauthors = coauthors | merge: {{ name | jsonify }}: {{ current }} %}
     {% endif %}
-    {% assign initials = initials | append: "." %}
-
-    {% assign last = a.last %}
-    {% assign tussen = a.tussenvoegsel | default: "" %}
-
-    {% assign key = last | append: "|" | append: tussen | append: "|" | append: first | append: "|" | append: initials %}
-    {% assign coauthors = coauthors | append: key | append: ";;" %}
   {% endfor %}
 {% endfor %}
 
-{%- comment -%}
-  Step 2: Split into array and count
-{%- endcomment -%}
-
-{% assign coauthor_list = coauthors | split: ";;" %}
-{% assign coauthor_counts = "" %}
-{% assign unique_keys = "" %}
-
-{% for k in coauthor_list %}
-  {% unless k == "" %}
-    {% unless unique_keys contains k %}
-      {% assign unique_keys = unique_keys | append: k | append: ";;" %}
-      {% assign count = 0 %}
-      {% for j in coauthor_list %}
-        {% if j == k %}
-          {% assign count = count | plus: 1 %}
-        {% endif %}
-      {% endfor %}
-      {% assign coauthor_counts = coauthor_counts | append: k | append: "|" | append: count | append: ";;" %}
-    {% endunless %}
-  {% endunless %}
+{% assign coauthor_array = "" %}
+{% for key in coauthors %}
+  {% assign coauthor_array = coauthor_array | append: key[0] | append: "||" | append: key[1] | append: ";;" %}
 {% endfor %}
 
-{%- comment -%}
-  Step 3: Sort by last name and output
-{%- endcomment -%}
-
-{% assign coauthor_array = coauthor_counts | split: ";;" %}
-{% assign coauthor_array = coauthor_array | sort %}
+{% assign sorted = coauthor_array | split: ";;" | sort_natural: "desc" %}
 
 <ul>
-{% for item in coauthor_array %}
-  {% unless item == "" %}
-    {% assign parts = item | split: "|" %}
-    {% assign last = parts[0] %}
-    {% assign tussen = parts[1] %}
-    {% assign first = parts[2] %}
-    {% assign initials = parts[3] %}
-    {% assign count = parts[4] %}
-
-    {% if tussen != "" %}
-      <li>{{ tussen }} {{ last }}, {{ first }} {{ initials }} ({{ count }})</li>
-    {% else %}
-      <li>{{ last }}, {{ first }} {{ initials }} ({{ count }})</li>
+  {% for entry in sorted %}
+    {% if entry != "" %}
+      {% assign parts = entry | split: "||" %}
+      <li>{{ parts[0] }} (x {{ parts[1] }})</li>
     {% endif %}
-  {% endunless %}
-{% endfor %}
+  {% endfor %}
 </ul>
 
-</ul>
-
-</ul>
