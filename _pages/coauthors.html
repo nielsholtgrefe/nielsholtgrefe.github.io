@@ -1,0 +1,33 @@
+---
+layout: default
+title: Co-authors
+permalink: /coauthors/
+---
+
+<h2>Co-authors</h2>
+<ul>
+  {% assign all_authors = "" | split: "," %}
+
+  {% for pub in site.data.pub %}
+    {% for a in pub.authors %}
+      {% assign fullname = a.first %}
+      {% if a.middle %}
+        {% for m in a.middle %}
+          {% assign fullname = fullname | append: " " | append: m | append: "." %}
+        {% endfor %}
+      {% endif %}
+      {% if a.tussenvoegsel %}
+        {% assign fullname = fullname | append: " " | append: a.tussenvoegsel %}
+      {% endif %}
+      {% assign fullname = fullname | append: " " | append: a.last %}
+      {% unless all_authors contains fullname %}
+        {% assign all_authors = all_authors | push: fullname %}
+      {% endunless %}
+    {% endfor %}
+  {% endfor %}
+
+  {% assign sorted_authors = all_authors | sort %}
+  {% for name in sorted_authors %}
+    <li>{{ name }}</li>
+  {% endfor %}
+</ul>
