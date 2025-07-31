@@ -7,59 +7,82 @@ classes: wide
 ---
 
 <h2>Co-authors</h2>
-<ul>
- ---
-layout: default
-title: Co-authors
-permalink: /coauthors/
----
 
-<h2>Co-authors</h2>
-<ul>
-  {% assign author_map = {} %}
+{% assign coauthors = "" %}
 
-  {% for pub in site.data.pubs %}
-    {% for a in pub.authors %}
-      {%- assign first = a.first -%}
-      {%- assign initials = "" -%}
-      {%- if a.middle %}
-        {%- for m in a.middle %}
-          {%- assign initials = initials | append: m | slice: 0,1 | append: "." -%}
-        {%- endfor %}
-      {%- endif %}
-      {%- assign initials = first | slice: 0,1 | append: "." | append: initials -%}
+{%- comment -%}
+  Step 1: Create a string of keys with a delimiter, each key is:
+  last_name|tussenvoegsel|first|initials
+{%- endcomment -%}
 
-      {%- assign last = a.last -%}
-      {%- assign tussen = a.tussenvoegsel | default: "" -%}
-      {%- assign key = last | append: "_" | append: tussen | append: "_" | append: first -%}
-      {%- assign display_name = "" -%}
-      {%- if tussen != "" %}
-        {%- assign display_name = tussen | append: " " -%}
-      {%- endif %}
-      {%- assign display_name = display_name | append: last | append: ", " | append: first | append: " " | append: initials -%}
+{% for pub in site.data.pubs %}
+  {% for a in pub.authors %}
+    {% assign first = a.first %}
+    {% assign initials = first | slice: 0, 1 %}
+    {% if a.middle %}
+      {% for m in a.middle %}
+        {% assign initials = initials | append: m | slice: 0,1 %}
+      {% endfor %}
+    {% endif %}
+    {% assign initials = initials | append: "." %}
 
-      {% if author_map[key] %}
-        {% assign old_count = author_map[key].count %}
-        {% assign new_count = old_count | plus: 1 %}
-        {% assign author_map = author_map | merge: 
-          {{ key | jsonify }}: 
-          { "name": display_name, "count": new_count } 
-        %}
-      {% else %}
-        {% assign author_map = author_map | merge: 
-          {{ key | jsonify }}: 
-          { "name": display_name, "count": 1 } 
-        %}
-      {% endif %}
-    {% endfor %}
+    {% assign last = a.last %}
+    {% assign tussen = a.tussenvoegsel | default: "" %}
+
+    {% assign key = last | append: "|" | append: tussen | append: "|" | append: first | append: "|" | append: initials %}
+    {% assign coauthors = coauthors | append: key | append: ";;" %}
   {% endfor %}
+{% endfor %}
 
-  {% assign sorted_keys = author_map | keys | sort %}
+{%- comment -%}
+  Step 2: Split into array and count
+{%- endcomment -%}
 
-  {% for key in sorted_keys %}
-    {% assign entry = author_map[key] %}
-    <li>{{ entry.name }} ({{ entry.count }} x)</li>
-  {% endfor %}
+{% assign coauthor_list = coauthors | split: ";;" %}
+{% assign coauthor_counts = "" %}
+{% assign unique_keys = "" %}
+
+{% for k in coauthor_list %}
+  {% unless k == "" %}
+    {% unless unique_keys contains k %}
+      {% assign unique_keys = unique_keys | append: k | append: ";;" %}
+      {% assign count = 0 %}
+      {% for j in coauthor_list %}
+        {% if j == k %}
+          {% assign count = count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% assign coauthor_counts = coauthor_counts | append: k | append: "|" | append: count | append: ";;" %}
+    {% endunless %}
+  {% endunless %}
+{% endfor %}
+
+{%- comment -%}
+  Step 3: Sort by last name and output
+{%- endcomment -%}
+
+{% assign coauthor_array = coauthor_counts | split: ";;" %}
+{% assign coauthor_array = coauthor_array | sort %}
+
+<ul>
+{% for item in coauthor_array %}
+  {% unless item == "" %}
+    {% assign parts = item | split: "|" %}
+    {% assign last = parts[0] %}
+    {% assign tussen = parts[1] %}
+    {% assign first = parts[2] %}
+    {% assign initials = parts[3] %}
+    {% assign count = parts[4] %}
+
+    {% if tussen != "" %}
+      <li>{{ tussen }} {{ last }}, {{ first }} {{ initials }} ({{ count }})</li>
+    {% else %}
+      <li>{{ last }}, {{ first }} {{ initials }} ({{ count }})</li>
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+</ul>
+
 </ul>
 
 </ul>
