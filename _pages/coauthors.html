@@ -6,25 +6,23 @@ author_profile: true
 classes: wide
 ---
 
+
 <h2>Co-authors</h2>
 
 {% assign raw = "" %}
 
-<!-- Collect all author names -->
+<!-- Collect and normalize all co-authors, skipping yourself -->
 {% for pub in site.data.pubs %}
   {% for a in pub.authors %}
     {% assign name = a.first %}
-
     {% if a.middle %}
       {% for m in a.middle %}
         {% assign name = name | append: " " | append: m | append: "." %}
       {% endfor %}
     {% endif %}
-
     {% if a.tussenvoegsel %}
       {% assign name = name | append: " " | append: a.tussenvoegsel %}
     {% endif %}
-
     {% assign name = name | append: " " | append: a.last %}
 
     {% unless name == "Niels Holtgrefe" %}
@@ -33,9 +31,10 @@ classes: wide
   {% endfor %}
 {% endfor %}
 
-<!-- Build count list -->
+<!-- Count occurrences -->
 {% assign names = raw | split: "||" %}
 {% assign counted = "" %}
+{% assign authors = "" %}
 
 {% for name in names %}
   {% unless name == "" or counted contains name %}
@@ -46,22 +45,21 @@ classes: wide
       {% endif %}
     {% endfor %}
     {% assign counted = counted | append: name | append: "||" %}
-    {% assign entry = name | append: "||" | append: count %}
-    {% assign all = all | append: entry | append: ";;" %}
+    {% assign padded_count = count | prepend: "000" | slice: -3, 3 %}
+    {% assign entry = padded_count | append: "||" | append: name %}
+    {% assign authors = authors | append: entry | append: ";;" %}
   {% endunless %}
 {% endfor %}
 
-<!-- Sort by count then name -->
-{% assign all_list = all | split: ";;" %}
-{% assign sorted = all_list | sort_natural | reverse %}
+<!-- Sort by count descending, then name ascending -->
+{% assign authors_list = authors | split: ";;" %}
+{% assign sorted = authors_list | sort_natural | reverse %}
 
 <ul>
-  {% for item in sorted %}
-    {% unless item == "" %}
-      {% assign parts = item | split: "||" %}
-      <li>{{ parts[0] }} (x {{ parts[1] }})</li>
+  {% for entry in sorted %}
+    {% unless entry == "" %}
+      {% assign parts = entry | split: "||" %}
+      <li>{{ parts[1] }} (x{{ parts[0] | plus: 0 }})</li>
     {% endunless %}
   {% endfor %}
 </ul>
-
-
