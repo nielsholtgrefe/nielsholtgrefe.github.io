@@ -6,50 +6,62 @@ author_profile: true
 classes: wide
 ---
 
-
 <h2>Co-authors</h2>
 
-{% assign coauthors = {} %}
+{% assign raw = "" %}
 
+<!-- Collect all author names -->
 {% for pub in site.data.pubs %}
   {% for a in pub.authors %}
-    {% assign is_self = a.first | downcase | append: " " | append: a.last | downcase %}
-    {% if is_self != "niels holtgrefe" %}
+    {% assign name = a.first %}
 
-      {% assign name = a.first %}
-
-      {% if a.middle %}
-        {% for m in a.middle %}
-          {% assign name = name | append: " " | append: m | append: "." %}
-        {% endfor %}
-      {% endif %}
-
-      {% if a.tussenvoegsel %}
-        {% assign name = name | append: " " | append: a.tussenvoegsel %}
-      {% endif %}
-
-      {% assign name = name | append: " " | append: a.last %}
-
-      {% assign current = coauthors[name] | default: 0 %}
-      {% assign current = current | plus: 1 %}
-      {% assign coauthors = coauthors | merge: {{ name | jsonify }}: {{ current }} %}
+    {% if a.middle %}
+      {% for m in a.middle %}
+        {% assign name = name | append: " " | append: m | append: "." %}
+      {% endfor %}
     {% endif %}
+
+    {% if a.tussenvoegsel %}
+      {% assign name = name | append: " " | append: a.tussenvoegsel %}
+    {% endif %}
+
+    {% assign name = name | append: " " | append: a.last %}
+
+    {% unless name == "Niels Holtgrefe" %}
+      {% assign raw = raw | append: name | append: "||" %}
+    {% endunless %}
   {% endfor %}
 {% endfor %}
 
-{% assign coauthor_array = "" %}
-{% for key in coauthors %}
-  {% assign coauthor_array = coauthor_array | append: key[0] | append: "||" | append: key[1] | append: ";;" %}
+<!-- Build count list -->
+{% assign names = raw | split: "||" %}
+{% assign counted = "" %}
+
+{% for name in names %}
+  {% unless name == "" or counted contains name %}
+    {% assign count = 0 %}
+    {% for other in names %}
+      {% if name == other %}
+        {% assign count = count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% assign counted = counted | append: name | append: "||" %}
+    {% assign entry = name | append: "||" | append: count %}
+    {% assign all = all | append: entry | append: ";;" %}
+  {% endunless %}
 {% endfor %}
 
-{% assign sorted = coauthor_array | split: ";;" | sort_natural: "desc" %}
+<!-- Sort by count then name -->
+{% assign all_list = all | split: ";;" %}
+{% assign sorted = all_list | sort_natural | reverse %}
 
 <ul>
-  {% for entry in sorted %}
-    {% if entry != "" %}
-      {% assign parts = entry | split: "||" %}
+  {% for item in sorted %}
+    {% unless item == "" %}
+      {% assign parts = item | split: "||" %}
       <li>{{ parts[0] }} (x {{ parts[1] }})</li>
-    {% endif %}
+    {% endunless %}
   {% endfor %}
 </ul>
+
 
