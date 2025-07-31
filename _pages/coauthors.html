@@ -10,7 +10,7 @@ classes: wide
 <ul>
   {% assign all_authors = "" | split: "," %}
 
-  {% for pub in site.data.pub %}
+  {% for pub in site.data.pubs %}
     {% for a in pub.authors %}
       {% assign fullname = a.first %}
       {% if a.middle %}
