@@ -8,7 +8,7 @@ classes: wide
 ---
 
 ## About me
-Hi, I am Niels 👋! 
+Hi, I am Niels! 👋
 
 I am a PhD candidate at the [Delft Institute of Applied Mathematics](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics) of the [TU Delft](https://www.tudelft.nl/) in the Netherlands. 
 I work in the [Discrete Mathematics & Optimization](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/discrete-mathematics-optimization) group under the supervision of Dr. [Leo van Iersel](https://leovaniersel.wordpress.com/). 
