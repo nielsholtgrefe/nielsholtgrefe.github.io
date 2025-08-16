@@ -6,8 +6,6 @@ author_profile: true
 classes: wide
 ---
 
-# Conferences
-
 This page lists conferences, workshops, and seminars I have attended.  
 If I presented a talk or poster, it is listed under the corresponding event.  
 
