@@ -6,14 +6,14 @@ layout: single
 author_profile: true
 ---
 
-<h1>About me</h1>
-<p>Hi, I am Niels! I am a PhD candidate at the Delft Institute of Applied Mathematics of the TU Delft (Netherlands). 
+# About me
+Hi, I am Niels! I am a PhD candidate at the Delft Institute of Applied Mathematics of the TU Delft (Netherlands). 
   I work in the Discrete Mathematics & Optimization group under the supervision of Leo van Iersel. 
   Previously, I obtained my MSc and BSc degrees (both cum laude) in Applied Mathematics from the TU Delft.
-</p>
 
-<p>My research is focused on algorithms and mathematical theory of phylogenetics: the study of evolutionary history of organisms. 
+
+My research is focused on algorithms and mathematical theory of phylogenetics: the study of evolutionary history of organisms. 
   I also work on parametrized complexity, specifically concerning the parameter scanwidth. 
   Writing software and applying algorithms to real-world data is also something I enjoy doing.
   On this webpage, you can view publications and software I wrote, and conferences I have attended / presented at.
-</p>
+
