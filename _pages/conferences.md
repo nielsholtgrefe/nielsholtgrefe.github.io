@@ -27,6 +27,8 @@ If I presented a talk or poster, it is listed under the corresponding event.
 	*Delft, the Netherlands - March 2025*
 	- Lightning Talk: *Reconstructing phylogenetic networks*
 
+## 2024
+
 - **[Algorithmic Advances and Implementation Challenges: Developing Practical Tools for Phylogenetic Inference](https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w3)**
 	*Providence, RI, USA - November 2024*
 	- Poster presentation: *Squirrel: Reconstructing semi‐directed phylogenetic level‐1 networks from four‐leaved networks or sequence alignments*
@@ -44,10 +46,10 @@ If I presented a talk or poster, it is listed under the corresponding event.
 	- Paper spotlight talk: *Squirrel: a TSP-based algorithm to reconstruct semi-directed level-1 networks from quarnets*
 	- Graduate/Post-doc seminar talk: *Computing the Scanwidth of Phylogenetic Networks*
 
-## 2024
-
 - **[49th Conference on the Mathematics of Operations Research (LNMB)](https://www.lnmb.nl/conferences/2024/)**
 	*Soesterberg, the Netherlands - January 2024*
+
+## 2023
 
 - **[Seminar series in Discrete Mathematics and Optimization](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/discrete-mathematics-optimization/events/seminars-in-discrete-mathematics-and-optimization#:~:text=The%20Discrete%20Mathematics%20%26%20Optimization%20seminar,with%20time%20for%20discussion%20afterwards.)**
 	*Delft, the Netherlands, 2023-now*
