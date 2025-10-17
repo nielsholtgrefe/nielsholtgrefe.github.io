@@ -82,7 +82,7 @@
     }
 
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
-  release-date: 2025-06-05
+  release-date: 2025-10-14
   authors:
     - first: Samuel
       last: Martin
@@ -94,14 +94,14 @@
       middle: ["M"]
       last: Legget
   year: 2025
-  type: "preprint"
-  journal:
+  type: "journal"
+  journal: "Systematic Biology"
   volume:
   issue:
-  pages:
+  pages: "syaf071"
   note:
-  doi-identifier: "10.1101/2023.09.11.557152"
-  doi-url: "https://www.biorxiv.org/content/10.1101/2023.09.11.557152v4"
+  doi-identifier: "10.1093/sysbio/syaf071"
+  doi-url: "https://doi.org/10.1093/sysbio/syaf071"
   preprint-server: "bioRxiv"
   preprint-identifier: "10.1101/2023.09.11.557152"
   preprint-url: "https://www.biorxiv.org/content/10.1101/2023.09.11.557152v4"
@@ -109,12 +109,13 @@
   abstract: |
     A core goal of phylogenomics is to determine the evolutionary history of a set of species from biological sequence data. Phylogenetic networks are able to describe more complex evolutionary phenomena than phylogenetic trees but are more difficult to accurately reconstruct. Recently, there has been growing interest in developing methods to infer semi-directed phylogenetic networks. As computing such networks can be computationally intensive, one approach to building such networks is to puzzle together smaller networks. Thus, it is essential to have robust methods for inferring semi-directed phylogenetic networks on small numbers of taxa. In this paper, we investigate an algebraic method for performing phylogenetic network inference from nucleotide sequence data on 4-leaf semi-directed phylogenetic networks by analysing the distribution of leaf-pattern probabilities. On simulated data, we found that we can correctly identify with high accuracy the undirected phylogenetic network for sequences of length at least 10kbp. We found that identifying the semi-directed network is more challenging and requires sequences of length approaching 10Mbp. We are also able to use our approach to identify tree-like evolution and determine the underlying tree. Finally, we employ our method on a real dataset from Xiphophorus species and use the results to build a phylogenetic network.  
   bibtex: |
-    @misc{martin2025algebraic,
-      author = {Martin, Samuel and Holtgrefe, Niels and Moulton, Vincent and Legget, Richard M},
-      title = {Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks},
-      year={2025},
-      archivePrefix={bioRxiv},
-      eprint={10.1101/2023.09.11.557152}
+    @article{martin2025algebraic,
+      title={Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks},
+      author={Martin, Samuel and Holtgrefe, Niels and Moulton, Vincent and Legget, Richard M},
+      journal={Systematic Biology},
+      doi={10.1093/sysbio/syaf071},
+      pages = {syaf071},
+      year = {2025}
     }
 
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
