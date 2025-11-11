@@ -101,8 +101,8 @@
   journal: "Systematic Biology"
   volume:
   issue:
-  pages:
-  note: "Accepted manuscript"
+  pages: "syaf071"
+  note:
   doi-identifier: "10.1093/sysbio/syaf071"
   doi-url: "https://doi.org/10.1093/sysbio/syaf071"
   preprint-server: "bioRxiv"
