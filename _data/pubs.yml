@@ -38,7 +38,7 @@
     }
 
 - title: "Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances"
-  release-date: 2025-07-23
+  release-date: 2025-10-23
   authors:
     - first: Niels
       last: Holtgrefe
@@ -58,14 +58,14 @@
     - first: Kristina
       last: Wicke
   year: 2025
-  type: "preprint"
-  journal:
-  volume:
-  issue:
-  pages:
+  type: "journal"
+  journal: "Bulletin of Mathematical Biology"
+  volume: 87
+  issue: 12
+  pages: 168
   note:
-  doi-identifier:
-  doi-url:
+  doi-identifier: "10.1007/s11538-025-01549-4"
+  doi-url: "https://doi.org/10.1007/s11538-025-01549-4"
   preprint-server: "arXiv"
   preprint-identifier: 2507.17308
   preprint-url: "https://arxiv.org/abs/2507.17308"
@@ -73,12 +73,15 @@
   abstract: |
     The inference of phylogenetic networks, which model complex evolutionary processes including hybridization and gene flow, remains a central challenge in evolutionary biology. Until now, statistically consistent inference methods have been limited to phylogenetic level-1 networks, which allow no interdependence between reticulate events. In this work, we establish the theoretical foundations for a statistically consistent inference method for a much broader class: semi-directed level-2 networks that are outer-labeled planar and galled. We precisely characterize the features of these networks that are distinguishable from the topologies of their displayed quartet trees. Moreover, we prove that an inter-taxon distance derived from these quartets is circular decomposable, enabling future robust inference of these networks from quartet data, such as concordance factors obtained from gene tree distributions under the Network Multispecies Coalescent model. Our results also have novel identifiability implications across different data types and evolutionary models, applying to any setting in which displayed quartets can be distinguished.  
   bibtex: |
-    @misc{holtgrefe2025distinguishing,
+    @article{holtgrefe2025distinguishing,
       author = {Holtgrefe, Niels and Allman, Elizabeth S and Baños, Hector and van Iersel, Leo and Moulton, Vincent and Rhodes, John A and Wicke, Kristina},
       title = {Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances},
-      year={2025},
-      archivePrefix={arXiv},
-      eprint={2507.17308}
+      journal={Bulletin of Mathematical Biology},
+      doi={10.1007/s11538-025-01549-4},
+      volume = {87},
+      pages = {168},
+      number = {12},
+      year = {2025}
     }
 
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
