@@ -12,6 +12,9 @@ If I presented a talk or poster, it is listed under the corresponding event.
 ---
 
 ## 2025
+- **[Dutch Day on Optimization](https://www.tilburguniversity.edu/current/events/dutch-day-optimization2025)**
+	*Tilburg, the Netherlands - November 2025*
+  - Talk: *Squirrel: Reconstructing semi‐directed phylogenetic level‐1 networks from four‐leaved networks or sequence alignments*
 
 - **[Novel Mathematical Paradigm for Phylogenomics](https://www.birs.ca/events/2025/5-day-workshops/25w5333)**
 	*online participant - August 2025 (physical conference in Banff, Canada)*
