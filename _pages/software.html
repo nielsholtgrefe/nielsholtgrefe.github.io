@@ -6,34 +6,89 @@ author_profile: true
 classes: wide
 ---
 
-<p>Below is a list of software I have developed, with links to the code repositories and related publications.</p>
+<style>
+.software-box {
+  border: 1px solid #ccc;
+  padding: 1em 1.2em;
+  margin: 1.2em 0;
+  background: #fafafa;
+  border-radius: 6px;
+}
 
-<ul>
-  <li>
-    <p><code>phypanda</code><br>
-    GitHub: <a href="https://github.com/nholtgrefe/phypanda" target="_blank">https://github.com/nholtgrefe/phypanda</a><br>
-    A Python package for maximization and exploration of phylogenetic diversity in phylogenetic networks.<br>
-    <strong>Paper:</strong> <a href="https://doi.org/10.1101/2025.11.14.688467" target="_blank">https://doi.org/10.1101/2025.11.14.688467</a></p>
-  </li>
+.software-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
 
-  <hr>
+.software-meta a {
+  color: #0066cc;
+}
 
-  <li>
-    <p><code>physquirrel</code><br>
-    GitHub: <a href="https://github.com/nholtgrefe/squirrel" target="_blank">https://github.com/nholtgrefe/squirrel</a><br>
-    A Python package for reconstructing semi-directed phylogenetic level-1 networks from four-leaf subnetworks or sequence alignments.<br>
-    <strong>Paper:</strong> <a href="https://doi.org/10.1093/molbev/msaf067" target="_blank">https://doi.org/10.1093/molbev/msaf067</a></p>
-  </li>
+.software-buttons a {
+  display: inline-block;
+  margin-top: 0.4em;
+  margin-right: 0.6em;
+  padding: 4px 8px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85em;
+}
 
-  <hr>
+.software-buttons a:hover {
+  background: #ddd;
+}
+</style>
 
-  <li>
-    <p><code>ComputingScanwidth</code><br>
-    GitHub: <a href="https://github.com/nholtgrefe/ComputingScanwidth" target="_blank">https://github.com/nholtgrefe/ComputingScanwidth</a><br>
-    Algorithms and heuristics for computing the scanwidth of directed acyclic graphs.<br>
-    <strong>Paper:</strong> <a href="https://arxiv.org/abs/2403.12734" target="_blank">https://arxiv.org/abs/2403.12734</a></p>
-  </li>
-</ul>
+<p>Below is a list of software I have developed, with links to code repositories and related publications.</p>
+
+<hr>
+
+<h3><strong>Software</strong></h3>
+
+
+<!-- PHYPANDA -->
+<div class="software-box">
+  <div class="software-title"><code>phypanda</code></div>
+  <div class="software-meta">
+    A Python package for maximization and exploration of <strong>phylogenetic diversity</strong> in phylogenetic networks.
+  </div>
+
+  <div class="software-buttons">
+    <a href="https://github.com/nholtgrefe/phypanda" target="_blank">GitHub Repo</a>
+    <a href="https://doi.org/10.1101/2025.11.14.688467" target="_blank">📄 Related Paper</a>
+  </div>
+</div>
+
+
+<!-- PHYSQUIRREL -->
+<div class="software-box">
+  <div class="software-title"><code>physquirrel</code></div>
+  <div class="software-meta">
+    A Python package for reconstructing <strong>semi-directed phylogenetic level-1 networks</strong> from four-leaf subnetworks or sequence alignments.
+  </div>
+
+  <div class="software-buttons">
+    <a href="https://github.com/nholtgrefe/squirrel" target="_blank">GitHub Repo</a>
+    <a href="https://doi.org/10.1093/molbev/msaf067" target="_blank">📄 Published Paper</a>
+  </div>
+</div>
+
+
+<!-- COMPUTINGSCANWIDTH -->
+<div class="software-box">
+  <div class="software-title"><code>ComputingScanwidth</code></div>
+  <div class="software-meta">
+    A collection of algorithms and heuristics for computing the <strong>scanwidth</strong> of directed acyclic graphs (DAGs).
+  </div>
+
+  <div class="software-buttons">
+    <a href="https://github.com/nholtgrefe/ComputingScanwidth" target="_blank">GitHub Repo</a>
+    <a href="https://arxiv.org/abs/2403.12734" target="_blank">📄 Paper / Thesis</a>
+  </div>
+</div>
+
 
 <hr>
 
