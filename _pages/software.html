@@ -27,7 +27,7 @@ classes: wide
 
 .software-overlay {
   backdrop-filter: blur(2px);
-  background: rgba(255, 255, 255, 0.78); /* semi-transparent */
+  background: rgba(255, 255, 255, 0.50); /* more transparent */
   padding: 0.5em 0.8em;
   border-radius: 6px;
 }
@@ -76,28 +76,23 @@ function toggleDetail(id) {
 }
 </script>
 
-
-<p>Below is a list of software I have developed, with links to code repositories and related publications.</p>
+<p>Below is a list of software I have developed, written in **Python**, with links to the code repositories and related publications.</p>
 
 <hr>
 
-
-<!-- ------------------------------- -->
-<!-- PHYPANDA                        -->
-<!-- ------------------------------- -->
+<!-- PHYPANDA -->
 <div class="software-box" 
      onclick="toggleDetail('detail-phypanda')" 
      style="background-image: url('/assets/images/squirrel_cover4.svg');">
 
   <div class="software-overlay">
     <div class="software-title"><code>phypanda</code></div>
-    <div class="lang-note">Written in Python.</div>
+    <div class="lang-note"></div>
   </div>
 
   <div id="detail-phypanda" class="software-detail">
-    A Python package for maximization and exploration of 
-    <strong>phylogenetic diversity</strong> in phylogenetic networks.
-
+    A Python package designed for exploration and maximization of phylogenetic diversity in phylogenetic networks.  
+    It supports generation and handling of phylogenetic network instances, computes diversity‐based optimization criteria, and includes interactive visualizations and algorithmic pipelines for network‐level diversity analyses.  
     <div class="software-buttons">
       <a href="https://github.com/nholtgrefe/phypanda" target="_blank">GitHub Repo</a>
       <a href="https://doi.org/10.1101/2025.11.14.688467" target="_blank">📄 Related Paper</a>
@@ -105,24 +100,19 @@ function toggleDetail(id) {
   </div>
 </div>
 
-
-<!-- ------------------------------- -->
-<!-- PHYSQUIRREL                     -->
-<!-- ------------------------------- -->
+<!-- PHYSQUIRREL -->
 <div class="software-box" 
      onclick="toggleDetail('detail-physquirrel')" 
      style="background-image: url('/assets/images/squirrel_cover4.svg');">
 
   <div class="software-overlay">
     <div class="software-title"><code>physquirrel</code></div>
-    <div class="lang-note">Written in Python.</div>
+    <div class="lang-note"></div>
   </div>
 
   <div id="detail-physquirrel" class="software-detail">
-    A Python package for reconstructing 
-    <strong>semi-directed phylogenetic level-1 networks</strong> 
-    from four-leaf subnetworks or sequence alignments.
-
+    This package implements the Squirrel algorithm for reconstructing semi-directed phylogenetic level-1 networks from either four‐leaf quarnet sets or sequence alignments. :contentReference[oaicite:0]{index=0}  
+    It provides both a graphical user interface (GUI) for non-programmers and a full Python API for advanced users, enabling simulation, inference and visualisation of reticulate evolutionary histories. :contentReference[oaicite:1]{index=1}  
     <div class="software-buttons">
       <a href="https://github.com/nholtgrefe/squirrel" target="_blank">GitHub Repo</a>
       <a href="https://doi.org/10.1093/molbev/msaf067" target="_blank">📄 Published Paper</a>
@@ -130,30 +120,25 @@ function toggleDetail(id) {
   </div>
 </div>
 
-
-<!-- ------------------------------- -->
-<!-- COMPUTINGSCANWIDTH             -->
-<!-- ------------------------------- -->
+<!-- COMPUTINGSCANWIDTH -->
 <div class="software-box" 
      onclick="toggleDetail('detail-scanwidth')" 
      style="background-image: url('/assets/images/squirrel_cover4.svg');">
 
   <div class="software-overlay">
     <div class="software-title"><code>ComputingScanwidth</code></div>
-    <div class="lang-note">Written in Python.</div>
+    <div class="lang-note"></div>
   </div>
 
   <div id="detail-scanwidth" class="software-detail">
-    Algorithms and heuristics for computing the 
-    <strong>scanwidth</strong> of directed acyclic graphs (DAGs).
-
+    An implementation of algorithms and heuristics for computing the <strong>scanwidth</strong> parameter of directed acyclic graphs (DAGs).  
+    The repository contains the main algorithmic Python modules (including `scanwidth.py`, network extensions and heuristics), synthetic network generators, experiment management infrastructure, and plotting modules for analysing performance. :contentReference[oaicite:2]{index=2}  
     <div class="software-buttons">
       <a href="https://github.com/nholtgrefe/ComputingScanwidth" target="_blank">GitHub Repo</a>
       <a href="https://arxiv.org/abs/2403.12734" target="_blank">📄 Paper / Thesis</a>
     </div>
   </div>
 </div>
-
 
 <hr>
 
