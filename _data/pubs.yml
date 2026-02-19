@@ -1,3 +1,36 @@
+- title: "Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies"
+  release-date: 2026-02-13
+  authors:
+    - first: Niels
+      last: Holtgrefe
+    - first: Jannik
+      last: Schestag
+    - first: Norbert
+      last: Zeh
+  year: 2026
+  type: "preprint"
+  journal:
+  volume:
+  issue:
+  pages:
+  note:
+  doi-identifier:
+  doi-url:
+  preprint-server: "arXiv"
+  preprint-identifier: 2602.12959
+  preprint-url: "https://arxiv.org/abs/2602.12959"
+  abstract: | 
+    In the <em>Maximize Phylogenetic Diversity</em> problem, we are given a phylogenetic tree that represents the genetic proximity of species, and we are asked to select a subset of species of maximum phylogenetic diversity to be preserved through conservation efforts, subject to budgetary constraints that allow only \( k \) species to be saved. This neglects that it is futile to preserve a predatory species if we do not also preserve at least a subset of the prey it feeds on. Thus, in the <em>Optimizing PD with Dependencies</em> (\( \varepsilon \)-PDD) problem, we are additionally given a food web that represents the predator–prey relationships between species. The goal is to save a set of \( k \) species of maximum phylogenetic diversity such that for every saved species, at least one of its prey is also saved. This problem is NP-hard even when the phylogenetic tree is a star.<br>
+    The \( \alpha \)-PDD problem alters \( \varepsilon \)-PDD by requiring that at least some fraction \( \alpha \) of the prey of every saved species are also saved. In this paper, we study the parameterized complexity of \( \alpha \)-PDD. We prove that the problem is W[1]-hard and in XP when parameterized by the solution size \( k \), the diversity threshold \( D \), or their complements. When parameterized by the vertex cover number of the food web, \( \alpha \)-PDD is fixed-parameter tractable (FPT). A key measure of the computational difficulty of a problem that is FPT is the size of the smallest kernel that can be obtained. We prove that, when parameterized by the distance to clique, 1-PDD admits a linear kernel. Our main contribution is to prove that \( \alpha \)-PDD does not admit a polynomial kernel when parameterized by the vertex cover number plus the diversity threshold \( D \), even if the phylogenetic tree is a star. This implies the non-existence of a polynomial kernel for \( \alpha \)-PDD also when parameterized by a range of structural parameters of the food web, such as its distance to cluster, treewidth, pathwidth, feedback vertex set, and others.
+  bibtex: |
+    @misc{holtgrefe2026limits,
+      author = {Holtgrefe, Niels and Schestag, Jannik and Zeh, Norbert},
+      title = {Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies},
+      year={2026},
+      archivePrefix={arXiv},
+      eprint={2602.12959}
+    }
+
 - title: "Bounds on the sequence length sufficient to reconstruct level-1 phylogenetic networks"
   release-date: 2025-11-27
   authors:
