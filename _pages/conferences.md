@@ -11,6 +11,11 @@ If I presented a talk or poster, it is listed under the corresponding event.
 
 ---
 
+## 2026
+- **[International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics](https://sites.google.com/view/iwpca)**
+	*Taipei, Taiwan - March 2026*
+  - Talk: *PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks*
+
 ## 2025
 - **[Dutch Day on Optimization](https://www.tilburguniversity.edu/current/events/dutch-day-optimization2025)**
 	*Tilburg, the Netherlands - November 2025*
