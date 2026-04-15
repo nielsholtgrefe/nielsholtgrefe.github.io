@@ -408,7 +408,7 @@
     }
 
 - title: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
-  release-date: 2024-03-19
+  release-date: 2026-04-08
   authors:
     - first: Niels
       last: Holtgrefe
@@ -417,28 +417,30 @@
       last: Iersel
     - first: Mark
       last: Jones
-  year: 2024
-  type: "preprint"
-  journal:
-  volume:
+  year: 2026
+  type: "journal"
+  journal: "Journal of Computer and System Sciences"
+  volume: 160
   issue:
-  pages:
+  pages: "103802"
   note:
-  doi-identifier:
-  doi-url:
+  doi-identifier: "10.1016/j.jcss.2026.103802"
+  doi-url: "https://doi.org/10.1016/j.jcss.2026.103802"
   preprint-server: "arXiv"
   preprint-identifier: 2403.12734
   preprint-url: "https://arxiv.org/abs/2403.12734"
-  software-url: "https://github.com/nholtgrefe/ComputingScanwidth"
+  software-url: "https://github.com/nholtgrefe/scanwidth"
   abstract: |
     To measure the tree-likeness of a directed acyclic graph (DAG), a new width parameter that considers the directions of the arcs was recently introduced: <em>scanwidth</em>. We present the first algorithm that efficiently computes the exact scanwidth of general DAGs. For DAGs with one root and scanwidth \( k \), it runs in \( O(k \cdot n^k \cdot m) \) time. The algorithm also functions as an FPT algorithm with complexity \( O(2^{4\ell - 1} \cdot \ell \cdot n + n^2) \) for phylogenetic networks of level-\( \ell \), a type of DAG used to depict evolutionary relationships among species. Our algorithm performs well in practice, being able to compute the scanwidth of synthetic networks up to 30 reticulations and 100 leaves within 500 seconds. Furthermore, we propose a heuristic that obtains an average practical approximation ratio of 1.5 on these networks. While we prove that the scanwidth is bounded from below by the treewidth of the underlying undirected graph, experiments suggest that for networks the parameters are close in practice.
   bibtex: |
-    @misc{holtgrefe2024exact,
+    @article{holtgrefe2026exact,
       author = {Holtgrefe, Niels and van Iersel, Leo and Jones, Mark},
-      title = {Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs},
-      year={2024},
-      archivePrefix={arXiv},
-      eprint={2403.12734}
+      title = {Exact and heuristic computation of the scanwidth of directed acyclic graphs},
+      journal={Journal of Computer and System Sciences},
+      doi={10.1016/j.jcss.2026.103802},
+      volume = {160},
+      pages = {103802},
+      year = {2026}
     }
 
 - title: "Computing the Scanwidth of Directed Acyclic Graphs"
