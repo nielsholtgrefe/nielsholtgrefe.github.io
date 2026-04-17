@@ -11,6 +11,15 @@ If I presented a talk or poster, it is listed under the corresponding event.
 
 ---
 
+## Upcoming
+- **[Uniting Phylogenetic Network Research](https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html)**
+	*Leiden, the Netherlands - June 2026*
+- **[RECOMB (30th Annual International Conference on Research in Computational Molecular Biology)](https://recomb.org/recomb2026/)**
+	*Thessaloniki, Greece - May 2026*
+  - Talk: *PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks*
+- **[RECOMB-CG (RECOMB satellite conference on comparative genomics)](https://recomb-cg.org/index.html)**
+	*Thessaloniki, Greece - May 2026*
+
 ## 2026
 - **[International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics](https://sites.google.com/view/iwpca)**
 	*Taipei, Taiwan - March 2026*
@@ -27,7 +36,7 @@ If I presented a talk or poster, it is listed under the corresponding event.
 - **[New Directions in Experimental Mathematics: At the Interface of Molecular Biology, Combinatorics, Discrete Geometry and Algebra](https://www.uni-bielefeld.de/einrichtungen/zif/events/#/event/8166)**
 	*Bielefeld, Germany - June 2025*
 
-- **[Mathematical and Computational Evolutionary Biology (MCEB)](https://mceb2025.sciencesconf.org/)**  
+- **[MCEB (Mathematical and Computational Evolutionary Biology)](https://mceb2025.sciencesconf.org/)**  
   *Granada, Spain - May 2025*  
   - Talk: *Squirrel: Reconstructing semi‐directed phylogenetic level‐1 networks from four‐leaved networks or sequence alignments*
 
