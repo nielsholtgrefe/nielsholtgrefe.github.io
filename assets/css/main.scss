@@ -16,3 +16,8 @@
 .fa-linkedin-in {
   color: inherit !important;
 }
+
+/* Make profile image square with rounded corners (not circular). */
+.author__avatar img {
+  border-radius: 12px !important;
+}
