@@ -18,6 +18,37 @@ Replace sample content with your own and [configure as necessary](https://mmista
 
 ---
 
+## Local build with Jekyll (first time setup)
+
+Run these commands from the repository root:
+
+```bash
+# 1) Install Ruby dependencies
+bundle install
+
+# 2) Build the site once into _site/
+bundle exec jekyll build
+
+# 3) Serve locally with live reload
+bundle exec jekyll serve --livereload
+```
+
+Then open `http://127.0.0.1:4000`.
+
+## Local build with Jekyll (Bundler already installed)
+
+If you already ran `bundle install`, you only need:
+
+```bash
+# Build the site once into _site/
+bundle exec jekyll build
+
+# Serve locally with live reload
+bundle exec jekyll serve --livereload
+```
+
+Then open `http://127.0.0.1:4000`.
+
 ## Troubleshooting
 
 If you have a question about using Jekyll, start a discussion on the [Jekyll Forum](https://talk.jekyllrb.com/) or [StackOverflow](https://stackoverflow.com/questions/tagged/jekyll). Other resources:
