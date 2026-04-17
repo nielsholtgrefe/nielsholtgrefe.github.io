@@ -25,6 +25,7 @@ minimal_mistakes_skin: default
 search: false
 atom_feed:
   hide: true
+og_image: /assets/images/nh-icon.svg
 
 # Build settings
 markdown: kramdown
