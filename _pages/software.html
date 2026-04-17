@@ -13,12 +13,30 @@ classes: wide
   margin: 1.2em 0;
   border-radius: 6px;
   position: relative;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #fafafa;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.software-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.82);
+  pointer-events: none;
+}
+
+.software-box.expanded::before {
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.software-box > * {
+  position: relative;
+  z-index: 1;
 }
 
 .software-box:hover {
@@ -46,8 +64,10 @@ classes: wide
 .software-detail {
   display: none;
   margin-top: 0.8em;
-  padding-top: 0.5em;
-  border-top: 1px solid #ddd;
+  padding: 0.7em 0.8em 0.6em;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .software-buttons a {
@@ -70,20 +90,61 @@ classes: wide
 
 <script>
 function toggleDetail(id) {
-  const box = document.getElementById(id);
-  if (!box) return;
-  box.style.display = (box.style.display === "block") ? "none" : "block";
+  const detail = document.getElementById(id);
+  if (!detail) return;
+  const isOpen = detail.style.display === "block";
+  detail.style.display = isOpen ? "none" : "block";
+  const card = detail.closest(".software-box");
+  if (card) {
+    card.classList.toggle("expanded", !isOpen);
+  }
 }
 </script>
 
-<p>Below is a list of software I have developed, written in **Python**, with links to the code repositories and related publications.</p>
+<p>Below is a list of software I have developed, written in <em>Python</em>, with links to the code repositories and related publications.</p>
 
 <hr>
 
-<!-- PHYPANDA -->
+<!-- PHYLOZOO -->
+<div class="software-box" onclick="toggleDetail('detail-phylozoo')" style="background-image: url('/assets/images/phylozoo_logo.svg');">
+
+  <div class="software-overlay">
+    <div class="software-title"><code>phylozoo</code></div>
+    <div class="lang-note"></div>
+  </div>
+
+  <div id="detail-phylozoo" class="software-detail">
+    PhyloZoo is a Python package for working with phylogenetic networks and related evolutionary data types, designed as foundational infrastructure for phylogenetic network analysis in Python.  
+    It provides validated directed and semi-directed network representations, support for quartets/splits/distance matrices and sequence alignments, flexible Matplotlib-based visualization, standard phylogenetic file formats, and performance-focused routines powered by NumPy (with optional Numba acceleration).  
+    <div class="software-buttons">
+      <a href="https://github.com/nholtgrefe/phylozoo" target="_blank">💻 GitHub Repo</a>
+    </div>
+  </div>
+</div>
+
+<!-- PHYSQUIRREL -->
 <div class="software-box" 
-     onclick="toggleDetail('detail-phypanda')" 
+     onclick="toggleDetail('detail-physquirrel')"
      style="background-image: url('/assets/images/squirrel_cover4.svg');">
+
+  <div class="software-overlay">
+    <div class="software-title"><code>physquirrel</code></div>
+    <div class="lang-note"></div>
+  </div>
+
+  <div id="detail-physquirrel" class="software-detail">
+    This package implements the Squirrel algorithm for reconstructing semi-directed phylogenetic level-1 networks from either four‐leaf quarnet sets or sequence alignments.  
+    It provides both a graphical user interface (GUI) for non-programmers and a full Python API for advanced users, enabling simulation, inference and visualisation of reticulate evolutionary histories.  
+    <div class="software-buttons">
+      <a href="https://github.com/nholtgrefe/squirrel" target="_blank">💻 GitHub Repo</a>
+      <a href="https://doi.org/10.1093/molbev/msaf067" target="_blank">📄 Paper (Mol. Biol. Evol.)</a>
+    </div>
+  </div>
+</div>
+
+<!-- PHYPANDA -->
+<div class="software-box" onclick="toggleDetail('detail-phypanda')" style="background-image: url('/assets/images/panda_face.png');">
+
 
   <div class="software-overlay">
     <div class="software-title"><code>phypanda</code></div>
@@ -94,48 +155,26 @@ function toggleDetail(id) {
     A Python package designed for exploration and maximization of phylogenetic diversity in phylogenetic networks.  
     It supports generation and handling of phylogenetic network instances, computes diversity‐based optimization criteria, and includes interactive visualizations and algorithmic pipelines for network‐level diversity analyses.  
     <div class="software-buttons">
-      <a href="https://github.com/nholtgrefe/phypanda" target="_blank">GitHub Repo</a>
-      <a href="https://doi.org/10.1101/2025.11.14.688467" target="_blank">📄 Related Paper</a>
+      <a href="https://github.com/nholtgrefe/panda" target="_blank">💻 GitHub Repo</a>
+      <a href="https://doi.org/10.1101/2025.11.14.688467" target="_blank">📄 Paper (RECOMB)</a>
     </div>
   </div>
 </div>
 
-<!-- PHYSQUIRREL -->
-<div class="software-box" 
-     onclick="toggleDetail('detail-physquirrel')" 
-     style="background-image: url('/assets/images/squirrel_cover4.svg');">
+<!-- SCANWIDTH -->
+<div class="software-box" onclick="toggleDetail('detail-scanwidth')" style="background-image: url('/assets/images/scanwidth.png');">
+
 
   <div class="software-overlay">
-    <div class="software-title"><code>physquirrel</code></div>
-    <div class="lang-note"></div>
-  </div>
-
-  <div id="detail-physquirrel" class="software-detail">
-    This package implements the Squirrel algorithm for reconstructing semi-directed phylogenetic level-1 networks from either four‐leaf quarnet sets or sequence alignments. :contentReference[oaicite:0]{index=0}  
-    It provides both a graphical user interface (GUI) for non-programmers and a full Python API for advanced users, enabling simulation, inference and visualisation of reticulate evolutionary histories. :contentReference[oaicite:1]{index=1}  
-    <div class="software-buttons">
-      <a href="https://github.com/nholtgrefe/squirrel" target="_blank">GitHub Repo</a>
-      <a href="https://doi.org/10.1093/molbev/msaf067" target="_blank">📄 Published Paper</a>
-    </div>
-  </div>
-</div>
-
-<!-- COMPUTINGSCANWIDTH -->
-<div class="software-box" 
-     onclick="toggleDetail('detail-scanwidth')" 
-     style="background-image: url('/assets/images/squirrel_cover4.svg');">
-
-  <div class="software-overlay">
-    <div class="software-title"><code>ComputingScanwidth</code></div>
+    <div class="software-title"><code>scanwidth</code></div>
     <div class="lang-note"></div>
   </div>
 
   <div id="detail-scanwidth" class="software-detail">
     An implementation of algorithms and heuristics for computing the <strong>scanwidth</strong> parameter of directed acyclic graphs (DAGs).  
-    The repository contains the main algorithmic Python modules (including `scanwidth.py`, network extensions and heuristics), synthetic network generators, experiment management infrastructure, and plotting modules for analysing performance. :contentReference[oaicite:2]{index=2}  
     <div class="software-buttons">
-      <a href="https://github.com/nholtgrefe/scanwidth" target="_blank">GitHub Repo</a>
-      <a href="https://arxiv.org/abs/2403.12734" target="_blank">📄 Paper / Thesis</a>
+      <a href="https://github.com/nholtgrefe/scanwidth" target="_blank">💻 GitHub Repo</a>
+      <a href="https://doi.org/10.1016/j.jcss.2026.103802" target="_blank">📄 Paper (J. Comp. Sys. Sci. )</a>
     </div>
   </div>
 </div>
