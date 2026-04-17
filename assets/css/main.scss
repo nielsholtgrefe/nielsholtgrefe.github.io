@@ -1,3 +1,9 @@
 .page__content {
   font-size: 0.9em;
 }
+
+/* Keep LinkedIn icon monochrome (no brand blue). */
+.fa-linkedin,
+.fa-linkedin-in {
+  color: inherit !important;
+}
