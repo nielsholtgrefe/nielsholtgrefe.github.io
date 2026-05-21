@@ -69,7 +69,7 @@
     @article{frohn2026bounds,
       author = {Frohn, Martin and Holtgrefe, Niels and van Iersel, Leo and Jones, Mark and Kelk, Steven},
       title = {Bounds on the sequence length sufficient to reconstruct binary level-1 phylogenetic networks under the {CFN} model},
-      journal = {Theory in Biosciences},
+      journal = {Annals of Combinatorics},
       doi = {10.1007/s00026-026-00830-0},
       year = {2026}
     }
