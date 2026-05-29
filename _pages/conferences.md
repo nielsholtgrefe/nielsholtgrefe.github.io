@@ -14,13 +14,13 @@ If I presented a talk or poster, it is listed under the corresponding event.
 ## Upcoming
 - **[Uniting Phylogenetic Network Research](https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html)**
 	*Leiden, the Netherlands - June 2026*
+
+## 2026
 - **[RECOMB (30th Annual International Conference on Research in Computational Molecular Biology)](https://recomb.org/recomb2026/)**
 	*Thessaloniki, Greece - May 2026*
   - Talk: *PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks*
-- **[RECOMB-CG (RECOMB satellite conference on comparative genomics)](https://recomb-cg.org/index.html)**
+- **[RECOMB-CG (23rd RECOMB International Workshop on Comparative Genomics)](https://recomb-cg.org/index.html)**
 	*Thessaloniki, Greece - May 2026*
-
-## 2026
 - **[International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics](https://sites.google.com/view/iwpca)**
 	*Taipei, Taiwan - March 2026*
   - Talk: *PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks*
