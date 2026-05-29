@@ -6,8 +6,7 @@ author_profile: true
 classes: wide
 ---
 
-This page lists conferences, workshops, and seminars I have attended.  
-If I presented a talk or poster, it is listed under the corresponding event.  
+I give talks and attend events on phylogenetics, combinatorics, and algorithms. Talks and poster presentations are listed under the corresponding event.
 
 ---
 
@@ -69,5 +68,5 @@ If I presented a talk or poster, it is listed under the corresponding event.
 ## 2023
 
 - **[Seminar series in Discrete Mathematics and Optimization](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/discrete-mathematics-optimization/events/seminars-in-discrete-mathematics-and-optimization#:~:text=The%20Discrete%20Mathematics%20%26%20Optimization%20seminar,with%20time%20for%20discussion%20afterwards.)**
-	*Delft, the Netherlands, 2023-now*
+	*Delft, the Netherlands — recurring seminar, 2023–present*
 
