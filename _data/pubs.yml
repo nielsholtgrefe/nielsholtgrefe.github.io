@@ -277,12 +277,12 @@
     - first: Richard
       middle: ["M"]
       last: Legget
-  year: 2025
+  year: 2026
   type: "journal"
   journal: "Systematic Biology"
-  volume:
-  issue:
-  pages: "syaf071"
+  volume: 75
+  issue: 4
+  pages: 657-672
   note:
   doi-identifier: "10.1093/sysbio/syaf071"
   doi-url: "https://doi.org/10.1093/sysbio/syaf071"
@@ -293,13 +293,15 @@
   abstract: |
     A core goal of phylogenomics is to determine the evolutionary history of a set of species from biological sequence data. Phylogenetic networks are able to describe more complex evolutionary phenomena than phylogenetic trees but are more difficult to accurately reconstruct. Recently, there has been growing interest in developing methods to infer semi-directed phylogenetic networks. As computing such networks can be computationally intensive, one approach to building such networks is to puzzle together smaller networks. Thus, it is essential to have robust methods for inferring semi-directed phylogenetic networks on small numbers of taxa. In this paper, we investigate an algebraic method for performing phylogenetic network inference from nucleotide sequence data on 4-leaf semi-directed phylogenetic networks by analysing the distribution of leaf-pattern probabilities. On simulated data, we found that we can correctly identify with high accuracy the undirected phylogenetic network for sequences of length at least 10kbp. We found that identifying the semi-directed network is more challenging and requires sequences of length approaching 10Mbp. We are also able to use our approach to identify tree-like evolution and determine the underlying tree. Finally, we employ our method on a real dataset from Xiphophorus species and use the results to build a phylogenetic network.  
   bibtex: |
-    @article{martin2025algebraic,
+    @article{martin2026algebraic,
       title={Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks},
       author={Martin, Samuel and Holtgrefe, Niels and Moulton, Vincent and Legget, Richard M},
       journal={Systematic Biology},
       doi={10.1093/sysbio/syaf071},
-      pages = {syaf071},
-      year = {2025}
+      volume = {75},
+      number = {4},
+      pages = {657-672},
+      year = {2026}
     }
 
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
