@@ -51,6 +51,13 @@
 - title: "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
   tags: [theory, algorithms]
   themes: [diversity]
+  summary_lay: >-
+    Deciding which species to protect to preserve the most evolutionary diversity gets much
+    harder when protection has real, uneven costs and evolution is network-shaped rather than
+    tree-shaped. This paper gives fast algorithms for several budgeted versions of that problem
+    by exploiting a "tree-likeness" measure of the network called node scanwidth, and also shows
+    how to compute that measure exactly. In experiments the methods handle networks with hundreds
+    of species in a fraction of a second, and remain practical even up to a thousand species.
   image: "/assets/images/pub_diversity.svg"
   release-date: 2026-05-22
   authors:
@@ -88,6 +95,12 @@
 - title: "Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies"
   tags: [theory]
   themes: [diversity]
+  summary_lay: >-
+    Choosing species to conserve becomes more realistic when we insist that a saved predator also
+    has some saved prey — a dependency captured by a food web. This paper maps out when this
+    constrained problem can be solved efficiently and, importantly, proves hard limits: for many
+    natural ways of measuring the input's complexity, the problem provably cannot be "compressed"
+    to a small equivalent instance before solving.
   image: "/assets/images/pub_diversity.svg"
   release-date: 2026-02-13
   authors:
@@ -124,6 +137,12 @@
 - title: "Bounds on the Sequence Length Sufficient to Reconstruct Binary Level-1 Phylogenetic Networks Under the CFN Model"
   tags: [theory, algorithms]
   themes: [reconstruction]
+  summary_lay: >-
+    Existing methods can reconstruct certain evolutionary networks correctly if given infinitely
+    long DNA sequences — but real data is finite. This paper works out how long the sequences
+    actually need to be to recover the right network with high probability under the CFN model,
+    showing that the requirement grows manageably — logarithmically, polylogarithmically, or
+    polynomially — with the number of species, depending on the parameter regime.
   image: "/assets/images/pub_network.svg"
   release-date: 2026-05-21
   authors:
@@ -219,7 +238,13 @@
 
 - title: "Characterizing semi-directed phylogenetic networks and their multi-rootable variants"
   tags: [theory]
-  themes: [theory]
+  themes: []
+  summary_lay: >-
+    Semi-directed networks are a popular way to depict evolution when the ancient "root" cannot be
+    pinned down but individual merging events can. Their usual definition is indirect — it does not
+    tell you, just by looking, whether a given diagram is a valid one. This paper gives explicit,
+    checkable characterizations of these networks (and a multi-root variant), and connects them to
+    well-known families of evolutionary networks.
   image: "/assets/images/pub_network.svg"
   release-date: 2025-12-10
   authors:
@@ -322,6 +347,11 @@
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
   tags: [theory, applications]
   themes: [identifiability]
+  summary_lay: >-
+    Building large evolutionary networks by combining tiny four-species pieces only works if we can
+    infer those pieces reliably. This paper develops an algebra-based method to infer four-leaf
+    networks directly from DNA, measures how much sequence data it needs, and applies it to real
+    fish (Xiphophorus) data.
   release-date: 2026-06-19
   authors:
     - first: Samuel
@@ -363,6 +393,12 @@
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
   tags: [theory]
   themes: [identifiability]
+  summary_lay: >-
+    Before trying to reconstruct an evolutionary network, one should check whether the DNA data
+    even determines it uniquely — otherwise no method can succeed. This paper proves that a broad
+    new class of networks (allowing certain intertwined merging events) is in principle recoverable
+    from DNA under standard models of evolution, extending what was previously known only for
+    simpler networks.
   image: "/assets/images/pub_algebra.svg"
   release-date: 2025-04-24
   authors:
@@ -412,6 +448,11 @@
 - title: "Reconstructing semi-directed level-1 networks using few quarnets"
   tags: [theory, algorithms]
   themes: [reconstruction]
+  summary_lay: >-
+    A large evolutionary network can be rebuilt from its four-species sub-pieces, but querying
+    every possible group of four species is wasteful. This paper gives a fast algorithm that
+    reconstructs the whole network using only a near-minimal number of these four-species pieces,
+    and even recovers the network's coarse skeleton in more general settings.
   image: "/assets/images/pub_network.svg"
   release-date: 2025-03-28
   authors:
@@ -510,6 +551,12 @@
 - title: "Invariants for level-1 phylogenetic networks under the random walk 4-state Markov model"
   tags: [theory]
   themes: [identifiability]
+  summary_lay: >-
+    Certain polynomial equations, called invariants, act as fingerprints that a stretch of DNA
+    evolved along a particular network. This paper works out these fingerprints for a family of
+    simple cyclic networks under a general model of DNA change, and gives a faster, more reliable
+    way to find them — while also showing they are not quite enough to tell all four-species
+    networks apart.
   image: "/assets/images/pub_algebra.svg"
   release-date: 2024-07-16
   authors:
@@ -598,6 +645,11 @@
 - title: "Computing the Scanwidth of Directed Acyclic Graphs"
   tags: [algorithms, theory]
   themes: [parameters]
+  summary_lay: >-
+    Many hard computations on evolutionary networks get easier when the network is "almost
+    tree-like", measured by a quantity called scanwidth. This MSc thesis develops the first
+    practical exact algorithm to compute scanwidth, together with a fast heuristic, and shows that
+    scanwidth stays close to the classic treewidth measure in practice.
   image: "/assets/images/scanwidth.png"
   release-date: 2023-07-12
   authors:
@@ -638,6 +690,11 @@
 - title: "Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
   tags: [theory, algorithms]
   themes: []
+  summary_lay: >-
+    Many planning problems ask you to pick a limited number of sets that together "cover" as much
+    as possible — a classic optimization task. This BSc thesis proves improved guarantees for a
+    simple greedy strategy on several versions of the problem, and applies it to selecting the best
+    subset of existing weather stations across the Netherlands.
   image: "/assets/images/pub_default.svg"
   release-date: 2021-07-12
   authors:

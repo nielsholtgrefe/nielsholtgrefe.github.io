@@ -65,7 +65,7 @@ classes: wide
               <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>
             </span><br>
             <span class="paper-authors">{{ author_str }}</span><br>
-            <span class="paper-venue">
+            {%- capture venue -%}
               {%- if pub.type == "journal" -%}
                 <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}, {{ pub.year }}
               {%- elsif pub.type == "preprint" -%}
@@ -73,12 +73,17 @@ classes: wide
               {%- elsif pub.type == "thesis" -%}
                 {{ pub.note }}
               {%- endif -%}
-            </span>
+            {%- endcapture -%}
             {% if pub.summary_lay and pub.summary_lay != "" %}
-              <details class="paper-summary-fold">
-                <summary>plain-language summary</summary>
-                <span class="paper-summary">{{ pub.summary_lay }}</span>
+              <details class="paper-fold">
+                <summary class="paper-venue-line">
+                  <span class="paper-venue">{{ venue }}</span>
+                  <span class="paper-fold-toggle">plain-language summary</span>
+                </summary>
+                <div class="paper-summary">{{ pub.summary_lay }}</div>
               </details>
+            {% else %}
+              <span class="paper-venue">{{ venue }}</span>
             {% endif %}
           </li>
         {% endfor %}

@@ -69,19 +69,3 @@
     parameter, we must first be able to <em>compute</em> it: I developed the first
     exact algorithm for the scanwidth of general DAGs, together with practical
     heuristics that perform near-optimally on real biological datasets.
-
-- id: theory
-  title: "Mathematical Theory of Semi-directed Networks"
-  tags: [Combinatorics, Structural Theory]
-  image: /assets/images/research/theme-theory.png
-  body: >-
-    <em>Semi-directed networks</em> are phylogenetic networks in which directed edges
-    indicate reticulate events while other edges are left undirected, reflecting
-    uncertainty about the root's location. They are increasingly used in practice —
-    the root often cannot be reliably inferred, yet the direction of reticulation
-    edges can be — but their mathematical foundations lag behind those of fully rooted
-    networks. I work on the structural theory of these graphs: explicit
-    characterizations of when a mixed graph is a valid semi-directed network,
-    extensions of foundational tools (cherry-picking sequences, path partitions,
-    omnians) into this setting, and connections to well-studied classes such as
-    tree-child, orchard, and forest-based networks.

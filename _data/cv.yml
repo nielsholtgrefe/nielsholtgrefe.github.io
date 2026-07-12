@@ -18,7 +18,7 @@ education:
     place: "Delft University of Technology"
     note: "Minor: Quantum Science & Quantum Information. Thesis: Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection."
   - period: "2012–2018"
-    title: "Gymnasium"
+    title: "Grammar school ('gymnasium')"
     place: "Chr. Gymnasium Sorghvliet, The Hague"
 
 positions:
@@ -26,7 +26,7 @@ positions:
     title: "PhD Candidate"
     place: "Delft Institute of Applied Mathematics, TU Delft"
   - period: "2024"
-    title: "Visiting Researcher"
+    title: "Extended research visit"
     place: "ICERM, Brown University (Providence, RI, USA)"
     note: "semester program on Theory, Methods, and Applications of Quantitative Phylogenomics"
   - period: "2023"
@@ -46,7 +46,7 @@ awards:
     title: "BSc Applied Mathematics — cum laude"
     note: "grade 8.4/10; thesis 9.5/10"
   - year: 2018
-    title: "Gymnasium — summa cum laude"
+    title: "Grammar school ('gymnasium') — summa cum laude"
     note: "grade 9.0/10"
 
 talks:

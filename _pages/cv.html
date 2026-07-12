@@ -123,7 +123,7 @@ classes: wide
     <div class="cv-body">
       <ul class="cv-pub-list">
         {% for item in section.items %}
-        <li><strong>{{ item.title }}</strong> &mdash; {{ item.role }}{% if item.year %}, {{ item.year }}{% endif %}</li>
+        <li><strong>{{ item.title }}</strong> &mdash; {{ item.role }}{% if item.years %}, {{ item.years | join: ", " }}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
         {% endfor %}
       </ul>
     </div>

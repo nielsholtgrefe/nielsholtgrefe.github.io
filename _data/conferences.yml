@@ -20,6 +20,9 @@
   date: "June 2026"
   group: "Upcoming"
   country: nl
+  contributions:
+    - type: "Lightning talk"
+      title: "PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks"
 
 - name: "RECOMB — 30th Annual International Conference on Research in Computational Molecular Biology"
   url: "https://recomb.org/recomb2026/"

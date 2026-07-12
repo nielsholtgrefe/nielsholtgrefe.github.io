@@ -16,7 +16,9 @@ classes: wide
   <ul class="teaching-list">
     {% for item in section.items %}
     <li class="teaching-item">
-      <div class="teaching-year">{{ item.year }}</div>
+      <div class="teaching-years">
+        {% for y in item.years %}<span class="teaching-year">{{ y }}</span>{% endfor %}
+      </div>
       <div class="teaching-detail">
         <span class="teaching-role">{{ item.role }}</span>
         <span class="teaching-title">

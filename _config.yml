@@ -67,7 +67,7 @@ plugins:
 author:
   name   : "Niels Holtgrefe"
   avatar : "/assets/images/bio_pic.jpg"
-  bio    : "PhD candidate in applied mathematics, working on algorithmic and mathematical phylogenetics."
+  bio    : "PhD candidate in applied math"
   links: &social_links
     - label: "n.a.l.holtgrefe@tudelft.nl"
       icon: "fas fa-fw fa-envelope"

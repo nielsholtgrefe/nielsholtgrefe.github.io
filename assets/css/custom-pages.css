@@ -1081,14 +1081,20 @@ html[data-theme="dark"] .timeline-country {
 
 .teaching-item:last-child { border-bottom: none; }
 
-.teaching-year {
+.teaching-years {
   flex: 0 0 5.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  padding-top: 0.15em;
+  text-align: right;
+}
+
+.teaching-year {
   font-family: 'Inter', sans-serif;
   font-size: 0.78em;
   font-weight: 600;
   color: var(--nh-accent-mid, #4a8fa8);
-  padding-top: 0.15em;
-  text-align: right;
 }
 
 .teaching-detail {
@@ -1125,7 +1131,13 @@ html[data-theme="dark"] .timeline-country {
 
 @media (max-width: 500px) {
   .teaching-item { flex-direction: column; gap: 0.2em; }
-  .teaching-year { text-align: left; flex-basis: auto; }
+  .teaching-years {
+    text-align: left;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
 }
 
 /* ================================================================
@@ -1381,23 +1393,35 @@ html[data-theme="dark"] .timeline-country {
   .research-figure { flex-basis: auto; max-width: none; width: 100%; }
 }
 
-/* Plain-language summary reused under a related publication, foldable */
-.paper-summary-fold { margin-top: 0.35em; }
+/* Venue line carrying an inline, right-aligned plain-language summary fold */
+.paper-fold { margin: 0; }
 
-.paper-summary-fold > summary {
+.paper-venue-line {
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8em;
-  font-weight: 500;
-  color: var(--nh-accent);
   list-style: none;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25em 0.9em;
   user-select: none;
 }
 
-.paper-summary-fold > summary::-webkit-details-marker { display: none; }
-.paper-summary-fold > summary::before { content: "▸  "; font-size: 0.85em; }
-.paper-summary-fold[open] > summary::before { content: "▾  "; }
+.paper-venue-line::-webkit-details-marker { display: none; }
+
+.paper-venue-line .paper-venue { flex: 1 1 auto; min-width: 0; }
+
+.paper-fold-toggle {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--nh-accent);
+}
+
+.paper-fold-toggle::before { content: "▸  "; font-size: 0.85em; }
+.paper-fold[open] .paper-fold-toggle::before { content: "▾  "; }
 
 .research-papers .paper-summary {
   display: block;

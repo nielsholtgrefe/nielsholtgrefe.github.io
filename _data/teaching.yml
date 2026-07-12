@@ -3,7 +3,8 @@
 # To add an entry, append an item under the relevant section. Fields:
 #   role         (required)  e.g. "Teaching assistant", "Guest lecture", "Reviewer"
 #   title        (required)  course name, talk title, or activity
-#   year         (required)  e.g. 2025 or "2023–2025"
+#   years        (required)  list of years/instances — each is rendered on its own
+#                            line, so a course taught several times "looks fuller"
 #   institution  (optional)  where it took place
 #   note         (optional)  short extra detail (level, audience, co-supervisor, ...)
 #   url          (optional)  link to course page / material / venue
@@ -14,46 +15,46 @@
   items:
     - role: "Instructor"
       title: "Discrete Mathematics (TW1-31)"
-      year: "2025–2026"
+      years: ["2024–2025", "2025–2026"]
       institution: "TU Delft"
-      note: "BSc course · instructor in the spring semesters of 2025 and 2026"
+      note: "BSc course"
     - role: "Guest lecturer"
       title: "Mathematics 1 (WBMT1050)"
-      year: 2023
+      years: ["2023–2024"]
       institution: "TU Delft"
       note: "for Mechanical Engineering · replacement lecturer for three lectures"
     - role: "Teaching assistant"
       title: "Optimization (AM2020)"
-      year: "2020–2022"
+      years: ["2020–2021", "2021–2022", "2022–2023"]
       institution: "TU Delft"
     - role: "Teaching assistant"
       title: "Caleidoscope — Introduction to Mathematics (AM1020)"
-      year: "2019–2021"
+      years: ["2019–2020", "2020–2021", "2021–2022"]
       institution: "TU Delft"
     - role: "Course grader"
       title: "Transport, Routing & Scheduling (WI4062TU)"
-      year: "2023 & 2025"
+      years: ["2023–2024", "2025–2026"]
       institution: "TU Delft"
     - role: "Course grader"
       title: "Mathematics 2 — Calculus (KT1002)"
-      year: 2023
+      years: ["2023–2024"]
       institution: "TU Delft"
       note: "for Technical Medicine"
     - role: "Course grader"
       title: "Mathematical Structures (AM1010)"
-      year: 2019
+      years: ["2019–2020"]
       institution: "TU Delft"
 
 - heading: "Student supervision"
   items:
     - role: "MSc thesis supervision"
       title: "MSc thesis projects (2×)"
-      year: 2026
+      years: ["2026"]
       institution: "TU Delft"
       note: "co-supervisor · ~9 months each"
     - role: "BSc thesis supervision"
       title: "BSc thesis projects (2×)"
-      year: 2025
+      years: ["2025"]
       institution: "TU Delft"
       note: "co-supervisor · ~3 months each"
 
@@ -61,13 +62,13 @@
   items:
     - role: "Reviewer"
       title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics; WADS 2025"
-      year: "2024–present"
+      years: ["2024–present"]
     - role: "Member"
       title: "DIAM PhD Forum"
-      year: "2025–present"
+      years: ["2025–present"]
       institution: "TU Delft"
       note: "co-organizing career and social events for the ~90 mathematics PhD students at the Delft Institute of Applied Mathematics"
     - role: "Chair"
       title: "Delft Student Handball Association Torius"
-      year: "2025–present"
+      years: ["2025–present"]
       note: "chairman of the board of a 70+ member student association"
