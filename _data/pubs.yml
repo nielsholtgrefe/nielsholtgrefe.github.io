@@ -101,6 +101,7 @@
     constrained problem can be solved efficiently and, importantly, proves hard limits: for many
     natural ways of measuring the input's complexity, the problem provably cannot be "compressed"
     to a small equivalent instance before solving.
+  status_note: "Accepted and presented at LATIN 2026 (proceedings to appear)."
   image: "/assets/images/pub_diversity.svg"
   release-date: 2026-02-13
   authors:
@@ -197,6 +198,7 @@
     computationally hard. PaNDA is an interactive tool built around a new algorithm
     that solves this diversity-maximization problem efficiently for many realistic
     networks.
+  status_note: "Accepted at RECOMB 2026 (no formal proceedings, acceptance rate 15%)."
   image: "/assets/images/panda_face.png"
   release-date: 2025-11-17
   authors:
@@ -729,3 +731,47 @@
       school={Delft University of Technology},
       type= {BSc thesis}
     }
+
+# --- Miscellaneous: extended abstracts (type: extended-abstract) ---
+# These render in a "Miscellaneous" section below the theses and are NOT
+# included in the publication count on the CV.
+
+- title: "Optimising the Synthetic Aperture Radar Repeat Imaging Strategy for the EnVision Mission"
+  tags: [applications]
+  themes: []
+  type: "extended-abstract"
+  release-date: 2025-09-07
+  authors:
+    - first: Paul
+      last: Eckstein
+    - first: Adam
+      last: McSweeney
+    - first: Ishuwa
+      last: Sikaneta
+    - first: Niels
+      last: Holtgrefe
+    - first: Max
+      last: Bannach
+    - first: Ines
+      last: Belgacem
+    - first: Holly
+      last: Raynor
+    - first: Bernhard
+      last: Geiger
+    - first: Björn
+      last: Grieger
+    - first: Arnaud
+      last: Mahieux
+    - first: Gerard
+      last: "Gallardo i Peres"
+    - first: "Anne Grete"
+      last: Straume-Lindner
+    - first: Jayne
+      last: Lefort
+    - first: Thomas
+      last: Voirin
+  year: 2025
+  note: "Extended abstract, EPSC–DPS Joint Meeting 2025, Helsinki, Finland"
+  doi-identifier: "10.5194/epsc-dps2025-1637"
+  doi-url: "https://doi.org/10.5194/epsc-dps2025-1637"
+  preprint-url: "https://doi.org/10.5194/epsc-dps2025-1637"

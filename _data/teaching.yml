@@ -10,6 +10,7 @@
 #   url          (optional)  link to course page / material / venue
 #
 # Sections are rendered in the order listed here; each has a `heading` and `items`.
+# Items within a section are ordered newest-first.
 
 - heading: "Teaching"
   items:
@@ -18,11 +19,20 @@
       years: ["2024–2025", "2025–2026"]
       institution: "TU Delft"
       note: "BSc course"
+    - role: "Course grader"
+      title: "Transport, Routing & Scheduling (WI4062TU)"
+      years: ["2023–2024", "2025–2026"]
+      institution: "TU Delft"
     - role: "Guest lecturer"
       title: "Mathematics 1 (WBMT1050)"
       years: ["2023–2024"]
       institution: "TU Delft"
       note: "for Mechanical Engineering · replacement lecturer for three lectures"
+    - role: "Course grader"
+      title: "Mathematics 2 — Calculus (KT1002)"
+      years: ["2023–2024"]
+      institution: "TU Delft"
+      note: "for Technical Medicine"
     - role: "Teaching assistant"
       title: "Optimization (AM2020)"
       years: ["2020–2021", "2021–2022", "2022–2023"]
@@ -32,37 +42,36 @@
       years: ["2019–2020", "2020–2021", "2021–2022"]
       institution: "TU Delft"
     - role: "Course grader"
-      title: "Transport, Routing & Scheduling (WI4062TU)"
-      years: ["2023–2024", "2025–2026"]
-      institution: "TU Delft"
-    - role: "Course grader"
-      title: "Mathematics 2 — Calculus (KT1002)"
-      years: ["2023–2024"]
-      institution: "TU Delft"
-      note: "for Technical Medicine"
-    - role: "Course grader"
       title: "Mathematical Structures (AM1010)"
       years: ["2019–2020"]
       institution: "TU Delft"
 
 - heading: "Student supervision"
   items:
-    - role: "MSc thesis supervision"
-      title: "MSc thesis projects (2×)"
+    - role: "BSc thesis supervision"
+      title: "Distinguishing phylogenetic trees from networks"
       years: ["2026"]
       institution: "TU Delft"
-      note: "co-supervisor · ~9 months each"
+      note: "J. Brits · co-supervised with Leo van Iersel"
+      url: "https://repository.tudelft.nl/record/uuid:b515be05-f539-41d6-b57b-d23a0b4156e8"
     - role: "BSc thesis supervision"
-      title: "BSc thesis projects (2×)"
+      title: "Identifiability of Phylogenetic Trinets"
       years: ["2025"]
       institution: "TU Delft"
-      note: "co-supervisor · ~3 months each"
+      note: "G.A. Kouwenhoven · co-supervised with Leo van Iersel"
+      url: "https://repository.tudelft.nl/record/uuid:5aa152f2-e99c-4bb8-bb27-c112ab50b5f4"
 
 - heading: "Service & leadership"
   items:
     - role: "Reviewer"
-      title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics; WADS 2025"
+      title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics"
       years: ["2024–present"]
+    - role: "Sub-reviewer"
+      title: "RECOMB-CG (Comparative Genomics)"
+      years: ["2026"]
+    - role: "Sub-reviewer"
+      title: "WADS (Algorithms & Data Structures Symposium)"
+      years: ["2025"]
     - role: "Member"
       title: "DIAM PhD Forum"
       years: ["2025–present"]

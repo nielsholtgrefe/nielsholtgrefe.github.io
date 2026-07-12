@@ -302,6 +302,71 @@
   line-height: 1.3;
 }
 
+/* Small info icon with a hover/focus tooltip (e.g. acceptance status) */
+.pub-info {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.3em;
+  color: var(--nh-accent-mid, #4a8fa8);
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1;
+  cursor: help;
+  vertical-align: 0.06em;
+}
+
+.pub-info:hover, .pub-info:focus-visible { color: var(--nh-accent, #1a5c7a); }
+.pub-info:focus { outline: none; }
+
+.pub-info::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 250px;
+  padding: 8px 11px;
+  border-radius: 7px;
+  background: #1b2830;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #eef4f7;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.13s ease;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.pub-info::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 3px);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1b2830;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.13s ease;
+  z-index: 41;
+  pointer-events: none;
+}
+
+.pub-info:hover::after, .pub-info:focus::after,
+.pub-info:hover::before, .pub-info:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+
 .pub-authors {
   font-size: 0.79em;
   color: var(--nh-text-muted);

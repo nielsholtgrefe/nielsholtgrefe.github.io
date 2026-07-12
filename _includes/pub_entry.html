@@ -38,7 +38,7 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
         {%- if venue_url and venue_url != "" -%}</a>{%- endif -%}
       </div>
 
-      <div class="pub-title">{{ pub.title }}</div>
+      <div class="pub-title">{{ pub.title }}{% if pub.status_note %} <span class="pub-info" tabindex="0" role="note" aria-label="{{ pub.status_note | escape }}" data-tip="{{ pub.status_note | escape }}">&#9432;</span>{% endif %}</div>
 
       <div class="pub-authors">
         {% for author in pub.authors %}
@@ -70,7 +70,7 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
         {% if pub.repository-url %}<a class="link-button" href="{{ pub.repository-url }}" target="_blank">repository</a>{% endif %}
         {% if pub.software-url %}<a class="link-button" href="{{ pub.software-url }}" target="_blank">software</a>{% endif %}
       {% elsif pub.type == "extended-abstract" %}
-        {% if pub.preprint-url %}<a class="link-button" href="{{ pub.preprint-url }}" target="_blank">pdf</a>{% endif %}
+        {% if pub.preprint-url %}<a class="link-button" href="{{ pub.preprint-url }}" target="_blank">abstract</a>{% endif %}
         {% if pub.software-url %}<a class="link-button" href="{{ pub.software-url }}" target="_blank">software</a>{% endif %}
       {% endif %}
     </div>
