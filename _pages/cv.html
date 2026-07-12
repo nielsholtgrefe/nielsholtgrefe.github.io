@@ -8,21 +8,8 @@ classes: wide
 
 <link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
 
-{%- comment -%} Detect an optional downloadable PDF among the site's static files {%- endcomment -%}
-{% assign has_pdf = false %}
-{% if site.data.cv.pdf %}
-  {% for sf in site.static_files %}
-    {% if sf.path == site.data.cv.pdf %}{% assign has_pdf = true %}{% endif %}
-  {% endfor %}
-{% endif %}
-
 <div class="cv-header">
-  <p>A summary of my education, positions, and academic activities. The publication counts and teaching list below are pulled directly from the same data files that drive the rest of the site, so they never fall out of sync.</p>
-  {% if has_pdf %}
-  <a class="cv-download" href="{{ site.data.cv.pdf | relative_url }}" target="_blank">&#8595; Download PDF</a>
-  {% else %}
-  <span class="cv-download is-disabled" title="Add a file at {{ site.data.cv.pdf }} to enable this link">PDF coming soon</span>
-  {% endif %}
+  <p>I am a PhD candidate at TU Delft with a background in discrete mathematics, working at the intersection of applied mathematics, theoretical computer science, and phylogenetics. My research focuses on the mathematical and algorithmic foundations of phylogenetic networks, with particular emphasis on identifiability, network combinatorics, and algorithmic principles. In parallel, I develop open-source software and user interfaces that translate theoretical results into accessible tools for biological applications.</p>
 </div>
 
 <!-- EDUCATION -->
@@ -96,7 +83,7 @@ classes: wide
 
 <!-- AWARDS -->
 <section class="cv-section">
-  <h2 class="cv-section-title">Grants &amp; awards</h2>
+  <h2 class="cv-section-title">Honours &amp; distinctions</h2>
   {% for a in site.data.cv.awards %}
   <div class="cv-row">
     <div class="cv-period">{{ a.year }}</div>

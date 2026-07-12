@@ -3,25 +3,23 @@
 # The publications count and the teaching list on the CV page are pulled
 # automatically from _data/pubs.yml and _data/teaching.yml, so they are NOT
 # duplicated here — edit those files to update the CV too.
-#
-# Optional downloadable PDF: drop a file at /assets/cv.pdf and it will be linked
-# automatically at the top of the page.
-
-pdf: /assets/cv.pdf   # link shown only if the file exists
 
 education:
   - period: "2023–present"
     title: "PhD in Applied Mathematics"
     place: "Delft University of Technology"
-    note: "Discrete Mathematics & Optimization group, advised by Dr. Leo van Iersel"
+    note: "Discrete Mathematics & Optimization group. Advisors: Leo van Iersel, Mark Jones, and Steven Kelk. Topic: inference, identifiability, and combinatorics of phylogenetic networks, and parameterized complexity."
   - period: "2021–2023"
-    title: "MSc in Applied Mathematics (cum laude)"
+    title: "MSc in Applied Mathematics"
     place: "Delft University of Technology"
-    note: "Thesis: Computing the Scanwidth of Directed Acyclic Graphs"
+    note: "Specialisation: Optimisation. Thesis: Computing the Scanwidth of Directed Acyclic Graphs."
   - period: "2018–2021"
-    title: "BSc in Applied Mathematics (cum laude)"
+    title: "BSc in Applied Mathematics"
     place: "Delft University of Technology"
-    note: "Thesis: Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
+    note: "Minor: Quantum Science & Quantum Information. Thesis: Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection."
+  - period: "2012–2018"
+    title: "Gymnasium"
+    place: "Chr. Gymnasium Sorghvliet, The Hague"
 
 positions:
   - period: "2023–present"
@@ -31,14 +29,25 @@ positions:
     title: "Visiting Researcher"
     place: "ICERM, Brown University (Providence, RI, USA)"
     note: "semester program on Theory, Methods, and Applications of Quantitative Phylogenomics"
+  - period: "2023"
+    title: "Software Developer"
+    place: "Valley Optics BV, Delft"
+    note: "graphical user-interface development within a software team; Valley Optics is a TNO spin-off building software for optical systems"
+  - period: "2022"
+    title: "Research Intern"
+    place: "Valley Optics BV, Delft"
+    note: "neural networks for image recognition"
 
 awards:
   - year: 2023
-    title: "MSc Applied Mathematics awarded cum laude"
-    note: "Delft University of Technology"
+    title: "MSc Applied Mathematics — cum laude"
+    note: "grade 9.2/10; thesis 9.5/10"
   - year: 2021
-    title: "BSc Applied Mathematics awarded cum laude"
-    note: "Delft University of Technology"
+    title: "BSc Applied Mathematics — cum laude"
+    note: "grade 8.4/10; thesis 9.5/10"
+  - year: 2018
+    title: "Gymnasium — summa cum laude"
+    note: "grade 9.0/10"
 
 talks:
   - year: 2026
@@ -56,10 +65,8 @@ talks:
 
 skills:
   - group: "Programming"
-    items: "Python, Julia, LaTeX, Git"
-  - group: "Scientific computing"
-    items: "NumPy, Numba, Matplotlib, HPC/Slurm clusters"
+    items: "Python, R, Macaulay2, Matlab, Maple, LaTeX, Excel, Qt, HTML, Git, TensorFlow, Keras"
   - group: "Open-source software"
     items: "author/maintainer of PhyloZoo, Squirrel, PaNDA, and scanwidth (see the Software page)"
   - group: "Languages"
-    items: "Dutch (native), English (fluent)"
+    items: "Dutch (native), German (native), English (fluent), French (basic), Italian (learning)"
