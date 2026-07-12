@@ -14,11 +14,18 @@
 # Items are grouped by `group` in the order they first appear below, so keep
 # entries sorted newest-first.
 
+- name: "Bridging Stratigraphic Palaeobiology and Phylogenetics"
+  url: "https://www.lorentzcenter.nl/bridging-stratigraphic-palaeobiology-and-phylogenetics.html"
+  location: "Leiden, the Netherlands"
+  date: "September–October 2026"
+  group: "Upcoming"
+  country: nl
+
 - name: "Uniting Phylogenetic Network Research"
   url: "https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html"
   location: "Leiden, the Netherlands"
   date: "June 2026"
-  group: "Upcoming"
+  group: "2026"
   country: nl
   contributions:
     - type: "Lightning talk"

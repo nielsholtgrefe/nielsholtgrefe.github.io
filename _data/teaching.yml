@@ -4,9 +4,11 @@
 #   role         (required)  e.g. "Teaching assistant", "Guest lecture", "Reviewer"
 #   title        (required)  course name, talk title, or activity
 #   years        (required)  list of years/instances — each is rendered on its own
-#                            line, so a course taught several times "looks fuller"
+#                            line (newest first), so a course taught several times
+#                            "looks fuller"
 #   institution  (optional)  where it took place
 #   note         (optional)  short extra detail (level, audience, co-supervisor, ...)
+#   student      (optional)  supervised student name (also shown on the CV)
 #   url          (optional)  link to course page / material / venue
 #
 # Sections are rendered in the order listed here; each has a `heading` and `items`.
@@ -16,12 +18,12 @@
   items:
     - role: "Instructor"
       title: "Discrete Mathematics (TW1-31)"
-      years: ["2024–2025", "2025–2026"]
+      years: ["2025–2026", "2024–2025"]
       institution: "TU Delft"
       note: "BSc course"
     - role: "Course grader"
       title: "Transport, Routing & Scheduling (WI4062TU)"
-      years: ["2023–2024", "2025–2026"]
+      years: ["2025–2026", "2023–2024"]
       institution: "TU Delft"
     - role: "Guest lecturer"
       title: "Mathematics 1 (WBMT1050)"
@@ -35,11 +37,11 @@
       note: "for Technical Medicine"
     - role: "Teaching assistant"
       title: "Optimization (AM2020)"
-      years: ["2020–2021", "2021–2022", "2022–2023"]
+      years: ["2022–2023", "2021–2022", "2020–2021"]
       institution: "TU Delft"
     - role: "Teaching assistant"
       title: "Caleidoscope — Introduction to Mathematics (AM1020)"
-      years: ["2019–2020", "2020–2021", "2021–2022"]
+      years: ["2021–2022", "2020–2021", "2019–2020"]
       institution: "TU Delft"
     - role: "Course grader"
       title: "Mathematical Structures (AM1010)"
@@ -52,13 +54,15 @@
       title: "Distinguishing phylogenetic trees from networks"
       years: ["2026"]
       institution: "TU Delft"
-      note: "J. Brits · co-supervised with Leo van Iersel"
+      student: "Jari Brits"
+      note: "Jari Brits · co-supervised with Leo van Iersel"
       url: "https://repository.tudelft.nl/record/uuid:b515be05-f539-41d6-b57b-d23a0b4156e8"
     - role: "BSc thesis supervision"
       title: "Identifiability of Phylogenetic Trinets"
       years: ["2025"]
       institution: "TU Delft"
-      note: "G.A. Kouwenhoven · co-supervised with Leo van Iersel"
+      student: "Guuske Kouwenhoven"
+      note: "Guuske Kouwenhoven · co-supervised with Leo van Iersel"
       url: "https://repository.tudelft.nl/record/uuid:5aa152f2-e99c-4bb8-bb27-c112ab50b5f4"
 
 - heading: "Service & leadership"

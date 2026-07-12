@@ -138,6 +138,7 @@
 - title: "Bounds on the Sequence Length Sufficient to Reconstruct Binary Level-1 Phylogenetic Networks Under the CFN Model"
   tags: [theory, algorithms]
   themes: [reconstruction]
+  selected: true
   summary_lay: >-
     Existing methods can reconstruct certain evolutionary networks correctly if given infinitely
     long DNA sequences — but real data is finite. This paper works out how long the sequences
@@ -292,7 +293,6 @@
 - title: "Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances"
   tags: [theory]
   themes: [identifiability]
-  selected: true
   summary_lay: >-
     Two different evolutionary networks can sometimes produce exactly the same
     observable data, which makes them impossible to tell apart. This work pins down
@@ -395,6 +395,7 @@
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
   tags: [theory]
   themes: [identifiability]
+  selected: true
   summary_lay: >-
     Before trying to reconstruct an evolutionary network, one should check whether the DNA data
     even determines it uniquely — otherwise no method can succeed. This paper proves that a broad
@@ -600,7 +601,6 @@
 - title: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
   tags: [algorithms, software, theory]
   themes: [parameters]
-  selected: true
   summary_lay: >-
     Many hard computational problems on evolutionary networks become easy when the
     network has a simple enough shape, measured by a number called its scanwidth. To
