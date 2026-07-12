@@ -1,0 +1,34 @@
+---
+layout: single
+title: "Teaching &amp; Service"
+permalink: /teaching/
+author_profile: true
+classes: wide
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+
+<p>An overview of my teaching, student supervision, and academic service. Everything on this page is generated from <code>_data/teaching.yml</code> &mdash; add an entry there to see it appear here, no HTML editing required.</p>
+
+{% for section in site.data.teaching %}
+<section class="teaching-section">
+  <h2 class="teaching-heading">{{ section.heading }}</h2>
+  <ul class="teaching-list">
+    {% for item in section.items %}
+    <li class="teaching-item">
+      <div class="teaching-year">{{ item.year }}</div>
+      <div class="teaching-detail">
+        <span class="teaching-role">{{ item.role }}</span>
+        <span class="teaching-title">
+          {% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
+        </span>
+        <span class="teaching-meta">
+          {%- if item.institution -%}{{ item.institution }}{%- endif -%}
+          {%- if item.note -%}{%- if item.institution %} &middot; {% endif -%}{{ item.note }}{%- endif -%}
+        </span>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}

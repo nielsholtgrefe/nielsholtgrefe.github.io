@@ -1,0 +1,87 @@
+# Research themes rendered on /research/.
+#
+# Each theme is matched to publications via the `themes:` list on entries in
+# _data/pubs.yml (e.g. a pub with `themes: [reconstruction]` appears under the
+# theme whose `id` is "reconstruction"). Add a theme by appending an entry here;
+# add a paper to a theme by tagging it in pubs.yml — no HTML editing needed.
+#
+# Drop a real diagram at each `image:` path to replace the styled placeholder box
+# (currently pointing at /assets/images/research/theme-*.png).
+
+- id: reconstruction
+  title: "Reconstructing Evolutionary Networks"
+  tags: [Algorithms, Combinatorics]
+  image: /assets/images/research/theme-reconstruction.png
+  body: >-
+    The core computational challenge in phylogenetics is <em>reconstruction</em>:
+    given genetic sequence data from a set of species, infer the network that best
+    explains their shared evolutionary history. My approach builds on
+    <em>quarnets</em> — four-leaf subnetworks that summarize the relationships within
+    every group of four species — and assembles a large network from many small
+    pieces, much like a jigsaw puzzle. I design combinatorial algorithms that are
+    provably <em>consistent</em> (guaranteed to recover the true network given enough
+    data) and <em>efficient</em> (using an asymptotically optimal number of quarnets
+    in polynomial time), and I derive how much sequence data is actually needed to
+    succeed with high probability under formal models of DNA evolution.
+
+- id: identifiability
+  title: "Identifiability and Statistical Foundations"
+  tags: [Algebra, Probability]
+  image: /assets/images/research/theme-identifiability.png
+  body: >-
+    Before building an inference algorithm, we must ask a more fundamental question:
+    is it even possible, in principle, to distinguish two different networks from
+    observed DNA data? This is called <em>identifiability</em> — and if it fails, no
+    method can consistently recover the true network, no matter how much data we
+    collect. I study identifiability under standard Markov models of DNA evolution
+    (such as Jukes–Cantor, CFN, and random-walk models) using tools from algebraic
+    geometry, combinatorics, and probability, notably via <em>phylogenetic
+    invariants</em>: polynomial relations that must hold for every network in a class
+    and can be used to tell competing histories apart. This work establishes the
+    theoretical limits of what is recoverable from biological data.
+
+- id: diversity
+  title: "Phylogenetic Diversity and Conservation"
+  tags: [Optimization, Conservation Biology]
+  image: /assets/images/research/theme-diversity.png
+  body: >-
+    <em>Phylogenetic diversity</em> (PD) quantifies how evolutionarily distinct a set
+    of species is: a group spanning many deep branches of the tree of life is more
+    valuable, from a conservation standpoint, than a cluster of close relatives. Given
+    a limited budget, which species should we prioritize to retain as much diversity
+    as possible? On a tree this has an elegant greedy solution, but on a phylogenetic
+    network — which better reflects reality where hybridization has occurred — the
+    problem becomes NP-hard. I develop algorithms that restore tractability by
+    exploiting structural parameters such as scanwidth, and study harder variants in
+    which protecting a species also requires protecting its ecological dependencies.
+
+- id: parameters
+  title: "Structural Parameters and Algorithms"
+  tags: [Parameterized Complexity, Graph Theory]
+  image: /assets/images/research/theme-parameters.png
+  body: >-
+    Many computationally hard problems on phylogenetic networks become tractable when
+    the network has a simple enough structure — and <em>scanwidth</em> is one way to
+    formalize what "simple enough" means. It measures the tree-likeness of a directed
+    acyclic graph by capturing how much branching and merging happen at once when the
+    graph is traversed in a natural order. Low scanwidth enables efficient
+    dynamic-programming algorithms across many applications. But to use it as a
+    parameter, we must first be able to <em>compute</em> it: I developed the first
+    exact algorithm for the scanwidth of general DAGs, together with practical
+    heuristics that perform near-optimally on real biological datasets.
+
+- id: theory
+  title: "Mathematical Theory of Semi-directed Networks"
+  tags: [Combinatorics, Structural Theory]
+  image: /assets/images/research/theme-theory.png
+  body: >-
+    <em>Semi-directed networks</em> are phylogenetic networks in which directed edges
+    indicate reticulate events while other edges are left undirected, reflecting
+    uncertainty about the root's location. They are increasingly used in practice —
+    the root often cannot be reliably inferred, yet the direction of reticulation
+    edges can be — but their mathematical foundations lag behind those of fully rooted
+    networks. I work on the structural theory of these graphs: explicit
+    characterizations of when a mixed graph is a valid semi-directed network,
+    extensions of foundational tools (cherry-picking sequences, path partitions,
+    omnians) into this setting, and connections to well-studied classes such as
+    tree-child, orchard, and forest-based networks.

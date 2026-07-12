@@ -1,0 +1,90 @@
+# Software packages rendered on /software/.
+#
+# To add a package, append an entry. Fields:
+#   name        (required)  package name (shown as inline code)
+#   language    (optional)  e.g. "Python", "Julia"
+#   image       (optional)  background motif behind the card header
+#   tagline     (required)  one-line summary
+#   description (required)  2-3 sentence description
+#   features    (optional)  list of short capability chips
+#   links       (optional)  list of { label, url } — e.g. GitHub / Docs / Paper
+
+- name: phylozoo
+  language: Python
+  image: /assets/images/phylozoo_logo.svg
+  tagline: "Foundational infrastructure for phylogenetic network analysis in Python."
+  description: >-
+    PhyloZoo is a Python package for working with phylogenetic networks and related
+    evolutionary data types, designed as shared infrastructure that Squirrel and PaNDA
+    build on. It provides validated directed and semi-directed network
+    representations, support for quartets, splits, distance matrices and sequence
+    alignments, flexible Matplotlib-based visualization, robust I/O for the major
+    phylogenetic file formats, and performance-focused routines powered by NumPy (with
+    optional Numba acceleration).
+  features:
+    - Directed & semi-directed networks
+    - File-format I/O
+    - Visualization
+    - NumPy-accelerated
+  links:
+    - { label: GitHub, url: "https://github.com/nholtgrefe/phylozoo" }
+    - { label: Docs, url: "https://nholtgrefe.github.io/phylozoo/" }
+
+- name: physquirrel
+  language: Python
+  image: /assets/images/squirrel_cover4.svg
+  tagline: "Reconstruct semi-directed level-1 networks from quarnets or alignments."
+  description: >-
+    physquirrel implements the Squirrel algorithm for reconstructing semi-directed
+    phylogenetic level-1 networks from either four-leaf quarnet sets or sequence
+    alignments. It offers both a graphical user interface for non-programmers and a
+    full Python API for advanced users, enabling simulation, inference and
+    visualization of reticulate evolutionary histories.
+  features:
+    - Quarnet-based inference
+    - From sequence alignments
+    - GUI + Python API
+    - Visualization
+  links:
+    - { label: GitHub, url: "https://github.com/nholtgrefe/squirrel" }
+    - { label: Paper, url: "https://doi.org/10.1093/molbev/msaf067" }
+
+- name: phypanda
+  language: Python
+  image: /assets/images/panda_face.png
+  tagline: "Explore and maximize phylogenetic diversity in networks."
+  description: >-
+    phypanda (PaNDA) is a Python package for exploring and maximizing phylogenetic
+    diversity in phylogenetic networks. It supports generation and handling of network
+    instances, computes diversity-based optimization criteria, and includes
+    interactive visualizations and algorithmic pipelines for network-level diversity
+    analyses.
+  features:
+    - Instance generation
+    - Diversity optimization
+    - Interactive viz
+    - Algorithm pipelines
+  links:
+    - { label: GitHub, url: "https://github.com/nholtgrefe/panda" }
+    - { label: Docs, url: "https://nholtgrefe.github.io/panda/" }
+    - { label: Paper, url: "https://doi.org/10.1101/2025.11.14.688467" }
+
+- name: scanwidth
+  language: Python
+  image: /assets/images/scanwidth.png
+  tagline: "Exact and heuristic computation of the scanwidth of directed acyclic graphs."
+  description: >-
+    An implementation of exact algorithms and heuristics for computing the
+    <em>scanwidth</em> parameter of directed acyclic graphs, including phylogenetic
+    networks. Scanwidth is a structural complexity measure that can improve the
+    tractability of dynamic-programming algorithms on DAGs, and the package can
+    preprocess network instances before running other phylogenetic tools.
+  features:
+    - Exact solver
+    - Practical heuristics
+    - Preprocessing
+    - Networks & DAGs
+  links:
+    - { label: GitHub, url: "https://github.com/nholtgrefe/scanwidth" }
+    - { label: Docs, url: "https://nholtgrefe.github.io/scanwidth/" }
+    - { label: Paper, url: "https://doi.org/10.1016/j.jcss.2026.103802" }

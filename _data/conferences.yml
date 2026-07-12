@@ -1,0 +1,149 @@
+# Conferences, workshops and seminars, rendered as a vertical timeline on
+# /conferences/.
+#
+# To add an event, append an item (keep newest first). Fields:
+#   name          (required)  event name
+#   url           (optional)  event link
+#   location      (required)  city / "online participant" / etc.
+#   date          (required)  human-readable month + year
+#   group         (required)  timeline bucket: "Upcoming" or a year like "2025"
+#   country       (optional)  ISO 3166-1 alpha-2 code for the flag outline
+#                             (an "online"/"Online" location shows a globe instead)
+#   contributions (optional)  list of { type, title } you presented there
+#
+# Items are grouped by `group` in the order they first appear below, so keep
+# entries sorted newest-first.
+
+- name: "Uniting Phylogenetic Network Research"
+  url: "https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html"
+  location: "Leiden, the Netherlands"
+  date: "June 2026"
+  group: "Upcoming"
+  country: nl
+
+- name: "RECOMB — 30th Annual International Conference on Research in Computational Molecular Biology"
+  url: "https://recomb.org/recomb2026/"
+  location: "Thessaloniki, Greece"
+  date: "May 2026"
+  group: "2026"
+  country: gr
+  contributions:
+    - type: "Talk"
+      title: "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
+
+- name: "RECOMB-CG — 23rd RECOMB International Workshop on Comparative Genomics"
+  url: "https://recomb-cg.org/index.html"
+  location: "Thessaloniki, Greece"
+  date: "May 2026"
+  group: "2026"
+  country: gr
+
+- name: "International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics"
+  url: "https://sites.google.com/view/iwpca"
+  location: "Taipei, Taiwan"
+  date: "March 2026"
+  group: "2026"
+  country: tw
+  contributions:
+    - type: "Talk"
+      title: "PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks"
+
+- name: "Dutch Day on Optimization"
+  url: "https://www.tilburguniversity.edu/current/events/dutch-day-optimization2025"
+  location: "Tilburg, the Netherlands"
+  date: "November 2025"
+  group: "2025"
+  country: nl
+  contributions:
+    - type: "Talk"
+      title: "Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments"
+
+- name: "Novel Mathematical Paradigm for Phylogenomics"
+  url: "https://www.birs.ca/events/2025/5-day-workshops/25w5333"
+  location: "online participant (physical conference in Banff, Canada)"
+  date: "August 2025"
+  group: "2025"
+  country: ca
+
+- name: "New Directions in Experimental Mathematics: At the Interface of Molecular Biology, Combinatorics, Discrete Geometry and Algebra"
+  url: "https://www.uni-bielefeld.de/einrichtungen/zif/events/#/event/8166"
+  location: "Bielefeld, Germany"
+  date: "June 2025"
+  group: "2025"
+  country: de
+
+- name: "MCEB — Mathematical and Computational Evolutionary Biology"
+  url: "https://mceb2025.sciencesconf.org/"
+  location: "Granada, Spain"
+  date: "May 2025"
+  group: "2025"
+  country: es
+  contributions:
+    - type: "Talk"
+      title: "Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments"
+
+- name: "Dutch Days of Combinatorics"
+  url: "https://sites.google.com/view/ddoc2025/"
+  location: "Delft, the Netherlands"
+  date: "March 2025"
+  group: "2025"
+  country: nl
+  contributions:
+    - type: "Lightning talk"
+      title: "Reconstructing phylogenetic networks"
+
+- name: "Algorithmic Advances and Implementation Challenges: Developing Practical Tools for Phylogenetic Inference"
+  url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w3"
+  location: "Providence, RI, USA"
+  date: "November 2024"
+  group: "2024"
+  country: us
+  contributions:
+    - type: "Poster"
+      title: "Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments"
+
+- name: "From Phylogenetics to Phylogenomics: Mathematical and Statistical Challenges in the Era of Big Data"
+  url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w2"
+  location: "Providence, RI, USA"
+  date: "October 2024"
+  group: "2024"
+  country: us
+  contributions:
+    - type: "Poster"
+      title: "Reconstructing semi-directed level-1 networks using few quarnets"
+
+- name: "Current Methods and Open Problems in Mathematical and Statistical Phylogenetics"
+  url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w1"
+  location: "Providence, RI, USA"
+  date: "September 2024"
+  group: "2024"
+  country: us
+  contributions:
+    - type: "Poster"
+      title: "Reconstructing semi-directed level-1 networks using few quarnets"
+
+- name: "Theory, Methods, and Applications of Quantitative Phylogenomics"
+  url: "https://icerm.brown.edu/program/semester_program/sp-f24"
+  location: "Providence, RI, USA"
+  date: "September–November 2024"
+  group: "2024"
+  country: us
+  contributions:
+    - type: "Paper spotlight talk"
+      title: "Squirrel: a TSP-based algorithm to reconstruct semi-directed level-1 networks from quarnets"
+    - type: "Seminar talk"
+      title: "Computing the Scanwidth of Phylogenetic Networks"
+
+- name: "49th Conference on the Mathematics of Operations Research (LNMB)"
+  url: "https://www.lnmb.nl/conferences/2024/"
+  location: "Soesterberg, the Netherlands"
+  date: "January 2024"
+  group: "2024"
+  country: nl
+
+- name: "Seminar Series in Discrete Mathematics and Optimization"
+  url: "https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/discrete-mathematics-optimization/events/seminars-in-discrete-mathematics-and-optimization"
+  location: "Delft, the Netherlands"
+  date: "recurring seminar, 2023–present"
+  group: "2023"
+  country: nl

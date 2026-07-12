@@ -1,0 +1,65 @@
+# Curriculum vitae data, rendered on /cv/.
+#
+# The publications count and the teaching list on the CV page are pulled
+# automatically from _data/pubs.yml and _data/teaching.yml, so they are NOT
+# duplicated here — edit those files to update the CV too.
+#
+# Optional downloadable PDF: drop a file at /assets/cv.pdf and it will be linked
+# automatically at the top of the page.
+
+pdf: /assets/cv.pdf   # link shown only if the file exists
+
+education:
+  - period: "2023–present"
+    title: "PhD in Applied Mathematics"
+    place: "Delft University of Technology"
+    note: "Discrete Mathematics & Optimization group, advised by Dr. Leo van Iersel"
+  - period: "2021–2023"
+    title: "MSc in Applied Mathematics (cum laude)"
+    place: "Delft University of Technology"
+    note: "Thesis: Computing the Scanwidth of Directed Acyclic Graphs"
+  - period: "2018–2021"
+    title: "BSc in Applied Mathematics (cum laude)"
+    place: "Delft University of Technology"
+    note: "Thesis: Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
+
+positions:
+  - period: "2023–present"
+    title: "PhD Candidate"
+    place: "Delft Institute of Applied Mathematics, TU Delft"
+  - period: "2024"
+    title: "Visiting Researcher"
+    place: "ICERM, Brown University (Providence, RI, USA)"
+    note: "semester program on Theory, Methods, and Applications of Quantitative Phylogenomics"
+
+awards:
+  - year: 2023
+    title: "MSc Applied Mathematics awarded cum laude"
+    note: "Delft University of Technology"
+  - year: 2021
+    title: "BSc Applied Mathematics awarded cum laude"
+    note: "Delft University of Technology"
+
+talks:
+  - year: 2026
+    title: "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
+    place: "RECOMB, Thessaloniki, Greece"
+    note: "contributed talk"
+  - year: 2026
+    title: "PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks"
+    place: "International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics, Taipei"
+    note: "contributed talk"
+  - year: 2025
+    title: "Squirrel: Reconstructing semi-directed phylogenetic level-1 networks"
+    place: "Mathematical and Computational Evolutionary Biology (MCEB), Granada"
+    note: "contributed talk"
+
+skills:
+  - group: "Programming"
+    items: "Python, Julia, LaTeX, Git"
+  - group: "Scientific computing"
+    items: "NumPy, Numba, Matplotlib, HPC/Slurm clusters"
+  - group: "Open-source software"
+    items: "author/maintainer of PhyloZoo, Squirrel, PaNDA, and scanwidth (see the Software page)"
+  - group: "Languages"
+    items: "Dutch (native), English (fluent)"

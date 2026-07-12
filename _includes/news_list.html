@@ -1,0 +1,16 @@
+{%- comment -%}
+Renders the news feed. Params:
+  include.limit  — max items to show (optional; omit to show all)
+Sorted newest-first. Items are the dated markdown files in _news/.
+{%- endcomment -%}
+{% assign news_items = site.news | where_exp: "n", "n.date" | sort: "date" | reverse %}
+{% if include.limit %}{% assign news_items = news_items | slice: 0, include.limit %}{% endif %}
+
+<ul class="news-list">
+  {% for item in news_items %}
+  <li class="news-item">
+    <time class="news-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%b %-d, %Y" }}</time>
+    <div class="news-body">{{ item.content | markdownify }}</div>
+  </li>
+  {% endfor %}
+</ul>

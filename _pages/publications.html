@@ -24,38 +24,77 @@ classes: wide
 {% assign all_pubs = site.data.pubs %}
 
 {%- comment -%}
-Separate non-theses and theses
+Collect the unique set of tags across all publications for the filter bar
 {%- endcomment -%}
-{% assign normal_pubs = all_pubs | where_exp: "p", "p.type != 'thesis'" %}
-{% assign theses = all_pubs | where: "type", "thesis" %}
+{% assign all_tags = "" | split: "" %}
+{% for pub in all_pubs %}
+  {% if pub.tags %}
+    {% assign all_tags = all_tags | concat: pub.tags %}
+  {% endif %}
+{% endfor %}
+{% assign all_tags = all_tags | uniq | sort %}
 
-{%- comment -%}
-Sort non-theses and theses by release-date descending
-{%- endcomment -%}
-{% assign normal_pubs = normal_pubs | sort: "release-date" | reverse %}
-{% assign theses = theses | sort: "release-date" | reverse %}
-
-{%- comment -%}
-Group non-theses by pub.year, assign reverse numbering
-{%- endcomment -%}
-{% assign total = normal_pubs | size %}
-{% assign current_year = "" %}
-
-{% for pub in normal_pubs %}
-  {% assign pubnum = total | minus: forloop.index0 %}
-
-  {% if pub.year != current_year %}
-    <div class="year-label"><span>{{ pub.year }}</span></div>
-    {% assign current_year = pub.year %}
+<div class="pub-toolbar">
+  {% if all_tags.size > 0 %}
+  <div class="pub-toolbar-group" role="group" aria-label="Filter publications by topic">
+    <span class="pub-toolbar-label">Filter</span>
+    <button class="filter-pill is-active" data-filter-tag="all" onclick="filterPubs('all', this)">all</button>
+    {% for tag in all_tags %}
+    <button class="filter-pill" data-filter-tag="{{ tag }}" onclick="filterPubs('{{ tag }}', this)">{{ tag }}</button>
+    {% endfor %}
+  </div>
   {% endif %}
 
-  {% include pub_entry.html pub=pub pubnum=pubnum%}
-{% endfor %}
+  <div class="pub-toolbar-group pub-toolbar-sort" role="group" aria-label="Sort publications">
+    <span class="pub-toolbar-label">Sort</span>
+    <button class="sort-pill is-active" data-sort="year" onclick="sortPubs('year', this)">newest</button>
+    <button class="sort-pill" data-sort="oldest" onclick="sortPubs('oldest', this)">oldest</button>
+    <button class="sort-pill" data-sort="title" onclick="sortPubs('title', this)">A&ndash;Z</button>
+    <button class="sort-pill" data-sort="type" onclick="sortPubs('type', this)">type</button>
+  </div>
+</div>
 
 {%- comment -%}
-Render theses under a separate header, still sorted by release-date
+Split into main pubs (journal/preprint/conference), theses, and miscellaneous
+(extended abstracts). Each is sorted by release-date descending.
 {%- endcomment -%}
-<h2 id="theses">Theses</h2>
-{% for pub in theses %}
-  {% include pub_entry.html pub=pub pubnum="&bull;" %}
-{% endfor %}
+{% assign main_pubs = all_pubs | where_exp: "p", "p.type != 'thesis'" | where_exp: "p", "p.type != 'extended-abstract'" | sort: "release-date" | reverse %}
+{% assign theses = all_pubs | where: "type", "thesis" | sort: "release-date" | reverse %}
+{% assign misc = all_pubs | where: "type", "extended-abstract" | sort: "release-date" | reverse %}
+{% assign total = main_pubs | size %}
+
+<div class="pub-list">
+  <div class="pub-main">
+    {% assign current_year = "" %}
+    {% for pub in main_pubs %}
+      {% assign pubnum = total | minus: forloop.index0 %}
+      {% if pub.year != current_year %}
+        <div class="year-label"><span>{{ pub.year }}</span></div>
+        {% assign current_year = pub.year %}
+      {% endif %}
+      {% include pub_entry.html pub=pub pubnum=pubnum %}
+    {% endfor %}
+  </div>
+
+  {% if theses.size > 0 %}
+  <h2 id="theses" class="pub-section-head">Theses</h2>
+  <div class="pub-theses">
+    {% for pub in theses %}
+      {% include pub_entry.html pub=pub pubnum="&bull;" %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if misc.size > 0 %}
+  <h2 id="misc" class="pub-section-head">Miscellaneous</h2>
+  <div class="pub-misc">
+    {% for pub in misc %}
+      {% include pub_entry.html pub=pub pubnum="&bull;" %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+<p class="pub-filter-empty noshow">No publications match this topic.</p>
+
+<p class="pub-corrections-link">Spotted an error? See the <a href="{{ '/corrections/' | relative_url }}">list of corrections</a>.</p>

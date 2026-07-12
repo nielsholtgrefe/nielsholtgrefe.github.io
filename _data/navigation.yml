@@ -1,9 +1,15 @@
 main:
   - title: "About"
     url: /
+  - title: "Research"
+    url: /research/
   - title: "Publications"
     url: /publications/
   - title: "Software"
     url: /software/
+  - title: "Teaching"
+    url: /teaching/
   - title: "Conferences"
     url: /conferences/
+  - title: "CV"
+    url: /cv/

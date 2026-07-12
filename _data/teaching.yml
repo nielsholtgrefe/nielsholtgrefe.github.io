@@ -1,0 +1,40 @@
+# Teaching & academic service, rendered on /teaching/.
+#
+# NOTE: the specific entries below are placeholders to be replaced with real
+# teaching, supervision, and service. To add an entry, append an item under the
+# relevant section. Fields:
+#   role         (required)  e.g. "Teaching Assistant", "Guest lecture", "Reviewer"
+#   title        (required)  course name, talk title, or activity
+#   year         (required)  e.g. 2025 or "2023–2025"
+#   institution  (optional)  where it took place
+#   note         (optional)  short extra detail (level, audience, co-supervisor, ...)
+#   url          (optional)  link to course page / material / venue
+#
+# Sections are rendered in the order listed here; each has a `heading` and `items`.
+
+- heading: "Teaching"
+  items:
+    - role: "Teaching Assistant"
+      title: "Placeholder course — to be updated"
+      year: "2023–present"
+      institution: "Delft University of Technology"
+      note: "placeholder entry"
+
+- heading: "Student supervision"
+  items:
+    - role: "Thesis supervision"
+      title: "Placeholder project — to be updated"
+      year: "2024"
+      institution: "Delft University of Technology"
+      note: "placeholder entry"
+
+- heading: "Academic service"
+  items:
+    - role: "Reviewer"
+      title: "Journals and conferences in phylogenetics, combinatorics, and algorithms"
+      year: "2023–present"
+    - role: "Organizer"
+      title: "Placeholder — to be updated"
+      year: "2023–present"
+      institution: "Delft University of Technology"
+      note: "placeholder entry"

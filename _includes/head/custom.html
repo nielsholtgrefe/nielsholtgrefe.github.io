@@ -1,5 +1,22 @@
+<script>
+  /* Set the colour theme before first paint to avoid a flash. */
+  (function () {
+    try {
+      var stored = localStorage.getItem('nh-theme');
+      var theme = stored || (window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/overrides.css' | relative_url }}">
-<link rel="icon" type="image/svg+xml" href="{{ '/assets/images/nh-icon.svg' | relative_url }}">
-<link rel="apple-touch-icon" href="{{ '/assets/images/nh-icon.svg' | relative_url }}">
-<meta property="og:image" content="{{ '/assets/images/nh-icon.svg' | absolute_url }}">
-<meta name="twitter:image" content="{{ '/assets/images/nh-icon.svg' | absolute_url }}">
+<script defer src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/images/site-icon.svg' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/images/site-icon.svg' | relative_url }}">
+<meta property="og:image" content="{{ '/assets/images/site-icon.svg' | absolute_url }}">
+<meta name="twitter:image" content="{{ '/assets/images/site-icon.svg' | absolute_url }}">

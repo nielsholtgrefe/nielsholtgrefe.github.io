@@ -1,0 +1,44 @@
+---
+layout: single
+title: "Conferences"
+permalink: /conferences/
+author_profile: true
+classes: wide
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+
+<p>I give talks and attend events on phylogenetics, combinatorics, and algorithms. Talks and poster presentations are listed under the corresponding event.</p>
+
+<div class="timeline">
+  {% assign current_group = "" %}
+  {% for conf in site.data.conferences %}
+    {% if conf.group != current_group %}
+      <div class="timeline-year"><span>{{ conf.group }}</span></div>
+      {% assign current_group = conf.group %}
+    {% endif %}
+
+    <div class="timeline-entry">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-card">
+        {%- comment -%} Country outline on the right; a globe for online / missing entries {%- endcomment -%}
+        {%- assign cc = conf.country -%}
+        {%- if conf.location contains "online" or conf.location contains "Online" -%}{%- assign cc = "globe" -%}{%- endif -%}
+        {%- unless cc -%}{%- assign cc = "globe" -%}{%- endunless -%}
+        <div class="timeline-country" aria-hidden="true" style="background-image: url('{{ '/assets/images/countries/' | append: cc | append: '.svg' | relative_url }}');"></div>
+        <div class="timeline-date">{{ conf.date }}</div>
+        <div class="timeline-name">
+          {% if conf.url %}<a href="{{ conf.url }}" target="_blank">{{ conf.name }}</a>{% else %}{{ conf.name }}{% endif %}
+        </div>
+        <div class="timeline-loc">{{ conf.location }}</div>
+        {% if conf.contributions and conf.contributions.size > 0 %}
+        <ul class="timeline-contribs">
+          {% for c in conf.contributions %}
+          <li><span class="contrib-type">{{ c.type }}</span> <span class="contrib-title">{{ c.title }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,54 @@
+---
+layout: single
+title: "Corrections"
+permalink: /corrections/
+author_profile: true
+classes: wide
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+
+<p>Below is a running list of minor corrections for our papers (paper numbers correspond to those on the <a href="{{ '/publications/' | relative_url }}">publications</a> page). If you identify any other issues, please <a href="mailto:{{ site.email }}">send us an email</a>! There are currently no corrections to list.</p>
+
+{%- comment -%}
+Reproduce the publications-page numbering so [n] matches. Main pubs (not theses
+or extended abstracts) are numbered newest-first; others show a bullet.
+{%- endcomment -%}
+{% assign main_pubs = site.data.pubs | where_exp: "p", "p.type != 'thesis'" | where_exp: "p", "p.type != 'extended-abstract'" | sort: "release-date" | reverse %}
+{% assign total = main_pubs | size %}
+
+{% for corr in site.data.corrections %}
+  {% assign pub = site.data.pubs | where: "title", corr.paper | first %}
+  {% assign slug = corr.paper | slugify %}
+  {%- comment -%} find the paper's number {%- endcomment -%}
+  {% assign num = "" %}
+  {% for p in main_pubs %}
+    {% if p.title == corr.paper %}{% assign num = total | minus: forloop.index0 %}{% endif %}
+  {% endfor %}
+
+  <div class="correction-card">
+    <div class="correction-head">
+      <span class="correction-num">{% if num != "" %}[{{ num }}]{% else %}&bull;{% endif %}</span>
+      <div class="correction-headmain">
+        <a class="correction-title" href="{{ '/publications/' | relative_url }}#pub-{{ slug }}">{{ corr.paper }}</a>
+        {% if pub %}
+        <div class="correction-venue">
+          {%- if pub.type == "journal" -%}<i>{{ pub.journal }}</i>{% if pub.year %}, {{ pub.year }}{% endif %}
+          {%- elsif pub.type == "preprint" -%}{{ pub.preprint-server }}:{{ pub.preprint-identifier }}{% if pub.year %}, {{ pub.year }}{% endif %}
+          {%- elsif pub.type == "thesis" -%}{{ pub.note }}
+          {%- endif -%}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <ul class="correction-list">
+      {% for item in corr.items %}
+      <li class="correction-item">
+        {% if item.date %}<span class="correction-date">{{ item.date | date: "%b %-d, %Y" }}</span>{% endif %}
+        <span class="correction-text">{{ item.text }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}

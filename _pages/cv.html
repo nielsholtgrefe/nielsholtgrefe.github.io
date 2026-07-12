@@ -1,0 +1,160 @@
+---
+layout: single
+title: "Curriculum Vitae"
+permalink: /cv/
+author_profile: true
+classes: wide
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+
+{%- comment -%} Detect an optional downloadable PDF among the site's static files {%- endcomment -%}
+{% assign has_pdf = false %}
+{% if site.data.cv.pdf %}
+  {% for sf in site.static_files %}
+    {% if sf.path == site.data.cv.pdf %}{% assign has_pdf = true %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="cv-header">
+  <p>A summary of my education, positions, and academic activities. The publication counts and teaching list below are pulled directly from the same data files that drive the rest of the site, so they never fall out of sync.</p>
+  {% if has_pdf %}
+  <a class="cv-download" href="{{ site.data.cv.pdf | relative_url }}" target="_blank">&#8595; Download PDF</a>
+  {% else %}
+  <span class="cv-download is-disabled" title="Add a file at {{ site.data.cv.pdf }} to enable this link">PDF coming soon</span>
+  {% endif %}
+</div>
+
+<!-- EDUCATION -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Education</h2>
+  {% for e in site.data.cv.education %}
+  <div class="cv-row">
+    <div class="cv-period">{{ e.period }}</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ e.title }}</span>
+      <span class="cv-place">{{ e.place }}</span>
+      {% if e.note %}<span class="cv-note">{{ e.note }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- POSITIONS -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Positions</h2>
+  {% for p in site.data.cv.positions %}
+  <div class="cv-row">
+    <div class="cv-period">{{ p.period }}</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ p.title }}</span>
+      <span class="cv-place">{{ p.place }}</span>
+      {% if p.note %}<span class="cv-note">{{ p.note }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- PUBLICATIONS (counts + selected, pulled from pubs data).
+     Extended abstracts are excluded from the publication count. -->
+{% assign pubs = site.data.pubs | where_exp: "p", "p.type != 'extended-abstract'" %}
+{% assign journals = pubs | where: "type", "journal" %}
+{% assign preprints = pubs | where: "type", "preprint" %}
+{% assign theses = pubs | where: "type", "thesis" %}
+{% assign selected_pubs = pubs | where: "selected", true | sort: "release-date" | reverse %}
+<section class="cv-section">
+  <h2 class="cv-section-title">Publications</h2>
+  <div class="cv-row">
+    <div class="cv-period">Summary</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ pubs.size }} works</span>
+      <span class="cv-note">
+        {{ journals.size }} journal article{% if journals.size != 1 %}s{% endif %} &middot;
+        {{ preprints.size }} preprint{% if preprints.size != 1 %}s{% endif %} &middot;
+        {{ theses.size }} thes{% if theses.size == 1 %}is{% else %}es{% endif %}.
+        Full list with abstracts and BibTeX on the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.
+      </span>
+    </div>
+  </div>
+  {% if selected_pubs.size > 0 %}
+  <div class="cv-row">
+    <div class="cv-period">Selected</div>
+    <div class="cv-body">
+      <ul class="cv-pub-list">
+        {% for pub in selected_pubs limit: 5 %}
+        {%- assign pub_slug = pub.title | slugify -%}
+        <li>
+          <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>,
+          {% if pub.type == "journal" %}<i>{{ pub.journal }}</i>{% elsif pub.type == "preprint" %}{{ pub.preprint-server }}{% endif %} {{ pub.year }}.
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- AWARDS -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Grants &amp; awards</h2>
+  {% for a in site.data.cv.awards %}
+  <div class="cv-row">
+    <div class="cv-period">{{ a.year }}</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ a.title }}</span>
+      {% if a.note %}<span class="cv-note">{{ a.note }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- TALKS -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Selected talks</h2>
+  {% for t in site.data.cv.talks %}
+  <div class="cv-row">
+    <div class="cv-period">{{ t.year }}</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ t.title }}</span>
+      <span class="cv-place">{{ t.place }}</span>
+      {% if t.note %}<span class="cv-note">{{ t.note }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  <div class="cv-row">
+    <div class="cv-period"></div>
+    <div class="cv-body"><span class="cv-note">See the <a href="{{ '/conferences/' | relative_url }}">Conferences</a> page for the full list of talks and posters.</span></div>
+  </div>
+</section>
+
+<!-- TEACHING (reused from teaching.yml) -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Teaching &amp; service</h2>
+  {% for section in site.data.teaching %}
+  <div class="cv-row">
+    <div class="cv-period">{{ section.heading }}</div>
+    <div class="cv-body">
+      <ul class="cv-pub-list">
+        {% for item in section.items %}
+        <li><strong>{{ item.title }}</strong> &mdash; {{ item.role }}{% if item.year %}, {{ item.year }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="cv-row">
+    <div class="cv-period"></div>
+    <div class="cv-body"><span class="cv-note">More detail on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.</span></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Skills &amp; software</h2>
+  {% for s in site.data.cv.skills %}
+  <div class="cv-row">
+    <div class="cv-period">{{ s.group }}</div>
+    <div class="cv-body"><span class="cv-note">{{ s.items }}</span></div>
+  </div>
+  {% endfor %}
+</section>

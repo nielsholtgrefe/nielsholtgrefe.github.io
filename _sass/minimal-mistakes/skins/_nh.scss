@@ -1,0 +1,32 @@
+/* ==========================================================================
+   "nh" skin — custom academic palette (overrides the stock Minimal Mistakes
+   skin colours so the theme no longer looks like an unmodified default).
+   Dark mode is handled separately in assets/css/overrides.css via CSS
+   custom properties; this skin sets the light-mode SCSS colour variables.
+   ========================================================================== */
+
+/* Colors */
+$background-color: #ffffff !default;
+$text-color: #2a2a2a !default;
+$muted-text-color: #5a6570 !default;
+$primary-color: #1a5c7a !default;
+$border-color: #cddae2 !default;
+$footer-background-color: #12384a !default;
+$link-color: #1a5c7a !default;
+$link-color-hover: #134a63 !default;
+$masthead-link-color: #1a5c7a !default;
+$masthead-link-color-hover: #134a63 !default;
+$navicon-link-color-hover: mix(#fff, #2a2a2a, 80%) !default;
+
+/* Light text on the deep-teal footer */
+.page__footer {
+  color: #cfe0e8 !important;
+}
+
+.page__footer a {
+  color: #fff;
+}
+
+.page__footer-follow .social-icons .svg-inline--fa {
+  color: inherit;
+}

@@ -1,0 +1,93 @@
+---
+layout: single
+title: "Research"
+permalink: /research/
+author_profile: true
+classes: wide
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+
+<p>My research lies at the intersection of discrete mathematics, algorithms, and evolutionary biology. The common thread is developing rigorous mathematical and computational tools for <em>phylogenetic networks</em> — graphs that biologists use to represent evolutionary histories involving events like hybridization and horizontal gene transfer.</p>
+
+<details class="layman-details">
+  <summary>New to phylogenetics? Read a plain-language introduction.</summary>
+  <div class="layman-content">
+    <p>Biologists want to understand how species are related — which ones share a common ancestor and when lineages diverged from each other. The standard tool is a <em>phylogenetic tree</em>: a branching diagram, much like a family tree, where lineages only ever split apart over time.</p>
+    <p>But real evolution is messier. Sometimes two diverging lineages hybridize and produce offspring together — think of mules (horse &times; donkey), or the many plant species that formed through hybridization. Bacteria routinely swap genes with unrelated organisms. Two lineages can separate, evolve independently for millions of years, and then come back into contact and merge. None of these events can be represented by a simple tree.</p>
+    <p>A <em>phylogenetic network</em> is a generalization of a tree that allows these "reticulate" (merging) events, drawn as extra crossing edges in the graph. The central questions of my research are: can we reconstruct this network from genomic data collected from present-day species? Under what conditions is this theoretically possible? And how do we do it efficiently, even on large datasets?</p>
+  </div>
+</details>
+
+<hr>
+
+{% for theme in site.data.research %}
+  {%- comment -%}
+  Pull related publications for this theme straight from the shared pubs data,
+  filtered by the `themes:` tag on each entry and sorted newest-first.
+  {%- endcomment -%}
+  {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
+
+  <div class="research-card">
+    <h2>{{ theme.title }}
+      {% for tag in theme.tags %}<span class="research-tag">{{ tag }}</span>{% endfor %}
+    </h2>
+
+    <div class="research-layout">
+      <div class="research-figure">
+        <img src="{{ theme.image | relative_url }}" alt="Illustrative diagram for {{ theme.title }}" loading="lazy"
+             onerror="this.closest('.research-figure').classList.add('is-placeholder'); this.style.display='none';">
+        <span class="research-figure-note">diagram placeholder</span>
+      </div>
+
+      <div class="research-body">
+        <p>{{ theme.body }}</p>
+      </div>
+    </div>
+
+    {% if related.size > 0 %}
+    <div class="research-papers">
+      <div class="research-papers-heading">Related publications</div>
+      <ul>
+        {% for pub in related %}
+          {%- comment -%} Build a compact "F. Last" author string {%- endcomment -%}
+          {%- assign author_str = "" -%}
+          {%- for a in pub.authors -%}
+            {%- assign initial = a.first | slice: 0 -%}
+            {%- assign one = initial | append: ". " | append: a.last -%}
+            {%- if forloop.first -%}{%- assign author_str = one -%}
+            {%- else -%}{%- assign author_str = author_str | append: ", " | append: one -%}{%- endif -%}
+          {%- endfor -%}
+
+          <li>
+            {%- assign pub_slug = pub.title | slugify -%}
+            <span class="paper-title">
+              <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>
+            </span><br>
+            <span class="paper-authors">{{ author_str }}</span><br>
+            <span class="paper-venue">
+              {%- if pub.type == "journal" -%}
+                <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}, {{ pub.year }}
+              {%- elsif pub.type == "preprint" -%}
+                {{ pub.preprint-server }}:{{ pub.preprint-identifier }}, {{ pub.year }}
+              {%- elsif pub.type == "thesis" -%}
+                {{ pub.note }}
+              {%- endif -%}
+            </span>
+            {% if pub.summary_lay and pub.summary_lay != "" %}
+              <details class="paper-summary-fold">
+                <summary>plain-language summary</summary>
+                <span class="paper-summary">{{ pub.summary_lay }}</span>
+              </details>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+{% endfor %}
+
+<hr>
+
+<p>For a complete list of publications with abstracts and BibTeX entries, see the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.</p>

@@ -1,16 +1,500 @@
-/* Site-specific overrides that avoid SCSS/front-matter parsing. */
+/* ================================================================
+   Site-specific overrides — theme identity + dark mode
+   Loaded after Minimal Mistakes' main.css, so these rules win.
+   ================================================================ */
 
-.page__content {
-  font-size: 0.9em;
+/* ---- Semantic colour palette (light) ---- */
+:root {
+  --nh-accent:        #1a5c7a;
+  --nh-accent-dark:   #134a63;
+  --nh-accent-mid:    #4a8fa8;
+  --nh-accent-light:  #e4f2f7;
+
+  /* Solid fills that carry fixed white text (buttons, badges). Kept dark
+     enough for >=4.5:1 contrast with white in BOTH themes — do not reuse the
+     link/text accent here, which is lightened in dark mode. */
+  --nh-accent-solid:       #1a5c7a;
+  --nh-accent-solid-hover: #134a63;
+
+  --nh-bg:            #ffffff;
+  --nh-surface:       #f8fbfd;
+  --nh-surface-2:     #f4f9fc;
+  --nh-border:        #cddae2;
+  --nh-border-soft:   #eef4f7;
+
+  --nh-text:          #2a2a2a;
+  --nh-text-strong:   #1a1a1a;
+  --nh-text-muted:    #555555;
+  --nh-text-faint:    #808993;
+
+  --nh-chip-bg:       #ffffff;
+  --nh-chip-bg-hover: #e7eef2;
+
+  --nh-bibtex-bg:     #eef2f5;
+  --nh-bibtex-text:   #35434e;
+  --nh-bibtex-border: #d5dde2;
+
+  --nh-footer-bg:     #12384a;
+  --nh-footer-text:   #cfe0e8;
+
+  --nh-software-scrim:        rgba(248, 251, 253, 0.83);
+  --nh-software-scrim-strong: rgba(248, 251, 253, 0.68);
+  --nh-software-overlay:      rgba(255, 255, 255, 0.55);
+  --nh-software-detail-bg:    rgba(255, 255, 255, 0.94);
 }
 
-/* Keep LinkedIn icon monochrome (no brand blue). */
+/* ---- Dark palette ---- */
+html[data-theme="dark"] {
+  --nh-accent:        #4aa8cd;
+  --nh-accent-dark:   #6bbfe0;  /* hover = lighter on dark */
+  --nh-accent-mid:    #5a9fba;
+  --nh-accent-light:  #123742;
+
+  /* Darker than the link accent so fixed white text keeps >=4.5:1 contrast. */
+  --nh-accent-solid:       #2a7c9e;
+  --nh-accent-solid-hover: #20627e;
+
+  --nh-bg:            #0f171c;
+  --nh-surface:       #172128;
+  --nh-surface-2:     #1b2831;
+  --nh-border:        #2a3a44;
+  --nh-border-soft:   #212d35;
+
+  --nh-text:          #d5dde2;
+  --nh-text-strong:   #f0f4f6;
+  --nh-text-muted:    #a7b4bd;
+  --nh-text-faint:    #7f8d97;
+
+  --nh-chip-bg:       #223039;
+  --nh-chip-bg-hover: #2c3c46;
+
+  --nh-bibtex-bg:     #172029;
+  --nh-bibtex-text:   #cdd8e0;
+  --nh-bibtex-border: #2a3a44;
+
+  --nh-footer-bg:     #0c2530;
+  --nh-footer-text:   #b9ccd5;
+
+  --nh-software-scrim:        rgba(15, 23, 28, 0.82);
+  --nh-software-scrim-strong: rgba(15, 23, 28, 0.62);
+  --nh-software-overlay:      rgba(23, 33, 40, 0.62);
+  --nh-software-detail-bg:    rgba(23, 33, 40, 0.95);
+}
+
+/* ---- Typography ---- */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--nh-text);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', Georgia, serif;
+  letter-spacing: -0.011em;
+}
+
+h1, h2 { font-weight: 600; }
+h3, h4 { font-weight: 600; }
+
+/* ---- Masthead (sticky so the nav stays visible) ---- */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nh-bg);
+  border-bottom: 3px solid var(--nh-accent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.site-title {
+  font-family: 'Lora', serif !important;
+  font-weight: 600 !important;
+  color: var(--nh-accent) !important;
+  letter-spacing: -0.01em;
+}
+
+.greedy-nav {
+  background: var(--nh-bg);
+}
+
+.greedy-nav .visible-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--nh-text-muted);
+  transition: color 0.15s;
+}
+
+.greedy-nav .visible-links a:hover,
+.greedy-nav .visible-links a:focus {
+  color: var(--nh-accent) !important;
+  text-decoration: none;
+}
+
+.greedy-nav .visible-links a::before {
+  background: var(--nh-accent) !important;
+}
+
+.greedy-nav .hidden-links {
+  background: var(--nh-surface);
+  border: 1px solid var(--nh-border);
+}
+
+.greedy-nav .hidden-links a { color: var(--nh-text-muted); }
+.greedy-nav__toggle { color: var(--nh-text-muted); }
+
+/* ---- Page title as accent banner (sticky, offset right of the profile) ---- */
+.page__title {
+  position: sticky;
+  top: var(--nh-masthead-h, 101px);
+  z-index: 40;
+  font-family: 'Lora', serif;
+  font-size: 1.7em;
+  color: white;
+  /* Fixed deep-teal gradient (branded, like the hero/footer) so white text
+     stays readable in both light and dark mode. */
+  background: linear-gradient(120deg, #12384a 0%, #1f6b86 100%);
+  padding: 0.85em 1.4em 0.8em;
+  /* Fills the content column, exactly like the About-page hero. */
+  margin: 0 0 1.4em 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  letter-spacing: -0.01em;
+}
+
+/* Let the banner stick across the whole article rather than only its short
+   <header> (whose box would otherwise bound the sticky range). */
+.page__inner-wrap > header { display: contents; }
+
+/* The title is a self-link; the theme colors it dark. Force white on the banner. */
+.page__title a,
+.page__title a:visited {
+  color: #ffffff;
+}
+
+.page__title a:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---- Links ---- */
+a {
+  color: var(--nh-accent);
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: var(--nh-accent-dark);
+}
+
+/* ---- Author profile: a self-contained card matching the rest of the site ---- */
+.sidebar {
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 1px solid var(--nh-border);
+  border-radius: 12px;
+  background: var(--nh-surface);
+  padding: 1.4em 1.2em 1.1em;
+  text-align: center;
+  opacity: 1;
+}
+
+/* If the profile sidebar is sticky, keep it below the sticky masthead */
+.sidebar.sticky { top: calc(var(--nh-masthead-h, 101px) + 0.6em); }
+
+/* Keep every child within the card (avatar/name/links never overflow right) */
+.sidebar > * { box-sizing: border-box; max-width: 100%; }
+.author__urls a { max-width: 100%; overflow-wrap: anywhere; }
+
+/* An accent header strip behind the avatar */
+.author__avatar {
+  display: block !important;
+  float: none !important;
+  width: auto !important;
+  margin: 0 auto 0.2em;
+}
+
+.author__avatar img {
+  width: 108px !important;
+  max-width: 108px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 50% !important;
+  border: 3px solid var(--nh-bg);
+  box-shadow: 0 0 0 3px var(--nh-accent-mid), 0 6px 16px rgba(26, 92, 122, 0.22);
+}
+
+.author__content {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  float: none;
+}
+
+.author__name {
+  font-family: 'Lora', serif;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--nh-text-strong);
+  margin: 0.6em 0 0.1em;
+}
+
+.author__bio {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8em;
+  line-height: 1.6;
+  color: var(--nh-text-muted);
+  margin: 0 0 0.9em;
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid var(--nh-border);
+}
+
+.author__urls-wrapper { display: block; float: none; width: 100%; }
+.author__urls-wrapper button { display: none; }  /* always show the links */
+
+.author__urls {
+  font-family: 'Inter', sans-serif;
+  display: block !important;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.author__urls li {
+  padding: 0.06em 0;
+}
+
+.author__urls a {
+  font-size: 0.84em;
+  font-family: 'Inter', sans-serif;
+  color: var(--nh-text-muted);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.author__urls a:hover {
+  color: var(--nh-accent);
+  text-decoration: none;
+}
+
+.author__urls a .svg-inline--fa,
+.author__urls.social-icons .fa,
+.author__urls li i {
+  color: var(--nh-accent-mid);
+  margin-right: 0.35em;
+  min-width: 1.1em;
+  text-align: center;
+}
+
+.author__urls a:hover .svg-inline--fa,
+.author__urls a:hover i { color: var(--nh-accent); }
+
+/* Compact horizontal profile once the sidebar stacks above the content:
+   avatar + name/bio side by side, links as a wrapping row below. The avatar,
+   content and urls live inside an .h-card wrapper, so the flex goes there. */
+@media (max-width: 1023px) {
+  .sidebar {
+    text-align: left;
+    padding: 0.8em 1em;
+    margin-bottom: 1.2em;
+  }
+  .sidebar .h-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.9em;
+  }
+  .author__avatar {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: static !important;
+    float: none !important;
+    width: 62px !important;
+    height: 62px !important;
+    margin: 0 !important;
+    flex: 0 0 62px;
+    align-self: center;
+  }
+  .author__avatar a { display: block; width: 62px; height: 62px; }
+  .author__avatar img {
+    display: block !important;
+    width: 62px !important;
+    max-width: 62px;
+    height: 62px !important;
+    box-shadow: 0 0 0 2px var(--nh-accent-mid), 0 3px 8px rgba(26, 92, 122, 0.2);
+  }
+  .author__content {
+    display: block !important;
+    float: none !important;
+    width: auto !important;
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .author__name { margin: 0 0 0.05em; font-size: 1.05em; }
+  .author__bio {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 0.76em;
+  }
+
+  .author__urls-wrapper {
+    flex: 1 0 100%;
+    margin: 0.7em 0 0;
+    padding-top: 0.6em;
+    border-top: 1px solid var(--nh-border);
+  }
+  /* Cancel the theme's mobile "Follow" popup styling; show links inline */
+  .author__urls {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.15em 1.2em;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .author__urls::before,
+  .author__urls::after,
+  .author__urls-wrapper::before { display: none !important; }
+  .author__urls li { padding: 0; white-space: nowrap; }
+  .author__urls a { font-size: 0.8em; }
+}
+
+/* Keep LinkedIn icon monochrome */
 .fa-linkedin,
 .fa-linkedin-in {
   color: inherit !important;
 }
 
-/* Make profile image square with rounded corners (not circular). */
-.author__avatar img {
-  border-radius: 12px !important;
+/* ---- Page content ---- */
+.page__content {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9em;
+  line-height: 1.75;
 }
+
+.page__content blockquote {
+  border-left-color: var(--nh-accent);
+  color: var(--nh-text-muted);
+}
+
+/* De-default the theme's primary button, in case it is ever used */
+.btn--primary,
+.btn--info {
+  background-color: var(--nh-accent);
+  border-color: var(--nh-accent);
+}
+
+.btn--primary:hover,
+.btn--info:hover {
+  background-color: var(--nh-accent-dark);
+}
+
+/* ---- Branded footer (both modes) ---- */
+.page__footer {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78em;
+  background-color: var(--nh-footer-bg);
+  color: var(--nh-footer-text);
+}
+
+.page__footer a { color: #ffffff; }
+.page__footer .page__footer-copyright { color: var(--nh-footer-text); }
+
+.page__footer-follow .social-icons .svg-inline--fa {
+  color: inherit;
+}
+
+/* ================================================================
+   Theme toggle button (injected into the masthead nav)
+   ================================================================ */
+.nh-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.05em;
+  line-height: 1;
+  padding: 0.25em 0.5em;
+  margin-left: 0.4em;
+  color: var(--nh-text-muted);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.nh-theme-toggle:hover {
+  color: var(--nh-accent);
+  border-color: var(--nh-border);
+  background: var(--nh-surface);
+}
+
+.nh-theme-toggle .nh-icon-sun { display: none; }
+.nh-theme-toggle .nh-icon-moon { display: inline; }
+html[data-theme="dark"] .nh-theme-toggle .nh-icon-sun { display: inline; }
+html[data-theme="dark"] .nh-theme-toggle .nh-icon-moon { display: none; }
+
+/* ================================================================
+   Dark-mode overrides for Minimal Mistakes theme chrome
+   (component-level colours already flip via the CSS variables above)
+   ================================================================ */
+html[data-theme="dark"] body {
+  background-color: var(--nh-bg);
+  color: var(--nh-text);
+}
+
+html[data-theme="dark"] .masthead {
+  background-color: var(--nh-surface);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .greedy-nav,
+html[data-theme="dark"] .greedy-nav .visible-links a::after { background: var(--nh-surface); }
+
+html[data-theme="dark"] .page__content { color: var(--nh-text); }
+
+html[data-theme="dark"] .page__content h1,
+html[data-theme="dark"] .page__content h2,
+html[data-theme="dark"] .page__content h3,
+html[data-theme="dark"] .page__content h4,
+html[data-theme="dark"] .page__content h5,
+html[data-theme="dark"] .page__content h6,
+html[data-theme="dark"] .archive__item-title,
+html[data-theme="dark"] strong { color: var(--nh-text-strong); }
+
+html[data-theme="dark"] .author__name { color: var(--nh-text-strong); }
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .author__urls a { color: var(--nh-text); }
+
+html[data-theme="dark"] hr { border-color: var(--nh-border); background: var(--nh-border); }
+
+/* Code / preformatted blocks */
+html[data-theme="dark"] code,
+html[data-theme="dark"] tt,
+html[data-theme="dark"] pre,
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] div.highlighter-rouge,
+html[data-theme="dark"] figure.highlight {
+  background-color: var(--nh-surface-2);
+  color: var(--nh-text);
+}
+
+/* Tables */
+html[data-theme="dark"] table { color: var(--nh-text); border-color: var(--nh-border); }
+html[data-theme="dark"] th { background-color: var(--nh-surface-2); }
+html[data-theme="dark"] td, html[data-theme="dark"] th { border-color: var(--nh-border); }
+html[data-theme="dark"] tr { border-color: var(--nh-border); }
+html[data-theme="dark"] tbody tr:nth-child(2n) { background-color: var(--nh-surface); }
+
+/* MathJax should follow text colour */
+html[data-theme="dark"] mjx-container { color: var(--nh-text); }

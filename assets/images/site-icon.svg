@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NH icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="JD icon">
   <rect width="512" height="512" fill="none"/>
   <circle cx="256" cy="256" r="256" fill="#1d4ed8"/>
   <text
@@ -10,5 +10,5 @@
     font-size="260"
     font-weight="700"
     letter-spacing="2"
-    fill="#ffffff">NH</text>
+    fill="#ffffff">JD</text>
 </svg>
