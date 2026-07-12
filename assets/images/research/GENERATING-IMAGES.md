@@ -1,14 +1,23 @@
 # Research theme figures — image generation brief
 
-The /research/ page shows one small illustrative figure per theme. Drop the generated
-PNGs at the exact paths below and they replace the styled placeholder box automatically:
+STATUS: the four figures below are generated and committed. They were drawn
+programmatically with `generate.py` in this folder (Python + Pillow, supersampled
+flat vector-style line-art). To tweak a figure, edit `generate.py` and run it:
 
-    theme-reconstruction.png   theme-identifiability.png   theme-diversity.png
-    theme-parameters.png       theme-theory.png
+    python3 assets/images/research/generate.py
+
+Currently used (one per research theme in _data/research.yml):
+
+    theme-reconstruction.png   theme-identifiability.png
+    theme-diversity.png        theme-parameters.png
+
+`theme-theory.png` (Mathematical Theory of Semi-directed Networks) is NOT generated —
+that theme was removed from the research page. If it is reinstated, add its drawing
+function to `generate.py` following figure 5 of the brief below.
 
 Figures render ~240px wide at 4:3 (object-fit: cover) on a card that is light teal
-(#e4f2f7) in light mode and deep teal (#123742) in dark mode. Paste the prompt below
-into an image model (or ask Claude to render SVG/PNG) to generate the full matched set.
+(#e4f2f7) in light mode and deep teal (#123742) in dark mode. The prompt below is the
+original brief kept for reference (e.g. to regenerate the set with an image model).
 
 ---
 
