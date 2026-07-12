@@ -1,8 +1,10 @@
-/* Research themes as a stacked "deck of cards" carousel.
+/* Research themes as a "coverflow" deck.
    Progressive enhancement: without JS the cards render as a normal vertical
    stack (see .theme-deck in custom-pages.css). This script switches the deck
-   into the interactive stacked mode and wires up prev/next, dots, keyboard,
-   drag/swipe, and dynamic height (so the plain-language folds can still expand). */
+   into the interactive coverflow: the active theme sits in the centre, already
+   seen ("old") cards stay visible tilted on the LEFT, upcoming cards on the
+   RIGHT — all rendered at the same fixed size. Navigate with prev/next, dots,
+   keyboard, drag/swipe, sideways scroll, or by clicking a side card. */
 (function () {
   var deck = document.getElementById("theme-deck");
   if (!deck) return;
@@ -14,43 +16,41 @@
   var prevBtn = deck.querySelector(".deck-prev");
   var nextBtn = deck.querySelector(".deck-next");
   var active = 0;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   deck.classList.add("js-deck");
   var controls = deck.querySelector(".deck-controls");
   if (controls) controls.removeAttribute("aria-hidden");
 
-  function setHeight() {
-    // Stage height follows the active card so the layout below stays put and
-    // the card can grow/shrink when a plain-language fold is toggled.
-    stage.style.height = cards[active].offsetHeight + "px";
+  // Make every card the same size: the tallest card's natural height, so shorter
+  // ones simply get some whitespace. Measured with the cards briefly auto-height.
+  function equalizeHeight() {
+    var max = 0;
+    cards.forEach(function (c) { c.style.height = "auto"; });
+    cards.forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+    cards.forEach(function (c) { c.style.height = max + "px"; });
+    stage.style.height = max + "px";
   }
 
-  // Left-to-right deck: the active card sits in front, the rest of the deck fans
-  // out to the RIGHT (clearly visible + clickable); already-seen cards slide off
-  // to the left. Offsets scale with the stage width so nothing overflows.
-  var OFFSET = [0, 30, 54, 74];
-  var SCALE = [1, 0.955, 0.915, 0.88];
-  var YY = [0, 8, 16, 24];
-  var OP = [1, 0.85, 0.62, 0.42];
-
+  // Coverflow positions, keyed by signed distance from the active card.
   function layout() {
-    var k = Math.min(1, (stage.clientWidth || 640) / 640);
+    var W = stage.clientWidth || 640;
     cards.forEach(function (card, i) {
       var p = i - active;
+      var ap = Math.abs(p);
+      var dir = p < 0 ? -1 : 1;
       var transform, opacity, z;
       if (p === 0) {
-        transform = "translateX(0) translateY(0) scale(1)";
+        transform = "translateX(0) rotateY(0deg) scale(1)";
         opacity = 1; z = 100;
-      } else if (p > 0 && p <= 3) {
-        transform = "translateX(" + (OFFSET[p] * k) + "px) translateY(" + YY[p] + "px) scale(" + SCALE[p] + ")";
-        opacity = OP[p]; z = 100 - p;
-      } else if (p > 3) {
-        transform = "translateX(" + (OFFSET[3] * k + 24) + "px) scale(0.86)";
-        opacity = 0; z = 100 - p;
+      } else if (ap === 1) {
+        transform = "translateX(" + dir * 0.6 * W + "px) rotateY(" + (-dir * 16) + "deg) scale(0.92)";
+        opacity = 1; z = 99;
+      } else if (ap === 2) {
+        transform = "translateX(" + dir * 0.86 * W + "px) rotateY(" + (-dir * 20) + "deg) scale(0.82)";
+        opacity = 0.45; z = 98;
       } else {
-        transform = "translateX(-26px) translateY(6px) scale(0.92)";
-        opacity = 0; z = 0;
+        transform = "translateX(" + dir * 1.1 * W + "px) rotateY(" + (-dir * 22) + "deg) scale(0.72)";
+        opacity = 0; z = 97;
       }
       card.classList.toggle("is-active", p === 0);
       card.style.transform = transform;
@@ -65,13 +65,9 @@
     });
     if (prevBtn) prevBtn.disabled = active === 0;
     if (nextBtn) nextBtn.disabled = active === cards.length - 1;
-    setHeight();
   }
 
-  function go(i) {
-    active = Math.max(0, Math.min(cards.length - 1, i));
-    layout();
-  }
+  function go(i) { active = Math.max(0, Math.min(cards.length - 1, i)); layout(); }
   function next() { if (active < cards.length - 1) go(active + 1); }
   function prev() { if (active > 0) go(active - 1); }
 
@@ -81,21 +77,22 @@
     dot.addEventListener("click", function () { go(parseInt(dot.dataset.goto, 10) || 0); });
   });
 
-  // Click a peeking card to bring it forward.
+  // Click a side card to bring it to the centre.
   cards.forEach(function (card, i) {
     card.addEventListener("click", function (e) {
       if (i !== active && !e.target.closest("a, button, summary")) { e.preventDefault(); go(i); }
     });
   });
 
-  // Keyboard when the deck has focus.
+  // Keyboard.
   deck.tabIndex = 0;
   deck.addEventListener("keydown", function (e) {
     if (e.key === "ArrowRight") { next(); e.preventDefault(); }
     else if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
   });
 
-  // Pointer drag / swipe.
+  // Pointer drag / swipe: dragging the current card left advances (it slides to
+  // the left as the "old" card); dragging right goes back.
   var startX = null, startY = null, dragging = false;
   stage.addEventListener("pointerdown", function (e) {
     startX = e.clientX; startY = e.clientY; dragging = true;
@@ -122,15 +119,8 @@
     }
   }, { passive: false });
 
-  // Keep height correct when a fold opens/closes or the viewport resizes.
-  if (window.ResizeObserver) {
-    var ro = new ResizeObserver(function () { setHeight(); });
-    cards.forEach(function (c) { ro.observe(c); });
-  } else {
-    deck.addEventListener("toggle", setHeight, true);
-  }
-  window.addEventListener("resize", layout);
-  window.addEventListener("load", setHeight);
-
-  layout();
+  function refresh() { equalizeHeight(); layout(); }
+  refresh();
+  window.addEventListener("load", refresh);
+  window.addEventListener("resize", refresh);
 })();

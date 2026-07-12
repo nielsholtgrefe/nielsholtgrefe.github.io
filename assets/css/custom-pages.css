@@ -1433,27 +1433,27 @@ html[data-theme="dark"] .timeline-country {
 }
 .deck-controls, .deck-hint { display: none; }
 
-/* Interactive fanned deck (class added by research-deck.js) */
-.theme-deck.js-deck { padding: 0 5em 0 1.6em; }
+/* Interactive coverflow deck (class added by research-deck.js) */
+.theme-deck.js-deck { padding: 0; overflow: hidden; }
 .theme-deck.js-deck .deck-stage {
   position: relative;
-  perspective: 1600px;
-  transition: height 0.42s cubic-bezier(.22, .61, .36, 1);
+  perspective: 1700px;
 }
 .theme-deck.js-deck .deck-card {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 17%;
+  width: 66%;
   margin: 0;
+  overflow-y: auto;
   transform-origin: center center;
   backface-visibility: hidden;
-  box-shadow: 0 14px 34px rgba(26, 92, 122, 0.14);
-  transition: transform 0.45s cubic-bezier(.22, .61, .36, 1), opacity 0.4s ease, box-shadow 0.3s;
+  box-shadow: 0 14px 34px rgba(26, 92, 122, 0.16);
+  transition: transform 0.5s cubic-bezier(.22, .61, .36, 1), opacity 0.4s ease, box-shadow 0.3s;
 }
 .theme-deck.js-deck .deck-card:not(.is-active) {
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(26, 92, 122, 0.16);
+  box-shadow: 0 10px 26px rgba(26, 92, 122, 0.2);
 }
 .theme-deck.js-deck .deck-controls { display: flex; }
 .theme-deck.js-deck .deck-hint { display: block; }
@@ -1533,7 +1533,7 @@ html[data-theme="dark"] .timeline-country {
 }
 
 @media (max-width: 640px) {
-  .theme-deck.js-deck { padding: 0 2.6em 0 1em; }
+  .theme-deck.js-deck .deck-card { left: 8%; width: 84%; }
 }
 
 .research-tag {
