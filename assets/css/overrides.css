@@ -590,13 +590,13 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    /* Horizontal opacity gradient: stronger behind the centred text column,
-       lighter in the empty side gutters. The mask paints this gradient in the
-       shape of the network. */
+    /* Horizontal opacity gradient: lighter behind the centred text column,
+       stronger in the empty side gutters (but gentler than a solid tint). The
+       mask paints this gradient in the shape of the network. */
     background: linear-gradient(to right,
-      rgba(74, 143, 168, 0.16) 0%,
-      rgba(74, 143, 168, 0.34) 50%,
-      rgba(74, 143, 168, 0.16) 100%);
+      rgba(74, 143, 168, 0.24) 0%,
+      rgba(74, 143, 168, 0.10) 50%,
+      rgba(74, 143, 168, 0.24) 100%);
     -webkit-mask-image: url('/assets/images/network-bg.svg');
     mask-image: url('/assets/images/network-bg.svg');
     -webkit-mask-repeat: repeat;
@@ -606,8 +606,8 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
   }
   html[data-theme="dark"] body::before {
     background: linear-gradient(to right,
-      rgba(90, 159, 186, 0.19) 0%,
-      rgba(90, 159, 186, 0.38) 50%,
-      rgba(90, 159, 186, 0.19) 100%);
+      rgba(90, 159, 186, 0.28) 0%,
+      rgba(90, 159, 186, 0.12) 50%,
+      rgba(90, 159, 186, 0.28) 100%);
   }
 }
