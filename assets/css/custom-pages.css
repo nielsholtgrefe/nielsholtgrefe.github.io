@@ -110,6 +110,14 @@
   margin: 0;
 }
 
+.home-news-all {
+  display: block;
+  text-align: right;
+  margin-top: 0.4em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--nh-border-soft, #eef4f7);
+}
+
 /* Compact, stacked news items inside the narrow rail */
 .home-aside .news-item {
   flex-direction: column;

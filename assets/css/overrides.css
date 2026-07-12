@@ -256,16 +256,16 @@ a:hover {
 
 .author__name {
   font-family: 'Lora', serif;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: 600;
   color: var(--nh-text-strong);
-  margin: 0.6em 0 0.1em;
+  margin: 0.55em 0 0.12em;
 }
 
 .author__bio {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8em;
-  line-height: 1.6;
+  font-size: 0.94em;
+  line-height: 1.55;
   color: var(--nh-text-muted);
   margin: 0 0 0.9em;
   padding-bottom: 0.9em;
@@ -284,11 +284,11 @@ a:hover {
 }
 
 .author__urls li {
-  padding: 0.06em 0;
+  padding: 0.16em 0;
 }
 
 .author__urls a {
-  font-size: 0.84em;
+  font-size: 0.95em;
   font-family: 'Inter', sans-serif;
   color: var(--nh-text-muted);
   display: inline-flex;
@@ -325,8 +325,8 @@ a:hover {
   }
   .sidebar::before { display: none; }
   .sidebar .h-card {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 0 0.9em;
   }
@@ -354,32 +354,35 @@ a:hover {
     display: block !important;
     float: none !important;
     width: auto !important;
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-width: 0;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden;
   }
-  .author__name { margin: 0 0 0.05em; font-size: 1.05em; }
+  .author__name { margin: 0 0 0.08em; font-size: 1.12em; }
   .author__bio {
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
-    font-size: 0.76em;
+    font-size: 0.82em;
   }
 
+  /* Links as a vertical column with a divider line, to the right of name/photo */
   .author__urls-wrapper {
-    flex: 1 0 100%;
-    margin: 0.7em 0 0;
-    padding-top: 0.6em;
-    border-top: 1px solid var(--nh-border);
+    flex: 0 0 auto;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0.15em 0 0.15em 0.95em;
+    border-left: 1px solid var(--nh-border);
   }
-  /* Cancel the theme's mobile "Follow" popup styling; show links inline */
   .author__urls {
     position: static !important;
     display: flex !important;
-    flex-wrap: wrap;
-    gap: 0.15em 1.2em;
+    flex-direction: column;
+    gap: 0.32em;
     margin: 0 !important;
     padding: 0 !important;
     background: none !important;
@@ -390,7 +393,22 @@ a:hover {
   .author__urls::after,
   .author__urls-wrapper::before { display: none !important; }
   .author__urls li { padding: 0; white-space: nowrap; }
-  .author__urls a { font-size: 0.8em; }
+  .author__urls a { font-size: 0.82em; }
+}
+
+/* Very narrow phones: the three-column card gets cramped, so drop the links
+   back below the name as a wrapping row. */
+@media (max-width: 480px) {
+  .sidebar .h-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.9em; }
+  .author__urls-wrapper {
+    flex: 1 0 100%;
+    align-self: auto;
+    margin: 0.6em 0 0;
+    padding: 0.55em 0 0;
+    border-left: none;
+    border-top: 1px solid var(--nh-border);
+  }
+  .author__urls { flex-direction: row; flex-wrap: wrap; gap: 0.15em 1.2em; }
 }
 
 /* Keep LinkedIn icon monochrome */

@@ -55,7 +55,9 @@ classes: wide
               {%- assign author_str = "" -%}
               {%- for a in pub.authors -%}
                 {%- assign initial = a.first | slice: 0 -%}
-                {%- assign one = initial | append: ". " | append: a.last -%}
+                {%- assign one = initial | append: ". " -%}
+                {%- if a.tussenvoegsel -%}{%- assign one = one | append: a.tussenvoegsel | append: " " -%}{%- endif -%}
+                {%- assign one = one | append: a.last -%}
                 {%- if forloop.first -%}{%- assign author_str = one -%}
                 {%- else -%}{%- assign author_str = author_str | append: ", " | append: one -%}{%- endif -%}
               {%- endfor -%}
