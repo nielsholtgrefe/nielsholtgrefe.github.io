@@ -26,30 +26,38 @@
     stage.style.height = cards[active].offsetHeight + "px";
   }
 
+  // Left-to-right deck: the active card sits in front, the rest of the deck fans
+  // out to the RIGHT (clearly visible + clickable); already-seen cards slide off
+  // to the left. Offsets scale with the stage width so nothing overflows.
+  var OFFSET = [0, 30, 54, 74];
+  var SCALE = [1, 0.955, 0.915, 0.88];
+  var YY = [0, 8, 16, 24];
+  var OP = [1, 0.85, 0.62, 0.42];
+
   function layout() {
+    var k = Math.min(1, (stage.clientWidth || 640) / 640);
     cards.forEach(function (card, i) {
-      var d = i - active;
-      var transform, opacity, z, pe;
-      if (d === 0) {
+      var p = i - active;
+      var transform, opacity, z;
+      if (p === 0) {
         transform = "translateX(0) translateY(0) scale(1)";
-        opacity = 1; z = 100; pe = "auto";
-        card.classList.add("is-active");
-      } else if (d > 0) {
-        var dd = Math.min(d, 3);
-        transform = "translateX(" + dd * 16 + "px) translateY(" + dd * 10 + "px) scale(" + (1 - dd * 0.05) + ")";
-        opacity = d <= 3 ? 0.55 : 0;
-        z = 100 - d; pe = "none";
-        card.classList.remove("is-active");
+        opacity = 1; z = 100;
+      } else if (p > 0 && p <= 3) {
+        transform = "translateX(" + (OFFSET[p] * k) + "px) translateY(" + YY[p] + "px) scale(" + SCALE[p] + ")";
+        opacity = OP[p]; z = 100 - p;
+      } else if (p > 3) {
+        transform = "translateX(" + (OFFSET[3] * k + 24) + "px) scale(0.86)";
+        opacity = 0; z = 100 - p;
       } else {
-        transform = "translateX(-44px) translateY(6px) scale(0.92)";
-        opacity = 0; z = 0; pe = "none";
-        card.classList.remove("is-active");
+        transform = "translateX(-26px) translateY(6px) scale(0.92)";
+        opacity = 0; z = 0;
       }
+      card.classList.toggle("is-active", p === 0);
       card.style.transform = transform;
       card.style.opacity = opacity;
       card.style.zIndex = z;
-      card.style.pointerEvents = pe;
-      card.setAttribute("aria-hidden", d === 0 ? "false" : "true");
+      card.style.pointerEvents = opacity > 0 ? "auto" : "none";
+      card.setAttribute("aria-hidden", p === 0 ? "false" : "true");
     });
     dots.forEach(function (dot, i) {
       dot.classList.toggle("is-active", i === active);
