@@ -1426,40 +1426,25 @@ html[data-theme="dark"] .timeline-country {
 .layman-content p { margin: 0 0 0.75em; }
 .layman-content p:last-child { margin-bottom: 0; }
 
-/* ---- Research theme deck (stacked card carousel) ---- */
-.theme-deck { margin: 1.8em 0; }
+/* ---- Card decks (research themes + software packages), driven by deck.js ---- */
+.theme-deck, .software-deck { margin: 1.8em 0; }
 
-/* No-JS fallback: a plain vertical stack of cards */
-.deck-card {
-  box-sizing: border-box;
+/* No-JS fallback: a plain vertical stack. Research theme cards get a card frame;
+   software cards bring their own (.software-card). */
+.deck-card { box-sizing: border-box; margin: 0 0 1.4em; }
+.theme-deck .deck-card {
   border: 1px solid var(--nh-border, #c8d9e3);
   border-radius: 12px;
   padding: 1.4em 1.7em 1.6em;
-  margin: 0 0 1.4em;
   background: var(--nh-surface, #f8fbfd);
   box-shadow: 0 2px 10px rgba(26, 92, 122, 0.055);
 }
 .deck-controls, .deck-hint { display: none; }
 
-/* Interactive deck (class added by research-deck.js). The deck bleeds to the left
-   under the profile sidebar (which is raised above it), so the previous card tucks
-   behind the profile; the active card fills nearly the full content width. */
-.theme-deck.js-deck {
-  --deck-bleed: 11em;
-  padding: 0;
-  margin-left: calc(-1 * var(--deck-bleed));
-  overflow: hidden;
-}
-.theme-deck.js-deck .deck-stage {
-  position: relative;
-  perspective: 2000px;
-}
-.theme-deck.js-deck .deck-card {
+/* Shared interactive positioning for both deck variants */
+.js-deck .deck-card {
   position: absolute;
   top: 0;
-  left: var(--deck-bleed);
-  right: 1.4em;
-  width: auto;
   margin: 0;
   overflow-y: auto;
   transform-origin: center center;
@@ -1467,12 +1452,30 @@ html[data-theme="dark"] .timeline-country {
   box-shadow: 0 14px 34px rgba(26, 92, 122, 0.16);
   transition: transform 0.5s cubic-bezier(.22, .61, .36, 1), opacity 0.4s ease, box-shadow 0.3s;
 }
-.theme-deck.js-deck .deck-card:not(.is-active) {
+.js-deck .deck-card:not(.is-active) {
   cursor: pointer;
   box-shadow: 0 12px 30px rgba(26, 92, 122, 0.22);
 }
-.theme-deck.js-deck .deck-controls { display: flex; }
-.theme-deck.js-deck .deck-hint { display: block; }
+.js-deck .deck-controls { display: flex; }
+.js-deck .deck-hint { display: block; }
+
+/* "tuck" variant (research): the deck bleeds left under the profile sidebar (raised
+   above it), so the previous card tucks behind the profile; the active card fills
+   nearly the full content width. */
+.theme-deck.js-deck {
+  --deck-bleed: 11em;
+  padding: 0;
+  margin-left: calc(-1 * var(--deck-bleed));
+  overflow: hidden;
+}
+.theme-deck.js-deck .deck-stage { position: relative; perspective: 2000px; }
+.theme-deck.js-deck .deck-card { left: var(--deck-bleed); right: 1.4em; width: auto; }
+
+/* "fan" variant (software): narrower cards; neighbours are shown more, tilted in
+   the background (coverflow). */
+.software-deck.js-deck { padding: 0; overflow: hidden; }
+.software-deck.js-deck .deck-stage { position: relative; perspective: 1800px; }
+.software-deck.js-deck .deck-card { left: 21%; width: 58%; }
 
 .deck-card-head { margin-bottom: 0.85em; }
 
@@ -1544,15 +1547,16 @@ html[data-theme="dark"] .timeline-country {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .theme-deck.js-deck .deck-stage,
-  .theme-deck.js-deck .deck-card { transition: none; }
+  .js-deck .deck-stage,
+  .js-deck .deck-card { transition: none; }
 }
 
 /* Below the sidebar breakpoint the profile stacks above the content, so there is
-   nothing to bleed behind — drop the bleed and use full-width cards. */
+   nothing to bleed behind — drop the research bleed, and widen the software cards. */
 @media (max-width: 1023px) {
   .theme-deck.js-deck { --deck-bleed: 0em; margin-left: 0; }
   .theme-deck.js-deck .deck-card { left: 0; right: 0; }
+  .software-deck.js-deck .deck-card { left: 10%; width: 80%; }
 }
 
 .research-tag {

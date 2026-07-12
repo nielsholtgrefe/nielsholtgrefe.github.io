@@ -10,9 +10,10 @@ classes: wide
 
 <p>All software I develop follows the principles of open software: openly licensed, publicly developed on GitHub, and documented for a mixed audience of mathematicians and biologists. Each package has a dedicated documentation website, a test suite, and where applicable a graphical user interface so that researchers without a programming background can use the tools directly. The packages are designed to work together, with PhyloZoo providing a shared foundation that Squirrel and PaNDA build on.</p>
 
-<div class="software-grid">
-  {% for pkg in site.data.software %}
-  <div class="software-card">
+<div class="software-deck" data-deck-variant="fan" aria-roledescription="carousel" aria-label="Software packages">
+  <div class="deck-stage">
+    {% for pkg in site.data.software %}
+    <article class="deck-card software-card">
     <div class="software-card-header"{% if pkg.image %} style="background-image: url('{{ pkg.image | relative_url }}');"{% endif %}>
       <div class="software-card-header-inner">
         <span class="software-card-name"><code>{{ pkg.name }}</code></span>
@@ -61,8 +62,26 @@ classes: wide
         {% endif %}
       </div>
     </div>
+    </article>
+    {% endfor %}
   </div>
-  {% endfor %}
+
+  <div class="deck-controls" aria-hidden="true">
+    <button class="deck-btn deck-prev" type="button" aria-label="Previous package">
+      <span aria-hidden="true">&#8249;</span> Prev
+    </button>
+    <div class="deck-dots">
+      {% for pkg in site.data.software %}
+        <button class="deck-dot" type="button" data-goto="{{ forloop.index0 }}" aria-label="Go to {{ pkg.name }}"></button>
+      {% endfor %}
+    </div>
+    <button class="deck-btn deck-next" type="button" aria-label="Next package">
+      Next <span aria-hidden="true">&#8250;</span>
+    </button>
+  </div>
+  <p class="deck-hint">Drag, scroll sideways, or use the arrows / arrow keys to flip through the packages.</p>
 </div>
 
 <p class="software-footer-note">All packages above are written in Python. You can also browse all my projects on <a href="https://github.com/nholtgrefe" target="_blank">GitHub</a>.</p>
+
+<script src="{{ '/assets/js/deck.js' | relative_url }}" defer></script>

@@ -22,7 +22,7 @@ classes: wide
 <hr>
 
 {% assign nthemes = site.data.research | size %}
-<div class="theme-deck" id="theme-deck" aria-roledescription="carousel" aria-label="Research themes">
+<div class="theme-deck" id="theme-deck" data-deck-variant="tuck" aria-roledescription="carousel" aria-label="Research themes">
   <div class="deck-stage" id="deck-stage">
     {% for theme in site.data.research %}
       {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
@@ -117,4 +117,4 @@ classes: wide
 
 <p>For a complete list of publications with abstracts and BibTeX entries, see the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.</p>
 
-<script src="{{ '/assets/js/research-deck.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/deck.js' | relative_url }}" defer></script>
