@@ -1,0 +1,59 @@
+{%- comment -%}
+Emit a BibTeX entry for include.pub.
+
+If the entry defines its own `bibtex` field in _data/pubs.yml, that verbatim
+value is used (manual override). Otherwise the entry is generated from the
+structured YAML fields, following a consistent house style:
+
+  @article        for type: journal
+  @inproceedings  for type: conference
+  @misc           for type: preprint / extended-abstract
+  (theses keep a manual `bibtex` override, as their format differs.)
+
+The same include is used both for the on-page bibtex box and for the combined
+/publications.bib download, so there is a single source of truth.
+{%- endcomment -%}
+{%- assign p = include.pub -%}
+{%- if p.bibtex and p.bibtex != "" -%}
+{{- p.bibtex | strip -}}
+{%- else -%}
+{%- assign ob = '{' -%}
+{%- assign cb = '}' -%}
+{%- comment -%} ---- author list: "Surname, Given Middle and ..." ---- {%- endcomment -%}
+{%- assign authors = "" -%}
+{%- for a in p.authors -%}
+  {%- assign surname = a.last -%}
+  {%- if a.tussenvoegsel and a.tussenvoegsel != "" -%}{%- assign surname = a.tussenvoegsel | append: " " | append: a.last -%}{%- endif -%}
+  {%- assign given = a.first -%}
+  {%- if a.middle -%}{%- for m in a.middle -%}{%- assign given = given | append: " " | append: m -%}{%- endfor -%}{%- endif -%}
+  {%- assign one = surname | append: ", " | append: given -%}
+  {%- if forloop.first -%}{%- assign authors = one -%}{%- else -%}{%- assign authors = authors | append: " and " | append: one -%}{%- endif -%}
+{%- endfor -%}
+{%- comment -%} ---- citation key: firstauthorlast + year + firsttitleword ---- {%- endcomment -%}
+{%- assign klast = p.authors[0].last | slugify | replace: "-", "" -%}
+{%- assign kword = p.title | split: " " | first | slugify | replace: "-", "" -%}
+{%- assign citekey = klast | append: p.year | append: kword -%}
+{%- comment -%} ---- entry type ---- {%- endcomment -%}
+{%- assign etype = "misc" -%}
+{%- if p.type == "journal" -%}{%- assign etype = "article" -%}{%- elsif p.type == "conference" -%}{%- assign etype = "inproceedings" -%}{%- endif -%}
+{%- comment -%} ---- assemble the field lines, joined by ",\n" ---- {%- endcomment -%}
+{%- capture NL %}
+{% endcapture -%}
+{%- assign sep = "," | append: NL -%}
+{%- capture f %}  author = {{ ob }}{{ authors }}{{ cb }}{% endcapture -%}{%- assign body = f -%}
+{%- comment -%} Double braces protect case (acronyms, PhyloZoo, CFN, ...) from title-casing styles {%- endcomment -%}
+{%- capture f %}  title = {{ ob }}{{ ob }}{{ p.title }}{{ cb }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}
+{%- if p.journal and p.journal != "" -%}{%- capture f %}  journal = {{ ob }}{{ p.journal }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.booktitle and p.booktitle != "" -%}{%- capture f %}  booktitle = {{ ob }}{{ p.booktitle }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.volume and p.volume != "" -%}{%- capture f %}  volume = {{ ob }}{{ p.volume }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.issue and p.issue != "" -%}{%- capture f %}  number = {{ ob }}{{ p.issue }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.pages and p.pages != "" -%}{%- capture f %}  pages = {{ ob }}{{ p.pages }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- comment -%} archivePrefix/eprint is an arXiv convention; other servers (e.g. bioRxiv) are referenced via their doi instead {%- endcomment -%}
+{%- if p.type == "preprint" and p.preprint-server == "arXiv" -%}{%- capture f %}  archivePrefix = {{ ob }}{{ p.preprint-server }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- capture f %}  eprint = {{ ob }}{{ p.preprint-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.type == "extended-abstract" and p.note and p.note != "" -%}{%- capture f %}  howpublished = {{ ob }}{{ p.note }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.doi-identifier and p.doi-identifier != "" -%}{%- capture f %}  doi = {{ ob }}{{ p.doi-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- capture f %}  year = {{ ob }}{{ p.year }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}
+@{{ etype }}{{ ob }}{{ citekey }},
+{{ body }}
+}
+{%- endif -%}

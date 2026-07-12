@@ -1,0 +1,10 @@
+---
+layout: none
+permalink: /publications.bib
+sitemap: false
+---
+{%- assign bib_pubs = site.data.pubs | sort: "release-date" | reverse -%}
+{%- for pub in bib_pubs -%}
+{% include pub_bibtex.html pub=pub %}
+
+{% endfor -%}
