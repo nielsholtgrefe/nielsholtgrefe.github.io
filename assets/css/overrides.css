@@ -552,3 +552,24 @@ html[data-theme="dark"] tbody tr:nth-child(2n) { background-color: var(--nh-surf
 
 /* MathJax should follow text colour */
 html[data-theme="dark"] mjx-container { color: var(--nh-text); }
+
+/* ================================================================
+   Cross-document view transitions (progressive enhancement)
+   Browsers that support the View Transitions API cross-fade between
+   pages; the profile card and masthead are named so they stay visually
+   stable (morph in place) rather than fading with the rest of the page.
+   Unsupported browsers simply navigate normally.
+   ================================================================ */
+@view-transition { navigation: auto; }
+
+.sidebar { view-transition-name: nh-sidebar; }
+.masthead { view-transition-name: nh-masthead; }
+
+/* Keep the cross-fade quick and calm */
+::view-transition-group(root) { animation-duration: 0.28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
