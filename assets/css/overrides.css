@@ -198,23 +198,24 @@ a:hover {
 .sidebar {
   box-sizing: border-box;
   max-width: 100%;
-  position: relative;
   border: 1px solid var(--nh-border);
   border-radius: 14px;
   background: var(--nh-surface);
   padding: 0 1.2em 1.3em;
   text-align: center;
-  overflow: hidden;
   box-shadow: 0 8px 26px rgba(26, 92, 122, 0.10);
   opacity: 1;
 }
 
-/* Business-card header band that the avatar overlaps */
+/* Business-card header band that the avatar overlaps (rounded to match the card
+   top, so no overflow:hidden is needed — which would otherwise fight the theme's
+   sticky-sidebar overflow handling). */
 .sidebar::before {
   content: "";
   display: block;
   height: 78px;
   margin: 0 -1.2em;
+  border-radius: 13px 13px 0 0;
   background: linear-gradient(135deg, var(--nh-accent) 0%, var(--nh-accent-dark) 100%);
 }
 
@@ -400,8 +401,8 @@ a:hover {
 /* ---- Page content ---- */
 .page__content {
   font-family: 'Inter', sans-serif;
-  font-size: 0.86em;
-  line-height: 1.6;
+  font-size: 0.9em;
+  line-height: 1.62;
 }
 
 .page__content blockquote {
