@@ -89,9 +89,9 @@ body {
 
 /* More compact base type scale than the theme's default 18 / 20 / 22px, so the
    main text (and everything sized relative to it) takes up less space. */
-html { font-size: 16px !important; }
-@media (min-width: 1024px) { html { font-size: 17px !important; } }
-@media (min-width: 1280px) { html { font-size: 18px !important; } }
+html { font-size: 17px !important; }
+@media (min-width: 1024px) { html { font-size: 18px !important; } }
+@media (min-width: 1280px) { html { font-size: 19px !important; } }
 
 h1, h2, h3, h4 {
   font-family: 'Lora', Georgia, serif;
