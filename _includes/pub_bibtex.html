@@ -48,10 +48,10 @@ The same include is used both for the on-page bibtex box and for the combined
 {%- if p.volume and p.volume != "" -%}{%- capture f %}  volume = {{ ob }}{{ p.volume }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
 {%- if p.issue and p.issue != "" -%}{%- capture f %}  number = {{ ob }}{{ p.issue }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
 {%- if p.pages and p.pages != "" -%}{%- capture f %}  pages = {{ ob }}{{ p.pages }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
-{%- comment -%} archivePrefix/eprint is an arXiv convention; other servers (e.g. bioRxiv) are referenced via their doi instead {%- endcomment -%}
-{%- if p.type == "preprint" and p.preprint-server == "arXiv" -%}{%- capture f %}  archivePrefix = {{ ob }}{{ p.preprint-server }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- capture f %}  eprint = {{ ob }}{{ p.preprint-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- comment -%} Preprints use the archivePrefix/eprint style for every server (arXiv, bioRxiv, ...); for bioRxiv the eprint id is simply the doi. The separate doi field is therefore only added for non-preprint entries. {%- endcomment -%}
+{%- if p.type == "preprint" and p.preprint-server and p.preprint-server != "" -%}{%- capture f %}  archivePrefix = {{ ob }}{{ p.preprint-server }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- capture f %}  eprint = {{ ob }}{{ p.preprint-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
 {%- if p.type == "extended-abstract" and p.note and p.note != "" -%}{%- capture f %}  howpublished = {{ ob }}{{ p.note }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
-{%- if p.doi-identifier and p.doi-identifier != "" -%}{%- capture f %}  doi = {{ ob }}{{ p.doi-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
+{%- if p.doi-identifier and p.doi-identifier != "" and p.type != "preprint" -%}{%- capture f %}  doi = {{ ob }}{{ p.doi-identifier }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}{%- endif -%}
 {%- capture f %}  year = {{ ob }}{{ p.year }}{{ cb }}{% endcapture -%}{%- assign body = body | append: sep | append: f -%}
 @{{ etype }}{{ ob }}{{ citekey }},
 {{ body }}
