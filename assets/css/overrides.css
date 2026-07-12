@@ -596,11 +596,11 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
        stronger in the empty side gutters (but gentler than a solid tint). The
        mask paints this gradient in the shape of the network. */
     background: linear-gradient(to right,
-      rgba(74, 143, 168, 0.5) 0%,
-      rgba(74, 143, 168, 0.26) 50%,
-      rgba(74, 143, 168, 0.5) 100%);
-    -webkit-mask-image: url('/assets/images/network-bg.svg');
-    mask-image: url('/assets/images/network-bg.svg');
+      rgba(74, 143, 168, 0.17) 0%,
+      rgba(74, 143, 168, 0.07) 50%,
+      rgba(74, 143, 168, 0.17) 100%);
+    -webkit-mask-image: url('/assets/images/network-bg.svg?v=2');
+    mask-image: url('/assets/images/network-bg.svg?v=2');
     -webkit-mask-repeat: repeat;
     mask-repeat: repeat;
     -webkit-mask-size: 480px 480px;
@@ -609,8 +609,8 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
   html[data-theme="dark"] body::before {
     /* lighter, brighter colour so the mesh is actually visible on the dark bg */
     background: linear-gradient(to right,
-      rgba(150, 200, 230, 0.5) 0%,
-      rgba(150, 200, 230, 0.26) 50%,
-      rgba(150, 200, 230, 0.5) 100%);
+      rgba(150, 200, 230, 0.20) 0%,
+      rgba(150, 200, 230, 0.09) 50%,
+      rgba(150, 200, 230, 0.20) 100%);
   }
 }
