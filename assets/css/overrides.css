@@ -452,8 +452,12 @@ a:hover {
 .page__footer a { color: #ffffff; }
 .page__footer .page__footer-copyright { color: var(--nh-footer-text); }
 
-.page__footer-follow .social-icons .svg-inline--fa {
-  color: inherit;
+/* The footer bar is dark in both themes, so its social icons are always white */
+.page__footer-follow .social-icons a,
+.page__footer-follow .social-icons .svg-inline--fa,
+.page__footer-follow .social-icons .fa,
+.page__footer-follow .social-icons i {
+  color: #ffffff !important;
 }
 
 /* ================================================================

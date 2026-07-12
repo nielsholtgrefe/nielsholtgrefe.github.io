@@ -312,21 +312,21 @@
   border: 1px solid transparent;
 }
 .pub-type-journal {
-  color: var(--nh-accent, #1a5c7a);
-  background: var(--nh-accent-light, #e4f2f7);
-  border-color: var(--nh-border, #bcd6e2);
-}
-.pub-type-preprint {
   color: #8a5a12;
   background: #fbf1de;
   border-color: #ecd6a8;
+}
+.pub-type-preprint {
+  color: var(--nh-accent, #1a5c7a);
+  background: var(--nh-accent-light, #e4f2f7);
+  border-color: var(--nh-border, #bcd6e2);
 }
 .pub-type-conference {
   color: #4b3b8f;
   background: #ece9fb;
   border-color: #cdc6ef;
 }
-html[data-theme="dark"] .pub-type-preprint {
+html[data-theme="dark"] .pub-type-journal {
   color: #e8c98a; background: rgba(180, 130, 40, 0.16); border-color: rgba(200, 160, 80, 0.3);
 }
 html[data-theme="dark"] .pub-type-conference {
@@ -424,15 +424,11 @@ html[data-theme="dark"] .pub-type-conference {
 
 .pub-author { white-space: nowrap; }
 
-/* My own name: highlighted, but deliberately not bold (bold reads too much like
-   the title). A soft accent underline + accent colour sets it apart instead. */
+/* My own name: highlighted with the accent colour only — not bold (bold reads
+   too much like the title) and not underlined. */
 .pub-author.is-me {
   font-weight: inherit;
   color: var(--nh-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 2px;
-  text-decoration-color: var(--nh-accent-mid, #4a8fa8);
 }
 
 /* Link buttons on the right, in a horizontal row (wrapping if needed) */
