@@ -214,7 +214,7 @@ a:hover {
 .sidebar::before {
   content: "";
   display: block;
-  height: 78px;
+  height: 86px;
   margin: 0 -1.2em;
   border-radius: 13px 13px 0 0;
   background: linear-gradient(135deg, var(--nh-accent) 0%, var(--nh-accent-dark) 100%);
@@ -232,15 +232,15 @@ a:hover {
   display: block !important;
   float: none !important;
   width: auto !important;
-  margin: -55px auto 0.15em;
+  margin: -62px auto 0.15em;
   position: relative;
   z-index: 1;
 }
 
 .author__avatar img {
-  width: 104px !important;
-  max-width: 104px;
-  height: 104px;
+  width: 122px !important;
+  max-width: 122px;
+  height: 122px;
   object-fit: cover;
   border-radius: 50% !important;
   border: 4px solid var(--nh-surface);
@@ -336,18 +336,18 @@ a:hover {
     justify-content: center;
     position: static !important;
     float: none !important;
-    width: 62px !important;
-    height: 62px !important;
+    width: 78px !important;
+    height: 78px !important;
     margin: 0 !important;
-    flex: 0 0 62px;
+    flex: 0 0 78px;
     align-self: center;
   }
-  .author__avatar a { display: block; width: 62px; height: 62px; }
+  .author__avatar a { display: block; width: 78px; height: 78px; }
   .author__avatar img {
     display: block !important;
-    width: 62px !important;
-    max-width: 62px;
-    height: 62px !important;
+    width: 78px !important;
+    max-width: 78px;
+    height: 78px !important;
     box-shadow: 0 0 0 2px var(--nh-accent-mid), 0 3px 8px rgba(26, 92, 122, 0.2);
   }
   .author__content {
@@ -368,21 +368,21 @@ a:hover {
     font-size: 0.82em;
   }
 
-  /* Links as a vertical column with a divider line, to the right of name/photo */
+  /* Links as a tight vertical column with a divider line, right of name/photo */
   .author__urls-wrapper {
     flex: 0 0 auto;
     align-self: stretch;
     display: flex;
     align-items: center;
     margin: 0;
-    padding: 0.15em 0 0.15em 0.95em;
+    padding: 0.15em 0 0.15em 0.7em;
     border-left: 1px solid var(--nh-border);
   }
   .author__urls {
     position: static !important;
     display: flex !important;
     flex-direction: column;
-    gap: 0.32em;
+    gap: 0;
     margin: 0 !important;
     padding: 0 !important;
     background: none !important;
@@ -392,8 +392,8 @@ a:hover {
   .author__urls::before,
   .author__urls::after,
   .author__urls-wrapper::before { display: none !important; }
-  .author__urls li { padding: 0; white-space: nowrap; }
-  .author__urls a { font-size: 0.82em; }
+  .author__urls li { padding: 0; margin: 0; white-space: nowrap; line-height: 1.15; }
+  .author__urls a { font-size: 0.82em; line-height: 1.15; padding: 0.12em 0; }
 }
 
 /* Very narrow phones: the three-column card gets cramped, so drop the links
