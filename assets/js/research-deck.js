@@ -31,26 +31,23 @@
     stage.style.height = max + "px";
   }
 
-  // Coverflow positions, keyed by signed distance from the active card.
+  // The active card is (nearly) full width; only the immediate neighbours peek out
+  // a small amount behind it — the previous one to the LEFT (tucking behind the
+  // profile sidebar), the next one to the RIGHT.
   function layout() {
-    var W = stage.clientWidth || 640;
     cards.forEach(function (card, i) {
       var p = i - active;
-      var ap = Math.abs(p);
       var dir = p < 0 ? -1 : 1;
       var transform, opacity, z;
       if (p === 0) {
         transform = "translateX(0) rotateY(0deg) scale(1)";
         opacity = 1; z = 100;
-      } else if (ap === 1) {
-        transform = "translateX(" + dir * 0.6 * W + "px) rotateY(" + (-dir * 16) + "deg) scale(0.92)";
-        opacity = 1; z = 99;
-      } else if (ap === 2) {
-        transform = "translateX(" + dir * 0.86 * W + "px) rotateY(" + (-dir * 20) + "deg) scale(0.82)";
-        opacity = 0.45; z = 98;
+      } else if (Math.abs(p) === 1) {
+        transform = "translateX(" + (dir * 90) + "px) rotateY(" + (-dir * 8) + "deg) scale(0.955)";
+        opacity = 0.85; z = 99;
       } else {
-        transform = "translateX(" + dir * 1.1 * W + "px) rotateY(" + (-dir * 22) + "deg) scale(0.72)";
-        opacity = 0; z = 97;
+        transform = "translateX(" + (dir * 130) + "px) rotateY(" + (-dir * 10) + "deg) scale(0.92)";
+        opacity = 0; z = 98;
       }
       card.classList.toggle("is-active", p === 0);
       card.style.transform = transform;

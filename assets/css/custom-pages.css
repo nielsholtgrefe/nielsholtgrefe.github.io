@@ -1433,17 +1433,25 @@ html[data-theme="dark"] .timeline-country {
 }
 .deck-controls, .deck-hint { display: none; }
 
-/* Interactive coverflow deck (class added by research-deck.js) */
-.theme-deck.js-deck { padding: 0; overflow: hidden; }
+/* Interactive deck (class added by research-deck.js). The deck bleeds to the left
+   under the profile sidebar (which is raised above it), so the previous card tucks
+   behind the profile; the active card fills nearly the full content width. */
+.theme-deck.js-deck {
+  --deck-bleed: 11em;
+  padding: 0;
+  margin-left: calc(-1 * var(--deck-bleed));
+  overflow: hidden;
+}
 .theme-deck.js-deck .deck-stage {
   position: relative;
-  perspective: 1700px;
+  perspective: 2000px;
 }
 .theme-deck.js-deck .deck-card {
   position: absolute;
   top: 0;
-  left: 17%;
-  width: 66%;
+  left: var(--deck-bleed);
+  right: 1.4em;
+  width: auto;
   margin: 0;
   overflow-y: auto;
   transform-origin: center center;
@@ -1453,7 +1461,7 @@ html[data-theme="dark"] .timeline-country {
 }
 .theme-deck.js-deck .deck-card:not(.is-active) {
   cursor: pointer;
-  box-shadow: 0 10px 26px rgba(26, 92, 122, 0.2);
+  box-shadow: 0 12px 30px rgba(26, 92, 122, 0.22);
 }
 .theme-deck.js-deck .deck-controls { display: flex; }
 .theme-deck.js-deck .deck-hint { display: block; }
@@ -1532,8 +1540,11 @@ html[data-theme="dark"] .timeline-country {
   .theme-deck.js-deck .deck-card { transition: none; }
 }
 
-@media (max-width: 640px) {
-  .theme-deck.js-deck .deck-card { left: 8%; width: 84%; }
+/* Below the sidebar breakpoint the profile stacks above the content, so there is
+   nothing to bleed behind — drop the bleed and use full-width cards. */
+@media (max-width: 1023px) {
+  .theme-deck.js-deck { --deck-bleed: 0em; margin-left: 0; }
+  .theme-deck.js-deck .deck-card { left: 0; right: 0; }
 }
 
 .research-tag {
