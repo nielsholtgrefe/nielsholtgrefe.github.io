@@ -573,3 +573,30 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ================================================================
+   Faint site-wide phylogenetic-network texture
+   A seamless tiled SVG mesh sits fixed behind all content. It is used as a
+   mask so it picks up the theme accent colour, and kept at low opacity so it
+   reads as a subtle backdrop. Cards/sidebar/masthead have solid backgrounds,
+   so text always stays crisp over it.
+   ================================================================ */
+/* Guarded on mask support so unsupported browsers don't get a solid tint. */
+@supports ((-webkit-mask-image: url("#")) or (mask-image: url("#"))) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--nh-accent-mid);
+    -webkit-mask-image: url('/assets/images/network-bg.svg');
+    mask-image: url('/assets/images/network-bg.svg');
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    -webkit-mask-size: 480px 480px;
+    mask-size: 480px 480px;
+    opacity: 0.11;
+  }
+  html[data-theme="dark"] body::before { opacity: 0.13; }
+}
