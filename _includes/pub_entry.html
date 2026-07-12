@@ -24,7 +24,15 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
       {%- elsif pub.type == "thesis" -%}{%- assign venue_url = pub.repository-url -%}
       {%- elsif pub.type == "extended-abstract" -%}{%- assign venue_url = pub.preprint-url -%}
       {%- endif -%}
+      {%- comment -%} Short, colour-coded label for the publication type {%- endcomment -%}
+      {%- assign type_label = "" -%}
+      {%- case pub.type -%}
+        {%- when "journal" -%}{%- assign type_label = "Journal article" -%}
+        {%- when "preprint" -%}{%- assign type_label = "Preprint" -%}
+        {%- when "conference" -%}{%- assign type_label = "Conference proceedings" -%}
+      {%- endcase -%}
       <div class="pub-venue">
+        {%- if type_label != "" -%}<span class="pub-type-label pub-type-{{ pub.type }}">{{ type_label }}</span>{%- endif -%}
         {%- if venue_url and venue_url != "" -%}<a class="pub-venue-link" href="{{ venue_url }}" target="_blank">{%- endif -%}
         {%- if pub.type == "journal" -%}
           <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}{% if pub.year %}, {{ pub.year }}{% endif %}
@@ -82,9 +90,7 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
       {% if pub.abstract %}
         <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ slug }}')">abstract</button>
       {% endif %}
-      {% if pub.bibtex %}
-        <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ slug }}')">bibtex</button>
-      {% endif %}
+      <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ slug }}')">bibtex</button>
     </div>
   </div>
 
@@ -103,10 +109,8 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
         {{ pub.abstract }}
       </div>
     {% endif %}
-    {% if pub.bibtex %}
-      <div id="bib_{{ slug }}" class="bibtex noshow">
-        <pre>{{ pub.bibtex }}</pre>
-      </div>
-    {% endif %}
+    <div id="bib_{{ slug }}" class="bibtex noshow">
+      <pre>{%- include pub_bibtex.html pub=pub -%}</pre>
+    </div>
   </div>
 </div>

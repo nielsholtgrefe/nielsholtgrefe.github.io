@@ -18,41 +18,10 @@ classes: wide
 
 
 
-<p>Below you can find my publications and preprints, with links and toggleable abstracts. MSc and BSc theses are listed at the <a href="#theses">bottom</a>. See also my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.</p>
+<p>Below are my publications and preprints, each with links, an abstract, a short plain-language summary, and a BibTeX entry; use the filter to narrow by type, or download every reference as a single <code>.bib</code> file. My <a href="#theses">theses</a> and other work are listed further down. See also my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.</p>
 
 
 {% assign all_pubs = site.data.pubs %}
-
-{%- comment -%}
-Collect the unique set of tags across all publications for the filter bar
-{%- endcomment -%}
-{% assign all_tags = "" | split: "" %}
-{% for pub in all_pubs %}
-  {% if pub.tags %}
-    {% assign all_tags = all_tags | concat: pub.tags %}
-  {% endif %}
-{% endfor %}
-{% assign all_tags = all_tags | uniq | sort %}
-
-<div class="pub-toolbar">
-  {% if all_tags.size > 0 %}
-  <div class="pub-toolbar-group" role="group" aria-label="Filter publications by topic">
-    <span class="pub-toolbar-label">Filter</span>
-    <button class="filter-pill is-active" data-filter-tag="all" onclick="filterPubs('all', this)">all</button>
-    {% for tag in all_tags %}
-    <button class="filter-pill" data-filter-tag="{{ tag }}" onclick="filterPubs('{{ tag }}', this)">{{ tag }}</button>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  <div class="pub-toolbar-group pub-toolbar-sort" role="group" aria-label="Sort publications">
-    <span class="pub-toolbar-label">Sort</span>
-    <button class="sort-pill is-active" data-sort="year" onclick="sortPubs('year', this)">newest</button>
-    <button class="sort-pill" data-sort="oldest" onclick="sortPubs('oldest', this)">oldest</button>
-    <button class="sort-pill" data-sort="title" onclick="sortPubs('title', this)">A&ndash;Z</button>
-    <button class="sort-pill" data-sort="type" onclick="sortPubs('type', this)">type</button>
-  </div>
-</div>
 
 {%- comment -%}
 Split into main pubs (journal/preprint/conference), theses, and miscellaneous
@@ -63,7 +32,36 @@ Split into main pubs (journal/preprint/conference), theses, and miscellaneous
 {% assign misc = all_pubs | where: "type", "extended-abstract" | sort: "release-date" | reverse %}
 {% assign total = main_pubs | size %}
 
+{%- comment -%} Type filter: only offer the types that are actually present {%- endcomment -%}
+{% assign type_order = "journal,conference,preprint" | split: "," %}
+
 <div class="pub-list">
+  <h2 id="publications" class="pub-section-head pub-section-head--first">Publications</h2>
+
+  <div class="pub-toolbar">
+    <div class="pub-toolbar-group" role="group" aria-label="Filter publications by type">
+      <span class="pub-toolbar-label">Filter</span>
+      <button class="filter-pill is-active" data-filter-type="all" aria-pressed="true" onclick="filterPubs('all', this)">all</button>
+      {% for t in type_order %}
+        {% assign n = main_pubs | where: "type", t | size %}
+        {% if n > 0 %}
+          {% case t %}
+            {% when "journal" %}{% assign tname = "journal articles" %}
+            {% when "conference" %}{% assign tname = "conference papers" %}
+            {% when "preprint" %}{% assign tname = "preprints" %}
+          {% endcase %}
+          <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }}</button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="pub-toolbar-group pub-toolbar-sort" role="group" aria-label="Sort publications">
+      <span class="pub-toolbar-label">Sort</span>
+      <button class="sort-pill is-active" data-sort="year" aria-pressed="true" onclick="sortPubs('year', this)">newest</button>
+      <button class="sort-pill" data-sort="oldest" aria-pressed="false" onclick="sortPubs('oldest', this)">oldest</button>
+    </div>
+  </div>
+
   <div class="pub-main">
     {% assign current_year = "" %}
     {% for pub in main_pubs %}
@@ -95,7 +93,14 @@ Split into main pubs (journal/preprint/conference), theses, and miscellaneous
   {% endif %}
 </div>
 
-<p class="pub-filter-empty noshow">No publications match this topic.</p>
+<p class="pub-filter-empty noshow" aria-live="polite">No publications match this filter.</p>
+
+<div class="pub-downloads">
+  <a class="pub-download-bib" href="{{ '/publications.bib' | relative_url }}" download>
+    <svg class="pub-download-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1a.75.75 0 0 1 .75.75v6.69l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 0 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11a.75.75 0 0 1 .75.75v1.5c0 .14.11.25.25.25h8.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-1.5a.75.75 0 0 1 .75-.75Z"/></svg>
+    Download all references (BibTeX)
+  </a>
+</div>
 
 <p class="pub-coauthors-link">See also the full <a href="{{ '/coauthors/' | relative_url }}">list of co-authors</a>.</p>
 

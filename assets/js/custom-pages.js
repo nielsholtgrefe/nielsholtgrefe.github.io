@@ -11,29 +11,13 @@ function toggleBox(id) {
 }
 
 /* ---- Publication filtering + sorting (vanilla JS, no dependencies) ----
-   pubRender() reconciles the tag filter and the sort mode. Sorting/grouping
+   pubRender() reconciles the type filter and the sort mode. Sorting/grouping
    applies only to the main section (.pub-main); theses and miscellaneous keep
-   their own sections at the bottom, so their anchors stay valid. Dividers are
-   regenerated per sort: year labels (newest/oldest) or type labels (type). */
-let pubCurrentTag = "all";
+   their own sections at the bottom, so their anchors stay valid. Year dividers
+   are shown for both newest and oldest order. */
+let pubCurrentType = "all";
 let pubCurrentSort = "year";
 let pubMainOriginal = null;
-
-const PUB_TYPE_LABELS = {
-  journal: "Journal articles",
-  preprint: "Preprints",
-  conference: "Conference papers",
-};
-const PUB_TYPE_RANK = { journal: 0, conference: 1, preprint: 2 };
-
-function pubMakeDivider(text) {
-  const d = document.createElement("div");
-  d.className = "year-label js-divider";
-  const s = document.createElement("span");
-  s.textContent = text;
-  d.appendChild(s);
-  return d;
-}
 
 function pubRender() {
   const list = document.querySelector(".pub-list");
@@ -41,51 +25,35 @@ function pubRender() {
   if (!list || !main) return;
   if (!pubMainOriginal) pubMainOriginal = Array.from(main.children);
 
-  // 1) Apply the tag filter across every entry (main, theses, miscellaneous)
+  // 1) Apply the type filter across every entry (main, theses, miscellaneous)
   let anyVisible = false;
   list.querySelectorAll(".pub-item").forEach((item) => {
-    const tags = (item.dataset.tags || "").split(/\s+/).filter(Boolean);
-    const show = pubCurrentTag === "all" || tags.includes(pubCurrentTag);
+    const show = pubCurrentType === "all" || item.dataset.type === pubCurrentType;
     item.classList.toggle("noshow", !show);
     if (show) anyVisible = true;
   });
 
   // 2) Arrange the main section
-  main.querySelectorAll(".js-divider").forEach((d) => d.remove());
-
   if (pubCurrentSort === "year") {
     pubMainOriginal.forEach((node) => main.appendChild(node));
-    main.querySelectorAll(".year-label").forEach((l) => l.classList.remove("noshow"));
-    pubHideEmptyYearLabels(main);
-    main.classList.remove("hide-pubnum");
   } else {
-    main.querySelectorAll(".year-label").forEach((l) => l.classList.add("noshow"));
+    // oldest: reverse chronological order, keeping year dividers
     const items = Array.from(main.querySelectorAll(".pub-item"));
-    const byDateDesc = (a, b) => (b.dataset.date || "").localeCompare(a.dataset.date || "");
-    const comparators = {
-      oldest: (a, b) => (a.dataset.date || "").localeCompare(b.dataset.date || ""),
-      title: (a, b) => (a.dataset.title || "").localeCompare(b.dataset.title || ""),
-      type: (a, b) => (PUB_TYPE_RANK[a.dataset.type] - PUB_TYPE_RANK[b.dataset.type]) || byDateDesc(a, b),
-    };
-    items.sort(comparators[pubCurrentSort] || byDateDesc);
-
-    // Oldest keeps year dividers; type gets "Journal articles"-style dividers.
-    let lastGroup = null;
+    items.sort((a, b) => (a.dataset.date || "").localeCompare(b.dataset.date || ""));
+    main.querySelectorAll(".year-label").forEach((l) => main.appendChild(l));
+    let lastYear = null;
     items.forEach((item) => {
-      const groupable = pubCurrentSort === "oldest" || pubCurrentSort === "type";
-      if (groupable && !item.classList.contains("noshow")) {
-        const g = pubCurrentSort === "oldest" ? item.dataset.year : item.dataset.type;
-        if (g !== lastGroup) {
-          const label = pubCurrentSort === "type" ? (PUB_TYPE_LABELS[g] || g) : g;
-          main.appendChild(pubMakeDivider(label));
-          lastGroup = g;
-        }
+      if (!item.classList.contains("noshow") && item.dataset.year !== lastYear) {
+        const label = Array.from(main.querySelectorAll(".year-label"))
+          .find((l) => (l.textContent || "").trim() === item.dataset.year);
+        if (label) main.appendChild(label);
+        lastYear = item.dataset.year;
       }
       main.appendChild(item);
     });
-    // Only A-Z / type break the chronological index numbering, so hide it there.
-    main.classList.toggle("hide-pubnum", pubCurrentSort === "title" || pubCurrentSort === "type");
   }
+  main.querySelectorAll(".year-label").forEach((l) => l.classList.remove("noshow"));
+  pubHideEmptyYearLabels(main);
 
   // 3) Section headers (theses, misc) shown only when they hold a visible entry
   ["theses", "misc"].forEach((id) => {
@@ -118,11 +86,13 @@ function pubHideEmptyYearLabels(main) {
   });
 }
 
-function filterPubs(tag, btn) {
-  if (tag !== "all" && btn && btn.classList.contains("is-active")) tag = "all";
-  pubCurrentTag = tag;
+function filterPubs(type, btn) {
+  if (type !== "all" && btn && btn.classList.contains("is-active")) type = "all";
+  pubCurrentType = type;
   document.querySelectorAll(".filter-pill").forEach((pill) => {
-    pill.classList.toggle("is-active", pill.dataset.filterTag === tag);
+    const on = pill.dataset.filterType === type;
+    pill.classList.toggle("is-active", on);
+    pill.setAttribute("aria-pressed", on ? "true" : "false");
   });
   pubRender();
 }
@@ -130,7 +100,9 @@ function filterPubs(tag, btn) {
 function sortPubs(mode, btn) {
   pubCurrentSort = mode;
   document.querySelectorAll(".sort-pill").forEach((pill) => {
-    pill.classList.toggle("is-active", pill.dataset.sort === mode);
+    const on = pill.dataset.sort === mode;
+    pill.classList.toggle("is-active", on);
+    pill.setAttribute("aria-pressed", on ? "true" : "false");
   });
   pubRender();
 }
