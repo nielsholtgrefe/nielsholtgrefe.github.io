@@ -312,21 +312,21 @@
   border: 1px solid transparent;
 }
 .pub-type-journal {
-  color: #8a5a12;
-  background: #fbf1de;
-  border-color: #ecd6a8;
-}
-.pub-type-preprint {
   color: var(--nh-accent, #1a5c7a);
   background: var(--nh-accent-light, #e4f2f7);
   border-color: var(--nh-border, #bcd6e2);
+}
+.pub-type-preprint {
+  color: #8a5a12;
+  background: #fbf1de;
+  border-color: #ecd6a8;
 }
 .pub-type-conference {
   color: #4b3b8f;
   background: #ece9fb;
   border-color: #cdc6ef;
 }
-html[data-theme="dark"] .pub-type-journal {
+html[data-theme="dark"] .pub-type-preprint {
   color: #e8c98a; background: rgba(180, 130, 40, 0.16); border-color: rgba(200, 160, 80, 0.3);
 }
 html[data-theme="dark"] .pub-type-conference {
