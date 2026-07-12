@@ -13,16 +13,35 @@ classes: wide
 <details class="layman-details">
   <summary>New to phylogenetics? Read a plain-language introduction.</summary>
   <div class="layman-content">
-    <p>Biologists want to understand how species are related — which ones share a common ancestor and when lineages diverged from each other. The standard tool is a <em>phylogenetic tree</em>: a branching diagram, much like a family tree, where lineages only ever split apart over time.</p>
-    <p>But real evolution is messier. Sometimes two diverging lineages hybridize and produce offspring together — think of mules (horse &times; donkey), or the many plant species that formed through hybridization. Bacteria routinely swap genes with unrelated organisms. Two lineages can separate, evolve independently for millions of years, and then come back into contact and merge. None of these events can be represented by a simple tree.</p>
-    <p>A <em>phylogenetic network</em> is a generalization of a tree that allows these "reticulate" (merging) events, drawn as extra crossing edges in the graph. The central questions of my research are: can we reconstruct this network from genomic data collected from present-day species? Under what conditions is this theoretically possible? And how do we do it efficiently, even on large datasets?</p>
+    <p>Biologists want to understand how living species are related — which ones share a common ancestor, and when their lineages split apart. The classic picture is a <em>phylogenetic tree</em>: a branching "family tree of species" in which lineages only ever divide as time moves forward.</p>
+
+    <figure class="layman-figure">
+      <img src="{{ '/assets/images/tree-vs-network.png' | relative_url }}" alt="A phylogenetic tree, where lineages only split, beside a phylogenetic network, where two lineages can also merge." loading="lazy">
+      <figcaption><strong>Left:</strong> a tree — lineages only ever split. <strong>Right:</strong> a network — two lineages can also merge back together (the highlighted event).</figcaption>
+    </figure>
+
+    <h3>Why a tree is sometimes not enough</h3>
+    <p>Real evolution is messier than pure branching. Sometimes two separate lineages come back together: horses and donkeys produce mules, many plants arise by hybridizing two parent species, and bacteria routinely swap genes with unrelated microbes. These "merging" (<em>reticulate</em>) events simply cannot be drawn on a tree. A <em>phylogenetic network</em> generalizes the tree by allowing such merges, shown as extra connecting edges.</p>
+
+    <h3>Why do people study this?</h3>
+    <p>Getting the picture right changes the conclusions we draw — about how a species came to be, where a useful trait (say, disease resistance) originally came from, or how quickly life diversified. Networks are increasingly needed for groups where hybridization and gene flow are common, from crops and fish to viruses.</p>
+
+    <h3>The main questions I work on</h3>
+    <p><strong>Can we reconstruct</strong> the network of a group's shared history from genetic data of species living today? <strong>Is it even possible in principle</strong>, or can genuinely different histories leave identical traces in the data? And <strong>can we do it efficiently</strong>, even for hundreds of species? These threads run through the themes below.</p>
+
+    <p class="layman-more">More background on Wikipedia: <a href="https://en.wikipedia.org/wiki/Phylogenetic_network" target="_blank" rel="noopener">Phylogenetic network</a> · <a href="https://en.wikipedia.org/wiki/Phylogenetic_tree" target="_blank" rel="noopener">Phylogenetic tree</a>.</p>
   </div>
 </details>
 
 <hr>
 
+{%- comment -%} Publication numbering that matches the /publications/ page, so the
+"other related" entries can reference papers by their [n]. {%- endcomment -%}
+{% assign main_pubs = site.data.pubs | where_exp: "p", "p.type != 'thesis'" | where_exp: "p", "p.type != 'extended-abstract'" | sort: "release-date" | reverse %}
+{% assign total_main = main_pubs | size %}
+
 {% assign nthemes = site.data.research | size %}
-<div class="theme-deck" id="theme-deck" data-deck-variant="tuck" aria-roledescription="carousel" aria-label="Research themes">
+<div class="theme-deck" id="theme-deck" data-deck-variant="fan" aria-roledescription="carousel" aria-label="Research themes">
   <div class="deck-stage" id="deck-stage">
     {% for theme in site.data.research %}
       {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
@@ -35,23 +54,21 @@ classes: wide
           </h2>
         </div>
 
-        <div class="research-layout">
-          <div class="research-figure">
-            <img src="{{ theme.image | relative_url }}" alt="Illustrative diagram for {{ theme.title }}" loading="lazy"
-                 onerror="this.closest('.research-figure').classList.add('is-placeholder'); this.style.display='none';">
-            <span class="research-figure-note">diagram placeholder</span>
-          </div>
+        <div class="research-body">
+          <p>{{ theme.body }}</p>
+        </div>
 
-          <div class="research-body">
-            <p>{{ theme.body }}</p>
-          </div>
+        <div class="research-figure">
+          <img src="{{ theme.image | relative_url }}" alt="Illustrative diagram for {{ theme.title }}" loading="lazy"
+               onerror="this.closest('.research-figure').classList.add('is-placeholder'); this.style.display='none';">
+          <span class="research-figure-note">diagram placeholder</span>
         </div>
 
         {% if related.size > 0 %}
         <div class="research-papers">
-          <div class="research-papers-heading">Related publications</div>
+          <div class="research-papers-heading">Selected publications</div>
           <ul>
-            {% for pub in related %}
+            {% for pub in related limit: 3 %}
               {%- assign author_str = "" -%}
               {%- for a in pub.authors -%}
                 {%- assign initial = a.first | slice: 0 -%}
@@ -91,6 +108,18 @@ classes: wide
               </li>
             {% endfor %}
           </ul>
+
+          {% if related.size > 3 %}
+          <div class="research-papers-other">
+            <span class="research-other-label">Other related publications:</span>
+            {% for pub in related offset: 3 %}
+              {%- assign pslug = pub.title | slugify -%}
+              {%- assign num = "" -%}
+              {%- for p in main_pubs -%}{%- if p.title == pub.title -%}{%- assign num = total_main | minus: forloop.index0 -%}{%- endif -%}{%- endfor -%}
+              <a class="research-other-num" href="{{ '/publications/' | relative_url }}#pub-{{ pslug }}" title="{{ pub.title | escape }}">{% if num != "" %}[{{ num }}]{% else %}&bull;{% endif %}</a>{%- unless forloop.last -%}<span class="research-other-sep">, </span>{%- endunless -%}
+            {% endfor %}
+          </div>
+          {% endif %}
         </div>
         {% endif %}
       </article>

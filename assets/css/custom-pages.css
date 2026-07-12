@@ -1426,6 +1426,36 @@ html[data-theme="dark"] .timeline-country {
 .layman-content p { margin: 0 0 0.75em; }
 .layman-content p:last-child { margin-bottom: 0; }
 
+.layman-content h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92em;
+  font-weight: 700;
+  color: var(--nh-accent, #1a5c7a);
+  margin: 1.1em 0 0.35em;
+  letter-spacing: 0.01em;
+}
+
+.layman-figure {
+  margin: 0.4em 0 0.9em;
+  text-align: center;
+}
+.layman-figure img {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  border: 1px solid var(--nh-border, #cddae2);
+  border-radius: 8px;
+  background: var(--nh-accent-light, #e4f2f7);
+}
+.layman-figure figcaption {
+  font-size: 0.82em;
+  color: var(--nh-text-faint, #808993);
+  margin-top: 0.45em;
+}
+
+.layman-more { font-size: 0.9em; }
+
 /* ---- Card decks (research themes + software packages), driven by deck.js ---- */
 .theme-deck, .software-deck { margin: 1.8em 0; }
 
@@ -1459,22 +1489,13 @@ html[data-theme="dark"] .timeline-country {
 .js-deck .deck-controls { display: flex; }
 .js-deck .deck-hint { display: block; }
 
-/* "tuck" variant (research): the deck bleeds left under the profile sidebar (raised
-   above it), so the previous card tucks behind the profile; the active card fills
-   nearly the full content width. */
-.theme-deck.js-deck {
-  --deck-bleed: 11em;
-  padding: 0;
-  margin-left: calc(-1 * var(--deck-bleed));
-  overflow: hidden;
-}
-.theme-deck.js-deck .deck-stage { position: relative; perspective: 2000px; }
-.theme-deck.js-deck .deck-card { left: var(--deck-bleed); right: 1.4em; width: auto; }
-
-/* "fan" variant (software): narrower cards; neighbours are shown more, tilted in
-   the background (coverflow). */
+/* "fan" variant (both decks): narrower cards, so the neighbours show more, tilted
+   in the background (coverflow). Research cards are a touch wider than software. */
+.theme-deck.js-deck,
 .software-deck.js-deck { padding: 0; overflow: hidden; }
-.software-deck.js-deck .deck-stage { position: relative; perspective: 1800px; }
+.theme-deck.js-deck .deck-stage,
+.software-deck.js-deck .deck-stage { position: relative; perspective: 1900px; }
+.theme-deck.js-deck .deck-card { left: 17%; width: 66%; }
 .software-deck.js-deck .deck-card { left: 21%; width: 58%; }
 
 .deck-card-head { margin-bottom: 0.85em; }
@@ -1551,12 +1572,10 @@ html[data-theme="dark"] .timeline-country {
   .js-deck .deck-card { transition: none; }
 }
 
-/* Below the sidebar breakpoint the profile stacks above the content, so there is
-   nothing to bleed behind — drop the research bleed, and widen the software cards. */
+/* On smaller screens widen the cards (less room for the fanned neighbours). */
 @media (max-width: 1023px) {
-  .theme-deck.js-deck { --deck-bleed: 0em; margin-left: 0; }
-  .theme-deck.js-deck .deck-card { left: 0; right: 0; }
-  .software-deck.js-deck .deck-card { left: 10%; width: 80%; }
+  .theme-deck.js-deck .deck-card,
+  .software-deck.js-deck .deck-card { left: 8%; width: 84%; }
 }
 
 .research-tag {
@@ -1574,16 +1593,11 @@ html[data-theme="dark"] .timeline-country {
   letter-spacing: 0.02em;
 }
 
-/* Two-column layout: diagram beside the description */
-.research-layout {
-  display: flex;
-  gap: 1.5em;
-  align-items: flex-start;
-}
-
+/* Single-column theme card: text, then a centred figure below it, then pubs */
 .research-figure {
-  flex: 0 0 34%;
-  max-width: 240px;
+  margin: 0.1em auto 0.7em;
+  width: 100%;
+  max-width: 320px;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -1624,17 +1638,15 @@ html[data-theme="dark"] .timeline-country {
 
 .research-body {
   font-size: 0.92em;
-  line-height: 1.72;
+  line-height: 1.7;
   font-family: 'Inter', sans-serif;
-  flex: 1;
 }
 
 .research-body p { margin: 0 0 0.75em; }
 .research-body p:last-child { margin-bottom: 0; }
 
 @media (max-width: 600px) {
-  .research-layout { flex-direction: column; }
-  .research-figure { flex-basis: auto; max-width: none; width: 100%; }
+  .research-figure { max-width: 260px; }
 }
 
 /* Venue line carrying an inline, right-aligned plain-language summary fold */
@@ -1705,3 +1717,20 @@ html[data-theme="dark"] .timeline-country {
 .research-papers .paper-title { font-weight: 600; color: var(--nh-text-strong, #1a1a1a); }
 .research-papers .paper-authors { color: var(--nh-text-muted, #666); }
 .research-papers .paper-venue { font-style: italic; color: var(--nh-text-faint, #888); }
+
+.research-papers-other {
+  margin-top: 0.7em;
+  padding-top: 0.6em;
+  border-top: 1px dashed var(--nh-border, #d3dfe6);
+  font-size: 0.82em;
+  line-height: 1.5;
+}
+.research-other-label { color: var(--nh-text-faint, #808993); margin-right: 0.25em; }
+.research-other-num {
+  font-weight: 600;
+  color: var(--nh-accent, #1a5c7a);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+.research-other-num:hover { text-decoration: underline; }
+.research-other-sep { color: var(--nh-text-faint, #808993); }
