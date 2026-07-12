@@ -6,7 +6,7 @@ author_profile: true
 classes: wide
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <p>All software I develop follows the principles of open software: openly licensed, publicly developed on GitHub, and documented for a mixed audience of mathematicians and biologists. Each package has a dedicated documentation website, a test suite, and where applicable a graphical user interface so that researchers without a programming background can use the tools directly. The packages are designed to work together, with PhyloZoo providing a shared foundation that Squirrel and PaNDA build on.</p>
 
