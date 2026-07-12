@@ -924,6 +924,24 @@ ul.no-bullets li {
   box-shadow: 0 0 0 4px var(--nh-bg, #fff), 0 0 0 6px rgba(26, 92, 122, 0.18);
 }
 
+/* Conferences view transition (View Transitions API): when navigating to this
+   page, the timeline slides up and fades in as its own element while the rest
+   of the content cross-fades; on the way out it lifts away. Reduced-motion is
+   handled by the global ::view-transition reset in overrides.css. */
+.timeline { view-transition-name: nh-timeline; }
+::view-transition-new(nh-timeline) {
+  animation: nh-timeline-in 0.55s cubic-bezier(.22, .61, .36, 1) both;
+}
+::view-transition-old(nh-timeline) {
+  animation: nh-timeline-out 0.3s ease both;
+}
+@keyframes nh-timeline-in {
+  from { opacity: 0; transform: translateY(24px); }
+}
+@keyframes nh-timeline-out {
+  to { opacity: 0; transform: translateY(-12px); }
+}
+
 /* Faint outline of the host country, sitting on the right inside the card */
 .timeline-country {
   position: absolute;
