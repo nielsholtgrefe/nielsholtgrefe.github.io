@@ -284,7 +284,7 @@ a:hover {
 }
 
 .author__urls li {
-  padding: 0.16em 0;
+  padding: 0.09em 0;
 }
 
 .author__urls a {
@@ -517,6 +517,14 @@ html[data-theme="dark"] strong { color: var(--nh-text-strong); }
 html[data-theme="dark"] .author__name { color: var(--nh-text-strong); }
 html[data-theme="dark"] .sidebar,
 html[data-theme="dark"] .author__urls a { color: var(--nh-text); }
+
+/* In dark mode the profile-card icons go white/light (matching the LinkedIn
+   icon), instead of the teal used in light mode. Hover still highlights. */
+html[data-theme="dark"] .author__urls a .svg-inline--fa,
+html[data-theme="dark"] .author__urls.social-icons .fa,
+html[data-theme="dark"] .author__urls li i { color: var(--nh-text); }
+html[data-theme="dark"] .author__urls a:hover .svg-inline--fa,
+html[data-theme="dark"] .author__urls a:hover i { color: var(--nh-accent); }
 
 html[data-theme="dark"] hr { border-color: var(--nh-border); background: var(--nh-border); }
 
