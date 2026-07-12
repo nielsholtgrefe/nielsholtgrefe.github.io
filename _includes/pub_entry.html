@@ -92,13 +92,13 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
     </div>
 
     <div class="pub-toggles">
-      {% if pub.summary_lay and pub.summary_lay != "" %}
-        <button class="toggle-button lowkey" onclick="toggleBox('sum_{{ slug }}')">summary</button>
-      {% endif %}
       {% if pub.abstract %}
         <button class="toggle-button lowkey" onclick="toggleBox('abs_{{ slug }}')">abstract</button>
       {% endif %}
-      <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ slug }}')">bibtex</button>
+      {% if pub.summary_lay and pub.summary_lay != "" %}
+        <button class="toggle-button lowkey" onclick="toggleBox('sum_{{ slug }}')">summary</button>
+      {% endif %}
+      <button class="toggle-button lowkey" onclick="toggleBox('bib_{{ slug }}')">bib</button>
     </div>
   </div>
 

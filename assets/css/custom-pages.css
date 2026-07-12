@@ -313,11 +313,11 @@
 /* Colour-coded publication-type label, sitting inline at the start of the venue */
 .pub-type-label {
   display: inline-block;
-  font-size: 0.72em;
+  font-size: 0.64em;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 0.12em 0.55em;
+  padding: 0.1em 0.5em;
   border-radius: 4px;
   white-space: nowrap;
   border: 1px solid transparent;
@@ -448,8 +448,10 @@ html[data-theme="dark"] .pub-type-conference {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.5em;
+  gap: 0.45em;
   padding-top: 0.1em;
+  /* keep the icons clear of the toggle buttons on the bottom border */
+  margin-bottom: 0.5em;
 }
 
 /* Compact icon-only source links, in a right-aligned row (wrapping if needed) */
@@ -465,9 +467,9 @@ html[data-theme="dark"] .pub-type-conference {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.9em;
-  height: 1.9em;
-  border-radius: 6px;
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 5px;
   border: 1px solid var(--nh-border, #cddae2);
   background: var(--nh-surface, #f8fbfd);
   color: var(--nh-accent-mid, #4a8fa8);
@@ -478,7 +480,7 @@ html[data-theme="dark"] .pub-type-conference {
   border-color: var(--nh-accent-solid, #1a5c7a);
   color: #fff;
 }
-.pub-btn-icon { width: 0.95em; height: 0.95em; display: block; }
+.pub-btn-icon { width: 0.82em; height: 0.82em; display: block; }
 
 /* Toggle buttons straddling the bottom border, right-aligned (no added height) */
 .pub-toggles {
