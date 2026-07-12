@@ -583,7 +583,9 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
    ================================================================ */
 /* Guarded on mask support so unsupported browsers don't get a solid tint. */
 @supports ((-webkit-mask-image: url("#")) or (mask-image: url("#"))) {
-  body { position: relative; }
+  /* z-index:0 makes body a stacking context, so the z-index:-1 layer paints
+     above the body's (opaque, in dark mode) background instead of behind it. */
+  body { position: relative; z-index: 0; }
   body::before {
     content: "";
     position: absolute;   /* scrolls with the page rather than staying fixed */
