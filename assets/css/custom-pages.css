@@ -313,14 +313,13 @@
 /* Colour-coded publication-type label, sitting inline at the start of the venue */
 .pub-type-label {
   display: inline-block;
-  font-size: 0.86em;
+  font-size: 0.72em;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 0.06em 0.5em;
+  padding: 0.12em 0.55em;
   border-radius: 4px;
-  margin-right: 0.55em;
-  vertical-align: 0.05em;
+  white-space: nowrap;
   border: 1px solid transparent;
 }
 .pub-type-journal {
@@ -443,20 +442,43 @@ html[data-theme="dark"] .pub-type-conference {
   color: var(--nh-accent);
 }
 
-/* Link buttons on the right, in a horizontal row (wrapping if needed) */
-.pub-links {
+/* Right rail: the type-label pill on top, the source-link icons below it */
+.pub-aside {
   flex: 0 0 auto;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 0.3em;
-  max-width: 45%;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5em;
   padding-top: 0.1em;
 }
 
+/* Compact icon-only source links, in a right-aligned row (wrapping if needed) */
+.pub-links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  gap: 0.35em;
+}
 .pub-links:empty { display: none; }
-.pub-links .link-button { margin: 0; }
+
+.pub-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 6px;
+  border: 1px solid var(--nh-border, #cddae2);
+  background: var(--nh-surface, #f8fbfd);
+  color: var(--nh-accent-mid, #4a8fa8);
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.pub-icon-btn:hover {
+  background: var(--nh-accent-solid, #1a5c7a);
+  border-color: var(--nh-accent-solid, #1a5c7a);
+  color: #fff;
+}
+.pub-btn-icon { width: 0.95em; height: 0.95em; display: block; }
 
 /* Toggle buttons straddling the bottom border, right-aligned (no added height) */
 .pub-toggles {
