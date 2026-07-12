@@ -140,7 +140,7 @@ function sortPubs(mode, btn) {
 document.addEventListener("click", (e) => {
   const card = e.target.closest(".pub-card");
   if (!card) return;
-  if (e.target.closest("a, button")) return; // let links/toggles act normally
+  if (e.target.closest("a, button, .pub-info")) return; // let links/toggles/info icon act normally
   const item = card.closest(".pub-item");
   const abs = item && item.querySelector(".abstract-box");
   if (abs) toggleBox(abs.id);
