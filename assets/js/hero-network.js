@@ -16,25 +16,27 @@
   if (!ctx) return;
 
   // Network topology in normalized [0,1] coordinates (x →, y ↓).
-  // A rooted network that branches down to leaves, with one reticulation (r)
-  // whose two parents (d, e) are joined by coral edges.
+  // A semi-directed network with no suppressible (degree-2) nodes: every leaf
+  // (L*) has degree 1, every internal node has degree 3, and the reticulation
+  // (ret) has two parents p, q — the coral edges — that form a 4-cycle with mC.
   var N = {
-    root: [0.5, 0.1], a: [0.3, 0.34], b: [0.7, 0.34],
-    c: [0.19, 0.62], d: [0.42, 0.6], e: [0.58, 0.6], f: [0.81, 0.62],
-    r: [0.5, 0.82],
-    la: [0.11, 0.92], lb: [0.3, 0.92], lc: [0.5, 0.97], ld: [0.7, 0.92], le: [0.89, 0.92]
+    m0: [0.5, 0.1], mL: [0.26, 0.32], mR: [0.74, 0.32], mC: [0.5, 0.34],
+    p: [0.4, 0.57], q: [0.6, 0.57], ret: [0.5, 0.75],
+    L1: [0.1, 0.55], L2: [0.28, 0.58], L3: [0.72, 0.58], L4: [0.9, 0.55],
+    Lp: [0.3, 0.75], Lq: [0.7, 0.75], Lr: [0.5, 0.95]
   };
   var TREE = [
-    ["root", "a"], ["root", "b"], ["a", "c"], ["a", "d"], ["b", "e"], ["b", "f"],
-    ["c", "la"], ["c", "lb"], ["f", "ld"], ["f", "le"], ["r", "lc"]
+    ["m0", "mL"], ["m0", "mR"], ["m0", "mC"],
+    ["mL", "L1"], ["mL", "L2"], ["mR", "L3"], ["mR", "L4"],
+    ["mC", "p"], ["mC", "q"], ["p", "Lp"], ["q", "Lq"], ["ret", "Lr"]
   ];
-  var RETIC = [["d", "r"], ["e", "r"]];
+  var RETIC = [["p", "ret"], ["q", "ret"]];
 
   // Give each node its own gentle drift (phase + frequency + amplitude).
   var keys = Object.keys(N);
   var drift = {};
   keys.forEach(function (k, i) {
-    var leaf = k.length === 2;                       // la, lb, ... drift a touch more
+    var leaf = k.charAt(0) === "L";                  // leaves drift a touch more
     drift[k] = {
       base: N[k],
       ax: (leaf ? 0.014 : 0.008) * (0.7 + (i % 5) / 8),
@@ -93,8 +95,8 @@
     // Nodes.
     keys.forEach(function (k) {
       var p = pos(k, t);
-      var leaf = k.length === 2;
-      if (k === "r") {
+      var leaf = k.charAt(0) === "L";
+      if (k === "ret") {
         ctx.fillStyle = "rgba(239,111,83," + (0.6 + 0.35 * pulse).toFixed(3) + ")";
         ctx.beginPath(); ctx.arc(p[0], p[1], 3.4 + pulse, 0, 6.283); ctx.fill();
       } else {
