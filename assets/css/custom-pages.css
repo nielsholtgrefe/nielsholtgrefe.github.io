@@ -997,29 +997,81 @@ html[data-theme="dark"] .timeline-country {
   margin: 0 0 0.85em;
 }
 
-.software-card-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35em;
-  margin-bottom: 1em;
+/* Related publications on a software card */
+.software-card-pubs {
+  margin: 0 0 1em;
+  padding-top: 0.75em;
+  border-top: 1px solid var(--nh-border-soft, #eef4f7);
 }
 
-.software-chip {
-  font-size: 0.68em;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--nh-accent);
-  background: var(--nh-accent-light);
-  border: 1px solid var(--nh-border);
-  border-radius: 5px;
-  padding: 2px 8px;
+.software-pubs-label {
+  display: block;
+  font-size: 0.62em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--nh-accent-mid, #4a8fa8);
+  margin-bottom: 0.4em;
 }
 
-.software-card-links {
+.software-card-pubs ul { list-style: none; margin: 0; padding: 0; }
+
+.software-card-pubs li {
+  font-size: 0.78em;
+  line-height: 1.4;
+  margin-bottom: 0.45em;
+}
+.software-card-pubs li:last-child { margin-bottom: 0; }
+
+.software-card-pubs a { font-weight: 500; color: var(--nh-accent); }
+
+.software-pub-venue {
+  display: block;
+  font-size: 0.92em;
+  font-style: italic;
+  color: var(--nh-text-faint, #808993);
+}
+
+/* Action buttons (GitHub / Docs), equal width and aligned */
+.software-card-actions {
   margin-top: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4em;
+  gap: 0.55em;
+}
+
+.software-btn {
+  flex: 1 1 0;
+  min-width: 6.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  padding: 0.52em 0.9em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82em;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.12s;
+}
+.software-btn:hover { text-decoration: none; transform: translateY(-1px); }
+
+.software-btn-icon { width: 1.05em; height: 1.05em; flex-shrink: 0; }
+
+.software-btn--primary { background: var(--nh-accent-solid, #1a5c7a); color: #fff; }
+.software-btn--primary:hover { background: var(--nh-accent-solid-hover, #134a63); color: #fff; }
+
+.software-btn--ghost {
+  background: transparent;
+  border-color: var(--nh-border, #cddae2);
+  color: var(--nh-accent, #1a5c7a);
+}
+.software-btn--ghost:hover {
+  border-color: var(--nh-accent-mid, #4a8fa8);
+  background: var(--nh-accent-light, #e4f2f7);
+  color: var(--nh-accent, #1a5c7a);
 }
 
 .software-footer-note {
@@ -1366,26 +1418,119 @@ html[data-theme="dark"] .timeline-country {
 .layman-content p { margin: 0 0 0.75em; }
 .layman-content p:last-child { margin-bottom: 0; }
 
-.research-card {
+/* ---- Research theme deck (stacked card carousel) ---- */
+.theme-deck { margin: 1.8em 0; }
+
+/* No-JS fallback: a plain vertical stack of cards */
+.deck-card {
+  box-sizing: border-box;
   border: 1px solid var(--nh-border, #c8d9e3);
-  border-radius: 9px;
-  padding: 1.5em 1.7em 1.7em;
-  margin: 2em 0;
+  border-radius: 12px;
+  padding: 1.4em 1.7em 1.6em;
+  margin: 0 0 1.4em;
   background: var(--nh-surface, #f8fbfd);
   box-shadow: 0 2px 10px rgba(26, 92, 122, 0.055);
-  transition: box-shadow 0.2s;
+}
+.deck-controls, .deck-hint { display: none; }
+
+/* Interactive stacked mode (class added by research-deck.js) */
+.theme-deck.js-deck { padding: 0 2.2em; }
+.theme-deck.js-deck .deck-stage {
+  position: relative;
+  perspective: 1600px;
+  transition: height 0.42s cubic-bezier(.22, .61, .36, 1);
+}
+.theme-deck.js-deck .deck-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  transform-origin: center left;
+  backface-visibility: hidden;
+  box-shadow: 0 14px 34px rgba(26, 92, 122, 0.14);
+  transition: transform 0.45s cubic-bezier(.22, .61, .36, 1), opacity 0.4s ease, box-shadow 0.3s;
+}
+.theme-deck.js-deck .deck-card:not(.is-active) { cursor: pointer; }
+.theme-deck.js-deck .deck-controls { display: flex; }
+.theme-deck.js-deck .deck-hint { display: block; }
+
+.deck-card-head { margin-bottom: 0.85em; }
+
+.deck-card-count {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--nh-accent-mid, #4a8fa8);
+  margin-bottom: 0.35em;
 }
 
-.research-card:hover {
-  box-shadow: 0 5px 20px rgba(26, 92, 122, 0.11);
-}
-
-.research-card h2 {
-  margin: 0 0 0.8em;
-  font-size: 1.1em;
+.deck-card h2 {
+  margin: 0;
+  font-size: 1.15em;
   font-weight: 600;
   font-family: 'Lora', serif;
   color: var(--nh-accent, #1a5c7a);
+}
+
+/* Controls under the deck */
+.deck-controls {
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  margin-top: 1.1em;
+}
+
+.deck-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--nh-accent, #1a5c7a);
+  background: var(--nh-surface, #fff);
+  border: 1px solid var(--nh-border, #cddae2);
+  border-radius: 8px;
+  padding: 0.4em 0.85em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.deck-btn:hover:not(:disabled) { background: var(--nh-accent-light, #e4f2f7); border-color: var(--nh-accent-mid, #4a8fa8); }
+.deck-btn:disabled { opacity: 0.35; cursor: default; }
+.deck-btn span { font-size: 1.25em; line-height: 1; }
+
+.deck-dots { display: flex; align-items: center; gap: 0.5em; }
+.deck-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--nh-border, #cddae2);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.deck-dot:hover { background: var(--nh-accent-mid, #4a8fa8); }
+.deck-dot.is-active { background: var(--nh-accent, #1a5c7a); transform: scale(1.35); }
+
+.deck-hint {
+  text-align: center;
+  font-size: 0.74em;
+  color: var(--nh-text-faint, #808993);
+  margin: 0.55em 0 0;
+  font-family: 'Inter', sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-deck.js-deck .deck-stage,
+  .theme-deck.js-deck .deck-card { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .theme-deck.js-deck { padding: 0 1.2em; }
 }
 
 .research-tag {

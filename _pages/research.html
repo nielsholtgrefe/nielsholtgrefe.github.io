@@ -21,78 +21,98 @@ classes: wide
 
 <hr>
 
-{% for theme in site.data.research %}
-  {%- comment -%}
-  Pull related publications for this theme straight from the shared pubs data,
-  filtered by the `themes:` tag on each entry and sorted newest-first.
-  {%- endcomment -%}
-  {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
+{% assign nthemes = site.data.research | size %}
+<div class="theme-deck" id="theme-deck" aria-roledescription="carousel" aria-label="Research themes">
+  <div class="deck-stage" id="deck-stage">
+    {% for theme in site.data.research %}
+      {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
 
-  <div class="research-card">
-    <h2>{{ theme.title }}
-      {% for tag in theme.tags %}<span class="research-tag">{{ tag }}</span>{% endfor %}
-    </h2>
+      <article class="deck-card" data-index="{{ forloop.index0 }}" aria-label="{{ theme.title }} ({{ forloop.index }} of {{ nthemes }})">
+        <div class="deck-card-head">
+          <span class="deck-card-count">{{ forloop.index }} / {{ nthemes }}</span>
+          <h2>{{ theme.title }}
+            {% for tag in theme.tags %}<span class="research-tag">{{ tag }}</span>{% endfor %}
+          </h2>
+        </div>
 
-    <div class="research-layout">
-      <div class="research-figure">
-        <img src="{{ theme.image | relative_url }}" alt="Illustrative diagram for {{ theme.title }}" loading="lazy"
-             onerror="this.closest('.research-figure').classList.add('is-placeholder'); this.style.display='none';">
-        <span class="research-figure-note">diagram placeholder</span>
-      </div>
+        <div class="research-layout">
+          <div class="research-figure">
+            <img src="{{ theme.image | relative_url }}" alt="Illustrative diagram for {{ theme.title }}" loading="lazy"
+                 onerror="this.closest('.research-figure').classList.add('is-placeholder'); this.style.display='none';">
+            <span class="research-figure-note">diagram placeholder</span>
+          </div>
 
-      <div class="research-body">
-        <p>{{ theme.body }}</p>
-      </div>
-    </div>
+          <div class="research-body">
+            <p>{{ theme.body }}</p>
+          </div>
+        </div>
 
-    {% if related.size > 0 %}
-    <div class="research-papers">
-      <div class="research-papers-heading">Related publications</div>
-      <ul>
-        {% for pub in related %}
-          {%- comment -%} Build a compact "F. Last" author string {%- endcomment -%}
-          {%- assign author_str = "" -%}
-          {%- for a in pub.authors -%}
-            {%- assign initial = a.first | slice: 0 -%}
-            {%- assign one = initial | append: ". " | append: a.last -%}
-            {%- if forloop.first -%}{%- assign author_str = one -%}
-            {%- else -%}{%- assign author_str = author_str | append: ", " | append: one -%}{%- endif -%}
-          {%- endfor -%}
+        {% if related.size > 0 %}
+        <div class="research-papers">
+          <div class="research-papers-heading">Related publications</div>
+          <ul>
+            {% for pub in related %}
+              {%- assign author_str = "" -%}
+              {%- for a in pub.authors -%}
+                {%- assign initial = a.first | slice: 0 -%}
+                {%- assign one = initial | append: ". " | append: a.last -%}
+                {%- if forloop.first -%}{%- assign author_str = one -%}
+                {%- else -%}{%- assign author_str = author_str | append: ", " | append: one -%}{%- endif -%}
+              {%- endfor -%}
 
-          <li>
-            {%- assign pub_slug = pub.title | slugify -%}
-            <span class="paper-title">
-              <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>
-            </span><br>
-            <span class="paper-authors">{{ author_str }}</span><br>
-            {%- capture venue -%}
-              {%- if pub.type == "journal" -%}
-                <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}, {{ pub.year }}
-              {%- elsif pub.type == "preprint" -%}
-                {{ pub.preprint-server }}:{{ pub.preprint-identifier }}, {{ pub.year }}
-              {%- elsif pub.type == "thesis" -%}
-                {{ pub.note }}
-              {%- endif -%}
-            {%- endcapture -%}
-            {% if pub.summary_lay and pub.summary_lay != "" %}
-              <details class="paper-fold">
-                <summary class="paper-venue-line">
+              <li>
+                {%- assign pub_slug = pub.title | slugify -%}
+                <span class="paper-title">
+                  <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>
+                </span><br>
+                <span class="paper-authors">{{ author_str }}</span><br>
+                {%- capture venue -%}
+                  {%- if pub.type == "journal" -%}
+                    <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}, {{ pub.year }}
+                  {%- elsif pub.type == "preprint" -%}
+                    {{ pub.preprint-server }}:{{ pub.preprint-identifier }}, {{ pub.year }}
+                  {%- elsif pub.type == "thesis" -%}
+                    {{ pub.note }}
+                  {%- endif -%}
+                {%- endcapture -%}
+                {% if pub.summary_lay and pub.summary_lay != "" %}
+                  <details class="paper-fold">
+                    <summary class="paper-venue-line">
+                      <span class="paper-venue">{{ venue }}</span>
+                      <span class="paper-fold-toggle">plain-language summary</span>
+                    </summary>
+                    <div class="paper-summary">{{ pub.summary_lay }}</div>
+                  </details>
+                {% else %}
                   <span class="paper-venue">{{ venue }}</span>
-                  <span class="paper-fold-toggle">plain-language summary</span>
-                </summary>
-                <div class="paper-summary">{{ pub.summary_lay }}</div>
-              </details>
-            {% else %}
-              <span class="paper-venue">{{ venue }}</span>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </article>
+    {% endfor %}
   </div>
-{% endfor %}
+
+  <div class="deck-controls" aria-hidden="true">
+    <button class="deck-btn deck-prev" type="button" aria-label="Previous theme">
+      <span aria-hidden="true">&#8249;</span> Prev
+    </button>
+    <div class="deck-dots" id="deck-dots">
+      {% for theme in site.data.research %}
+        <button class="deck-dot" type="button" data-goto="{{ forloop.index0 }}" aria-label="Go to {{ theme.title }}"></button>
+      {% endfor %}
+    </div>
+    <button class="deck-btn deck-next" type="button" aria-label="Next theme">
+      Next <span aria-hidden="true">&#8250;</span>
+    </button>
+  </div>
+  <p class="deck-hint">Drag, scroll sideways, or use the arrows / arrow keys to flip through the themes.</p>
+</div>
 
 <hr>
 
 <p>For a complete list of publications with abstracts and BibTeX entries, see the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.</p>
+
+<script src="{{ '/assets/js/research-deck.js' | relative_url }}" defer></script>

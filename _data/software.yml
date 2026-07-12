@@ -6,8 +6,10 @@
 #   image       (optional)  background motif behind the card header
 #   tagline     (required)  one-line summary
 #   description (required)  2-3 sentence description
-#   features    (optional)  list of short capability chips
-#   links       (optional)  list of { label, url } — e.g. GitHub / Docs / Paper
+#   github      (optional)  code repository URL
+#   docs        (optional)  documentation website URL
+#   pubs        (optional)  list of related publication titles (must match a title in
+#                           _data/pubs.yml); rendered as links to /publications/
 
 - name: phylozoo
   language: Python
@@ -21,14 +23,10 @@
     alignments, flexible Matplotlib-based visualization, robust I/O for the major
     phylogenetic file formats, and performance-focused routines powered by NumPy (with
     optional Numba acceleration).
-  features:
-    - Directed & semi-directed networks
-    - File-format I/O
-    - Visualization
-    - NumPy-accelerated
-  links:
-    - { label: GitHub, url: "https://github.com/nholtgrefe/phylozoo" }
-    - { label: Docs, url: "https://nholtgrefe.github.io/phylozoo/" }
+  github: "https://github.com/nholtgrefe/phylozoo"
+  docs: "https://nholtgrefe.github.io/phylozoo/"
+  pubs:
+    - "PhyloZoo: a unified framework for phylogenetic network analysis in Python"
 
 - name: physquirrel
   language: Python
@@ -40,14 +38,9 @@
     alignments. It offers both a graphical user interface for non-programmers and a
     full Python API for advanced users, enabling simulation, inference and
     visualization of reticulate evolutionary histories.
-  features:
-    - Quarnet-based inference
-    - From sequence alignments
-    - GUI + Python API
-    - Visualization
-  links:
-    - { label: GitHub, url: "https://github.com/nholtgrefe/squirrel" }
-    - { label: Paper, url: "https://doi.org/10.1093/molbev/msaf067" }
+  github: "https://github.com/nholtgrefe/squirrel"
+  pubs:
+    - "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
 
 - name: phypanda
   language: Python
@@ -59,15 +52,11 @@
     instances, computes diversity-based optimization criteria, and includes
     interactive visualizations and algorithmic pipelines for network-level diversity
     analyses.
-  features:
-    - Instance generation
-    - Diversity optimization
-    - Interactive viz
-    - Algorithm pipelines
-  links:
-    - { label: GitHub, url: "https://github.com/nholtgrefe/panda" }
-    - { label: Docs, url: "https://nholtgrefe.github.io/panda/" }
-    - { label: Paper, url: "https://doi.org/10.1101/2025.11.14.688467" }
+  github: "https://github.com/nholtgrefe/panda"
+  docs: "https://nholtgrefe.github.io/panda/"
+  pubs:
+    - "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
+    - "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
 
 - name: scanwidth
   language: Python
@@ -79,12 +68,8 @@
     networks. Scanwidth is a structural complexity measure that can improve the
     tractability of dynamic-programming algorithms on DAGs, and the package can
     preprocess network instances before running other phylogenetic tools.
-  features:
-    - Exact solver
-    - Practical heuristics
-    - Preprocessing
-    - Networks & DAGs
-  links:
-    - { label: GitHub, url: "https://github.com/nholtgrefe/scanwidth" }
-    - { label: Docs, url: "https://nholtgrefe.github.io/scanwidth/" }
-    - { label: Paper, url: "https://doi.org/10.1016/j.jcss.2026.103802" }
+  github: "https://github.com/nholtgrefe/scanwidth"
+  docs: "https://nholtgrefe.github.io/scanwidth/"
+  pubs:
+    - "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
+    - "Computing the Scanwidth of Directed Acyclic Graphs"

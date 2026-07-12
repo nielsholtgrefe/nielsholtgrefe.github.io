@@ -24,26 +24,45 @@ classes: wide
       {% if pkg.tagline %}<p class="software-card-tagline">{{ pkg.tagline }}</p>{% endif %}
       <p class="software-card-desc">{{ pkg.description }}</p>
 
-      {% if pkg.features and pkg.features.size > 0 %}
-      <div class="software-card-features">
-        {% for f in pkg.features %}<span class="software-chip">{{ f }}</span>{% endfor %}
+      {% if pkg.pubs and pkg.pubs.size > 0 %}
+      <div class="software-card-pubs">
+        <span class="software-pubs-label">Related publication{% if pkg.pubs.size > 1 %}s{% endif %}</span>
+        <ul>
+          {% for pt in pkg.pubs %}
+            {%- assign p = site.data.pubs | where: "title", pt | first -%}
+            <li>
+              <a href="{{ '/publications/' | relative_url }}#pub-{{ pt | slugify }}">{{ pt }}</a>
+              {%- if p -%}
+              <span class="software-pub-venue">
+                {%- if p.type == "journal" -%}<i>{{ p.journal }}</i>{% if p.year %}, {{ p.year }}{% endif %}
+                {%- elsif p.type == "preprint" -%}{{ p.preprint-server }}{% if p.year %}, {{ p.year }}{% endif %}
+                {%- elsif p.type == "thesis" -%}{{ p.note }}
+                {%- endif -%}
+              </span>
+              {%- endif -%}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
       {% endif %}
 
-      {% if pkg.links and pkg.links.size > 0 %}
-      <div class="software-card-links">
-        {% for link in pkg.links %}
-          {%- assign icon = "🔗" -%}
-          {%- if link.label == "GitHub" %}{% assign icon = "💻" %}{% endif -%}
-          {%- if link.label == "Docs" %}{% assign icon = "📖" %}{% endif -%}
-          {%- if link.label == "Paper" %}{% assign icon = "📄" %}{% endif -%}
-          <a class="link-button" href="{{ link.url }}" target="_blank">{{ icon }} {{ link.label }}</a>
-        {% endfor %}
+      <div class="software-card-actions">
+        {% if pkg.github %}
+        <a class="software-btn software-btn--primary" href="{{ pkg.github }}" target="_blank" rel="noopener">
+          <svg class="software-btn-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        {% endif %}
+        {% if pkg.docs %}
+        <a class="software-btn software-btn--ghost" href="{{ pkg.docs }}" target="_blank" rel="noopener">
+          <svg class="software-btn-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 2.2c-.9-.55-2.1-.95-3.6-.95-1.05 0-2 .2-2.75.45a.75.75 0 0 0-.5.7v9.1c0 .5.48.86.96.72.63-.18 1.4-.32 2.29-.32 1.45 0 2.55.44 3.35.98.8-.54 1.9-.98 3.35-.98.89 0 1.66.14 2.29.32.48.14.96-.22.96-.72V2.4a.75.75 0 0 0-.5-.7C13.1 1.45 12.15 1.25 11.1 1.25c-1.5 0-2.7.4-3.6.95Zm.75 1.35c.72-.42 1.66-.7 2.85-.7.6 0 1.14.08 1.6.19v7.55c-.5-.1-1.04-.16-1.6-.16-1.2 0-2.19.28-2.85.6V3.55Zm-1.5 0v7.48c-.66-.32-1.65-.6-2.85-.6-.56 0-1.1.06-1.6.16V3.04c.46-.11 1-.19 1.6-.19 1.19 0 2.13.28 2.85.7Z"/></svg>
+          Docs
+        </a>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
   </div>
   {% endfor %}
 </div>
 
-<p class="software-footer-note">All packages above are written in Python and include links to their code repositories and related publications. You can also browse all my projects on <a href="https://github.com/nholtgrefe" target="_blank">GitHub</a>.</p>
+<p class="software-footer-note">All packages above are written in Python. You can also browse all my projects on <a href="https://github.com/nholtgrefe" target="_blank">GitHub</a>.</p>
