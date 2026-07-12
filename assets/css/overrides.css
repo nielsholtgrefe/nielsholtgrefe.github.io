@@ -583,20 +583,31 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
    ================================================================ */
 /* Guarded on mask support so unsupported browsers don't get a solid tint. */
 @supports ((-webkit-mask-image: url("#")) or (mask-image: url("#"))) {
+  body { position: relative; }
   body::before {
     content: "";
-    position: fixed;
+    position: absolute;   /* scrolls with the page rather than staying fixed */
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-color: var(--nh-accent-mid);
+    /* Horizontal opacity gradient: stronger behind the centred text column,
+       lighter in the empty side gutters. The mask paints this gradient in the
+       shape of the network. */
+    background: linear-gradient(to right,
+      rgba(74, 143, 168, 0.16) 0%,
+      rgba(74, 143, 168, 0.34) 50%,
+      rgba(74, 143, 168, 0.16) 100%);
     -webkit-mask-image: url('/assets/images/network-bg.svg');
     mask-image: url('/assets/images/network-bg.svg');
     -webkit-mask-repeat: repeat;
     mask-repeat: repeat;
     -webkit-mask-size: 480px 480px;
     mask-size: 480px 480px;
-    opacity: 0.18;
   }
-  html[data-theme="dark"] body::before { opacity: 0.21; }
+  html[data-theme="dark"] body::before {
+    background: linear-gradient(to right,
+      rgba(90, 159, 186, 0.19) 0%,
+      rgba(90, 159, 186, 0.38) 50%,
+      rgba(90, 159, 186, 0.19) 100%);
+  }
 }
