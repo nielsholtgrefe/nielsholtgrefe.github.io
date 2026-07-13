@@ -581,6 +581,11 @@ html[data-theme="dark"] mjx-container { color: var(--nh-text); }
    reads as a subtle backdrop. Cards/sidebar/masthead have solid backgrounds,
    so text always stays crisp over it.
    ================================================================ */
+/* Interactive canvas version (network-bg.js) takes over when JS runs: it adds
+   .net-live to <body>, so the static mask below is hidden to avoid doubling up. */
+.network-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body.net-live::before { display: none !important; }
+
 /* Guarded on mask support so unsupported browsers don't get a solid tint. */
 @supports ((-webkit-mask-image: url("#")) or (mask-image: url("#"))) {
   /* z-index:0 makes body a stacking context, so the z-index:-1 layer paints
