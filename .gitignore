@@ -6,3 +6,6 @@ vendor/bundle/
 
 # Local Apptainer image (large)
 jekyll.sif
+
+# Personal TODO scratch file
+TODO

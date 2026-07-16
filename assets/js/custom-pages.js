@@ -11,19 +11,44 @@ function toggleBox(id) {
 }
 
 /* ---- Publication filtering + sorting (vanilla JS, no dependencies) ----
-   pubRender() reconciles the type filter and the sort mode. Sorting/grouping
-   applies only to the main section (.pub-main); theses and miscellaneous keep
-   their own sections at the bottom, so their anchors stay valid. Year dividers
-   are shown for both newest and oldest order. */
+   pubRender() reconciles the type filter and the sort mode. Both apply to the
+   whole page: the main list, the theses and the miscellaneous section are each
+   re-ordered, but every entry stays under its own heading (so the #theses and
+   #misc anchors keep working). Only the main list carries year dividers. */
 let pubCurrentType = "all";
 let pubCurrentSort = "year";
-let pubMainOriginal = null;
+const pubOriginal = new WeakMap();   // section -> its original child order
+
+function pubSortSection(section) {
+  if (!section) return;
+  if (!pubOriginal.has(section)) pubOriginal.set(section, Array.from(section.children));
+
+  if (pubCurrentSort === "year") {
+    // restore the order Jekyll emitted (newest first, dividers in place)
+    pubOriginal.get(section).forEach((node) => section.appendChild(node));
+  } else {
+    // oldest first; re-home each year divider above its first entry
+    const items = Array.from(section.querySelectorAll(".pub-item"));
+    items.sort((a, b) => (a.dataset.date || "").localeCompare(b.dataset.date || ""));
+    const labels = Array.from(section.querySelectorAll(".year-label"));
+    labels.forEach((l) => section.appendChild(l));
+    let lastYear = null;
+    items.forEach((item) => {
+      if (!item.classList.contains("noshow") && item.dataset.year !== lastYear) {
+        const label = labels.find((l) => (l.textContent || "").trim() === item.dataset.year);
+        if (label) section.appendChild(label);
+        lastYear = item.dataset.year;
+      }
+      section.appendChild(item);
+    });
+  }
+  section.querySelectorAll(".year-label").forEach((l) => l.classList.remove("noshow"));
+  pubHideEmptyYearLabels(section);
+}
 
 function pubRender() {
   const list = document.querySelector(".pub-list");
-  const main = document.querySelector(".pub-main");
-  if (!list || !main) return;
-  if (!pubMainOriginal) pubMainOriginal = Array.from(main.children);
+  if (!list) return;
 
   // 1) Apply the type filter across every entry (main, theses, miscellaneous)
   let anyVisible = false;
@@ -33,27 +58,9 @@ function pubRender() {
     if (show) anyVisible = true;
   });
 
-  // 2) Arrange the main section
-  if (pubCurrentSort === "year") {
-    pubMainOriginal.forEach((node) => main.appendChild(node));
-  } else {
-    // oldest: reverse chronological order, keeping year dividers
-    const items = Array.from(main.querySelectorAll(".pub-item"));
-    items.sort((a, b) => (a.dataset.date || "").localeCompare(b.dataset.date || ""));
-    main.querySelectorAll(".year-label").forEach((l) => main.appendChild(l));
-    let lastYear = null;
-    items.forEach((item) => {
-      if (!item.classList.contains("noshow") && item.dataset.year !== lastYear) {
-        const label = Array.from(main.querySelectorAll(".year-label"))
-          .find((l) => (l.textContent || "").trim() === item.dataset.year);
-        if (label) main.appendChild(label);
-        lastYear = item.dataset.year;
-      }
-      main.appendChild(item);
-    });
-  }
-  main.querySelectorAll(".year-label").forEach((l) => l.classList.remove("noshow"));
-  pubHideEmptyYearLabels(main);
+  // 2) Sort every section, each keeping its own heading
+  [".pub-main", ".pub-theses", ".pub-misc"].forEach((sel) =>
+    pubSortSection(document.querySelector(sel)));
 
   // 3) Section headers (theses, misc) shown only when they hold a visible entry
   ["theses", "misc"].forEach((id) => {

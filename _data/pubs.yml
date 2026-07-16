@@ -50,7 +50,6 @@
     by exploiting a "tree-likeness" measure of the network called node scanwidth, and also shows
     how to compute that measure exactly. In experiments the methods handle networks with hundreds
     of species in a fraction of a second, and remain practical even up to a thousand species.
-  image: "/assets/images/pub_diversity.svg"
   release-date: 2026-05-22
   authors:
     - first: Niels
@@ -86,7 +85,6 @@
     natural ways of measuring the input's complexity, the problem provably cannot be "compressed"
     to a small equivalent instance before solving.
   status_note: "Accepted and presented at LATIN 2026 (proceedings to appear)."
-  image: "/assets/images/pub_diversity.svg"
   release-date: 2026-02-13
   authors:
     - first: Niels
@@ -121,7 +119,6 @@
     actually need to be to recover the right network with high probability under the CFN model,
     showing that the requirement grows manageably — logarithmically, polylogarithmically, or
     polynomially — with the number of species, depending on the parameter regime.
-  image: "/assets/images/pub_network.svg"
   release-date: 2026-05-21
   authors:
     - first: Martin
@@ -168,7 +165,6 @@
     that solves this diversity-maximization problem efficiently for many realistic
     networks.
   status_note: "Accepted at RECOMB 2026 (no formal proceedings, acceptance rate 15%)."
-  image: "/assets/images/panda_face.png"
   release-date: 2025-11-17
   authors:
     - first: Niels
@@ -208,7 +204,6 @@
     tell you, just by looking, whether a given diagram is a valid one. This paper gives explicit,
     checkable characterizations of these networks (and a multi-root variant), and connects them to
     well-known families of evolutionary networks.
-  image: "/assets/images/pub_network.svg"
   release-date: 2025-12-10
   authors:
     - first: Niels
@@ -248,7 +243,6 @@
     precisely which of the more complex "level-2" networks can be distinguished from
     four-species snapshots of the data, and derives a distance between species that
     opens the door to reliably inferring these networks in the future.
-  image: "/assets/images/pub_algebra.svg"
   release-date: 2025-10-23
   authors:
     - first: Niels
@@ -329,7 +323,6 @@
     new class of networks (allowing certain intertwined merging events) is in principle recoverable
     from DNA under standard models of evolution, extending what was previously known only for
     simpler networks.
-  image: "/assets/images/pub_algebra.svg"
   release-date: 2025-04-24
   authors:
     - first: Aviva
@@ -375,7 +368,6 @@
     every possible group of four species is wasteful. This paper gives a fast algorithm that
     reconstructs the whole network using only a near-minimal number of these four-species pieces,
     and even recovers the network's coarse skeleton in more general settings.
-  image: "/assets/images/pub_network.svg"
   release-date: 2025-03-28
   authors:
     - first: Martin
@@ -458,7 +450,6 @@
     simple cyclic networks under a general model of DNA change, and gives a faster, more reliable
     way to find them — while also showing they are not quite enough to tell all four-species
     networks apart.
-  image: "/assets/images/pub_algebra.svg"
   release-date: 2024-07-16
   authors:
     - first: Martin
@@ -577,7 +568,6 @@
     as possible — a classic optimization task. This BSc thesis proves improved guarantees for a
     simple greedy strategy on several versions of the problem, and applies it to selecting the best
     subset of existing weather stations across the Netherlands.
-  image: "/assets/images/pub_default.svg"
   release-date: 2021-07-12
   authors:
     - first: Niels

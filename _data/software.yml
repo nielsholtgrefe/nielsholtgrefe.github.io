@@ -44,7 +44,7 @@
 
 - name: phypanda
   language: Python
-  image: /assets/images/panda_face.png
+  image: /assets/images/phypanda_icon.svg
   tagline: "Explore and maximize phylogenetic diversity in networks."
   description: >-
     phypanda (PaNDA) is a Python package for exploring and maximizing phylogenetic

@@ -4,14 +4,10 @@
 # _data/pubs.yml (e.g. a pub with `themes: [reconstruction]` appears under the
 # theme whose `id` is "reconstruction"). Add a theme by appending an entry here;
 # add a paper to a theme by tagging it in pubs.yml — no HTML editing needed.
-#
-# Drop a real diagram at each `image:` path to replace the styled placeholder box
-# (currently pointing at /assets/images/research/theme-*.png).
 
 - id: reconstruction
   title: "Reconstructing Evolutionary Networks"
   tags: [Algorithms, Combinatorics]
-  image: /assets/images/research/theme-reconstruction.svg
   body: >-
     The core computational challenge in phylogenetics is <em>reconstruction</em>:
     given genetic sequence data from a set of species, infer the network that best
@@ -27,7 +23,6 @@
 - id: identifiability
   title: "Identifiability and Statistical Foundations"
   tags: [Algebra, Probability]
-  image: /assets/images/research/theme-identifiability.svg
   body: >-
     Before building an inference algorithm, we must ask a more fundamental question:
     is it even possible, in principle, to distinguish two different networks from
@@ -43,7 +38,6 @@
 - id: diversity
   title: "Phylogenetic Diversity and Conservation"
   tags: [Optimization, Conservation Biology]
-  image: /assets/images/research/theme-diversity.svg
   body: >-
     <em>Phylogenetic diversity</em> (PD) quantifies how evolutionarily distinct a set
     of species is: a group spanning many deep branches of the tree of life is more
@@ -58,7 +52,6 @@
 - id: parameters
   title: "Structural Parameters and Algorithms"
   tags: [Parameterized Complexity, Graph Theory]
-  image: /assets/images/research/theme-parameters.svg
   body: >-
     Many computationally hard problems on phylogenetic networks become tractable when
     the network has a simple enough structure — and <em>scanwidth</em> is one way to

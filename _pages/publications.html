@@ -39,32 +39,42 @@ Split into main pubs (journal/preprint/conference), theses, and miscellaneous
 {%- comment -%} Type filter: only offer the types that are actually present {%- endcomment -%}
 {% assign type_order = "journal,conference,preprint" | split: "," %}
 
+{%- comment -%}
+The toolbar sits above every section: the filter and sort apply to the whole
+list (publications, theses and miscellaneous alike), but each entry stays under
+its own heading. The .bib download lives here too.
+{%- endcomment -%}
+<div class="pub-toolbar">
+  <div class="pub-toolbar-group" role="group" aria-label="Filter publications by type">
+    <span class="pub-toolbar-label">Filter</span>
+    <button class="filter-pill is-active" data-filter-type="all" aria-pressed="true" onclick="filterPubs('all', this)">all</button>
+    {% for t in type_order %}
+      {% assign n = main_pubs | where: "type", t | size %}
+      {% if n > 0 %}
+        {% case t %}
+          {% when "journal" %}{% assign tname = "journal articles" %}
+          {% when "conference" %}{% assign tname = "conference papers" %}
+          {% when "preprint" %}{% assign tname = "preprints" %}
+        {% endcase %}
+        <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="pub-toolbar-group pub-toolbar-sort" role="group" aria-label="Sort publications">
+    <span class="pub-toolbar-label">Sort</span>
+    <button class="sort-pill is-active" data-sort="year" aria-pressed="true" onclick="sortPubs('year', this)">newest</button>
+    <button class="sort-pill" data-sort="oldest" aria-pressed="false" onclick="sortPubs('oldest', this)">oldest</button>
+    <a class="pub-download-bib" href="{{ '/publications.bib' | relative_url }}" download
+       title="Download every reference as a BibTeX .bib file">
+      <svg class="pub-download-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1a.75.75 0 0 1 .75.75v6.69l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 0 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11a.75.75 0 0 1 .75.75v1.5c0 .14.11.25.25.25h8.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-1.5a.75.75 0 0 1 .75-.75Z"/></svg>
+      .bib
+    </a>
+  </div>
+</div>
+
 <div class="pub-list">
   <h2 id="publications" class="pub-section-head pub-section-head--first">Publications</h2>
-
-  <div class="pub-toolbar">
-    <div class="pub-toolbar-group" role="group" aria-label="Filter publications by type">
-      <span class="pub-toolbar-label">Filter</span>
-      <button class="filter-pill is-active" data-filter-type="all" aria-pressed="true" onclick="filterPubs('all', this)">all</button>
-      {% for t in type_order %}
-        {% assign n = main_pubs | where: "type", t | size %}
-        {% if n > 0 %}
-          {% case t %}
-            {% when "journal" %}{% assign tname = "journal articles" %}
-            {% when "conference" %}{% assign tname = "conference papers" %}
-            {% when "preprint" %}{% assign tname = "preprints" %}
-          {% endcase %}
-          <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }}</button>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <div class="pub-toolbar-group pub-toolbar-sort" role="group" aria-label="Sort publications">
-      <span class="pub-toolbar-label">Sort</span>
-      <button class="sort-pill is-active" data-sort="year" aria-pressed="true" onclick="sortPubs('year', this)">newest</button>
-      <button class="sort-pill" data-sort="oldest" aria-pressed="false" onclick="sortPubs('oldest', this)">oldest</button>
-    </div>
-  </div>
 
   <div class="pub-main">
     {% assign current_year = "" %}
@@ -98,14 +108,5 @@ Split into main pubs (journal/preprint/conference), theses, and miscellaneous
 </div>
 
 <p class="pub-filter-empty noshow" aria-live="polite">No publications match this filter.</p>
-
-<div class="pub-downloads">
-  <a class="pub-download-bib" href="{{ '/publications.bib' | relative_url }}" download>
-    <svg class="pub-download-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 1a.75.75 0 0 1 .75.75v6.69l2.22-2.22a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 0 1 1.06-1.06l2.22 2.22V1.75A.75.75 0 0 1 8 1ZM2.75 11a.75.75 0 0 1 .75.75v1.5c0 .14.11.25.25.25h8.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-1.5a.75.75 0 0 1 .75-.75Z"/></svg>
-    Download all references (BibTeX)
-  </a>
-</div>
-
-<p class="pub-coauthors-link">See also the full <a href="{{ '/coauthors/' | relative_url }}">list of co-authors</a>.</p>
 
 <p class="pub-corrections-link">Spotted an error? See the <a href="{{ '/corrections/' | relative_url }}">list of corrections</a>.</p>
