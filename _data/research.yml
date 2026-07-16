@@ -71,8 +71,10 @@
     Many hard problems on phylogenetic networks become tractable once the network is
     close enough to a tree, and <em>scanwidth</em> is one way to make "close enough"
     precise. It measures the tree-likeness of a directed acyclic graph by capturing how
-    much branching and merging happens at once as you sweep through it. When scanwidth
-    is small, efficient dynamic-programming algorithms become possible. To use it as a
-    parameter, though, you first have to be able to <em>compute</em> it. I developed the
+    much branching and merging happens at once as you sweep through it. I design
+    <em>parameterized algorithms</em> that exploit this: sweeping through a network while
+    tracking only the lineages active at any one moment turns problems that are hopeless
+    in general into practical dynamic programs whenever scanwidth is small. Relying on a
+    parameter also means being able to compute it, so I developed the
     first exact algorithm for the scanwidth of general DAGs, along with heuristics that
     come close to optimal on real biological datasets.
