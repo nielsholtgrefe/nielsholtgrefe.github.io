@@ -19,5 +19,9 @@
 <script defer src="{{ '/assets/js/network-bg.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/site-icon.svg' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/images/site-icon.svg' | relative_url }}">
-<meta property="og:image" content="{{ '/assets/images/site-icon.svg' | absolute_url }}">
-<meta name="twitter:image" content="{{ '/assets/images/site-icon.svg' | absolute_url }}">
+{%- comment -%}
+og:title / og:description / og:image are emitted per page by jekyll-seo-tag:
+the title comes from each page's `title`, the description from its `description`
+front matter (falling back to site.description), and the image from site.og_image.
+Re-declaring them here only produced duplicate tags, so they are not repeated.
+{%- endcomment -%}
