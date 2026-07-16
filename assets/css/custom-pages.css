@@ -800,17 +800,25 @@ html[data-theme="dark"] .pub-type-conference {
 .pub-section-head--first { margin-top: 0.4em; }
 
 /* Download-all-BibTeX button at the bottom of the list */
-/* The .bib download sits in the toolbar, styled like the sort/filter pills */
+/* A thin divider setting the .bib download apart from the sort pills */
+.pub-toolbar-sep {
+  color: var(--nh-border, #cddae2);
+  font-size: 0.9em;
+  margin: 0 0.15em;
+  user-select: none;
+}
+
+/* The .bib download sits in the toolbar: same metrics as the sort/filter pills
+   (0.72em text, 3px/12px padding) so every control in the bar lines up. */
 .pub-download-bib {
   display: inline-flex;
   align-items: center;
-  gap: 0.34em;
-  margin-left: 0.5em;
+  gap: 0.36em;
   font-family: 'Inter', sans-serif;
-  font-size: 0.78em;
+  font-size: 0.72em;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  padding: 0.3em 0.7em;
+  letter-spacing: 0.02em;
+  padding: 3px 12px;
   border-radius: 20px;
   border: 1px solid var(--nh-border, #cddae2);
   background: var(--nh-chip-bg, #fff);
@@ -823,7 +831,7 @@ html[data-theme="dark"] .pub-type-conference {
   border-color: var(--nh-accent-solid, #1a5c7a);
   color: #fff !important;
 }
-.pub-download-icon { width: 0.9em; height: 0.9em; flex: 0 0 auto; }
+.pub-download-icon { width: 1em; height: 1em; flex: 0 0 auto; }
 
 /* ================================================================
    No-bullet list (used in conferences etc.)
@@ -1784,7 +1792,6 @@ html[data-theme="dark"] .xiph-figure { color: #f2f6f8; }
   text-align: center;
 }
 .xiph-cap strong { color: var(--nh-text-strong); }
-.xiph-key { color: #da0000; white-space: nowrap; }
 
 .xiph-note {
   margin-top: 0.9em;

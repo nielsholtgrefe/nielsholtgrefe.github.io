@@ -67,6 +67,6 @@ skills:
   - group: "Programming"
     items: "Python, R, Macaulay2, Matlab, Maple, LaTeX, Excel, Qt, HTML, Git, TensorFlow, Keras"
   - group: "Open-source software"
-    items: "author/maintainer of PhyloZoo, Squirrel, PaNDA, and scanwidth (see the Software page)"
+    items: 'author/maintainer of PhyloZoo, Squirrel, PaNDA, and scanwidth (see the <a href="/software/">Software page</a>)'
   - group: "Languages"
     items: "Dutch (native), German (native), English (fluent), French (basic), Italian (learning)"

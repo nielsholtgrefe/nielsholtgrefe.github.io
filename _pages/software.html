@@ -18,7 +18,9 @@ classes: wide
   <div class="deck-stage">
     {% for pkg in site.data.software %}
     <article class="deck-card software-card">
-    <div class="software-card-header"{% if pkg.image %} style="background-image: url('{{ pkg.image | relative_url }}');"{% endif %}>
+    {%- comment -%} `image_position` optionally re-frames the motif: the header is a
+    short wide strip, so background-size:cover shows only a band of the image. {%- endcomment -%}
+    <div class="software-card-header"{% if pkg.image %} style="background-image: url('{{ pkg.image | relative_url }}'); background-position: {{ pkg.image_position | default: 'center' }};"{% endif %}>
       <div class="software-card-header-inner">
         <span class="software-card-name"><code>{{ pkg.name }}</code></span>
         {% if pkg.language %}<span class="software-card-lang">{{ pkg.language }}</span>{% endif %}

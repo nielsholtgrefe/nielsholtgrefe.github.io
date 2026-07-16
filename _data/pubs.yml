@@ -1,16 +1,14 @@
 # Publications and preprints.
 #
 # Optional per-entry fields used by the redesigned site:
-#   tags:        list of topic tags for the filter bar on /publications/
-#                (vocabulary: theory, algorithms, software, applications)
 #   themes:      list of research-theme ids (see _data/research.yml) this paper
 #                appears under on /research/
+#   data-url:    link to the dataset for this paper (shows a data icon)
 #   selected:    true to feature on the homepage + CV "Selected publications"
 #   summary_lay: 2-3 sentence plain-language summary, shown as a collapsible
 #                "summary" toggle next to abstract/bibtex. Omit to hide it.
 
 - title: "PhyloZoo: a unified framework for phylogenetic network analysis in Python"
-  tags: [software, algorithms, applications]
   themes: []
   selected: true
   summary_lay: >-
@@ -41,7 +39,6 @@
     Reticulate evolutionary processes (events in which lineages merge, such as hybridization, recombination, and horizontal gene transfer) are widespread across nature but cannot be represented by phylogenetic trees alone. Phylogenetic networks have therefore become an important modelling tool, yet existing software is typically tied to specific inference paradigms and provides limited support for working with multiple network representations in a unified and programmable environment. PhyloZoo is an open-source Python framework that lowers the barrier to developing practical, easy-to-use software for phylogenetic network analysis. It provides data structures and algorithms covering the main representations used in the field, together with dedicated visualization tools and robust I/O for all major phylogenetic file formats. A particular emphasis lies on semi-directed phylogenetic networks, which explicitly represent root uncertainty and have so far received limited support in existing software. By offering a shared foundation for developing interoperable tools and a combinatorial layer that supports computational proofs and theoretical exploration, PhyloZoo enables reproducible workflows for applied, methodological, and theoretical studies of reticulate evolution. Availability and implementation: PhyloZoo is implemented in Python and installable from PyPI, with source code, documentation, and examples available at https://github.com/nholtgrefe/phylozoo.
 
 - title: "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
-  tags: [theory, algorithms]
   themes: [diversity]
   summary_lay: >-
     Deciding which species to protect to preserve the most evolutionary diversity gets much
@@ -76,7 +73,6 @@
     We validate our theoretical results through extensive experiments on highly reticulated, simulated networks containing several hundred taxa, using heterogeneous costs. Our implementation computes PD scores and optimal nsw in fractions of a second, even on the most challenging instances. Furthermore, our budgeted optimization algorithms significantly outperform existing benchmarks for computing PD on networks, which were previously limited to unit-cost scenarios. The software makes analyses even on networks with a thousand taxa tractable in practice.
 
 - title: "Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies"
-  tags: [theory]
   themes: [diversity]
   summary_lay: >-
     Choosing species to conserve becomes more realistic when we insist that a saved predator also
@@ -110,7 +106,6 @@
     The \( \alpha \)-PDD problem alters \( \varepsilon \)-PDD by requiring that at least some fraction \( \alpha \) of the prey of every saved species are also saved. In this paper, we study the parameterized complexity of \( \alpha \)-PDD. We prove that the problem is W[1]-hard and in XP when parameterized by the solution size \( k \), the diversity threshold \( D \), or their complements. When parameterized by the vertex cover number of the food web, \( \alpha \)-PDD is fixed-parameter tractable (FPT). A key measure of the computational difficulty of a problem that is FPT is the size of the smallest kernel that can be obtained. We prove that, when parameterized by the distance to clique, 1-PDD admits a linear kernel. Our main contribution is to prove that \( \alpha \)-PDD does not admit a polynomial kernel when parameterized by the vertex cover number plus the diversity threshold \( D \), even if the phylogenetic tree is a star. This implies the non-existence of a polynomial kernel for \( \alpha \)-PDD also when parameterized by a range of structural parameters of the food web, such as its distance to cluster, treewidth, pathwidth, feedback vertex set, and others.
 
 - title: "Bounds on the Sequence Length Sufficient to Reconstruct Binary Level-1 Phylogenetic Networks Under the CFN Model"
-  tags: [theory, algorithms]
   themes: [reconstruction]
   selected: true
   summary_lay: >-
@@ -154,7 +149,6 @@
     under the CFN model of evolution, scales logarithmically, polynomially, or polylogarithmically with the number of taxa, depending on the parameter regime. As part of our contribution, we also present novel inference rules for quartet data in the semi-directed phylogenetic network setting.
 
 - title: "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
-  tags: [software, algorithms, applications]
   themes: [diversity]
   selected: true
   summary_lay: >-
@@ -196,7 +190,6 @@
     Phylogenetic diversity plays an important role in biodiversity, conservation, and evolutionary studies by measuring the diversity of a set of taxa based on their phylogenetic relationships. In phylogenetic trees, a subset of \( k \) taxa with maximum phylogenetic diversity can be found by a simple and efficient greedy algorithm. However, this algorithmic tractability is lost when considering phylogenetic networks, which incorporate reticulate evolutionary events such as hybridization and horizontal gene transfer. To address this challenge, we introduce PaNDA (Phylogenetic Network Diversity Algorithms), the first software package and interactive graphical user-interface for exploring, visualizing and maximizing diversity in phylogenetic networks. PaNDA includes a novel algorithm to find a subset of \( k \) taxa with maximum diversity, running in polynomial time for networks of bounded <i>scanwidth</i>, a measure of tree-likeness of a network that grows slower than the well-known <i>level</i> measure. This algorithm considers the variant of phylogenetic diversity on networks in which the branch lengths of all paths from the root to the selected taxa contribute towards their diversity. We demonstrate the scalability of this algorithm on simulated networks, successfully analyzing level-15 networks with up to 200 taxa in seconds. We also provide a proof-of-concept analysis using a phylogenetic network on Xiphophorus species, illustrating how the tool can support diversity studies based on real genomic data. The software is easily installable and freely available at <a href="https://github.com/nholtgrefe/panda" target="_blank">https://github.com/nholtgrefe/panda</a>. Additionally, we extend the definition of phylogene- tic diversity to semi-directed phylogenetic networks, which are mixed graphs increasingly used in phylogenetic analysis to model uncertainty of the root location. We prove that finding a subset of k taxa with maximum diversity remains NP-hard on semi-directed networks, but do present a polynomial-time algorithm for networks with bounded level.
 
 - title: "Characterizing semi-directed phylogenetic networks and their multi-rootable variants"
-  tags: [theory]
   themes: []
   summary_lay: >-
     Semi-directed networks are a popular way to depict evolution when the ancient "root" cannot be
@@ -235,7 +228,6 @@
     In evolutionary biology, phylogenetic networks are graphs that provide a flexible framework for representing complex evolutionary histories that involve reticulate evolutionary events. Recently phylogenetic studies have started to focus on a special class of such networks called semi-directed networks. These graphs are defined as mixed graphs that can be obtained by de-orienting some of the arcs in some rooted phylogenetic network, that is, a directed acyclic graph whose leaves correspond to a collection of species and that has a single source or root vertex. However, this definition of semi-directed networks is implicit in nature since it is not clear when a mixed-graph enjoys this property or not. In this paper, we introduce novel, explicit mathematical characterizations of semi-directed networks, and also multi-semi-directed networks, that is, mixed graphs that can be obtained from directed phylogenetic networks that may have more than one root. In addition, through extending foundational tools from the theory of rooted networks into the semi-directed setting---such as cherry picking sequences, omnians, and path partitions---we characterize when a (multi-)semi-directed network can be obtained by de-orienting some rooted network that is contained in one of the well-known classes of tree-child, orchard, tree-based or forest-based networks. These results address structural aspects of (multi-)semi-directed networks and pave the way to improved theoretical and computational analyses of such networks, for example, within the development of algebraic evolutionary models that are based on such networks.
 
 - title: "Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances"
-  tags: [theory]
   themes: [identifiability]
   summary_lay: >-
     Two different evolutionary networks can sometimes produce exactly the same
@@ -279,7 +271,6 @@
     The inference of phylogenetic networks, which model complex evolutionary processes including hybridization and gene flow, remains a central challenge in evolutionary biology. Until now, statistically consistent inference methods have been limited to phylogenetic level-1 networks, which allow no interdependence between reticulate events. In this work, we establish the theoretical foundations for a statistically consistent inference method for a much broader class: semi-directed level-2 networks that are outer-labeled planar and galled. We precisely characterize the features of these networks that are distinguishable from the topologies of their displayed quartet trees. Moreover, we prove that an inter-taxon distance derived from these quartets is circular decomposable, enabling future robust inference of these networks from quartet data, such as concordance factors obtained from gene tree distributions under the Network Multispecies Coalescent model. Our results also have novel identifiability implications across different data types and evolutionary models, applying to any setting in which displayed quartets can be distinguished.
 
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
-  tags: [theory, applications]
   themes: [identifiability]
   summary_lay: >-
     Building large evolutionary networks by combining tiny four-species pieces only works if we can
@@ -314,7 +305,6 @@
     A core goal of phylogenomics is to determine the evolutionary history of a set of species from biological sequence data. Phylogenetic networks are able to describe more complex evolutionary phenomena than phylogenetic trees but are more difficult to accurately reconstruct. Recently, there has been growing interest in developing methods to infer semi-directed phylogenetic networks. As computing such networks can be computationally intensive, one approach to building such networks is to puzzle together smaller networks. Thus, it is essential to have robust methods for inferring semi-directed phylogenetic networks on small numbers of taxa. In this paper, we investigate an algebraic method for performing phylogenetic network inference from nucleotide sequence data on 4-leaf semi-directed phylogenetic networks by analysing the distribution of leaf-pattern probabilities. On simulated data, we found that we can correctly identify with high accuracy the undirected phylogenetic network for sequences of length at least 10kbp. We found that identifying the semi-directed network is more challenging and requires sequences of length approaching 10Mbp. We are also able to use our approach to identify tree-like evolution and determine the underlying tree. Finally, we employ our method on a real dataset from Xiphophorus species and use the results to build a phylogenetic network.
 
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
-  tags: [theory]
   themes: [identifiability]
   selected: true
   summary_lay: >-
@@ -353,6 +343,7 @@
   preprint-server: "bioRxiv"
   preprint-identifier: "10.1101/2025.04.18.649493"
   preprint-url: "https://www.biorxiv.org/content/10.1101/2025.04.18.649493"
+  data-url: "https://doi.org/10.5281/zenodo.20193239"
   software-url:
   abstract: |
     We consider the fundamental question of which evolutionary histories can potentially be reconstructed from sufficiently long DNA sequences, by studying the identifiability of phylogenetic networks from data generated under Markov models of DNA evolution. This topic has previously been studied for phylogenetic trees and for phylogenetic networks that are level-1, which means that reticulate evolutionary events were restricted to be independent in the sense that the corresponding cycles in the network are non-overlapping.<br>
@@ -361,7 +352,6 @@
     Moreover, we prove general identifiability results that do not restrict the network level at all and hold for the Jukes-Cantor as well as for the Kimura-2-Parameter model. We show that any two binary semi-directed phylogenetic networks are distinguishable if they do not display exactly the same 4-leaf subtrees, called quartets. This has direct consequences regarding the blobs of a network, which are its reticulated components. We show that the tree-of-blobs of a network, the global branching structure of the network, is always identifiable, as well as the circular ordering of the subnetworks around each blob, for networks in which edges do not cross and taxa are on the outside.
 
 - title: "Reconstructing semi-directed level-1 networks using few quarnets"
-  tags: [theory, algorithms]
   themes: [reconstruction]
   summary_lay: >-
     A large evolutionary network can be rebuilt from its four-species sub-pieces, but querying
@@ -398,7 +388,6 @@
     Semi-directed networks are partially directed graphs that model evolution where the directed edges represent reticulate evolutionary events. We present an algorithm that reconstructs binary \(n\)-leaf semi-directed level-1 networks in \( O( n^2) \) time from its quarnets (4-leaf subnetworks). Our method assumes we have direct access to all quarnets, yet uses only an asymptotically optimal number of \( O(n \log n) \) quarnets. When the network is assumed to contain no triangles, our method instead relies only on four-cycle quarnets and the splits of the other quarnets. A variant of our algorithm works with quartets rather than quarnets and we show that it reconstructs most of a semi-directed level-1 network from an asymptotically optimal \( O(n \log n) \) of the quartets it displays. Additionally, we provide an \( O(n^3) \) time algorithm that reconstructs the tree-of-blobs of any binary \( n\)-leaf semi-directed network with unbounded level from \( O(n^3) \) splits of its quarnets.
 
 - title: "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
-  tags: [software, algorithms, applications]
   themes: [reconstruction]
   selected: true
   summary_lay: >-
@@ -442,7 +431,6 @@
     With the increasing availability of genomic data, biologists aim to find more accurate descriptions of evolutionary histories influenced by secondary contact, where diverging lineages reconnect before diverging again. Such reticulate evolutionary events can be more accurately represented in phylogenetic networks than in phylogenetic trees. Since the root location of phylogenetic networks cannot be inferred from biological data under several evolutionary models, we consider semi-directed (phylogenetic) networks: partially directed graphs without a root in which the directed edges represent reticulate evolutionary events. By specifying a known outgroup, the rooted topology can be recovered from such networks. We introduce the algorithm <span style="font-variant: small-caps;">Squirrel</span> (<u>S</u>emi-directed <u>Qu</u>arnet-based <u>I</u>nfe<u>r</u>ence to <u>Re</u>construct <u>L</u>evel-1 Networks), which constructs a semi-directed level-1 network from a full set of quarnets (four-leaf semi-directed networks). Our method also includes a heuristic to construct such a quarnet set directly from sequence alignments. We demonstrate <span style="font-variant: small-caps;">Squirrel</span>'s performance through simulations and on real sequence datasets, the largest of which contains 29 aligned sequences close to 1.7 Mbp long. The resulting networks are obtained on a standard laptop within a few minutes. Lastly, we prove that <span style="font-variant: small-caps;">Squirrel</span> is combinatorially consistent: given a full set of quarnets coming from a triangle-free semi-directed level-1 network, it is guaranteed to reconstruct the original network. <span style="font-variant: small-caps;">Squirrel</span> is implemented in Python, has an easy-to-use graphical user interface that takes sequence alignments or quarnets as input, and is freely available at <a href="https://github.com/nholtgrefe/squirrel" target="_blank">https://github.com/nholtgrefe/squirrel</a>.
 
 - title: "Invariants for level-1 phylogenetic networks under the random walk 4-state Markov model"
-  tags: [theory]
   themes: [identifiability]
   summary_lay: >-
     Certain polynomial equations, called invariants, act as fingerprints that a stretch of DNA
@@ -480,7 +468,6 @@
     Phylogenetic networks can represent evolutionary events that cannot be described by phylogenetic trees, such as hybridization, introgression, and lateral gene transfer. Studying phylogenetic networks under a statistical model of DNA sequence evolution can aid the inference of phylogenetic networks. Most notably Markov models like the Jukes-Cantor or Kimura-3 model can been employed to infer a phylogenetic network using phylogenetic invariants. In this article we determine all quadratic invariants for sunlet networks under the random walk 4-state Markov model, which includes the aforementioned models. Taking toric fiber products of trees and sunlet networks, we obtain a new class of invariants for level-1 phylogenetic networks under the same model. Furthermore, we apply our results to the identifiability problem of a network parameter. In particular, we prove that our new class of invariants of the studied model is not sufficient to derive identifiability of quarnets (4-leaf networks). Moreover, we provide an efficient method that is faster and more reliable than the state-of-the-art in finding a significant number of invariants for many level-1 phylogenetic networks.
 
 - title: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
-  tags: [algorithms, software, theory]
   themes: [parameters]
   summary_lay: >-
     Many hard computational problems on evolutionary networks become easy when the
@@ -516,7 +503,6 @@
     To measure the tree-likeness of a directed acyclic graph (DAG), a new width parameter that considers the directions of the arcs was recently introduced: <em>scanwidth</em>. We present the first algorithm that efficiently computes the exact scanwidth of general DAGs. For DAGs with one root and scanwidth \( k \), it runs in \( O(k \cdot n^k \cdot m) \) time. The algorithm also functions as an FPT algorithm with complexity \( O(2^{4\ell - 1} \cdot \ell \cdot n + n^2) \) for phylogenetic networks of level-\( \ell \), a type of DAG used to depict evolutionary relationships among species. Our algorithm performs well in practice, being able to compute the scanwidth of synthetic networks up to 30 reticulations and 100 leaves within 500 seconds. Furthermore, we propose a heuristic that obtains an average practical approximation ratio of 1.5 on these networks. While we prove that the scanwidth is bounded from below by the treewidth of the underlying undirected graph, experiments suggest that for networks the parameters are close in practice.
 
 - title: "Computing the Scanwidth of Directed Acyclic Graphs"
-  tags: [algorithms, theory]
   themes: [parameters]
   summary_lay: >-
     Many hard computations on evolutionary networks get easier when the network is "almost
@@ -561,7 +547,6 @@
     }
 
 - title: "Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
-  tags: [theory, algorithms]
   themes: []
   summary_lay: >-
     Many planning problems ask you to pick a limited number of sets that together "cover" as much
@@ -607,7 +592,6 @@
 # included in the publication count on the CV.
 
 - title: "Optimising the Synthetic Aperture Radar Repeat Imaging Strategy for the EnVision Mission"
-  tags: [applications]
   themes: []
   type: "extended-abstract"
   release-date: 2025-09-07
@@ -644,4 +628,3 @@
   note: "Extended abstract, EPSC–DPS Joint Meeting 2025, Helsinki, Finland"
   doi-identifier: "10.5194/epsc-dps2025-1637"
   doi-url: "https://doi.org/10.5194/epsc-dps2025-1637"
-  preprint-url: "https://doi.org/10.5194/epsc-dps2025-1637"

@@ -31,6 +31,8 @@
 - name: physquirrel
   language: Python
   image: /assets/images/squirrel_cover4.svg
+  # the header is a short band; frame it on the squirrel itself
+  image_position: "center 30%"
   tagline: "Reconstruct semi-directed level-1 networks from quarnets or alignments."
   description: >-
     physquirrel implements the Squirrel algorithm for reconstructing semi-directed
@@ -39,6 +41,7 @@
     full Python API for advanced users, enabling simulation, inference and
     visualization of reticulate evolutionary histories.
   github: "https://github.com/nholtgrefe/squirrel"
+  docs: "https://nholtgrefe.github.io/squirrel/"
   pubs:
     - "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
 
@@ -61,6 +64,7 @@
 - name: scanwidth
   language: Python
   image: /assets/images/scanwidth.png
+  image_position: "center 30%"
   tagline: "Exact and heuristic computation of the scanwidth of directed acyclic graphs."
   description: >-
     An implementation of exact algorithms and heuristics for computing the
