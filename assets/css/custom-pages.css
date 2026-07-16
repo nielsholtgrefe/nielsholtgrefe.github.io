@@ -1814,17 +1814,19 @@ html[data-theme="dark"] .xiph-figure { color: #f2f6f8; }
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 0.25em 0.9em;
+  gap: 0.2em 0.9em;
   user-select: none;
 }
 
 .paper-venue-line::-webkit-details-marker { display: none; }
 
-.paper-venue-line .paper-venue { flex: 1 1 auto; min-width: 0; }
+/* Give both the venue and the toggle a full-width basis, so the
+   "plain-language summary" toggle always sits on its own line under the
+   publication rather than floating up beside the venue. */
+.paper-venue-line .paper-venue { flex: 1 1 100%; min-width: 0; }
 
 .paper-fold-toggle {
-  flex: 0 0 auto;
+  flex: 0 0 100%;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
   font-size: 0.85em;
