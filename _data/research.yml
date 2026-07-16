@@ -1,13 +1,18 @@
 # Research themes rendered on /research/.
 #
-# Each theme is matched to publications via the `themes:` list on entries in
-# _data/pubs.yml (e.g. a pub with `themes: [reconstruction]` appears under the
-# theme whose `id` is "reconstruction"). Add a theme by appending an entry here;
-# add a paper to a theme by tagging it in pubs.yml; no HTML editing needed.
+# `pubs:` lists the publication ids (see `id:` in _data/pubs.yml) shown in this
+# theme's panel, IN DISPLAY ORDER: the first three are shown in full under
+# "Selected publications", any after that appear as [n] links under "Other
+# related publications". Reorder the list to change what is featured.
 
 - id: reconstruction
   title: "Reconstructing Evolutionary Networks"
   tags: [Algorithms, Combinatorics, Software]
+  pubs:
+    - squirrel
+    - sequence-bounds
+    - few-quarnets
+    - algebraic-invariants
   body: >-
     The central computational problem in phylogenetics is <em>reconstruction</em>:
     given genetic sequence data from a set of species, find the network that best
@@ -22,6 +27,11 @@
 - id: identifiability
   title: "Identifiability and Statistical Foundations"
   tags: [Algebra, Probability, Combinatorics]
+  pubs:
+    - identifiability-level2
+    - algebraic-invariants
+    - distinguishing-level2
+    - invariants-level1
   body: >-
     Before building an inference method, there is a more basic question to settle: can
     two different networks even be told apart from DNA data at all? That property is
@@ -36,6 +46,10 @@
 - id: diversity
   title: "Phylogenetic Diversity and Conservation"
   tags: [Optimization, Conservation Biology, Software]
+  pubs:
+    - budgeted-pd
+    - kernelization-pd
+    - panda
   body: >-
     <em>Phylogenetic diversity</em> (PD) measures how evolutionarily distinct a set of
     species is. For conservation, a group spanning many deep branches of the tree of
@@ -50,6 +64,9 @@
 - id: parameters
   title: "Structural Parameters and Algorithms"
   tags: [Parameterized Complexity, Graph Theory, Algorithms]
+  pubs:
+    - scanwidth-exact
+    - scanwidth-thesis
   body: >-
     Many hard problems on phylogenetic networks become tractable once the network is
     close enough to a tree, and <em>scanwidth</em> is one way to make "close enough"

@@ -65,7 +65,9 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
 <div class="theme-deck" id="theme-deck" data-deck-variant="fan" aria-roledescription="carousel" aria-label="Research themes">
   <div class="deck-stage" id="deck-stage">
     {% for theme in site.data.research %}
-      {% assign related = site.data.pubs | where_exp: "p", "p.themes contains theme.id" | sort: "release-date" | reverse %}
+      {%- comment -%} The theme's `pubs:` list in _data/research.yml gives the ids in
+      display order: the first three in full, the rest as [n] links. {%- endcomment -%}
+      {% assign related = theme.pubs %}
 
       <article class="deck-card" data-index="{{ forloop.index0 }}" aria-label="{{ theme.title }} ({{ forloop.index }} of {{ nthemes }})">
         <div class="deck-card-head">
@@ -89,7 +91,9 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
         <div class="research-papers">
           <div class="research-papers-heading">Selected publications</div>
           <ul>
-            {% for pub in related limit: 3 %}
+            {% for pid in related limit: 3 %}
+              {%- assign pub = site.data.pubs | where: "id", pid | first -%}
+              {%- if pub -%}
               {%- assign author_str = "" -%}
               {%- for a in pub.authors -%}
                 {%- assign initial = a.first | slice: 0 -%}
@@ -127,17 +131,21 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
                   <span class="paper-venue">{{ venue }}</span>
                 {% endif %}
               </li>
+              {%- endif -%}
             {% endfor %}
           </ul>
 
           {% if related.size > 3 %}
           <div class="research-papers-other">
             <span class="research-other-label">Other related publications:</span>
-            {% for pub in related offset: 3 %}
+            {% for pid in related offset: 3 %}
+              {%- assign pub = site.data.pubs | where: "id", pid | first -%}
+              {%- if pub -%}
               {%- assign pslug = pub.title | slugify -%}
               {%- assign num = "" -%}
-              {%- for p in main_pubs -%}{%- if p.title == pub.title -%}{%- assign num = total_main | minus: forloop.index0 -%}{%- endif -%}{%- endfor -%}
+              {%- for p in main_pubs -%}{%- if p.id == pid -%}{%- assign num = total_main | minus: forloop.index0 -%}{%- endif -%}{%- endfor -%}
               <a class="research-other-num" href="{{ '/publications/' | relative_url }}#pub-{{ pslug }}" title="{{ pub.title | escape }}">{% if num != "" %}[{{ num }}]{% else %}&bull;{% endif %}</a>{%- unless forloop.last -%}<span class="research-other-sep">, </span>{%- endunless -%}
+              {%- endif -%}
             {% endfor %}
           </div>
           {% endif %}
