@@ -19,8 +19,12 @@ classes: wide
     {% for pkg in site.data.software %}
     <article class="deck-card software-card">
     {%- comment -%} `image_position` optionally re-frames the motif: the header is a
-    short wide strip, so background-size:cover shows only a band of the image. {%- endcomment -%}
-    <div class="software-card-header"{% if pkg.image %} style="background-image: url('{{ pkg.image | relative_url }}'); background-position: {{ pkg.image_position | default: 'center' }};"{% endif %}>
+    short wide strip, so background-size:cover shows only a band of the image. Both
+    values are handed to CSS as custom properties rather than written straight into
+    background-image / background-position: a bare Liquid output is not a valid CSS
+    value, so as real properties an editor parses the attribute as broken CSS. Keep
+    Liquid tags out of the attribute for the same reason. {%- endcomment -%}
+    <div class="software-card-header"{% if pkg.image %} style="--nh-card-img: url('{{ pkg.image | relative_url }}'); --nh-card-pos: {{ pkg.image_position | default: 'center' }};"{% endif %}>
       <div class="software-card-header-inner">
         <span class="software-card-name"><code>{{ pkg.name }}</code></span>
         {% if pkg.language %}<span class="software-card-lang">{{ pkg.language }}</span>{% endif %}

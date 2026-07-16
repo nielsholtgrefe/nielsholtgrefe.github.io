@@ -1081,10 +1081,14 @@ html[data-theme="dark"] .timeline-country {
 }
 
 /* Header carries the background motif with a readable scrim */
+/* The motif and its framing come from _data/software.yml, passed in as custom
+   properties on the element (see _pages/software.html). Both have sensible
+   fallbacks, so a package without an image just shows the flat accent colour. */
 .software-card-header {
   position: relative;
+  background-image: var(--nh-card-img);
   background-size: cover;
-  background-position: center;
+  background-position: var(--nh-card-pos, center);
   background-repeat: no-repeat;
   background-color: var(--nh-accent-light);
   border-bottom: 1px solid var(--nh-border);
