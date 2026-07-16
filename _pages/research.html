@@ -69,10 +69,16 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
 
       <article class="deck-card" data-index="{{ forloop.index0 }}" aria-label="{{ theme.title }} ({{ forloop.index }} of {{ nthemes }})">
         <div class="deck-card-head">
-          <span class="deck-card-count">{{ forloop.index }} / {{ nthemes }}</span>
-          <h2>{{ theme.title }}
-            {% for tag in theme.tags %}<span class="research-tag">{{ tag }}</span>{% endfor %}
-          </h2>
+          {%- comment -%} Count top-left, keyword tags top-right, so the title keeps its own line {%- endcomment -%}
+          <div class="deck-card-meta">
+            <span class="deck-card-count">{{ forloop.index }} / {{ nthemes }}</span>
+            {% if theme.tags %}
+            <span class="research-tags">
+              {% for tag in theme.tags %}<span class="research-tag">{{ tag }}</span>{% endfor %}
+            </span>
+            {% endif %}
+          </div>
+          <h2>{{ theme.title }}</h2>
         </div>
 
         <div class="research-body">

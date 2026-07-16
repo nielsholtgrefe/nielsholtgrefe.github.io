@@ -1654,14 +1654,33 @@ html[data-theme="dark"] .timeline-country {
 
 .deck-card-head { margin-bottom: 0.85em; }
 
+/* Count on the left, keyword tags pushed to the top-right corner. The title
+   then sits on its own line below and never has tags trailing off the end. */
+.deck-card-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5em 0.8em;
+  margin-bottom: 0.4em;
+}
+
 .deck-card-count {
-  display: block;
+  flex: 0 0 auto;
   font-family: 'Inter', sans-serif;
   font-size: 0.68em;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--nh-accent-mid, #4a8fa8);
-  margin-bottom: 0.35em;
+  padding-top: 0.25em;
+  white-space: nowrap;
+}
+
+.research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.3em;
+  min-width: 0;
 }
 
 .deck-card h2 {
@@ -1740,11 +1759,10 @@ html[data-theme="dark"] .timeline-country {
   border: 1px solid var(--nh-accent-mid, #4a8fa8);
   border-radius: 4px;
   padding: 2px 7px;
-  margin-left: 0.4em;
-  vertical-align: middle;
   color: var(--nh-accent, #1a5c7a);
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .research-body {
