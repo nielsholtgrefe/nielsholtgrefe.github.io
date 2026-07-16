@@ -66,7 +66,10 @@
   tags: [Parameterized Complexity, Graph Theory, Algorithms]
   pubs:
     - scanwidth-exact
+    - budgeted-pd
+    - panda
     - scanwidth-thesis
+    - kernelization-pd
   body: >-
     Many hard problems on phylogenetic networks become tractable once the network is
     close enough to a tree, and <em>scanwidth</em> is one way to make "close enough"
