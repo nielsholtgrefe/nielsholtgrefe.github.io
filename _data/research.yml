@@ -7,7 +7,7 @@
 
 - id: reconstruction
   title: "Reconstructing Evolutionary Networks"
-  tags: [Algorithms, Combinatorics]
+  tags: [Algorithms, Combinatorics, Software]
   body: >-
     The central computational problem in phylogenetics is <em>reconstruction</em>:
     given genetic sequence data from a set of species, find the network that best
@@ -21,7 +21,7 @@
 
 - id: identifiability
   title: "Identifiability and Statistical Foundations"
-  tags: [Algebra, Probability]
+  tags: [Algebra, Probability, Combinatorics]
   body: >-
     Before building an inference method, there is a more basic question to settle: can
     two different networks even be told apart from DNA data at all? That property is
@@ -35,7 +35,7 @@
 
 - id: diversity
   title: "Phylogenetic Diversity and Conservation"
-  tags: [Optimization, Conservation Biology]
+  tags: [Optimization, Conservation Biology, Software]
   body: >-
     <em>Phylogenetic diversity</em> (PD) measures how evolutionarily distinct a set of
     species is. For conservation, a group spanning many deep branches of the tree of
@@ -49,7 +49,7 @@
 
 - id: parameters
   title: "Structural Parameters and Algorithms"
-  tags: [Parameterized Complexity, Graph Theory]
+  tags: [Parameterized Complexity, Graph Theory, Algorithms]
   body: >-
     Many hard problems on phylogenetic networks become tractable once the network is
     close enough to a tree, and <em>scanwidth</em> is one way to make "close enough"
