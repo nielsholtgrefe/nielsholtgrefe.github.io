@@ -52,7 +52,8 @@ classes: wide
 {% assign journals = pubs | where: "type", "journal" %}
 {% assign preprints = pubs | where: "type", "preprint" %}
 {% assign theses = pubs | where: "type", "thesis" %}
-{% assign selected_pubs = pubs | where: "selected", true | sort: "release-date" | reverse %}
+{%- comment -%} Same curated, ordered id list as the homepage. {%- endcomment -%}
+{% assign selected_pubs = site.data.selected %}
 <section class="cv-section">
   <h2 class="cv-section-title">Publications</h2>
   <div class="cv-row">
@@ -72,12 +73,15 @@ classes: wide
     <div class="cv-period">Selected</div>
     <div class="cv-body">
       <ul class="cv-pub-list">
-        {% for pub in selected_pubs limit: 5 %}
+        {% for pid in selected_pubs %}
+        {%- assign pub = site.data.pubs | where: "id", pid | first -%}
+        {%- if pub -%}
         {%- assign pub_slug = pub.title | slugify -%}
         <li>
           <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>,
           {% if pub.type == "journal" %}<i>{{ pub.journal }}</i>{% elsif pub.type == "preprint" %}{{ pub.preprint-server }}{% endif %} {{ pub.year }}.
         </li>
+        {%- endif -%}
         {% endfor %}
       </ul>
     </div>

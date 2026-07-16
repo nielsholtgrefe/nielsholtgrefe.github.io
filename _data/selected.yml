@@ -1,0 +1,11 @@
+# Publications highlighted on the homepage and on /cv/, IN DISPLAY ORDER.
+#
+# Each entry is a publication id (see `id:` in _data/pubs.yml). The list is shown
+# verbatim: reorder it to change what appears first, and keep it to about five
+# entries so it stays a highlight rather than a second publications page.
+
+- phylozoo
+- sequence-bounds
+- panda
+- identifiability-level2
+- squirrel

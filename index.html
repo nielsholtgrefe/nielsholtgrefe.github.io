@@ -69,9 +69,9 @@ classes: wide
   {% endif %}
 
   {%- comment -%}
-  Selected publications: curated subset marked with `selected: true` in _data/pubs.yml.
+  Selected publications: the curated, ordered id list in _data/selected.yml.
   {%- endcomment -%}
-  {% assign selected_pubs = site.data.pubs | where: "selected", true | sort: "release-date" | reverse %}
+  {% assign selected_pubs = site.data.selected %}
   {% if selected_pubs.size > 0 %}
   <div class="home-selected">
     <section class="home-section">
@@ -80,7 +80,9 @@ classes: wide
         <a class="home-section-link" href="{{ '/publications/' | relative_url }}">all publications &rarr;</a>
       </div>
       <ul class="selected-pubs">
-        {% for pub in selected_pubs limit: 5 %}
+        {% for pid in selected_pubs %}
+          {%- assign pub = site.data.pubs | where: "id", pid | first -%}
+          {%- if pub -%}
           {%- assign pub_slug = pub.title | slugify -%}
           <li>
             <a class="selected-pub-title" href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>
@@ -94,6 +96,7 @@ classes: wide
               {%- endif -%}
             </span>
           </li>
+          {%- endif -%}
         {% endfor %}
       </ul>
     </section>
