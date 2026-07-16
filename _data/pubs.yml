@@ -1,20 +1,19 @@
-# Publications and preprints.
+# Publications and preprints. This file is the single source of truth for the
+# publication data itself; which papers get featured where is decided elsewhere,
+# by referring to an entry's `id:`.
 #
-#   id:          (required) short, unique, stable key used to refer to this entry
-#                from the other data files.
+#   id:          (required) short, unique, stable key for this entry. Referenced by
+#                _data/research.yml (per-theme lists on /research/), _data/software.yml
+#                (a package's related papers), and _data/selected.yml (the homepage
+#                and CV highlights). Changing an id breaks those references.
 #
 # Optional per-entry fields used by the redesigned site:
-#   themes:      list of research-theme ids (see _data/research.yml) this paper
-#                appears under on /research/
 #   data-url:    link to the dataset for this paper (shows a data icon)
-#   selected:    true to feature on the homepage + CV "Selected publications"
 #   summary_lay: 2-3 sentence plain-language summary, shown as a collapsible
 #                "summary" toggle next to abstract/bibtex. Omit to hide it.
 
 - title: "PhyloZoo: a unified framework for phylogenetic network analysis in Python"
   id: phylozoo
-  themes: []
-  selected: true
   summary_lay: >-
     Software for studying phylogenetic networks is usually tied to one specific
     inference method and hard to combine with other tools. PhyloZoo is an
@@ -44,7 +43,6 @@
 
 - title: "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
   id: budgeted-pd
-  themes: [diversity]
   summary_lay: >-
     Deciding which species to protect to preserve the most evolutionary diversity gets much
     harder when protection has real, uneven costs and evolution is network-shaped rather than
@@ -79,7 +77,6 @@
 
 - title: "Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies"
   id: kernelization-pd
-  themes: [diversity]
   summary_lay: >-
     Choosing species to conserve becomes more realistic when we insist that a saved predator also
     has some saved prey — a dependency captured by a food web. This paper maps out when this
@@ -113,8 +110,6 @@
 
 - title: "Bounds on the Sequence Length Sufficient to Reconstruct Binary Level-1 Phylogenetic Networks Under the CFN Model"
   id: sequence-bounds
-  themes: [reconstruction]
-  selected: true
   summary_lay: >-
     Existing methods can reconstruct certain evolutionary networks correctly if given infinitely
     long DNA sequences — but real data is finite. This paper works out how long the sequences
@@ -157,8 +152,6 @@
 
 - title: "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
   id: panda
-  themes: [diversity]
-  selected: true
   summary_lay: >-
     When conservation budgets force us to protect only some species, which ones
     preserve the most evolutionary variety? On simple evolutionary trees this is
@@ -199,7 +192,6 @@
 
 - title: "Characterizing semi-directed phylogenetic networks and their multi-rootable variants"
   id: characterizing-sd
-  themes: []
   summary_lay: >-
     Semi-directed networks are a popular way to depict evolution when the ancient "root" cannot be
     pinned down but individual merging events can. Their usual definition is indirect — it does not
@@ -238,7 +230,6 @@
 
 - title: "Distinguishing Phylogenetic Level-2 Networks with Quartets and Inter-Taxon Quartet Distances"
   id: distinguishing-level2
-  themes: [identifiability]
   summary_lay: >-
     Two different evolutionary networks can sometimes produce exactly the same
     observable data, which makes them impossible to tell apart. This work pins down
@@ -282,7 +273,6 @@
 
 - title: "Algebraic Invariants for Inferring 4-leaf Semi-Directed Phylogenetic Networks"
   id: algebraic-invariants
-  themes: [identifiability]
   summary_lay: >-
     Building large evolutionary networks by combining tiny four-species pieces only works if we can
     infer those pieces reliably. This paper develops an algebra-based method to infer four-leaf
@@ -317,8 +307,6 @@
 
 - title: "Identifiability of Phylogenetic Level-2 Networks under the Jukes-Cantor Model"
   id: identifiability-level2
-  themes: [identifiability]
-  selected: true
   summary_lay: >-
     Before trying to reconstruct an evolutionary network, one should check whether the DNA data
     even determines it uniquely — otherwise no method can succeed. This paper proves that a broad
@@ -365,7 +353,6 @@
 
 - title: "Reconstructing semi-directed level-1 networks using few quarnets"
   id: few-quarnets
-  themes: [reconstruction]
   summary_lay: >-
     A large evolutionary network can be rebuilt from its four-species sub-pieces, but querying
     every possible group of four species is wasteful. This paper gives a fast algorithm that
@@ -402,8 +389,6 @@
 
 - title: "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
   id: squirrel
-  themes: [reconstruction]
-  selected: true
   summary_lay: >-
     Biologists reconstruct evolutionary history from DNA, but when species have
     hybridized this history is a network rather than a simple branching tree.
@@ -446,7 +431,6 @@
 
 - title: "Invariants for level-1 phylogenetic networks under the random walk 4-state Markov model"
   id: invariants-level1
-  themes: [identifiability]
   summary_lay: >-
     Certain polynomial equations, called invariants, act as fingerprints that a stretch of DNA
     evolved along a particular network. This paper works out these fingerprints for a family of
@@ -484,7 +468,6 @@
 
 - title: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
   id: scanwidth-exact
-  themes: [parameters]
   summary_lay: >-
     Many hard computational problems on evolutionary networks become easy when the
     network has a simple enough shape, measured by a number called its scanwidth. To
@@ -520,7 +503,6 @@
 
 - title: "Computing the Scanwidth of Directed Acyclic Graphs"
   id: scanwidth-thesis
-  themes: [parameters]
   summary_lay: >-
     Many hard computations on evolutionary networks get easier when the network is "almost
     tree-like", measured by a quantity called scanwidth. This MSc thesis develops the first
@@ -565,7 +547,6 @@
 
 - title: "Maximum Coverage Problems: Theory and Application in Optimal Sensor Selection"
   id: max-coverage-thesis
-  themes: []
   summary_lay: >-
     Many planning problems ask you to pick a limited number of sets that together "cover" as much
     as possible — a classic optimization task. This BSc thesis proves improved guarantees for a
@@ -611,7 +592,6 @@
 
 - title: "Optimising the Synthetic Aperture Radar Repeat Imaging Strategy for the EnVision Mission"
   id: envision-sar
-  themes: []
   type: "extended-abstract"
   release-date: 2025-09-07
   authors:
