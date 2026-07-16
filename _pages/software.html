@@ -35,19 +35,19 @@ classes: wide
       <div class="software-card-pubs">
         <span class="software-pubs-label">Related publication{% if pkg.pubs.size > 1 %}s{% endif %}</span>
         <ul>
-          {% for pt in pkg.pubs %}
-            {%- assign p = site.data.pubs | where: "title", pt | first -%}
+          {% for pid in pkg.pubs %}
+            {%- assign p = site.data.pubs | where: "id", pid | first -%}
+            {%- if p -%}
             <li>
-              <a href="{{ '/publications/' | relative_url }}#pub-{{ pt | slugify }}">{{ pt }}</a>
-              {%- if p -%}
+              <a href="{{ '/publications/' | relative_url }}#pub-{{ p.title | slugify }}">{{ p.title }}</a>
               <span class="software-pub-venue">
                 {%- if p.type == "journal" -%}<i>{{ p.journal }}</i>{% if p.year %}, {{ p.year }}{% endif %}
                 {%- elsif p.type == "preprint" -%}{{ p.preprint-server }}{% if p.year %}, {{ p.year }}{% endif %}
                 {%- elsif p.type == "thesis" -%}{{ p.note }}
                 {%- endif -%}
               </span>
-              {%- endif -%}
             </li>
+            {%- endif -%}
           {% endfor %}
         </ul>
       </div>

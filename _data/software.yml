@@ -8,8 +8,9 @@
 #   description (required)  2-3 sentence description
 #   github      (optional)  code repository URL
 #   docs        (optional)  documentation website URL
-#   pubs        (optional)  list of related publication titles (must match a title in
-#                           _data/pubs.yml); rendered as links to /publications/
+#   pubs        (optional)  list of related publication ids (must match an `id:` in
+#                           _data/pubs.yml); rendered, in this order, as links to
+#                           /publications/
 
 - name: phylozoo
   language: Python
@@ -24,7 +25,7 @@
   github: "https://github.com/nholtgrefe/phylozoo"
   docs: "https://nholtgrefe.github.io/phylozoo/"
   pubs:
-    - "PhyloZoo: a unified framework for phylogenetic network analysis in Python"
+    - phylozoo
 
 - name: physquirrel
   language: Python
@@ -41,7 +42,7 @@
   github: "https://github.com/nholtgrefe/squirrel"
   docs: "https://nholtgrefe.github.io/squirrel/"
   pubs:
-    - "Squirrel: Reconstructing Semi-directed Phylogenetic Level-1 Networks from Four-Leaved Networks or Sequence Alignments"
+    - squirrel
 
 - name: phypanda
   language: Python
@@ -55,8 +56,8 @@
   github: "https://github.com/nholtgrefe/panda"
   docs: "https://nholtgrefe.github.io/panda/"
   pubs:
-    - "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
-    - "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
+    - panda
+    - budgeted-pd
 
 - name: scanwidth
   language: Python
@@ -73,5 +74,5 @@
   github: "https://github.com/nholtgrefe/scanwidth"
   docs: "https://nholtgrefe.github.io/scanwidth/"
   pubs:
-    - "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
-    - "Computing the Scanwidth of Directed Acyclic Graphs"
+    - scanwidth-exact
+    - scanwidth-thesis
