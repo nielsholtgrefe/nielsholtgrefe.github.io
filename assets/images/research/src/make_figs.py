@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Generate the research-page figures in Niels' own drawing style.
+"""Research-page figures, drawn to match Niels' own originals.
 
-Outputs (SVG, crisp at any size):
-  assets/images/research/theme-reconstruction.svg   MSA -> quarnets -> network
-  assets/images/research/theme-identifiability.svg  two nets, same quartets
-  assets/images/research/theme-diversity.svg        network + chosen taxa (PD)
-  assets/images/research/theme-parameters.svg       network + scanwidth cut
-  assets/images/tree-vs-network.svg                 layman tree vs network
+  theme-reconstruction.svg  fig2 pipeline: MSA -> quarnets -> semi-directed net
+  theme-identifiability.svg two distinct nets, same displayed quartets
+  theme-diversity.svg       budgeted taxon choice on a network
+  theme-parameters.svg      the scanwidth TikZ: rooted DAG + graded red cut arcs
+  tree-vs-network.svg       Xiphophorus tree vs the real Xiphophorus network
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,322 +24,343 @@ def write(path, body):
     print("wrote", os.path.relpath(path, ROOT), len(body), "bytes")
 
 
-# --------------------------------------------------------------------------
-# A small 4-leaf semi-directed network ("quarnet") drawn his way:
-# hollow internal nodes, red dashed arcs into a filled red reticulation.
-# --------------------------------------------------------------------------
-def quarnet(ox, oy, s=1.0, labels=("1", "2", "3", "4"), tri=False):
-    """4-leaf network with a reticulation cycle. Returns svg string."""
+# ==========================================================================
+# fig2-style quarnet: 4 leaves, one reticulation, red dashed arcs
+# ==========================================================================
+def quarnet(ox, oy, s=1.0, labels=("1", "2", "3", "4")):
+    """Binary 4-leaf semi-directed network (verified by check_binary.py).
+
+    root -> a,b ; a -> l1, r ; b -> l4, r ; r -> m ; m -> l2, l3.
+    Degrees: root 2; a, b, r, m all 3; leaves 1.
+    """
     def P(x, y):
         return (ox + x * s, oy + y * s)
-    top = P(50, 6)
-    a, b = P(20, 40), P(80, 40)
-    r = P(50, 66)
-    l1, l2 = P(4, 74), P(30, 96)
-    l3, l4 = P(70, 96), P(96, 74)
-    out = []
-    # tree edges
-    out.append(edge(top, a)); out.append(edge(top, b))
-    out.append(edge(a, l1)); out.append(edge(b, l4))
-    out.append(edge(r, l2)); out.append(edge(r, l3))
-    # reticulation arcs (red dashed, arrow into r)
-    out.append(retic(a, r, bow=6 * s))
-    out.append(retic(b, r, bow=-6 * s))
-    # nodes
-    out.append(node(top, r=4.0 * s)); out.append(node(a, r=4.0 * s)); out.append(node(b, r=4.0 * s))
-    out.append(rnode(r, r=4.6 * s))
+    top, a, b = P(50, 4), P(20, 36), P(80, 36)
+    r = P(50, 62)
+    m = P(50, 80)
+    l1, l4 = P(2, 72), P(98, 72)
+    l2, l3 = P(30, 100), P(70, 100)
+    out = [edge(top, a), edge(top, b), edge(a, l1), edge(b, l4),
+           edge(r, m), edge(m, l2), edge(m, l3),
+           retic(a, r, bow=7 * s), retic(b, r, bow=-7 * s)]
+    for p in (top, a, b, m):
+        out.append(node(p, r=3.6 * s))
+    out.append(rnode(r, r=4.2 * s))
     for p in (l1, l2, l3, l4):
-        out.append(dot(p, r=3.8 * s))
+        out.append(dot(p, r=3.4 * s))
     for p, t in zip((l1, l2, l3, l4), labels):
-        dx = -9 * s if p[0] < ox + 50 * s else 9 * s
-        out.append(label((p[0] + dx, p[1] + 5 * s), t, size=13 * s))
+        dx = -8.5 * s if p[0] < ox + 50 * s else 8.5 * s
+        out.append(label((p[0] + dx, p[1] + 4.5 * s), t, size=12.5 * s))
     return "".join(out)
 
 
-# --------------------------------------------------------------------------
-# 1. RECONSTRUCTION: sequences -> quarnets -> assembled network
-# --------------------------------------------------------------------------
+# ==========================================================================
+# 1. RECONSTRUCTION  (mirrors his fig2 pipeline)
+# ==========================================================================
 def fig_reconstruction():
     o = [header(W, H)]
-    o.append(caption((W / 2, 26), "reconstruction: from sequences to a network"))
+    o.append(caption((W / 2, 24), "from sequences to a semi-directed network"))
 
-    # --- stage 1: MSA (monospace, like his fig2) ---
-    o.append(box(24, 44, 176, 132))
-    seqs = ["-GCG-CACT", "AGCG-C-CT", "-GCCA-AGT", "GCCAA-ATT", "-CGT-ATCT"]
-    for i, s in enumerate(seqs):
+    o.append(box(24, 42, 176, 134))
+    for i, s in enumerate(["-GCG-CACT", "AGCG-C-CT", "-GCCA-AGT",
+                           "GCCAA-ATT", "-CGT-ATCT"]):
         o.append(f'<text x="36" y="{72 + i*22}" font-size="15" fill="{BLACK}" '
                  f'font-family="DejaVu Sans Mono, Menlo, monospace">{s}</text>')
-    o.append(caption((112, 194), "alignment"))
+    o.append(caption((112, 194), "multiple sequence alignment"))
 
-    # --- stage 2: dense set of quarnets ---
-    o.append(box(246, 44, 250, 132))
+    o.append(box(246, 42, 250, 134))
     o.append(quarnet(258, 62, s=0.86, labels=("1", "2", "3", "4")))
     o.append(quarnet(374, 62, s=0.86, labels=("2", "3", "5", "6")))
-    o.append(caption((371, 194), "all 4-leaf quarnets"))
+    o.append(caption((371, 194), "dense set of quarnets"))
 
-    # --- arrows between stages ---
-    o.append(arrow((208, 110), (240, 110)))
-    o.append(arrow((504, 110), (536, 110)))
+    o.append(arrow((208, 108), (240, 108)))
+    o.append(arrow((504, 108), (536, 108)))
 
-    # --- stage 3: the assembled network (bigger, centre-bottom) ---
-    o.append(box(546, 44, 190, 132))
-    o.append(quarnet(566, 56, s=1.05, labels=("1", "2", "3", "4")))
+    o.append(box(546, 42, 190, 134))
+    o.append(quarnet(568, 58, s=1.0, labels=("1", "2", "3", "4")))
     o.append(caption((641, 194), "puzzle them together"))
 
-    # --- big result network underneath ---
-    def P(x, y):
-        return (x, y)
-    root = P(380, 236)
-    a, b = P(250, 296), P(510, 296)
-    c, d = P(190, 372), P(322, 372)
-    e, f = P(438, 372), P(572, 372)
-    r1 = P(380, 424)
-    leaves = [P(150, 470), P(232, 470), P(300, 470), P(380, 492),
-              P(462, 470), P(530, 470), P(612, 470)]
-    o.append(edge(root, a)); o.append(edge(root, b))
-    o.append(edge(a, c)); o.append(edge(a, d))
-    o.append(edge(b, e)); o.append(edge(b, f))
-    o.append(edge(c, leaves[0])); o.append(edge(c, leaves[1]))
-    o.append(edge(d, leaves[2])); o.append(edge(f, leaves[5])); o.append(edge(f, leaves[6]))
-    o.append(edge(e, leaves[4]))
-    o.append(edge(r1, leaves[3]))
-    o.append(retic(d, r1, bow=10)); o.append(retic(e, r1, bow=-10))
+    root = (380, 238)
+    a, b = (250, 296), (510, 296)
+    c, d = (190, 372), (322, 372)
+    e, f = (438, 372), (572, 372)
+    r1 = (380, 428)
+    lv = [(150, 474), (232, 474), (300, 474), (380, 496),
+          (462, 474), (530, 474), (612, 474)]
+    o += [edge(root, a), edge(root, b), edge(a, c), edge(a, d),
+          edge(b, e), edge(b, f), edge(c, lv[0]), edge(c, lv[1]),
+          edge(d, lv[2]), edge(e, lv[4]), edge(f, lv[5]), edge(f, lv[6]),
+          edge(r1, lv[3]), retic(d, r1, bow=10), retic(e, r1, bow=-10)]
     for p in (root, a, b, c, d, e, f):
         o.append(node(p))
     o.append(rnode(r1))
-    for p in leaves:
-        o.append(dot(p))
-    for p, t in zip(leaves, "1234567"):
-        o.append(label((p[0], p[1] + 22), t, size=15))
-    o.append(caption((380, 538), "reconstructed semi-directed network"))
+    for p, t in zip(lv, "1234567"):
+        o.append(dot(p)); o.append(label((p[0], p[1] + 22), t, size=14))
+    o.append(caption((380, 540), "reconstructed semi-directed network"))
     o.append(footer())
     write(os.path.join(RES, "theme-reconstruction.svg"), "".join(o))
 
 
-# --------------------------------------------------------------------------
-# 2. IDENTIFIABILITY: two different networks, indistinguishable data
-# --------------------------------------------------------------------------
+# ==========================================================================
+# 2. IDENTIFIABILITY
+# ==========================================================================
 def fig_identifiability():
     o = [header(W, H)]
-    o.append(caption((W / 2, 26), "identifiability: can the data tell them apart?"))
+    o.append(caption((W / 2, 24), "can the data tell two networks apart?"))
 
-    o.append(box(30, 46, 320, 250))
-    o.append(box(410, 46, 320, 250))
-    o.append(label((190, 74), "network A", size=16))
-    o.append(label((570, 74), "network B", size=16))
+    o.append(box(30, 44, 320, 252))
+    o.append(box(410, 44, 320, 252))
+    o.append(label((190, 72), "network A", size=15))
+    o.append(label((570, 72), "network B", size=15))
 
     def net_a(ox, oy):
-        """Reticulation hangs below a wide 4-cycle."""
+        """Symmetric 4-cycle. root->a,b; a->l1,r; b->l4,r; r->m; m->l2,l3."""
         def P(x, y):
             return (ox + x, oy + y)
-        top = P(150, 22)
-        a, b = P(70, 78), P(230, 78)
-        r = P(150, 138)
-        l1, l2 = P(24, 178), P(96, 178)
-        l3, l4 = P(204, 178), P(276, 178)
+        top, a, b = P(150, 18), P(62, 66), P(238, 66)
+        r, m = P(150, 118), P(150, 152)
+        l1, l4 = P(18, 186), P(282, 186)
+        l2, l3 = P(112, 186), P(188, 186)
         out = [edge(top, a), edge(top, b), edge(a, l1), edge(b, l4),
-               edge(r, l2), edge(r, l3),
-               retic(a, r, bow=10), retic(b, r, bow=-10)]
-        for p in (top, a, b):
+               edge(r, m), edge(m, l2), edge(m, l3),
+               retic(a, r, bow=12), retic(b, r, bow=-12)]
+        for p in (top, a, b, m):
             out.append(node(p))
         out.append(rnode(r))
         for p, t in zip((l1, l2, l3, l4), ("1", "2", "3", "4")):
-            out.append(dot(p)); out.append(label((p[0], p[1] + 22), t, size=15))
+            out.append(dot(p)); out.append(label((p[0], p[1] + 21), t, size=14))
         return "".join(out)
 
     def net_b(ox, oy):
-        """Structurally different: a narrow triangle reticulation on one side."""
+        """Skewed cycle: root->a,c; a->l1,r; c->l4,g; g->l3,r; r->l2."""
         def P(x, y):
             return (ox + x, oy + y)
-        top = P(150, 22)
-        a = P(96, 74)
-        c = P(214, 92)
-        r = P(150, 138)
-        l1, l2 = P(24, 178), P(112, 178)
-        l3, l4 = P(196, 178), P(276, 178)
+        top, a, c = P(150, 18), P(70, 66), P(232, 66)
+        g = P(186, 122)
+        r = P(104, 140)
+        l1, l4 = P(18, 186), P(282, 186)
+        l3, l2 = P(210, 186), P(104, 186)
         out = [edge(top, a), edge(top, c), edge(a, l1), edge(c, l4),
-               edge(r, l2), edge(c, l3),
-               retic(a, r, bow=12), retic(c, r, bow=-14)]
-        for p in (top, a, c):
+               edge(c, g), edge(g, l3), edge(r, l2),
+               retic(a, r, bow=10), retic(g, r, bow=-18)]
+        for p in (top, a, c, g):
             out.append(node(p))
         out.append(rnode(r))
         for p, t in zip((l1, l2, l3, l4), ("1", "2", "3", "4")):
-            out.append(dot(p)); out.append(label((p[0], p[1] + 22), t, size=15))
+            out.append(dot(p)); out.append(label((p[0], p[1] + 21), t, size=14))
         return "".join(out)
 
-    o.append(net_a(40, 84))
-    o.append(net_b(420, 84))
-
-    # the data they both produce
-    o.append(arrow((190, 312), (330, 372)))
-    o.append(arrow((570, 312), (430, 372)))
-    o.append(box(250, 382, 260, 128))
-    o.append(caption((380, 406), "same quartet distribution"))
-    o.append(quarnet(272, 414, s=0.82, labels=("1", "2", "3", "4")))
-    o.append(quarnet(372, 414, s=0.82, labels=("1", "3", "2", "4")))
-    o.append(label((380, 546), "identical data ⇒ not distinguishable", size=16,
-                   color=RED, weight="600"))
+    o.append(net_a(40, 82)); o.append(net_b(420, 82))
+    o.append(arrow((190, 312), (330, 374)))
+    o.append(arrow((570, 312), (430, 374)))
+    o.append(box(250, 384, 260, 126))
+    o.append(caption((380, 408), "same displayed quartets"))
+    o.append(quarnet(272, 416, s=0.80, labels=("1", "2", "3", "4")))
+    o.append(quarnet(372, 416, s=0.80, labels=("1", "3", "2", "4")))
+    o.append(label((380, 546), "identical data ⇒ not distinguishable",
+                   size=15, color=RED, weight="600"))
     o.append(footer())
     write(os.path.join(RES, "theme-identifiability.svg"), "".join(o))
 
 
-# --------------------------------------------------------------------------
-# 3. DIVERSITY: which taxa to save (PD on a network)
-# --------------------------------------------------------------------------
+# ==========================================================================
+# 3. DIVERSITY
+# ==========================================================================
 def fig_diversity():
     o = [header(W, H)]
-    o.append(caption((W / 2, 26), "phylogenetic diversity: which taxa to protect?"))
+    o.append(caption((W / 2, 24), "which taxa preserve the most diversity?"))
 
-    root = (380, 66)
-    a, b = (238, 132), (522, 132)
-    c, d = (168, 220), (312, 220)
-    e, f = (452, 220), (594, 220)
-    r1 = (380, 286)
-    leaves = [(120, 350), (216, 350), (296, 350), (380, 366),
-              (466, 350), (546, 350), (642, 350)]
-    o.append(edge(root, a)); o.append(edge(root, b))
-    o.append(edge(a, c)); o.append(edge(a, d))
-    o.append(edge(b, e)); o.append(edge(b, f))
-    o.append(edge(c, leaves[0])); o.append(edge(c, leaves[1]))
-    o.append(edge(d, leaves[2])); o.append(edge(e, leaves[4]))
-    o.append(edge(f, leaves[5])); o.append(edge(f, leaves[6]))
-    o.append(edge(r1, leaves[3]))
-    o.append(retic(d, r1, bow=10)); o.append(retic(e, r1, bow=-10))
+    root = (380, 70)
+    a, b = (238, 136), (522, 136)
+    c, d = (168, 222), (312, 222)
+    e, f = (452, 222), (594, 222)
+    r1 = (380, 288)
+    lv = [(120, 352), (216, 352), (296, 352), (380, 368),
+          (466, 352), (546, 352), (642, 352)]
+    o += [edge(root, a), edge(root, b), edge(a, c), edge(a, d),
+          edge(b, e), edge(b, f), edge(c, lv[0]), edge(c, lv[1]),
+          edge(d, lv[2]), edge(e, lv[4]), edge(f, lv[5]), edge(f, lv[6]),
+          edge(r1, lv[3]), retic(d, r1, bow=10), retic(e, r1, bow=-10)]
     for p in (root, a, b, c, d, e, f):
         o.append(node(p))
     o.append(rnode(r1))
-
     chosen = {0, 3, 5}
-    for i, p in enumerate(leaves):
+    for i, p in enumerate(lv):
         if i in chosen:
-            o.append(f'<circle cx="{p[0]}" cy="{p[1]}" r="12" fill="none" '
-                     f'stroke="{RED}" stroke-width="2.4"/>')
-        o.append(dot(p))
-        o.append(label((p[0], p[1] + 30), str(i + 1), size=15))
-
-    o.append(label((380, 434), "budget: pick 3 taxa", size=17, weight="600"))
-    o.append(label((380, 462), "→ maximise the evolutionary history kept",
-                   size=16, color="#4a5560", weight="400"))
-    o.append(f'<circle cx="286" cy="500" r="9" fill="none" stroke="{RED}" stroke-width="2.2"/>')
-    o.append(label((304, 506), "= selected", size=15, anchor="start", color="#4a5560"))
+            o.append(f'<circle cx="{p[0]}" cy="{p[1]}" r="11.5" fill="none" '
+                     f'stroke="{RED}" stroke-width="2.2"/>')
+        o.append(dot(p)); o.append(label((p[0], p[1] + 30), str(i + 1), size=14))
+    o.append(label((380, 440), "budget: protect 3 taxa", size=16, weight="600"))
+    o.append(caption((380, 468), "maximise the evolutionary history kept", size=15))
+    o.append(f'<circle cx="292" cy="504" r="8.5" fill="none" stroke="{RED}" '
+             f'stroke-width="2.2"/>')
+    o.append(label((308, 509), "= selected", size=14, anchor="start", color="#3f4a54"))
     o.append(footer())
     write(os.path.join(RES, "theme-diversity.svg"), "".join(o))
 
 
-# --------------------------------------------------------------------------
-# 4. PARAMETERS: scanwidth / how tree-like is the network
-# --------------------------------------------------------------------------
+# ==========================================================================
+# 4. PARAMETERS — a faithful redraw of his scanwidth TikZ
+#    rooted DAG, curved arcs, and a family of red cut-arcs graded 17%..100%
+# ==========================================================================
 def fig_parameters():
     o = [header(W, H)]
-    o.append(caption((W / 2, 26), "structural parameters: how tree-like is it?"))
+    o.append(caption((W / 2, 24), "scanwidth: how tree-like is the network?"))
 
-    # Every internal node has degree 3 (the root has the usual degree 2), and the
-    # single reticulation r has exactly two parents (d, e) and one child.
-    root = (380, 62)
-    a, b = (250, 130), (510, 130)
-    c, d = (170, 210), (330, 210)
-    e, f = (430, 210), (590, 210)
-    r = (380, 300)
-    leaves = [(104, 392), (212, 392), (318, 392), (380, 392),
-              (442, 392), (548, 392), (656, 392)]
+    # TikZ coords (x right, y UP) -> svg (y down).
+    # x in [0.5, 8]  -> [96, 664]   |  y in [2, 8.5] -> [452, 84]
+    SX, SY = 568.0 / 7.5, 368.0 / 6.5
 
-    o.append(edge(root, a)); o.append(edge(root, b))
-    o.append(edge(a, c)); o.append(edge(a, d))
-    o.append(edge(b, e)); o.append(edge(b, f))
-    o.append(edge(c, leaves[0])); o.append(edge(c, leaves[1]))
-    o.append(edge(d, leaves[2])); o.append(edge(e, leaves[4]))
-    o.append(edge(f, leaves[5])); o.append(edge(f, leaves[6]))
-    o.append(edge(r, leaves[3]))
-    o.append(retic(d, r, bow=10)); o.append(retic(e, r, bow=-10))
-    for p in (root, a, b, c, d, e, f):
+    def P(x, y):
+        return (96.0 + (x - 0.5) * SX, 452.0 - (y - 2.0) * SY)
+
+    rho = P(5, 8.5); w_ = P(6.5, 7.5); q = P(5, 6.5); v = P(3.5, 5.5)
+    u = P(2, 4.5);   y_ = P(5, 4.5);   x_ = P(3.5, 3.5)
+    a = P(0.5, 3.5); b = P(3.5, 2);    c = P(6.5, 3.5); d = P(8, 6.5)
+
+    # --- DAG edges, curved exactly where his TikZ bends ---
+    o.append(curve(rho, q, bow=-78))        # bend left 45, looseness 2.5
+    o.append(edge(rho, w_))
+    o.append(edge(w_, d))
+    o.append(curve(w_, y_, bow=-70))        # in=135, out=-120, looseness 2.25
+    o.append(curve(q, u, bow=16))           # bend right 15
+    o.append(edge(q, v))
+    o.append(edge(u, a))
+    o.append(edge(u, x_))
+    o.append(curve(v, x_, bow=60))          # bend right 45, looseness 2.5
+    o.append(edge(v, y_))
+    o.append(edge(y_, c))
+    o.append(edge(x_, b))
+
+    # --- the graded red cut arcs (his red!17 .. red!100) ---
+    def A(x, y):
+        return P(x, y)
+    cuts = [
+        (A(0.75, 4.5), A(1.5, 3.25), 0.17),
+        (A(2.75, 2.75), A(4.25, 2.75), 0.17),
+        (A(5.25, 3.5), A(6.25, 4.5), 0.17),
+        (A(2.25, 3.5), A(3.5, 4.5), 0.34),
+        (A(3.0, 4.5), A(2.0, 5.5), 0.50),
+        (A(3.75, 4.5), A(5.0, 5.25), 0.34),
+        (A(4.75, 5.5), A(3.75, 6.5), 0.67),
+        (A(5.0, 7.5), A(6.0, 6.5), 0.82),
+        (A(6.75, 6.5), A(7.75, 7.5), 0.17),
+        (A(5.25, 7.5), A(6.25, 8.5), 1.00),
+    ]
+    for p, qq, sh in cuts:
+        o.append(cut_arc(p, qq, sh, bow=10, w=4.2))
+
+    # --- nodes: reticulations (indegree 2) are x and y ---
+    for p in (rho, w_, q, v, u):
         o.append(node(p))
-    o.append(rnode(r))
-    for p in leaves:
+    o.append(rnode(x_)); o.append(rnode(y_))
+    for p in (a, b, c, d):
         o.append(dot(p))
-    for p, t in zip(leaves, "1234567"):
-        o.append(label((p[0], p[1] + 24), t, size=15))
 
-    # A horizontal "scan" cut; here it crosses exactly the four edges a-c, a-d,
-    # b-e and b-f, so the grey dots and the stated number agree.
-    y = 170
-    o.append(f'<line x1="80" y1="{y}" x2="664" y2="{y}" stroke="{GREY}" '
-             f'stroke-width="2" stroke-dasharray="9,7"/>')
-    o.append(label((674, y + 6), "cut", size=15, anchor="start", color=GREY))
-    for x in (210, 290, 470, 550):
-        o.append(f'<circle cx="{x}" cy="{y}" r="5.4" fill="{GREY}"/>')
+    for p, t, dx, dy in ((rho, "ρ", 14, -6), (w_, "w", 14, -6), (q, "q", -14, -6),
+                         (v, "v", -14, -6), (u, "u", -14, -6), (y_, "y", 14, -4),
+                         (x_, "x", 14, 4), (a, "a", 0, 20), (b, "b", 0, 20),
+                         (c, "c", 0, 20), (d, "d", 0, 20)):
+        o.append(label((p[0] + dx, p[1] + dy), f"<tspan font-style='italic'>{t}</tspan>",
+                       size=15))
 
-    o.append(label((380, 470), "scanwidth = max edges crossed by any cut",
-                   size=17, weight="600"))
-    o.append(label((380, 498), "small parameter → fast exact algorithms",
-                   size=16, color="#4a5560", weight="400"))
-    o.append(label((380, 528), "here the cut crosses 4", size=15, color=GREY))
+    o.append(caption((W / 2, 500), "each red arc is a cut; darker = more edges crossed",
+                     size=15))
+    o.append(label((W / 2, 530), "scanwidth = the darkest cut",
+                   size=16, weight="600"))
     o.append(footer())
     write(os.path.join(RES, "theme-parameters.svg"), "".join(o))
 
 
-# --------------------------------------------------------------------------
-# 5. PLAIN-LANGUAGE: tree vs network (uses the xiph orthogonal cladogram look)
-# --------------------------------------------------------------------------
+# ==========================================================================
+# 5. TREE vs NETWORK — the real Xiphophorus example, xiph-style orthogonal
+# ==========================================================================
+SPECIES = ["X.continens", "X.pygmaeus", "X.nigrensis", "X.multilineatus",
+           "X.montezumae", "X.nezahualcoyotl", "X.cortezi", "X.malinche",
+           "X.birchmanni"]
+
+
+def xiph(ox, oy, with_retics):
+    """Orthogonal Xiphophorus cladogram; optionally with the two reticulations."""
+    LX = ox + 250                      # leaf tips (right-aligned, as in xiph)
+    ys = [oy + 20 + i * 34 for i in range(9)]
+    out = []
+
+    # internal x positions (deeper = further left)
+    x0 = ox + 18     # root spine
+    x1 = ox + 52
+    x2 = ox + 92
+    x3 = ox + 132
+    x4 = ox + 172
+
+    def leaf(i, fromx, fromy):
+        out.append(elbow_hv((fromx, fromy), (LX, ys[i])))
+        out.append(dot((LX, ys[i]), r=3.4))
+        out.append(label((LX + 9, ys[i] + 4.5), SPECIES[i], size=12.5,
+                         anchor="start", italic=True))
+
+    # ---- northern-swordtail style backbone ----
+    # split: (continens,pygmaeus,nigrensis,multilineatus) | (rest)
+    yA = (ys[0] + ys[3]) / 2
+    yB = (ys[4] + ys[8]) / 2
+    out.append(f'<path d="M{x0},{yA} V{yB}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    out.append(elbow_hv((x0, yA), (x1, yA)))
+    out.append(elbow_hv((x0, yB), (x1, yB)))
+
+    # upper clade
+    yA1 = (ys[0] + ys[1]) / 2
+    yA2 = (ys[2] + ys[3]) / 2
+    out.append(f'<path d="M{x1},{yA1} V{yA2}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    out.append(elbow_hv((x1, yA1), (x2, yA1)))
+    out.append(elbow_hv((x1, yA2), (x2, yA2)))
+    leaf(0, x2, ys[0]); leaf(1, x2, ys[1])
+    leaf(2, x2, ys[2]); leaf(3, x2, ys[3])
+    out.append(f'<path d="M{x2},{ys[0]} V{ys[1]}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    out.append(f'<path d="M{x2},{ys[2]} V{ys[3]}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+
+    # lower clade: (montezumae,nezahualcoyotl) (cortezi) (malinche,birchmanni)
+    yB1 = (ys[4] + ys[5]) / 2
+    yB2 = (ys[7] + ys[8]) / 2
+    out.append(f'<path d="M{x1},{yB1} V{yB2}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    out.append(elbow_hv((x1, yB1), (x2, yB1)))
+    out.append(elbow_hv((x1, yB2), (x2, yB2)))
+    out.append(f'<path d="M{x2},{ys[4]} V{ys[5]}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    leaf(4, x2, ys[4]); leaf(5, x2, ys[5])
+    out.append(f'<path d="M{x2},{ys[7]} V{ys[8]}" fill="none" stroke="{BLACK}" '
+               f'stroke-width="{EW}" stroke-linecap="round"/>')
+    leaf(7, x2, ys[7]); leaf(8, x2, ys[8])
+    # cortezi hangs off the lower spine
+    out.append(elbow_hv((x1, (yB1 + yB2) / 2), (x3, ys[6])))
+    leaf(6, x3, ys[6])
+
+    if with_retics:
+        # (1) into the pygmaeus / nigrensis region
+        out.append(retic((x2, ys[1] - 10), (x3 + 6, ys[2] - 2), bow=-14))
+        out.append(rnode((x3 + 6, ys[2] - 2), r=4.4))
+        # (2) into X.cortezi, from the montezumae side and the malinche side
+        out.append(retic((x2 + 10, ys[5]), (x3 - 4, ys[6] - 3), bow=-10))
+        out.append(retic((x2 + 10, ys[7]), (x3 - 4, ys[6] + 3), bow=10))
+        out.append(rnode((x3 - 4, ys[6]), r=4.4))
+    return "".join(out)
+
+
 def fig_tree_vs_network():
-    w, h = 900, 430
+    w, h = 960, 400
     o = [header(w, h)]
-    o.append(label((228, 34), "a tree", size=20, weight="600"))
-    o.append(label((672, 34), "a network", size=20, weight="600"))
-    o.append(f'<line x1="450" y1="56" x2="450" y2="374" stroke="#cfd9e0" stroke-width="1.6"/>')
-
-    # ---- left: pure branching tree, orthogonal (xiph style) ----
-    def T(x, y):
-        return (x, y)
-    o.append(elbow(T(96, 96), T(160, 96)))
-    o.append(f'<path d="M96,96 V300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round"/>')
-    o.append(elbow(T(96, 300), T(160, 300)))
-    # upper split
-    o.append(f'<path d="M160,96 V60 H300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    o.append(f'<path d="M160,96 V140 H300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    # lower split
-    o.append(f'<path d="M160,300 V250 H300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    o.append(f'<path d="M160,300 V344 H300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    for p in ((160, 96), (160, 300), (96, 96)):
-        o.append(node(p, r=4.6))
-    for yy, nm in ((60, "A"), (140, "B"), (250, "C"), (344, "D")):
-        o.append(dot((300, yy)))
-        o.append(label((316, yy + 6), nm, size=17, anchor="start"))
-    o.append(caption((228, 404), "lineages only ever split apart"))
-
-    # ---- right: same, but two lineages merge (red dashed reticulation) ----
-    o.append(f'<path d="M540,96 V300" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round"/>')
-    o.append(elbow(T(540, 96), T(604, 96)))
-    o.append(elbow(T(540, 300), T(604, 300)))
-    o.append(f'<path d="M604,96 V60 H744" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    o.append(f'<path d="M604,96 V150" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round"/>')
-    o.append(f'<path d="M604,300 V344 H744" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round" stroke-linejoin="round"/>')
-    o.append(f'<path d="M604,300 V254" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round"/>')
-    # the merge: two red dashed arcs into one reticulation node
-    ret = (700, 202)
-    o.append(retic((604, 150), ret, bow=14))
-    o.append(retic((604, 254), ret, bow=-14))
-    o.append(f'<path d="M700,202 H744" fill="none" stroke="{BLACK}" stroke-width="{EW}" '
-             f'stroke-linecap="round"/>')
-    for p in ((540, 96), (604, 96), (604, 300)):
-        o.append(node(p, r=4.6))
-    o.append(rnode(ret, r=6.2))
-    for yy, nm in ((60, "A"), (344, "D")):
-        o.append(dot((744, yy)))
-        o.append(label((760, yy + 6), nm, size=17, anchor="start"))
-    o.append(dot((744, 202)))
-    o.append(label((760, 208), "E", size=17, anchor="start"))
-    o.append(label((760, 228), "(hybrid)", size=13, anchor="start", color=RED, weight="400"))
-    o.append(caption((672, 404), "two lineages can also merge back together"))
+    o.append(label((236, 30), "a tree", size=19, weight="600"))
+    o.append(label((716, 30), "a network", size=19, weight="600"))
+    o.append(f'<line x1="474" y1="44" x2="474" y2="352" stroke="#cfd9e0" '
+             f'stroke-width="1.4"/>')
+    o.append(xiph(30, 44, with_retics=False))
+    o.append(xiph(510, 44, with_retics=True))
+    o.append(caption((236, 384), "lineages only ever split apart"))
+    o.append(caption((716, 384), "two lineages can also merge back together"))
     o.append(footer())
     write(os.path.join(IMG, "tree-vs-network.svg"), "".join(o))
 
