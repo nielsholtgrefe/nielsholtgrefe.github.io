@@ -2,14 +2,14 @@
 # linked from the bottom of the publications page — not in the main nav).
 #
 # There are currently no corrections to list. To add one, append an entry that
-# targets a paper by its exact `paper:` title (must match a title in
-# _data/pubs.yml); the page then links to that paper and shows its number from
-# the publications page automatically. Add correction lines under `items:`.
+# targets a paper by its `paper:` id (must match an `id:` in _data/pubs.yml); the
+# page then links to that paper and shows its number from the publications page
+# automatically. Add correction lines under `items:`.
 #   date (optional)  when the correction was noted
 #   text (required)  the correction itself (Markdown-capable inline)
 #
 # Example:
-# - paper: "Exact and Heuristic Computation of the Scanwidth of Directed Acyclic Graphs"
+# - paper: scanwidth-exact
 #   items:
 #     - date: 2026-05-12
 #       text: "In Theorem 3.2 the constant should read 2 rather than 3; downstream bounds are unaffected."

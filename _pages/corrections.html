@@ -20,19 +20,20 @@ or extended abstracts) are numbered newest-first; others show a bullet.
 {% assign total = main_pubs | size %}
 
 {% for corr in site.data.corrections %}
-  {% assign pub = site.data.pubs | where: "title", corr.paper | first %}
-  {% assign slug = corr.paper | slugify %}
+  {%- comment -%} `paper:` is a publication id (see `id:` in _data/pubs.yml) {%- endcomment -%}
+  {% assign pub = site.data.pubs | where: "id", corr.paper | first %}
+  {% assign slug = pub.title | slugify %}
   {%- comment -%} find the paper's number {%- endcomment -%}
   {% assign num = "" %}
   {% for p in main_pubs %}
-    {% if p.title == corr.paper %}{% assign num = total | minus: forloop.index0 %}{% endif %}
+    {% if p.id == corr.paper %}{% assign num = total | minus: forloop.index0 %}{% endif %}
   {% endfor %}
 
   <div class="correction-card">
     <div class="correction-head">
       <span class="correction-num">{% if num != "" %}[{{ num }}]{% else %}&bull;{% endif %}</span>
       <div class="correction-headmain">
-        <a class="correction-title" href="{{ '/publications/' | relative_url }}#pub-{{ slug }}">{{ corr.paper }}</a>
+        <a class="correction-title" href="{{ '/publications/' | relative_url }}#pub-{{ slug }}">{{ pub.title }}</a>
         {% if pub %}
         <div class="correction-venue">
           {%- if pub.type == "journal" -%}<i>{{ pub.journal }}</i>{% if pub.year %}, {{ pub.year }}{% endif %}
