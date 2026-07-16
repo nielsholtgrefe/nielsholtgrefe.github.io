@@ -64,7 +64,8 @@
 - name: scanwidth
   language: Python
   image: /assets/images/scanwidth.png
-  image_position: "center 30%"
+  # frame on a lower, denser part of the figure (the reticulation + cut arcs)
+  image_position: "center 72%"
   tagline: "Exact and heuristic computation of the scanwidth of directed acyclic graphs."
   description: >-
     An implementation of exact algorithms and heuristics for computing the
