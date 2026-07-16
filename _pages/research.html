@@ -12,7 +12,7 @@ classes: wide
 
 <link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-<p>My research lies at the intersection of discrete mathematics, algorithms, and evolutionary biology. The common thread is developing rigorous mathematical and computational tools for <em>phylogenetic networks</em> — graphs that biologists use to represent evolutionary histories involving events like hybridization and horizontal gene transfer.</p>
+<p>My research sits between discrete mathematics, algorithms, and evolutionary biology. Most of it is about <em>phylogenetic networks</em>: graphs that biologists use to describe evolutionary histories in which lineages not only split, but also merge, through events such as hybridization and horizontal gene transfer. I am interested in how to reconstruct such networks, when the data determines them at all, and how to compute with them efficiently.</p>
 
 {%- comment -%}
 The two Xiphophorus figures, inlined verbatim (only their ids are namespaced and
@@ -22,11 +22,11 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
   <div class="xiph-pair">
     <div class="xiph-panel">
       <div class="xiph-svg">{% include figs/xiph-tree.svg %}</div>
-      <figcaption class="xiph-cap">a phylogenetic <strong>tree</strong> — lineages only ever split apart</figcaption>
+      <figcaption class="xiph-cap">a phylogenetic <strong>tree</strong>, where lineages only ever split apart</figcaption>
     </div>
     <div class="xiph-panel">
       <div class="xiph-svg">{% include figs/xiph-network.svg %}</div>
-      <figcaption class="xiph-cap">a phylogenetic <strong>network</strong> — lineages can also merge back together</figcaption>
+      <figcaption class="xiph-cap">a phylogenetic <strong>network</strong>, where lineages can also merge</figcaption>
     </div>
   </div>
   <figcaption class="xiph-note">The swordtail fishes (<i>Xiphophorus</i>): the same nine species drawn as a tree and as a semi-directed network.</figcaption>
@@ -35,16 +35,16 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
 <details class="layman-details">
   <summary>New to phylogenetics? Start with a two-minute, plain-language introduction.</summary>
   <div class="layman-content">
-    <p>Every species alive today is the latest twig on an enormous family tree of life. Biologists want to read that history: which species share a common ancestor, and when their lineages first split apart. The classic picture is a <em>phylogenetic tree</em> — a branching "family tree of species" in which lineages only ever divide as time moves forward.</p>
+    <p>Biologists want to know how species are related: which ones share a common ancestor, and when their lineages split apart. The usual picture is a <em>phylogenetic tree</em>, a family tree of species in which lineages only ever divide as time moves forward.</p>
 
     <h3>Why a tree is sometimes not enough</h3>
-    <p>Real evolution is messier than pure branching. Sometimes two separate lineages come back together: horses and donkeys produce mules, many plants arise by hybridizing two parent species, and bacteria routinely swap genes with unrelated microbes. These "merging" (<em>reticulate</em>) events simply cannot be drawn on a tree. A <em>phylogenetic network</em> generalizes the tree by allowing such merges, shown as extra connecting edges.</p>
+    <p>Real evolution is messier than that. Sometimes two separate lineages come back together: horses and donkeys produce mules, many plants arise by hybridizing two parent species, and bacteria routinely swap genes with unrelated microbes. You cannot draw such a merge on a tree. A <em>phylogenetic network</em> allows them, by adding extra edges where lineages join.</p>
 
     <h3>Why do people study this?</h3>
-    <p>Getting the picture right changes the conclusions we draw — about how a species came to be, where a useful trait (say, disease resistance) originally came from, or how quickly life diversified. Networks are increasingly needed for groups where hybridization and gene flow are common, from crops and fish to viruses.</p>
+    <p>Getting the picture right changes the conclusions we draw: how a species came to be, where a useful trait such as disease resistance originally came from, or how quickly life diversified. Networks are increasingly needed for groups where hybridization and gene flow are common, from crops and fish to viruses.</p>
 
     <h3>The main questions I work on</h3>
-    <p><strong>Can we reconstruct</strong> the network of a group's shared history from genetic data of species living today? <strong>Is it even possible in principle</strong>, or can genuinely different histories leave identical traces in the data? And <strong>can we do it efficiently</strong>, even for hundreds of species? These threads run through the themes below.</p>
+    <p><strong>Can we reconstruct</strong> the network of a group's shared history from the genetic data of species living today? <strong>Is it even possible in principle</strong>, or can genuinely different histories leave identical traces in the data? And <strong>can we do it efficiently</strong>, even for hundreds of species? These three questions run through the themes below.</p>
 
     <p class="layman-more">More background on Wikipedia: <a href="https://en.wikipedia.org/wiki/Phylogenetic_network" target="_blank" rel="noopener">Phylogenetic network</a> · <a href="https://en.wikipedia.org/wiki/Phylogenetic_tree" target="_blank" rel="noopener">Phylogenetic tree</a>.</p>
   </div>

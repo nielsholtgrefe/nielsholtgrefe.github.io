@@ -223,9 +223,19 @@ a:hover {
 /* If the profile sidebar is sticky, keep it below the sticky masthead */
 .sidebar.sticky { top: calc(var(--nh-masthead-h, 101px) + 0.6em); }
 
-/* Keep every child within the card (avatar/name/links never overflow right) */
+/* Keep every child within the card (avatar/name/links never overflow right).
+   The theme sets white-space:nowrap on these links, which defeats overflow-wrap
+   and makes the long email address spill past the card at the narrow-sidebar
+   widths (~1024-1150px). Allow wrapping here; the compact layout below 1024px
+   re-applies nowrap, where the full-width card gives the links room anyway. */
 .sidebar > * { box-sizing: border-box; max-width: 100%; }
-.author__urls a { max-width: 100%; overflow-wrap: anywhere; }
+.author__urls li { white-space: normal; }
+.author__urls a {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.author__urls a .label { min-width: 0; }
 
 /* Circular avatar overlapping the header band */
 .author__avatar {
@@ -256,7 +266,7 @@ a:hover {
 
 .author__name {
   font-family: 'Lora', serif;
-  font-size: 1.4em;
+  font-size: 1.54em;
   font-weight: 600;
   color: var(--nh-text-strong);
   margin: 0.55em 0 0.12em;
@@ -264,8 +274,8 @@ a:hover {
 
 .author__bio {
   font-family: 'Inter', sans-serif;
-  font-size: 0.94em;
-  line-height: 1.55;
+  font-size: 1.02em;
+  line-height: 1.5;
   color: var(--nh-text-muted);
   margin: 0 0 0.9em;
   padding-bottom: 0.9em;
@@ -288,7 +298,7 @@ a:hover {
 }
 
 .author__urls a {
-  font-size: 0.95em;
+  font-size: 1.04em;
   font-family: 'Inter', sans-serif;
   color: var(--nh-text-muted);
   display: inline-flex;
@@ -360,12 +370,12 @@ a:hover {
     padding: 0 !important;
     overflow: hidden;
   }
-  .author__name { margin: 0 0 0.08em; font-size: 1.12em; }
+  .author__name { margin: 0 0 0.08em; font-size: 1.24em; }
   .author__bio {
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
-    font-size: 0.82em;
+    font-size: 0.9em;
   }
 
   /* Links as a tight vertical column with a divider line, right of name/photo */
@@ -393,7 +403,7 @@ a:hover {
   .author__urls::after,
   .author__urls-wrapper::before { display: none !important; }
   .author__urls li { padding: 0; margin: 0; white-space: nowrap; line-height: 1.15; }
-  .author__urls a { font-size: 0.82em; line-height: 1.15; padding: 0.12em 0; }
+  .author__urls a { font-size: 0.9em; line-height: 1.2; padding: 0.13em 0; }
 }
 
 /* Very narrow phones: the three-column card gets cramped, so drop the links

@@ -14,15 +14,13 @@
 - name: phylozoo
   language: Python
   image: /assets/images/phylozoo_logo.svg
-  tagline: "Foundational infrastructure for phylogenetic network analysis in Python."
+  tagline: "The shared foundation for working with phylogenetic networks in Python."
   description: >-
-    PhyloZoo is a Python package for working with phylogenetic networks and related
-    evolutionary data types, designed as shared infrastructure that Squirrel and PaNDA
-    build on. It provides validated directed and semi-directed network
-    representations, support for quartets, splits, distance matrices and sequence
-    alignments, flexible Matplotlib-based visualization, robust I/O for the major
-    phylogenetic file formats, and performance-focused routines powered by NumPy (with
-    optional Numba acceleration).
+    PhyloZoo is a Python package for working with phylogenetic networks and the kinds of
+    evolutionary data that come with them. It is the common foundation that Squirrel and
+    PaNDA are built on: it handles both directed and semi-directed networks, reads and
+    writes all the usual phylogenetic file formats, draws publication-ready figures, and
+    is fast enough for large datasets.
   github: "https://github.com/nholtgrefe/phylozoo"
   docs: "https://nholtgrefe.github.io/phylozoo/"
   pubs:
@@ -33,13 +31,13 @@
   image: /assets/images/squirrel_cover4.svg
   # the header is a short band; frame it on the squirrel itself
   image_position: "center 30%"
-  tagline: "Reconstruct semi-directed level-1 networks from quarnets or alignments."
+  tagline: "Build a phylogenetic network straight from a DNA alignment."
   description: >-
-    physquirrel implements the Squirrel algorithm for reconstructing semi-directed
-    phylogenetic level-1 networks from either four-leaf quarnet sets or sequence
-    alignments. It offers both a graphical user interface for non-programmers and a
-    full Python API for advanced users, enabling simulation, inference and
-    visualization of reticulate evolutionary histories.
+    physquirrel implements the Squirrel algorithm, which reconstructs a phylogenetic
+    network either from a DNA sequence alignment or from a set of four-species building
+    blocks. It comes with a graphical interface for anyone who would rather not write
+    code, and a full Python API for those who would. It runs in minutes on a normal
+    laptop.
   github: "https://github.com/nholtgrefe/squirrel"
   docs: "https://nholtgrefe.github.io/squirrel/"
   pubs:
@@ -48,13 +46,12 @@
 - name: phypanda
   language: Python
   image: /assets/images/phypanda_icon.svg
-  tagline: "Explore and maximize phylogenetic diversity in networks."
+  tagline: "Which species preserve the most evolutionary diversity?"
   description: >-
-    phypanda (PaNDA) is a Python package for exploring and maximizing phylogenetic
-    diversity in phylogenetic networks. It supports generation and handling of network
-    instances, computes diversity-based optimization criteria, and includes
-    interactive visualizations and algorithmic pipelines for network-level diversity
-    analyses.
+    phypanda (PaNDA) helps answer a conservation question: if you can only protect a
+    limited number of species, which ones together preserve the most evolutionary
+    variety? It measures that variety on phylogenetic networks, finds the best selection
+    for you, and shows the result through an interactive interface.
   github: "https://github.com/nholtgrefe/panda"
   docs: "https://nholtgrefe.github.io/panda/"
   pubs:
@@ -66,13 +63,13 @@
   image: /assets/images/scanwidth.png
   # frame on a lower, denser part of the figure (the reticulation + cut arcs)
   image_position: "center 72%"
-  tagline: "Exact and heuristic computation of the scanwidth of directed acyclic graphs."
+  tagline: "Measure how tree-like a network is."
   description: >-
-    An implementation of exact algorithms and heuristics for computing the
-    <em>scanwidth</em> parameter of directed acyclic graphs, including phylogenetic
-    networks. Scanwidth is a structural complexity measure that can improve the
-    tractability of dynamic-programming algorithms on DAGs, and the package can
-    preprocess network instances before running other phylogenetic tools.
+    Many hard computations on a phylogenetic network become much easier when the network
+    is close to being a tree. <em>Scanwidth</em> puts a number on how close it is, and
+    this package computes it: exactly when you can afford to, and with a fast, near-optimal
+    heuristic when you cannot. It is also useful for preparing networks before running
+    other tools.
   github: "https://github.com/nholtgrefe/scanwidth"
   docs: "https://nholtgrefe.github.io/scanwidth/"
   pubs:
