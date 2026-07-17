@@ -12,6 +12,42 @@
 #   summary_lay: 2-3 sentence plain-language summary, shown as a collapsible
 #                "summary" toggle next to abstract/bibtex. Omit to hide it.
 
+- title: "On Tree-Network Distinguishability and Full Identifiability of Phylogenetic Networks"
+  id: full-identifiability
+  summary_lay: >-
+    Before you can reconstruct an evolutionary network from DNA, the data has to pin the
+    network down in the first place. Earlier work established this for level-1 networks
+    only generically, which left a thin set of parameter values where it might still fail.
+    This paper closes that gap under the Jukes-Cantor and Kimura models, showing the network
+    is determined at every biologically sensible choice of parameters. It also proves that a
+    genuine network and a tree essentially never produce the same DNA patterns, so reticulate
+    evolution leaves a signature that can be detected.
+  release-date: 2026-07-14
+  authors:
+    - first: Jari
+      last: Brits
+    - first: Niels
+      last: Holtgrefe
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Samuel
+      last: Martin
+  year: 2026
+  type: "preprint"
+  journal:
+  volume:
+  issue:
+  pages:
+  note:
+  doi-identifier:
+  doi-url:
+  preprint-server: "arXiv"
+  preprint-identifier: "2607.12919"
+  preprint-url: "https://arxiv.org/abs/2607.12919"
+  abstract: |
+    Phylogenetic networks generalize phylogenetic trees to evolutionary histories that include reticulate events such as recombination, horizontal gene transfer, and hybridization. Under a Markov model of nucleotide substitution, a phylogenetic network determines a distribution of leaf-patterns. Here, we study the identifiability of the network topology from this distribution under the Jukes-Cantor (JC), Kimura 2-parameter (K2P), and Kimura 3-parameter (K3P) models. Our first result is that the semi-directed network parameter of a level-1 phylogenetic network (modulo redirecting triangles) is fully identifiable under all three models, on a biologically reasonable parameter space in which substitution rates are probabilistic and mixing parameters are non-trivial (i.e., not 0 or 1). In contrast to the generic identifiability established in prior work, this holds at every point of the parameter space, not merely off of a measure-zero subset. Our second result distinguishes phylogenetic networks from phylogenetic trees, on the same parameter space, under JC and K2P. We prove that no phylogenetic network and phylogenetic tree can induce the same leaf-pattern distribution unless the network is a tree, possibly augmented with certain substructures called \(2\)-blobs. This means the presence of reticulate evolution creates, in most cases, a detectable signature in the leaf-pattern distribution. More broadly, these results have consequences for identifiability beyond the models and network classes studied here, including for several coalescent-based models.
+
 - title: "PhyloZoo: a unified framework for phylogenetic network analysis in Python"
   id: phylozoo
   summary_lay: >-
