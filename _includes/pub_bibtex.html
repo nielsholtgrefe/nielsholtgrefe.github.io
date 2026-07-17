@@ -29,10 +29,13 @@ The same include is used both for the on-page bibtex box and for the combined
   {%- assign one = surname | append: ", " | append: given -%}
   {%- if forloop.first -%}{%- assign authors = one -%}{%- else -%}{%- assign authors = authors | append: " and " | append: one -%}{%- endif -%}
 {%- endfor -%}
-{%- comment -%} ---- citation key: firstauthorlast + year + firsttitleword ---- {%- endcomment -%}
+{%- comment -%} ---- citation key: firstauthorlast + year + id ----
+The entry's `id` from _data/pubs.yml, rather than the first word of the title:
+the id is already unique and descriptive, so keys cannot collide, and a title
+opening with a word like "On" or "The" no longer produces a useless key. Ids are
+lowercase and kebab-case, which BibTeX accepts verbatim. {%- endcomment -%}
 {%- assign klast = p.authors[0].last | slugify | replace: "-", "" -%}
-{%- assign kword = p.title | split: " " | first | slugify | replace: "-", "" -%}
-{%- assign citekey = klast | append: p.year | append: kword -%}
+{%- assign citekey = klast | append: p.year | append: p.id -%}
 {%- comment -%} ---- entry type ---- {%- endcomment -%}
 {%- assign etype = "misc" -%}
 {%- if p.type == "journal" -%}{%- assign etype = "article" -%}{%- elsif p.type == "conference" -%}{%- assign etype = "inproceedings" -%}{%- endif -%}
