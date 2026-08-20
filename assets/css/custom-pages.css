@@ -257,12 +257,6 @@
    on the bottom border.
    ================================================================ */
 
-.pub-page { padding-left: 1.5em; }
-
-@media (max-width: 700px) {
-  .pub-page { padding-left: 1.2em; }
-}
-
 .pub-item {
   scroll-margin-top: 200px;   /* clear the sticky masthead + banner */
   margin-bottom: 1.25em;      /* room for the number chip on the next top border */

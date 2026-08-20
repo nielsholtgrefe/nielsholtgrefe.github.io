@@ -428,6 +428,17 @@ a:hover {
 }
 
 /* ---- Page content ---- */
+
+/* Every page's column is inset from the left by the same amount, so content
+   lines up across the site and the publication index chips have a gutter to
+   hang into. Applied to the inner wrap (not .page__content) so the sticky
+   title banner shifts with the body. */
+.page__inner-wrap { padding-left: 1.5em; }
+
+@media (max-width: 700px) {
+  .page__inner-wrap { padding-left: 1.2em; }
+}
+
 .page__content {
   font-family: 'Inter', sans-serif;
   font-size: 0.9em;
