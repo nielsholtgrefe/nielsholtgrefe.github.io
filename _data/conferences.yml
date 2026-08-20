@@ -14,6 +14,13 @@
 # Items are grouped by `group` in the order they first appear below, so keep
 # entries sorted newest-first.
 
+- name: "Phylogenetics Meets Population Genetics: From Trees to Networks"
+  url: "https://www.nitmb.org/event/phylogenetics-meets-population-genetics-from-trees-to-networks/"
+  location: "Chicago, IL, United States"
+  date: "May 2027"
+  group: "Upcoming"
+  country: us
+
 - name: "Bridging Stratigraphic Palaeobiology and Phylogenetics"
   url: "https://www.lorentzcenter.nl/bridging-stratigraphic-palaeobiology-and-phylogenetics.html"
   location: "Leiden, the Netherlands"
@@ -57,6 +64,15 @@
   contributions:
     - type: "Talk"
       title: "PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks"
+
+- name: "The A in DIAM — 4th Annual PhD Forum Event"
+  location: "Delft, the Netherlands"
+  date: "January 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Organizer"
+      title: "A day on the applications of mathematical research, for the PhD candidates and postdocs of the Delft Institute of Applied Mathematics"
 
 - name: "Dutch Day on Optimization"
   url: "https://www.tilburguniversity.edu/current/events/dutch-day-optimization2025"
@@ -104,7 +120,7 @@
 
 - name: "Algorithmic Advances and Implementation Challenges: Developing Practical Tools for Phylogenetic Inference"
   url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w3"
-  location: "Providence, RI, USA"
+  location: "Providence, RI, United States"
   date: "November 2024"
   group: "2024"
   country: us
@@ -114,7 +130,7 @@
 
 - name: "From Phylogenetics to Phylogenomics: Mathematical and Statistical Challenges in the Era of Big Data"
   url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w2"
-  location: "Providence, RI, USA"
+  location: "Providence, RI, United States"
   date: "October 2024"
   group: "2024"
   country: us
@@ -124,7 +140,7 @@
 
 - name: "Current Methods and Open Problems in Mathematical and Statistical Phylogenetics"
   url: "https://icerm.brown.edu/program/semester_program_workshop/sp-f24-w1"
-  location: "Providence, RI, USA"
+  location: "Providence, RI, United States"
   date: "September 2024"
   group: "2024"
   country: us
@@ -134,7 +150,7 @@
 
 - name: "Theory, Methods, and Applications of Quantitative Phylogenomics"
   url: "https://icerm.brown.edu/program/semester_program/sp-f24"
-  location: "Providence, RI, USA"
+  location: "Providence, RI, United States"
   date: "September–November 2024"
   group: "2024"
   country: us

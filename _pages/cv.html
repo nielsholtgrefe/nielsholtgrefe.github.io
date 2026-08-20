@@ -50,6 +50,7 @@ classes: wide
      Extended abstracts are excluded from the publication count. -->
 {% assign pubs = site.data.pubs | where_exp: "p", "p.type != 'extended-abstract'" %}
 {% assign journals = pubs | where: "type", "journal" %}
+{% assign conferences = pubs | where: "type", "conference" %}
 {% assign preprints = pubs | where: "type", "preprint" %}
 {% assign theses = pubs | where: "type", "thesis" %}
 {%- comment -%} Same curated, ordered id list as the homepage. {%- endcomment -%}
@@ -62,9 +63,10 @@ classes: wide
       <span class="cv-title">{{ pubs.size }} works</span>
       <span class="cv-note">
         {{ journals.size }} journal article{% if journals.size != 1 %}s{% endif %} &middot;
+        {{ conferences.size }} conference proceeding{% if conferences.size != 1 %}s{% endif %} &middot;
         {{ preprints.size }} preprint{% if preprints.size != 1 %}s{% endif %} &middot;
         {{ theses.size }} thes{% if theses.size == 1 %}is{% else %}es{% endif %}.
-        Full list with abstracts and BibTeX on the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.
+        Full list with abstracts on the <a href="{{ '/publications/' | relative_url }}">Publications</a> page.
       </span>
     </div>
   </div>

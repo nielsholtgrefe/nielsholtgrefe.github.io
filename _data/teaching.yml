@@ -25,6 +25,11 @@
       title: "Transport, Routing & Scheduling (WI4062TU)"
       years: ["2025–2026", "2023–2024"]
       institution: "TU Delft"
+    - role: "Exercise tester"
+      title: "Introduction to Programming (TW1-13)"
+      years: ["2025–2026"]
+      institution: "TU Delft"
+      note: "trialling the exercises for the course's new setup"
     - role: "Guest lecturer"
       title: "Mathematics 1 (WBMT1050)"
       years: ["2023–2024"]
@@ -75,20 +80,27 @@
       note: "Guuske Kouwenhoven · co-supervised with Leo van Iersel"
       url: "https://repository.tudelft.nl/record/uuid:5aa152f2-e99c-4bb8-bb27-c112ab50b5f4"
 
-- heading: "Service & leadership"
+- heading: "Review service"
   items:
     - role: "Reviewer"
-      title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics"
+      title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics; Molecular Biology and Evolution; PeerJ"
       years: ["2024–present"]
     - role: "Sub-reviewer"
       title: "RECOMB-CG (Comparative Genomics); WADS (Algorithms & Data Structures Symposium)"
       years: ["2025–present"]
+
+- heading: "Other service"
+  items:
     - role: "Member"
       title: "DIAM PhD Forum"
       years: ["2025–present"]
       institution: "TU Delft"
-      note: "co-organizing career and social events for the ~90 mathematics PhD students at the Delft Institute of Applied Mathematics"
+      note: "co-organizing career and social events for the ~100 mathematics PhD students and postdocs at the Delft Institute of Applied Mathematics"
     - role: "Chair"
       title: "Delft Student Handball Association Torius"
-      years: ["2025–present"]
+      years: ["2025–2026"]
       note: "chairman of the board of a 70+ member student association"
+    - role: "Confidential contact person"
+      title: "Delft Student Handball Association Torius"
+      years: ["2026–present"]
+      note: "first point of contact for members with concerns, referring on to professional support where appropriate"

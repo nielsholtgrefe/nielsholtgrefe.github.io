@@ -2,9 +2,9 @@
 layout: single
 title: "Conferences"
 description: >-
-  Conferences, workshops, and seminars Niels Holtgrefe has attended or spoken at, on
-  phylogenetics, combinatorics, and algorithms — with the talks and posters presented
-  at each event.
+  Conferences, workshops, and seminars Niels Holtgrefe has attended, spoken at, or
+  organized, on phylogenetics, combinatorics, and algorithms — with the talks and
+  posters presented at each event.
 permalink: /conferences/
 author_profile: true
 classes: wide
@@ -12,7 +12,34 @@ classes: wide
 
 <link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-<p>Conferences, workshops, and seminars I have attended or spoken at, on phylogenetics, combinatorics, and algorithms. Any talks or posters I presented are listed beneath the corresponding event; scroll through to browse them by year.</p>
+<p>Conferences, workshops, and seminars I have attended, spoken at, or organized, on phylogenetics, combinatorics, and algorithms. Any talks or posters I presented are listed beneath the corresponding event; use the filter to narrow by contribution, or scroll through to browse them by year.</p>
+
+{%- comment -%}
+Counts for the filter pills. Each event's contribution kinds are bucketed by the
+conf_kinds.html include, so the pre-pass here and the render loop below agree on
+what counts as a talk.
+{%- endcomment -%}
+{%- assign n_organizer = 0 -%}
+{%- assign n_talk = 0 -%}
+{%- assign n_poster = 0 -%}
+{%- for conf in site.data.conferences -%}
+  {%- capture ek %}{% include conf_kinds.html conf=conf %}{% endcapture -%}
+  {%- if ek contains "organizer" -%}{%- assign n_organizer = n_organizer | plus: 1 -%}{%- endif -%}
+  {%- if ek contains "talk" -%}{%- assign n_talk = n_talk | plus: 1 -%}{%- endif -%}
+  {%- if ek contains "poster" -%}{%- assign n_poster = n_poster | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign n_all = site.data.conferences | size -%}
+
+{%- comment -%} Same toolbar and pills as the publications page {%- endcomment -%}
+<div class="pub-toolbar">
+  <div class="pub-toolbar-group" role="group" aria-label="Filter events by contribution">
+    <span class="pub-toolbar-label">Filter</span>
+    <button class="filter-pill is-active" data-filter-contrib="all" aria-pressed="true" onclick="filterConfs('all', this)">all <span class="filter-pill-count">({{ n_all }})</span></button>
+    {% if n_organizer > 0 %}<button class="filter-pill" data-filter-contrib="organizer" aria-pressed="false" onclick="filterConfs('organizer', this)">organizer <span class="filter-pill-count">({{ n_organizer }})</span></button>{% endif %}
+    {% if n_talk > 0 %}<button class="filter-pill" data-filter-contrib="talk" aria-pressed="false" onclick="filterConfs('talk', this)">talk <span class="filter-pill-count">({{ n_talk }})</span></button>{% endif %}
+    {% if n_poster > 0 %}<button class="filter-pill" data-filter-contrib="poster" aria-pressed="false" onclick="filterConfs('poster', this)">poster <span class="filter-pill-count">({{ n_poster }})</span></button>{% endif %}
+  </div>
+</div>
 
 <div class="timeline">
   {% assign current_group = "" %}
@@ -22,7 +49,8 @@ classes: wide
       {% assign current_group = conf.group %}
     {% endif %}
 
-    <div class="timeline-entry">
+    {%- capture ekinds %}{% include conf_kinds.html conf=conf %}{% endcapture -%}
+    <div class="timeline-entry" data-contrib="{{ ekinds | strip }}">
       <span class="timeline-dot" aria-hidden="true"></span>
       <div class="timeline-card">
         {%- comment -%} Country outline on the right; a globe for online / missing entries {%- endcomment -%}
@@ -47,4 +75,7 @@ classes: wide
   {% endfor %}
 </div>
 
+<p class="conf-filter-empty pub-filter-empty noshow" aria-live="polite">No events match this filter.</p>
+
+<script src="{{ '/assets/js/conf-filter.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 <script src="{{ '/assets/js/timeline.js' | relative_url }}" defer></script>
