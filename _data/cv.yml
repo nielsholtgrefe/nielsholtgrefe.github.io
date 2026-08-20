@@ -56,11 +56,11 @@ talks:
     note: "contributed talk"
   - year: 2026
     title: "PhyloZoo: A Python Package for Analyzing and Exploring Phylogenetic Networks"
-    place: "International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics, Taipei"
+    place: "International Workshop on Probabilistic, Combinatorial, and Algorithmic Phylogenetics, Taipei, Taiwan"
     note: "contributed talk"
   - year: 2025
     title: "Squirrel: Reconstructing semi-directed phylogenetic level-1 networks"
-    place: "Mathematical and Computational Evolutionary Biology (MCEB), Granada"
+    place: "Mathematical and Computational Evolutionary Biology (MCEB), Granada, Spain"
     note: "contributed talk"
 
 skills:

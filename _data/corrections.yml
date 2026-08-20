@@ -1,15 +1,29 @@
 # Running list of corrections, rendered on /corrections/ (a URL-only page,
 # linked from the bottom of the publications page — not in the main nav).
 #
-# There are currently no corrections to list. To add one, append an entry that
-# targets a paper by its `paper:` id (must match an `id:` in _data/pubs.yml); the
-# page then links to that paper and shows its number from the publications page
-# automatically. Add correction lines under `items:`.
+# To add one, append an entry that targets a paper by its `paper:` id (must match
+# an `id:` in _data/pubs.yml); the page then links to that paper and shows its
+# number from the publications page automatically. Add correction lines under
+# `items:`.
 #   date (optional)  when the correction was noted
-#   text (required)  the correction itself (Markdown-capable inline)
-#
-# Example:
-# - paper: scanwidth-exact
-#   items:
-#     - date: 2026-05-12
-#       text: "In Theorem 3.2 the constant should read 2 rather than 3; downstream bounds are unaffected."
+#   text (required)  the correction itself. Rendered as raw HTML, so inline tags
+#                    such as <i> and <b> work; LaTeX in \( ... \) is typeset by
+#                    MathJax, which the page loads.
+
+- paper: squirrel
+  items:
+    - date: 2026-08-20
+      text: >-
+        Materials and Methods, \(\delta\)-heuristic, Step II: the set \(S_\lambda\) contains
+        the 4-taxa subsets whose \(\delta\)-value is <b>at most</b> \(\lambda\); the text
+        says "at least".
+    - date: 2026-08-20
+      text: >-
+        Materials and Methods, \(\delta\)-heuristic, Step II: the set \(F_\lambda\) contains
+        the 4-taxa subsets whose \(\delta\)-value is <b>larger</b> than \(\lambda\); the text
+        says "smaller".
+    - date: 2026-08-20
+      text: >-
+        Materials and Methods, \(\delta\)-heuristic, Step III: a 4-taxa set in \(S_\lambda\)
+        is assigned the split \(s \in \{ab|cd,\, ac|bd,\, ad|bc\}\) for which \(\delta_s\) is
+        <b>smallest</b>; the text says "the highest".

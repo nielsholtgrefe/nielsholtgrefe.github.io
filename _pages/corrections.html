@@ -9,8 +9,13 @@ classes: wide
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 
-<p>Below is a running list of minor corrections for our papers (paper numbers correspond to those on the <a href="{{ '/publications/' | relative_url }}">publications</a> page). If you identify any other issues, please <a href="mailto:{{ site.email }}">send us an email</a>! There are currently no corrections to list.</p>
+<p>Below is a running list of minor corrections for our papers (paper numbers correspond to those on the <a href="{{ '/publications/' | relative_url }}">publications</a> page). If you identify any other issues, please <a href="mailto:{{ site.email }}">send us an email</a>!{% unless site.data.corrections and site.data.corrections.size > 0 %} There are currently no corrections to list.{% endunless %}</p>
 
 {%- comment -%}
 Reproduce the publications-page numbering so [n] matches. Main pubs (not theses
@@ -49,7 +54,10 @@ or extended abstracts) are numbered newest-first; others show a bullet.
     <ul class="correction-list">
       {% for item in corr.items %}
       <li class="correction-item">
-        {% if item.date %}<span class="correction-date">{{ item.date | date: "%b %-d, %Y" }}</span>{% endif %}
+        {%- comment -%}
+        `item.date` is deliberately not shown: the data keeps a record of when
+        each correction was noted, but the page lists only the corrections.
+        {%- endcomment -%}
         <span class="correction-text">{{ item.text }}</span>
       </li>
       {% endfor %}
