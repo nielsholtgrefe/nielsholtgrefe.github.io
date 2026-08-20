@@ -5,7 +5,8 @@
 #   title        (required)  course name, talk title, or activity
 #   years        (required)  list of years/instances — each is rendered on its own
 #                            line (newest first), so a course taught several times
-#                            "looks fuller"
+#                            "looks fuller". Review-service items hold one year
+#                            each, since they are one item per review.
 #   institution  (optional)  where it took place
 #   note         (optional)  short extra detail (level, audience, co-supervisor, ...)
 #   student      (optional)  supervised student name (also shown on the CV)
@@ -81,13 +82,31 @@
       url: "https://repository.tudelft.nl/record/uuid:5aa152f2-e99c-4bb8-bb27-c112ab50b5f4"
 
 - heading: "Review service"
+  # One item per review, not per venue, so a second review for the same journal
+  # is simply another entry. `role` is the capacity ("Reviewer" / "Sub-reviewer")
+  # and `years` holds the single year that review was done. Newest first.
   items:
-    - role: "Reviewer"
-      title: "Discrete Optimization; Operations Research Letters; Involve: a Journal of Mathematics; Molecular Biology and Evolution; PeerJ"
-      years: ["2024–present"]
     - role: "Sub-reviewer"
-      title: "RECOMB-CG (Comparative Genomics); WADS (Algorithms & Data Structures Symposium)"
-      years: ["2025–present"]
+      title: "RECOMB-CG (Comparative Genomics)"
+      years: ["2025"]
+    - role: "Sub-reviewer"
+      title: "WADS (Algorithms & Data Structures Symposium)"
+      years: ["2025"]
+    - role: "Reviewer"
+      title: "Discrete Optimization"
+      years: ["2025"]
+    - role: "Reviewer"
+      title: "Operations Research Letters"
+      years: ["2025"]
+    - role: "Reviewer"
+      title: "Involve: a Journal of Mathematics"
+      years: ["2025"]
+    - role: "Reviewer"
+      title: "Molecular Biology and Evolution"
+      years: ["2026"]
+    - role: "Reviewer"
+      title: "PeerJ"
+      years: ["2026"]
 
 - heading: "Other service"
   items:
