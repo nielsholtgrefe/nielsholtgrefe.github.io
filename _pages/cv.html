@@ -46,6 +46,20 @@ classes: wide
   {% endfor %}
 </section>
 
+<!-- AWARDS -->
+<section class="cv-section">
+  <h2 class="cv-section-title">Honours &amp; distinctions</h2>
+  {% for a in site.data.cv.awards %}
+  <div class="cv-row">
+    <div class="cv-period">{{ a.year }}</div>
+    <div class="cv-body">
+      <span class="cv-title">{{ a.title }}</span>
+      {% if a.note %}<span class="cv-note">{{ a.note }}</span>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
 <!-- PUBLICATIONS (counts + selected, pulled from pubs data).
      Extended abstracts are excluded from the publication count. -->
 {% assign pubs = site.data.pubs | where_exp: "p", "p.type != 'extended-abstract'" %}
@@ -91,19 +105,31 @@ classes: wide
   {% endif %}
 </section>
 
-<!-- AWARDS -->
-<section class="cv-section">
-  <h2 class="cv-section-title">Honours &amp; distinctions</h2>
-  {% for a in site.data.cv.awards %}
+<!-- ORGANIZATION (events I organized, derived from conferences.yml: any event
+     with an "Organizer" contribution shows up here automatically) -->
+{%- capture organized -%}
+  {%- for conf in site.data.conferences -%}
+    {%- capture kinds %}{% include conf_kinds.html conf=conf %}{% endcapture -%}
+    {%- if kinds contains "organizer" -%}
   <div class="cv-row">
-    <div class="cv-period">{{ a.year }}</div>
+    <div class="cv-period">{{ conf.date }}</div>
     <div class="cv-body">
-      <span class="cv-title">{{ a.title }}</span>
-      {% if a.note %}<span class="cv-note">{{ a.note }}</span>{% endif %}
+      <span class="cv-title">{% if conf.url %}<a href="{{ conf.url }}" target="_blank">{{ conf.name }}</a>{% else %}{{ conf.name }}{% endif %}</span>
+      <span class="cv-place">{{ conf.location }}</span>
+      {%- for c in conf.contributions -%}
+        {%- if c.type contains "Organiz" and c.title and c.title != "" %}<span class="cv-note">{{ c.title }}</span>{% endif -%}
+      {%- endfor -%}
     </div>
   </div>
-  {% endfor %}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{% if organized contains "cv-row" %}
+<section class="cv-section">
+  <h2 class="cv-section-title">Organization</h2>
+  {{ organized }}
 </section>
+{% endif %}
 
 <!-- TALKS -->
 <section class="cv-section">
@@ -120,7 +146,7 @@ classes: wide
   {% endfor %}
   <div class="cv-row">
     <div class="cv-period"></div>
-    <div class="cv-body"><span class="cv-note">See the <a href="{{ '/conferences/' | relative_url }}">Conferences</a> page for the full list of talks and posters.</span></div>
+    <div class="cv-body"><span class="cv-note">See the <a href="{{ '/conferences/' | relative_url }}">Conferences</a> page for every event attended, spoken at, or organized.</span></div>
   </div>
 </section>
 
@@ -131,18 +157,46 @@ classes: wide
   <div class="cv-row">
     <div class="cv-period">{{ section.heading }}</div>
     <div class="cv-body">
+      {%- comment -%}
+      Supervisions and reviews are counted rather than listed, like the
+      publication summary above: the CV states how many, the Teaching & Service
+      page carries the individual entries.
+      {%- endcomment -%}
+      {% if section.heading == "Student supervision" %}
+        {%- assign n_msc = 0 -%}
+        {%- assign n_bsc = 0 -%}
+        {%- for item in section.items -%}
+          {%- if item.role contains "MSc" -%}{%- assign n_msc = n_msc | plus: 1 -%}
+          {%- elsif item.role contains "BSc" -%}{%- assign n_bsc = n_bsc | plus: 1 -%}{%- endif -%}
+        {%- endfor -%}
+        <span class="cv-note">
+          {{ n_msc }} MSc thes{% if n_msc == 1 %}is{% else %}es{% endif %} &middot;
+          {{ n_bsc }} BSc thes{% if n_bsc == 1 %}is{% else %}es{% endif %}.
+          Supervised students on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.
+        </span>
+      {% elsif section.heading == "Review service" %}
+        {%- assign n_rev = 0 -%}
+        {%- assign n_sub = 0 -%}
+        {%- for item in section.items -%}
+          {%- if item.role contains "Sub" -%}{%- assign n_sub = n_sub | plus: 1 -%}
+          {%- else -%}{%- assign n_rev = n_rev | plus: 1 -%}{%- endif -%}
+        {%- endfor -%}
+        <span class="cv-note">
+          {{ n_rev }} journal review{% if n_rev != 1 %}s{% endif %} &middot;
+          {{ n_sub }} conference sub-review{% if n_sub != 1 %}s{% endif %}.
+          Venues on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.
+        </span>
+      {% else %}
       <ul class="cv-pub-list">
         {% for item in section.items %}
         {%- comment -%}
-        The "Student supervision" heading already says supervision, so the role is
-        trimmed to "MSc thesis" / "BSc thesis" here (a no-op for every other role).
-        A supervision still in progress has no thesis title yet: drop the title and
-        its em dash entirely rather than emitting an empty <strong> before it.
+        A supervision still in progress has no thesis title yet: drop the title
+        and its em dash entirely rather than emitting an empty <strong>.
         {%- endcomment -%}
-        {%- assign role_label = item.role | remove: " supervision" -%}
-        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}</strong> &mdash; {% endif %}{{ role_label }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
+        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}</strong> &mdash; {% endif %}{{ item.role }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
         {% endfor %}
       </ul>
+      {% endif %}
     </div>
   </div>
   {% endfor %}

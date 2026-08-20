@@ -308,7 +308,7 @@
     networks, which capture events like hybridization, it becomes computationally hard.
     PaNDA is an interactive tool built around a new algorithm that solves this
     diversity-maximization problem efficiently for many realistic networks.
-  status_note: "Accepted at RECOMB 2026 (no formal proceedings, acceptance rate 15%)."
+  status_note: "Accepted at RECOMB 2026 (no formal proceedings, acceptance rate 16%)."
   release-date: 2025-11-17
   authors:
     - first: Niels
