@@ -11,6 +11,8 @@
 #   data-url:    link to the dataset for this paper (shows a data icon)
 #   summary_lay: 2-3 sentence plain-language summary, shown as a collapsible
 #                "summary" toggle next to abstract/bibtex. Omit to hide it.
+#   booktitle:   proceedings title for `type: conference` entries (the journal
+#                slot's equivalent); also becomes the BibTeX `booktitle` field.
 
 - title: "On Tree-Network Distinguishability and Full Identifiability of Phylogenetic Networks"
   id: full-identifiability
@@ -111,8 +113,9 @@
     theoretical exploration, PhyloZoo enables reproducible workflows for applied,
     methodological, and theoretical studies of reticulate evolution. Availability and
     implementation: PhyloZoo is implemented in Python and installable from PyPI, with
-    source code, documentation, and examples available at
-    https://github.com/nholtgrefe/phylozoo.
+    source code, documentation, and examples available at <a
+    href="https://github.com/nholtgrefe/phylozoo"
+    target="_blank">https://github.com/nholtgrefe/phylozoo</a>.
 
 - title: "Tractable Maximization of Budgeted Phylogenetic Diversity on Networks Utilizing Node Scanwidth"
   id: budgeted-pd
@@ -182,7 +185,7 @@
     proves hard limits: for many natural ways of measuring the input's complexity, the
     problem provably cannot be "compressed" to a small equivalent instance before
     solving.
-  status_note: "Accepted and presented at LATIN 2026 (proceedings to appear)."
+  status_note: "Accepted and presented at LATIN 2026; proceedings to appear."
   release-date: 2026-02-13
   authors:
     - first: Niels
@@ -192,8 +195,9 @@
     - first: Norbert
       last: Zeh
   year: 2026
-  type: "preprint"
+  type: "conference"
   journal:
+  booktitle: "Proceedings of the 17th Latin American Theoretical Informatics Symposium (LATIN 2026)"
   volume:
   issue:
   pages:

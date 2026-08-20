@@ -47,16 +47,16 @@ its own heading. The .bib download lives here too.
 <div class="pub-toolbar">
   <div class="pub-toolbar-group" role="group" aria-label="Filter publications by type">
     <span class="pub-toolbar-label">Filter</span>
-    <button class="filter-pill is-active" data-filter-type="all" aria-pressed="true" onclick="filterPubs('all', this)">all</button>
+    <button class="filter-pill is-active" data-filter-type="all" aria-pressed="true" onclick="filterPubs('all', this)">all <span class="filter-pill-count">({{ total }})</span></button>
     {% for t in type_order %}
       {% assign n = main_pubs | where: "type", t | size %}
       {% if n > 0 %}
         {% case t %}
           {% when "journal" %}{% assign tname = "journal articles" %}
-          {% when "conference" %}{% assign tname = "conference papers" %}
+          {% when "conference" %}{% assign tname = "conference proceedings" %}
           {% when "preprint" %}{% assign tname = "preprints" %}
         {% endcase %}
-        <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }}</button>
+        <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }} <span class="filter-pill-count">({{ n }})</span></button>
       {% endif %}
     {% endfor %}
   </div>

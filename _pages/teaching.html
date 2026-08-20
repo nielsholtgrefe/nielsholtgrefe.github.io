@@ -24,10 +24,17 @@ classes: wide
         {% for y in item.years %}<span class="teaching-year">{{ y }}</span>{% endfor %}
       </div>
       <div class="teaching-detail">
-        <span class="teaching-role">{{ item.role }}</span>
-        <span class="teaching-title">
+        {%- comment -%}
+        As on the CV: the "Student supervision" heading already says supervision, so
+        the role is trimmed to "MSc thesis" / "BSc thesis" (a no-op for every other
+        role). A supervision still in progress has no thesis title yet, so the title
+        span is dropped entirely rather than left empty.
+        {%- endcomment -%}
+        {%- assign role_label = item.role | remove: " supervision" -%}
+        <span class="teaching-role">{{ role_label }}</span>
+        {% if item.title and item.title != "" %}<span class="teaching-title">
           {% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
-        </span>
+        </span>{% endif %}
         <span class="teaching-meta">
           {%- if item.institution -%}{{ item.institution }}{%- endif -%}
           {%- if item.note -%}{%- if item.institution %} &middot; {% endif -%}{{ item.note }}{%- endif -%}

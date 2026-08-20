@@ -89,6 +89,8 @@ classes: wide
             <span class="selected-pub-venue">
               {%- if pub.type == "journal" -%}
                 <i>{{ pub.journal }}</i>, {{ pub.year }}
+              {%- elsif pub.type == "conference" -%}
+                <i>{{ pub.booktitle }}</i>
               {%- elsif pub.type == "preprint" -%}
                 {{ pub.preprint-server }}:{{ pub.preprint-identifier }}, {{ pub.year }}
               {%- elsif pub.type == "thesis" -%}

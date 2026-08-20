@@ -50,6 +50,16 @@
 
 - heading: "Student supervision"
   items:
+    - role: "MSc thesis supervision"
+      years: ["current"]
+      institution: "TU Delft"
+      student: "Max Verton"
+      note: "Max Verton · co-supervised with Leo van Iersel"
+    - role: "MSc thesis supervision"
+      years: ["current"]
+      institution: "TU Delft"
+      student: "Ida Pelupessy"
+      note: "Ida Pelupessy · co-supervised with Leo van Iersel"
     - role: "BSc thesis supervision"
       title: "Distinguishing phylogenetic trees from networks"
       years: ["2026"]

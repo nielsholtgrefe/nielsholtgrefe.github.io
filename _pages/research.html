@@ -113,6 +113,8 @@ their black is mapped to currentColor, so they invert cleanly in dark mode).
                 {%- capture venue -%}
                   {%- if pub.type == "journal" -%}
                     <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}, {{ pub.year }}
+                  {%- elsif pub.type == "conference" -%}
+                    <i>{{ pub.booktitle }}</i>{% if pub.pages %}:{{ pub.pages }}{% endif %}
                   {%- elsif pub.type == "preprint" -%}
                     {{ pub.preprint-server }}:{{ pub.preprint-identifier }}, {{ pub.year }}
                   {%- elsif pub.type == "thesis" -%}

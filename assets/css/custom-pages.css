@@ -638,6 +638,12 @@ html[data-theme="dark"] .pub-type-conference {
   color: var(--nh-accent);
 }
 
+.filter-pill-count {
+  opacity: 0.62;
+  font-variant-numeric: tabular-nums;
+  margin-left: 0.1em;
+}
+
 .filter-pill.is-active,
 .sort-pill.is-active {
   background: var(--nh-accent-solid, #1a5c7a);

@@ -19,21 +19,27 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
       {%- comment -%} The venue links to the primary source but is styled to look like plain text {%- endcomment -%}
       {%- assign venue_url = "" -%}
       {%- if pub.type == "journal" -%}{%- assign venue_url = pub.doi-url | default: pub.preprint-url -%}
+      {%- elsif pub.type == "conference" -%}{%- assign venue_url = pub.doi-url | default: pub.preprint-url -%}
       {%- elsif pub.type == "preprint" -%}{%- assign venue_url = pub.preprint-url -%}
       {%- elsif pub.type == "thesis" -%}{%- assign venue_url = pub.repository-url -%}
-      {%- elsif pub.type == "extended-abstract" -%}{%- assign venue_url = pub.preprint-url -%}
+      {%- elsif pub.type == "extended-abstract" -%}{%- assign venue_url = pub.doi-url | default: pub.preprint-url -%}
       {%- endif -%}
       {%- comment -%} Short, colour-coded label for the publication type {%- endcomment -%}
       {%- assign type_label = "" -%}
       {%- case pub.type -%}
         {%- when "journal" -%}{%- assign type_label = "Journal article" -%}
         {%- when "preprint" -%}{%- assign type_label = "Preprint" -%}
-        {%- when "conference" -%}{%- assign type_label = "Conference proceedings" -%}
+        {%- when "conference" -%}{%- assign type_label = "Conference proceeding" -%}
       {%- endcase -%}
       <div class="pub-venue">
         {%- if venue_url and venue_url != "" -%}<a class="pub-venue-link" href="{{ venue_url }}" target="_blank">{%- endif -%}
         {%- if pub.type == "journal" -%}
           <i>{{ pub.journal }}</i>{% if pub.volume %}, {{ pub.volume }}{% if pub.issue %}({{ pub.issue }}){% endif %}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}{% if pub.year %}, {{ pub.year }}{% endif %}
+        {%- elsif pub.type == "conference" -%}
+          {%- comment -%} The proceedings title usually already carries the year (e.g. "LATIN 2026: ..."), so only append it when it does not {%- endcomment -%}
+          {%- assign booktitle = pub.booktitle | default: pub.journal -%}
+          {%- assign year_str = pub.year | append: "" -%}
+          <i>{{ booktitle }}</i>{% if pub.volume %}, {{ pub.volume }}{% endif %}{% if pub.pages %}:{{ pub.pages }}{% endif %}{% if pub.year %}{% unless booktitle contains year_str %}, {{ pub.year }}{% endunless %}{% endif %}
         {%- elsif pub.type == "preprint" -%}
           {% if pub.preprint-server %}{{ pub.preprint-server }}{% endif %}{% if pub.preprint-identifier %}:{{ pub.preprint-identifier }}{% endif %}{% if pub.year %}, {{ pub.year }}{% endif %}
         {%- elsif pub.type == "thesis" -%}
@@ -42,9 +48,10 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
           {{ pub.note }}{% if pub.year %}, {{ pub.year }}{% endif %}
         {%- endif -%}
         {%- if venue_url and venue_url != "" -%}</a>{%- endif -%}
+        {%- if pub.status_note %} <span class="pub-info" tabindex="0" role="note" aria-label="{{ pub.status_note | escape }}" data-tip="{{ pub.status_note | escape }}"><svg class="pub-info-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="4.6" r="1" fill="currentColor"/><rect x="7.05" y="6.9" width="1.9" height="5" rx="0.95" fill="currentColor"/></svg></span>{% endif -%}
       </div>
 
-      <div class="pub-title">{{ pub.title }}{% if pub.status_note %} <span class="pub-info" tabindex="0" role="note" aria-label="{{ pub.status_note | escape }}" data-tip="{{ pub.status_note | escape }}"><svg class="pub-info-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="4.6" r="1" fill="currentColor"/><rect x="7.05" y="6.9" width="1.9" height="5" rx="0.95" fill="currentColor"/></svg></span>{% endif %}</div>
+      <div class="pub-title">{{ pub.title }}</div>
 
       <div class="pub-authors">
         {% for author in pub.authors %}
@@ -80,6 +87,10 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
           {% if pub.doi-url %}<a class="pub-icon-btn" href="{{ pub.doi-url }}" target="_blank" rel="noopener" title="Journal article (DOI)" aria-label="Journal article (DOI)">{{ ic_journal }}</a>{% endif %}
           {% if pub.preprint-url %}<a class="pub-icon-btn" href="{{ pub.preprint-url }}" target="_blank" rel="noopener" title="Preprint on {{ pub.preprint-server }}" aria-label="Preprint on {{ pub.preprint-server }}">{{ ic_preprint }}</a>{% endif %}
           {% if pub.software-url %}<a class="pub-icon-btn" href="{{ pub.software-url }}" target="_blank" rel="noopener" title="Source code" aria-label="Source code">{{ ic_code }}</a>{% endif %}
+        {% elsif pub.type == "conference" %}
+          {% if pub.doi-url %}<a class="pub-icon-btn" href="{{ pub.doi-url }}" target="_blank" rel="noopener" title="Conference paper (DOI)" aria-label="Conference paper (DOI)">{{ ic_journal }}</a>{% endif %}
+          {% if pub.preprint-url %}<a class="pub-icon-btn" href="{{ pub.preprint-url }}" target="_blank" rel="noopener" title="Preprint on {{ pub.preprint-server }}" aria-label="Preprint on {{ pub.preprint-server }}">{{ ic_preprint }}</a>{% endif %}
+          {% if pub.software-url %}<a class="pub-icon-btn" href="{{ pub.software-url }}" target="_blank" rel="noopener" title="Source code" aria-label="Source code">{{ ic_code }}</a>{% endif %}
         {% elsif pub.type == "preprint" %}
           {% if pub.preprint-url %}<a class="pub-icon-btn" href="{{ pub.preprint-url }}" target="_blank" rel="noopener" title="Preprint on {{ pub.preprint-server }}" aria-label="Preprint on {{ pub.preprint-server }}">{{ ic_preprint }}</a>{% endif %}
           {% if pub.doi-url and pub.doi-url != pub.preprint-url %}<a class="pub-icon-btn" href="{{ pub.doi-url }}" target="_blank" rel="noopener" title="Publisher link" aria-label="Publisher link">{{ ic_link }}</a>{% endif %}
@@ -88,7 +99,8 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
           {% if pub.repository-url %}<a class="pub-icon-btn" href="{{ pub.repository-url }}" target="_blank" rel="noopener" title="Repository" aria-label="Repository">{{ ic_link }}</a>{% endif %}
           {% if pub.software-url %}<a class="pub-icon-btn" href="{{ pub.software-url }}" target="_blank" rel="noopener" title="Source code" aria-label="Source code">{{ ic_code }}</a>{% endif %}
         {% elsif pub.type == "extended-abstract" %}
-          {% if pub.preprint-url %}<a class="pub-icon-btn" href="{{ pub.preprint-url }}" target="_blank" rel="noopener" title="Extended abstract" aria-label="Extended abstract">{{ ic_link }}</a>{% endif %}
+          {%- assign abstract_url = pub.doi-url | default: pub.preprint-url -%}
+          {% if abstract_url and abstract_url != "" %}<a class="pub-icon-btn" href="{{ abstract_url }}" target="_blank" rel="noopener" title="Extended abstract (DOI)" aria-label="Extended abstract (DOI)">{{ ic_link }}</a>{% endif %}
           {% if pub.software-url %}<a class="pub-icon-btn" href="{{ pub.software-url }}" target="_blank" rel="noopener" title="Source code" aria-label="Source code">{{ ic_code }}</a>{% endif %}
         {% endif %}
         {{ data_btn }}

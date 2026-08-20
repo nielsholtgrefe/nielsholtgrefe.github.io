@@ -46,6 +46,7 @@ classes: wide
               <a href="{{ '/publications/' | relative_url }}#pub-{{ p.title | slugify }}">{{ p.title }}</a>
               <span class="software-pub-venue">
                 {%- if p.type == "journal" -%}<i>{{ p.journal }}</i>{% if p.year %}, {{ p.year }}{% endif %}
+                {%- elsif p.type == "conference" -%}<i>{{ p.booktitle }}</i>
                 {%- elsif p.type == "preprint" -%}{{ p.preprint-server }}{% if p.year %}, {{ p.year }}{% endif %}
                 {%- elsif p.type == "thesis" -%}{{ p.note }}
                 {%- endif -%}

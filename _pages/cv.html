@@ -79,7 +79,7 @@ classes: wide
         {%- assign pub_slug = pub.title | slugify -%}
         <li>
           <a href="{{ '/publications/' | relative_url }}#pub-{{ pub_slug }}">{{ pub.title }}</a>,
-          {% if pub.type == "journal" %}<i>{{ pub.journal }}</i>{% elsif pub.type == "preprint" %}{{ pub.preprint-server }}{% endif %} {{ pub.year }}.
+          {% if pub.type == "journal" %}<i>{{ pub.journal }}</i> {{ pub.year }}.{% elsif pub.type == "conference" %}<i>{{ pub.booktitle }}</i>.{% elsif pub.type == "preprint" %}{{ pub.preprint-server }} {{ pub.year }}.{% else %}{{ pub.year }}.{% endif %}
         </li>
         {%- endif -%}
         {% endfor %}
@@ -131,7 +131,14 @@ classes: wide
     <div class="cv-body">
       <ul class="cv-pub-list">
         {% for item in section.items %}
-        <li><strong>{{ item.title }}</strong> &mdash; {{ item.role }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
+        {%- comment -%}
+        The "Student supervision" heading already says supervision, so the role is
+        trimmed to "MSc thesis" / "BSc thesis" here (a no-op for every other role).
+        A supervision still in progress has no thesis title yet: drop the title and
+        its em dash entirely rather than emitting an empty <strong> before it.
+        {%- endcomment -%}
+        {%- assign role_label = item.role | remove: " supervision" -%}
+        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}</strong> &mdash; {% endif %}{{ role_label }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
         {% endfor %}
       </ul>
     </div>

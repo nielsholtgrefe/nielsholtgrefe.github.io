@@ -37,6 +37,7 @@ or extended abstracts) are numbered newest-first; others show a bullet.
         {% if pub %}
         <div class="correction-venue">
           {%- if pub.type == "journal" -%}<i>{{ pub.journal }}</i>{% if pub.year %}, {{ pub.year }}{% endif %}
+          {%- elsif pub.type == "conference" -%}<i>{{ pub.booktitle }}</i>{% if pub.pages %}:{{ pub.pages }}{% endif %}
           {%- elsif pub.type == "preprint" -%}{{ pub.preprint-server }}:{{ pub.preprint-identifier }}{% if pub.year %}, {{ pub.year }}{% endif %}
           {%- elsif pub.type == "thesis" -%}{{ pub.note }}
           {%- endif -%}
