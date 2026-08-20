@@ -1539,7 +1539,7 @@ html[data-theme="dark"] .timeline-country {
 }
 
 .cv-period {
-  flex: 0 0 8.5em;
+  flex: 0 0 11.5em;
   font-family: 'Inter', sans-serif;
   font-size: 0.78em;
   font-weight: 600;
@@ -1574,6 +1574,18 @@ html[data-theme="dark"] .timeline-country {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* Inline emphasis inside a quiet .cv-note: the count carries, the rest recedes */
+.cv-em {
+  font-weight: 600;
+  color: var(--nh-text-strong, #1a1a1a);
+}
+
+/* Inline de-emphasis: secondary detail trailing a bold label */
+.cv-dim {
+  color: var(--nh-text-faint, #808993);
+  font-weight: 400;
 }
 
 .cv-pub-list li {

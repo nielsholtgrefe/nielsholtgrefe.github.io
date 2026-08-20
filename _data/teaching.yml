@@ -7,6 +7,9 @@
 #                            line (newest first), so a course taught several times
 #                            "looks fuller". Review-service items hold one year
 #                            each, since they are one item per review.
+#   cv_label     (optional)  CV-only override for the bold label of an entry, for
+#                            when "<role> · <title>" does not read well; when set,
+#                            the title is not repeated after it
 #   code         (optional)  course code; rendered after the institution, as
 #                            "TU Delft (TW1-31)", rather than inside the title
 #   institution  (optional)  where it took place
@@ -125,10 +128,11 @@
       note: "first point of contact for members with concerns, referring on to professional support where appropriate"
     - role: "Member"
       title: "DIAM PhD Forum"
+      cv_label: "DIAM PhD Forum member"
       years: ["2025–present"]
       institution: "TU Delft"
       note: "co-organizing career and social events for the ~100 mathematics PhD students and postdocs at the Delft Institute of Applied Mathematics"
-    - role: "Chair"
+    - role: "Chairman"
       title: "Delft Student Handball Association Torius"
       years: ["2025–2026"]
       note: "chairman of the board of a 70+ member student association"

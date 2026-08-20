@@ -162,7 +162,12 @@ classes: wide
       publication summary above: the CV states how many, the Teaching & Service
       page carries the individual entries.
       {%- endcomment -%}
-      {% if section.heading == "Student supervision" %}
+      {% if section.heading == "Teaching" %}
+        {%- assign roles = section.items | map: "role" | uniq | join: ", " | downcase -%}
+        <span class="cv-note">
+          <strong class="cv-em">{{ section.items | size }} courses</strong> &middot; {{ roles }}.
+        </span>
+      {% elsif section.heading == "Student supervision" %}
         {%- assign n_msc = 0 -%}
         {%- assign n_bsc = 0 -%}
         {%- for item in section.items -%}
@@ -170,9 +175,8 @@ classes: wide
           {%- elsif item.role contains "BSc" -%}{%- assign n_bsc = n_bsc | plus: 1 -%}{%- endif -%}
         {%- endfor -%}
         <span class="cv-note">
-          {{ n_msc }} MSc thes{% if n_msc == 1 %}is{% else %}es{% endif %} &middot;
-          {{ n_bsc }} BSc thes{% if n_bsc == 1 %}is{% else %}es{% endif %}.
-          Supervised students on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.
+          <strong class="cv-em">{{ n_msc }} MSc thes{% if n_msc == 1 %}is{% else %}es{% endif %}</strong> &middot;
+          <strong class="cv-em">{{ n_bsc }} BSc thes{% if n_bsc == 1 %}is{% else %}es{% endif %}</strong>.
         </span>
       {% elsif section.heading == "Review service" %}
         {%- assign n_rev = 0 -%}
@@ -182,18 +186,22 @@ classes: wide
           {%- else -%}{%- assign n_rev = n_rev | plus: 1 -%}{%- endif -%}
         {%- endfor -%}
         <span class="cv-note">
-          {{ n_rev }} journal review{% if n_rev != 1 %}s{% endif %} &middot;
-          {{ n_sub }} conference sub-review{% if n_sub != 1 %}s{% endif %}.
-          Venues on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.
+          <strong class="cv-em">{{ n_rev }} journal review{% if n_rev != 1 %}s{% endif %}</strong> &middot;
+          <strong class="cv-em">{{ n_sub }} conference sub-review{% if n_sub != 1 %}s{% endif %}</strong>.
         </span>
       {% else %}
       <ul class="cv-pub-list">
         {% for item in section.items %}
         {%- comment -%}
-        A supervision still in progress has no thesis title yet: drop the title
-        and its em dash entirely rather than emitting an empty <strong>.
+        The role leads in bold, then the years, then the organization as quiet
+        trailing detail. `cv_label` replaces the role for entries where that
+        split reads badly, and then stands in for the organization too.
         {%- endcomment -%}
-        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}{% if item.code %} ({{ item.code }}){% endif %}</strong> &mdash; {% endif %}{{ item.role }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
+        {%- assign label = item.cv_label | default: item.role -%}
+        {%- assign years_str = "" -%}
+        {%- if item.years -%}{%- assign years_str = item.years | join: ", " -%}
+        {%- elsif item.year -%}{%- assign years_str = item.year -%}{%- endif -%}
+        <li><strong>{{ label }}</strong>{% if years_str != "" %}, {{ years_str }}{% endif %}{% unless item.cv_label %}{% if item.title and item.title != "" %} <span class="cv-dim">&middot; {{ item.title }}{% if item.code %} ({{ item.code }}){% endif %}</span>{% endif %}{% endunless %}</li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -202,7 +210,7 @@ classes: wide
   {% endfor %}
   <div class="cv-row">
     <div class="cv-period"></div>
-    <div class="cv-body"><span class="cv-note">More detail on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.</span></div>
+    <div class="cv-body"><span class="cv-note">Courses, supervised students, and review venues on the <a href="{{ '/teaching/' | relative_url }}">Teaching &amp; Service</a> page.</span></div>
   </div>
 </section>
 
