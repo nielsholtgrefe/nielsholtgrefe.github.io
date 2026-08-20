@@ -193,7 +193,7 @@ classes: wide
         A supervision still in progress has no thesis title yet: drop the title
         and its em dash entirely rather than emitting an empty <strong>.
         {%- endcomment -%}
-        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}</strong> &mdash; {% endif %}{{ item.role }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
+        <li>{% if item.title and item.title != "" %}<strong>{{ item.title }}{% if item.code %} ({{ item.code }}){% endif %}</strong> &mdash; {% endif %}{{ item.role }}{% if item.student %} ({{ item.student }}){% endif %}{% if item.years %}{% if item.years.size > 1 %}{% for y in item.years %}<br><span class="cv-teach-year">{{ y }}</span>{% endfor %}{% else %}, {{ item.years | first }}{% endif %}{% elsif item.year %}, {{ item.year }}{% endif %}</li>
         {% endfor %}
       </ul>
       {% endif %}

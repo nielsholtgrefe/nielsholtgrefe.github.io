@@ -3,7 +3,7 @@ layout: single
 title: "Teaching &amp; Service"
 description: >-
   Teaching, student supervision, and academic service of Niels Holtgrefe at TU Delft —
-  mathematics courses, supervised BSc theses in phylogenetics, and reviewing for journals
+  mathematics courses, supervised BSc and MSc theses in phylogenetics, and reviewing for journals
   and conferences in discrete mathematics and computational biology.
 permalink: /teaching/
 author_profile: true
@@ -12,11 +12,29 @@ classes: wide
 
 <link rel="stylesheet" href="{{ '/assets/css/custom-pages.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-<p>An overview of my teaching, student supervision, and academic service. At TU Delft I have taught and assisted in a range of mathematics courses and supervised BSc theses in phylogenetics, and I review for journals and conferences in discrete mathematics and computational biology.</p>
+<p>An overview of my teaching, student supervision, and academic service. At TU Delft I have taught and assisted in a range of mathematics courses and supervised BSc and MSc theses in phylogenetics, and I review for journals and conferences in discrete mathematics and computational biology.</p>
 
 {% for section in site.data.teaching %}
 <section class="teaching-section">
   <h2 class="teaching-heading">{{ section.heading }}</h2>
+
+  {%- comment -%}
+  Review service is a bare list of venues. The capacity ("Reviewer" /
+  "Sub-reviewer") and the year of each review stay in the data, so either can be
+  shown again later, but printing both turned a long list into a wall of labels.
+  Entries are already ordered newest-first in the data.
+  {%- endcomment -%}
+  {% if section.heading == "Review service" %}
+  <ul class="teaching-bullets">
+    {% for item in section.items %}
+    <li>
+      <span class="teaching-year">{{ item.years | first }}</span>
+      <span class="teaching-bullet-title">{{ item.title }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% else %}
   <ul class="teaching-list">
     {% for item in section.items %}
     <li class="teaching-item">
@@ -27,21 +45,35 @@ classes: wide
         {%- comment -%}
         As on the CV: the "Student supervision" heading already says supervision, so
         the role is trimmed to "MSc thesis" / "BSc thesis" (a no-op for every other
-        role). A supervision still in progress has no thesis title yet, so the title
-        span is dropped entirely rather than left empty.
+        role).
         {%- endcomment -%}
         {%- assign role_label = item.role | remove: " supervision" -%}
         <span class="teaching-role">{{ role_label }}</span>
-        {% if item.title and item.title != "" %}<span class="teaching-title">
-          {% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
+        {%- comment -%}
+        A supervision is headlined by the student; its thesis title (and the
+        repository link) sits on the meta line below, and is simply absent while
+        the thesis is still in progress. Everything else is headlined by its title.
+        {%- endcomment -%}
+        {% if item.student or item.title %}<span class="teaching-title">
+          {%- if item.student -%}{{ item.student }}
+          {%- elsif item.url -%}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+          {%- else -%}{{ item.title }}
+          {%- endif -%}
         </span>{% endif %}
         <span class="teaching-meta">
-          {%- if item.institution -%}{{ item.institution }}{%- endif -%}
-          {%- if item.note -%}{%- if item.institution %} &middot; {% endif -%}{{ item.note }}{%- endif -%}
+          {%- assign sep = "" -%}
+          {%- if item.student and item.title and item.title != "" -%}
+            {%- if item.url -%}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+            {%- else -%}{{ item.title }}{%- endif -%}
+            {%- assign sep = " &middot; " -%}
+          {%- endif -%}
+          {%- if item.institution -%}{{ sep }}{{ item.institution }}{% if item.code %} ({{ item.code }}){% endif %}{%- assign sep = " &middot; " -%}{%- endif -%}
+          {%- if item.note -%}{{ sep }}{{ item.note }}{%- endif -%}
         </span>
       </div>
     </li>
     {% endfor %}
   </ul>
+  {% endif %}
 </section>
 {% endfor %}

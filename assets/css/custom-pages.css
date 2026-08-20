@@ -1357,18 +1357,25 @@ html[data-theme="dark"] .timeline-country {
 
 /* ================================================================
    Teaching & service page
+
+   A ledger: years in their own right-aligned column, then the role as a small
+   label above the entry it belongs to. Deliberately chip-free, so the long
+   lists read as a printed CV rather than as rows of badges.
    ================================================================ */
 
-.teaching-section { margin: 1.8em 0; }
+.teaching-section { margin: 2.1em 0; }
 
+/* Section label stays quiet and lets the entries carry the weight */
 .teaching-heading {
-  font-family: 'Lora', serif;
-  font-size: 1.1em;
-  font-weight: 600;
-  color: var(--nh-accent, #1a5c7a);
-  border-bottom: 1px solid var(--nh-border, #cddae2);
-  padding-bottom: 0.35em;
-  margin: 0 0 0.8em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--nh-text-faint, #777);
+  border-bottom: 2px solid var(--nh-accent, #1a5c7a);
+  padding-bottom: 0.45em;
+  margin: 0 0 0.3em;
 }
 
 .teaching-list {
@@ -1378,51 +1385,53 @@ html[data-theme="dark"] .timeline-country {
 }
 
 .teaching-item {
-  display: flex;
-  gap: 1em;
-  padding: 0.6em 0;
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 0 1.3em;
+  align-items: baseline;
+  padding: 0.7em 0;
   border-bottom: 1px solid var(--nh-border-soft, #eef4f7);
 }
 
 .teaching-item:last-child { border-bottom: none; }
 
 .teaching-years {
-  flex: 0 0 5.5em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  padding-top: 0.15em;
+  display: block;
   text-align: right;
+  padding-top: 0.1em;
 }
 
 .teaching-year {
+  display: block;
   font-family: 'Inter', sans-serif;
-  font-size: 0.78em;
-  font-weight: 600;
-  color: var(--nh-accent-mid, #4a8fa8);
+  font-size: 0.76em;
+  font-weight: 500;
+  color: var(--nh-text-faint, #777);
+  font-variant-numeric: tabular-nums;   /* years line up digit for digit */
 }
 
-.teaching-detail {
-  flex: 1;
-  font-family: 'Inter', sans-serif;
+/* The most recent instance is the one that matters; earlier ones recede */
+.teaching-years .teaching-year:first-child {
+  color: var(--nh-accent, #1a5c7a);
+  font-weight: 600;
 }
+
+.teaching-detail { font-family: 'Inter', sans-serif; }
 
 .teaching-role {
-  display: inline-block;
-  font-size: 0.64em;
+  display: block;
+  background: none;
+  color: var(--nh-accent-mid, #4a8fa8);
+  padding: 0;
+  margin: 0 0 0.12em;
+  font-size: 0.62em;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #fff;
-  background: var(--nh-accent-solid, #1a5c7a);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 0.5em;
-  vertical-align: middle;
+  letter-spacing: 0.12em;
 }
 
 .teaching-title {
-  font-size: 0.92em;
+  font-size: 0.95em;
   font-weight: 600;
   color: var(--nh-text-strong, #1a1a1a);
 }
@@ -1431,18 +1440,47 @@ html[data-theme="dark"] .timeline-country {
   display: block;
   font-size: 0.8em;
   color: var(--nh-text-faint, #777);
-  margin-top: 0.15em;
+  margin-top: 0.2em;
 }
 
+/* Review service: a bullet list rather than full ledger rows, but sharing the
+   ledger's year column so the page keeps one left edge. Rows stay tight — no
+   per-row rule, no role label. */
+.teaching-bullets {
+  list-style: none;
+  font-family: 'Inter', sans-serif;
+  margin: 0.55em 0 0;
+  padding: 0;
+}
+
+.teaching-bullets li {
+  display: grid;
+  grid-template-columns: 6em 1fr;   /* same column as .teaching-item */
+  gap: 0 1.3em;
+  align-items: baseline;
+  margin: 0.3em 0;
+}
+
+/* A review has a single year, so it reads like a ledger row's leading year */
+.teaching-bullets .teaching-year {
+  text-align: right;
+  color: var(--nh-accent, #1a5c7a);
+  font-weight: 600;
+}
+
+.teaching-bullet-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--nh-text-strong, #1a1a1a);
+}
+
+/* Narrow screens: the year column folds above the entry, inline */
 @media (max-width: 500px) {
-  .teaching-item { flex-direction: column; gap: 0.2em; }
-  .teaching-years {
-    text-align: left;
-    flex-basis: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5em;
-  }
+  .teaching-item { grid-template-columns: 1fr; gap: 0.15em; }
+  .teaching-years { text-align: left; padding-top: 0; }
+  .teaching-year { display: inline; margin-right: 0.6em; }
+  .teaching-bullets li { grid-template-columns: 1fr; gap: 0; }
+  .teaching-bullets .teaching-year { text-align: left; }
 }
 
 /* ================================================================

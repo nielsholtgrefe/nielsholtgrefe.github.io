@@ -7,6 +7,8 @@
 #                            line (newest first), so a course taught several times
 #                            "looks fuller". Review-service items hold one year
 #                            each, since they are one item per review.
+#   code         (optional)  course code; rendered after the institution, as
+#                            "TU Delft (TW1-31)", rather than inside the title
 #   institution  (optional)  where it took place
 #   note         (optional)  short extra detail (level, audience, co-supervisor, ...)
 #   student      (optional)  supervised student name (also shown on the CV)
@@ -18,39 +20,46 @@
 - heading: "Teaching"
   items:
     - role: "Instructor"
-      title: "Discrete Mathematics (TW1-31)"
+      title: "Discrete Mathematics"
+      code: "TW1-31"
       years: ["2025–2026", "2024–2025"]
       institution: "TU Delft"
-      note: "BSc course"
     - role: "Course grader"
-      title: "Transport, Routing & Scheduling (WI4062TU)"
+      title: "Transport, Routing & Scheduling"
+      code: "WI4062TU"
       years: ["2025–2026", "2023–2024"]
       institution: "TU Delft"
     - role: "Exercise tester"
-      title: "Introduction to Programming (TW1-13)"
+      title: "Introduction to Programming"
+      code: "TW1-13"
       years: ["2025–2026"]
       institution: "TU Delft"
       note: "trialling the exercises for the course's new setup"
     - role: "Guest lecturer"
-      title: "Mathematics 1 (WBMT1050)"
+      title: "Mathematics 1"
+      code: "WBMT1050"
       years: ["2023–2024"]
       institution: "TU Delft"
       note: "for Mechanical Engineering · replacement lecturer for three lectures"
     - role: "Course grader"
-      title: "Mathematics 2 — Calculus (KT1002)"
+      title: "Mathematics 2 — Calculus"
+      code: "KT1002"
       years: ["2023–2024"]
       institution: "TU Delft"
       note: "for Technical Medicine"
     - role: "Teaching assistant"
-      title: "Optimization (AM2020)"
+      title: "Optimization"
+      code: "AM2020"
       years: ["2022–2023", "2021–2022", "2020–2021"]
       institution: "TU Delft"
     - role: "Teaching assistant"
-      title: "Caleidoscope — Introduction to Mathematics (AM1020)"
+      title: "Caleidoscope — Introduction to Mathematics"
+      code: "AM1020"
       years: ["2021–2022", "2020–2021", "2019–2020"]
       institution: "TU Delft"
     - role: "Course grader"
-      title: "Mathematical Structures (AM1010)"
+      title: "Mathematical Structures"
+      code: "AM1010"
       years: ["2019–2020"]
       institution: "TU Delft"
 
@@ -60,25 +69,25 @@
       years: ["current"]
       institution: "TU Delft"
       student: "Max Verton"
-      note: "Max Verton · co-supervised with Leo van Iersel"
+      note: "co-supervised with Leo van Iersel"
     - role: "MSc thesis supervision"
       years: ["current"]
       institution: "TU Delft"
       student: "Ida Pelupessy"
-      note: "Ida Pelupessy · co-supervised with Leo van Iersel"
+      note: "co-supervised with Leo van Iersel"
     - role: "BSc thesis supervision"
       title: "Distinguishing phylogenetic trees from networks"
       years: ["2026"]
       institution: "TU Delft"
       student: "Jari Brits"
-      note: "Jari Brits · co-supervised with Leo van Iersel"
+      note: "co-supervised with Leo van Iersel"
       url: "https://repository.tudelft.nl/record/uuid:b515be05-f539-41d6-b57b-d23a0b4156e8"
     - role: "BSc thesis supervision"
       title: "Identifiability of Phylogenetic Trinets"
       years: ["2025"]
       institution: "TU Delft"
       student: "Guuske Kouwenhoven"
-      note: "Guuske Kouwenhoven · co-supervised with Leo van Iersel"
+      note: "co-supervised with Leo van Iersel"
       url: "https://repository.tudelft.nl/record/uuid:5aa152f2-e99c-4bb8-bb27-c112ab50b5f4"
 
 - heading: "Review service"
@@ -86,6 +95,12 @@
   # is simply another entry. `role` is the capacity ("Reviewer" / "Sub-reviewer")
   # and `years` holds the single year that review was done. Newest first.
   items:
+    - role: "Reviewer"
+      title: "Molecular Biology and Evolution"
+      years: ["2026"]
+    - role: "Reviewer"
+      title: "PeerJ"
+      years: ["2026"]
     - role: "Sub-reviewer"
       title: "RECOMB-CG (Comparative Genomics)"
       years: ["2025"]
@@ -101,15 +116,13 @@
     - role: "Reviewer"
       title: "Involve: a Journal of Mathematics"
       years: ["2025"]
-    - role: "Reviewer"
-      title: "Molecular Biology and Evolution"
-      years: ["2026"]
-    - role: "Reviewer"
-      title: "PeerJ"
-      years: ["2026"]
 
 - heading: "Other service"
   items:
+    - role: "Confidential contact person"
+      title: "Delft Student Handball Association Torius"
+      years: ["2026–present"]
+      note: "first point of contact for members with concerns, referring on to professional support where appropriate"
     - role: "Member"
       title: "DIAM PhD Forum"
       years: ["2025–present"]
@@ -119,7 +132,3 @@
       title: "Delft Student Handball Association Torius"
       years: ["2025–2026"]
       note: "chairman of the board of a 70+ member student association"
-    - role: "Confidential contact person"
-      title: "Delft Student Handball Association Torius"
-      years: ["2026–present"]
-      note: "first point of contact for members with concerns, referring on to professional support where appropriate"
