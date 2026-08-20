@@ -22,6 +22,8 @@ classes: wide
 
 
 
+<div class="pub-page">
+
 <p>Below are my publications and preprints, each with links, an abstract, a short plain-language summary, and a BibTeX entry; use the filter to narrow by type, or download every reference as a single <code>.bib</code> file. See also my <a href="https://scholar.google.com/citations?user=wJh7R3UAAAAJ" target="_blank">Google Scholar profile</a>.</p>
 
 
@@ -36,7 +38,8 @@ Split into main pubs (journal/preprint/conference), theses, and miscellaneous
 {% assign misc = all_pubs | where: "type", "extended-abstract" | sort: "release-date" | reverse %}
 {% assign total = main_pubs | size %}
 
-{%- comment -%} Type filter: only offer the types that are actually present {%- endcomment -%}
+{%- comment -%} Type filter: only offer the types that are actually present. The
+type keys double as the pill labels, so they are named in the singular. {%- endcomment -%}
 {% assign type_order = "journal,conference,preprint" | split: "," %}
 
 {%- comment -%}
@@ -51,12 +54,7 @@ its own heading. The .bib download lives here too.
     {% for t in type_order %}
       {% assign n = main_pubs | where: "type", t | size %}
       {% if n > 0 %}
-        {% case t %}
-          {% when "journal" %}{% assign tname = "journal articles" %}
-          {% when "conference" %}{% assign tname = "conference proceedings" %}
-          {% when "preprint" %}{% assign tname = "preprints" %}
-        {% endcase %}
-        <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ tname }} <span class="filter-pill-count">({{ n }})</span></button>
+        <button class="filter-pill" data-filter-type="{{ t }}" aria-pressed="false" onclick="filterPubs('{{ t }}', this)">{{ t }} <span class="filter-pill-count">({{ n }})</span></button>
       {% endif %}
     {% endfor %}
   </div>
@@ -93,7 +91,7 @@ its own heading. The .bib download lives here too.
   <h2 id="theses" class="pub-section-head">Theses</h2>
   <div class="pub-theses">
     {% for pub in theses %}
-      {% include pub_entry.html pub=pub pubnum="&bull;" %}
+      {% include pub_entry.html pub=pub %}
     {% endfor %}
   </div>
   {% endif %}
@@ -102,7 +100,7 @@ its own heading. The .bib download lives here too.
   <h2 id="misc" class="pub-section-head">Miscellaneous</h2>
   <div class="pub-misc">
     {% for pub in misc %}
-      {% include pub_entry.html pub=pub pubnum="&bull;" %}
+      {% include pub_entry.html pub=pub %}
     {% endfor %}
   </div>
   {% endif %}
@@ -111,3 +109,5 @@ its own heading. The .bib download lives here too.
 <p class="pub-filter-empty noshow" aria-live="polite">No publications match this filter.</p>
 
 <p class="pub-corrections-link">Spotted an error? See the <a href="{{ '/corrections/' | relative_url }}">list of corrections</a>.</p>
+
+</div>

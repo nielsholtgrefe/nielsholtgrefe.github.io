@@ -12,8 +12,7 @@ any) appears inside the summary/abstract box when it is opened, not in the card.
      data-type="{{ pub.type }}"
      data-title="{{ pub.title | downcase | escape }}">
   <div class="pub-card">
-    {% assign is_number = include.pubnum | plus: 0 %}
-    <div class="pub-num">{% if include.pubnum == is_number %}[{{ include.pubnum }}]{% else %}{{ include.pubnum }}{% endif %}</div>
+    {%- if include.pubnum -%}<div class="pub-num">{{ include.pubnum }}</div>{%- endif -%}
 
     <div class="pub-card-body">
       {%- comment -%} The venue links to the primary source but is styled to look like plain text {%- endcomment -%}

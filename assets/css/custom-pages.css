@@ -257,9 +257,15 @@
    on the bottom border.
    ================================================================ */
 
+.pub-page { padding-left: 1.5em; }
+
+@media (max-width: 700px) {
+  .pub-page { padding-left: 1.2em; }
+}
+
 .pub-item {
   scroll-margin-top: 200px;   /* clear the sticky masthead + banner */
-  margin-bottom: 0.85em;
+  margin-bottom: 1.25em;      /* room for the number chip on the next top border */
 }
 
 .pub-card {
@@ -270,7 +276,9 @@
   border: 1px solid var(--nh-border);
   border-radius: 8px;
   background: var(--nh-surface);
-  padding: 0.5em 0.9em 0.62em 2.4em;   /* left gutter for the number */
+  /* extra left inset so the text clears the half of the index chip that
+     overlaps the card's left border */
+  padding: 0.62em 0.9em 0.62em 1.35em;
   transition: box-shadow 0.18s, border-color 0.18s, transform 0.15s;
   font-family: 'Inter', sans-serif;
   cursor: pointer;   /* the card toggles its abstract on click */
@@ -287,15 +295,28 @@
 .pub-card:hover,
 .pub-card:focus-within { z-index: 5; }
 
-/* Index number in the left gutter */
+/* Index number as a chip straddling the card's left border, half in and half
+   out, styled to match the toggle pills on the bottom border. */
 .pub-num {
   position: absolute;
-  left: 0.65em;
-  top: 0.58em;
-  font-size: 0.76em;
+  left: 0;
+  top: 0.85em;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding: 1px 5px;
+  border: 1px solid var(--nh-border, #d5e0e6);
+  border-radius: 4px;
+  background: var(--nh-chip-bg, #fff);
+  color: var(--nh-accent-mid, #4a8fa8);
+  font-size: 0.68em;
   font-weight: 600;
-  color: var(--nh-accent-mid);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
 }
+
+/* Follow the card's accent on hover / when anchored, like the border does */
+.pub-card:hover .pub-num,
+.pub-item:target .pub-num { border-color: var(--nh-accent-mid, #4a8fa8); }
 
 .pub-card-body { flex: 1; min-width: 0; }
 
@@ -516,7 +537,6 @@ html[data-theme="dark"] .pub-type-conference {
 }
 
 @media (max-width: 560px) {
-  .pub-card { padding-left: 2.1em; }
   .box-figure { width: 84px; height: 63px; }
 }
 
