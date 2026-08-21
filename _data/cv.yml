@@ -21,7 +21,7 @@ education:
     title: "Grammar school ('gymnasium')"
     place: "Chr. Gymnasium Sorghvliet, The Hague"
 
-positions:
+experience:
   - period: "2023–present"
     title: "PhD Candidate"
     place: "Delft Institute of Applied Mathematics, TU Delft"
@@ -29,14 +29,6 @@ positions:
     title: "Extended research visit"
     place: "ICERM, Brown University (Providence, RI, USA)"
     note: "semester program on Theory, Methods, and Applications of Quantitative Phylogenomics"
-  - period: "2023"
-    title: "Software Developer"
-    place: "Valley Optics BV, Delft"
-    note: "graphical user-interface development within a software team; Valley Optics is a TNO spin-off building software for optical systems"
-  - period: "2022"
-    title: "Research Intern"
-    place: "Valley Optics BV, Delft"
-    note: "R&D project on using neural networks for image recognition in optical systems"
 
 awards:
   - year: 2023
