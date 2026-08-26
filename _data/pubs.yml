@@ -61,7 +61,7 @@
     contrast to the generic identifiability established in prior work, this holds at
     every point of the parameter space, not merely off of a measure-zero subset. Our
     second result distinguishes phylogenetic networks from phylogenetic trees, on the
-    same parameter space, under JC and K2P. We prove that no phylogenetic network and
+    same parameter space, under JC. We prove that no phylogenetic network and
     phylogenetic tree can induce the same leaf-pattern distribution unless the network
     is a tree, possibly augmented with certain substructures called \(2\)-blobs. This
     means the presence of reticulate evolution creates, in most cases, a detectable
