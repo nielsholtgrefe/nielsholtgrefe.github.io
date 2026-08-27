@@ -146,35 +146,34 @@
   preprint-url: "https://arxiv.org/abs/2605.23319"
   software-url: "https://github.com/nholtgrefe/panda"
   abstract: >
-    Identifying a subset of taxa that maximizes Phylogenetic Diversity (PD) is a
-    cornerstone of quantitative conservation planning. Traditionally, PD is defined over
-    a phylogenetic tree in which leaves represent present-day taxa and branch lengths
-    capture the estimated evolutionary distinctiveness. While PD maximization is
-    computationally tractable on trees with unit costs, the problem becomes NP-hard when
+    <b>Background:</b> Identifying a subset of taxa that maximizes phylogenetic
+    diversity is a cornerstone of quantitative conservation planning. Traditionally,
+    phylogenetic diversity is defined over a phylogenetic tree in which leaves resemble
+    present-day taxa and the branch lengths capture the estimated evolutionary
+    distinctiveness. While maximizing phylogenetic diversity is computationally tractable
+    on trees with unit costs, the problem becomes computationally intractable when
     transitioning to phylogenetic networks or to budgeted versions in which protecting
-    taxa incurs non-homogeneous costs.
+    taxa incurs non-homogeneous costs. This paper addresses these two challenges
+    together, providing definitions and a comprehensive analysis of three distinct
+    variants of budgeted phylogenetic diversity on networks.<br>
 
-    In this paper, we address these two challenges by providing definitions and a
-    comprehensive analysis of three distinct variants of budgeted PD on networks. We
-    conduct our study through the lens of a small structural parameter, node scanwidth
-    (nsw), which measures the tree-likeness of a phylogenetic network. We show that two
-    of the considered variants can be optimized in \(\mathcal{O}^*(2^{\mathsf{nsw}}
-    \cdot B^2)\) time, where \(B\) is the budget. For the computationally harder, third
-    variant, we provide an algorithm to compute PD scores in
-    \(\mathcal{O}^*(3^{\mathsf{nsw}})\) time.
+    <b>Results:</b> We conduct our study through the lens of a small structural
+    parameter, node scanwidth (\(\mathrm{nsw}\)), which measures the tree-likeness of a
+    phylogenetic network. Given a tree-extension of width \(\mathrm{nsw}\), we show that
+    two of the considered variants can be optimized in
+    \(\mathcal{O}^*(3^{\mathrm{nsw}} \cdot B^2)\) time, where \(B\) is the budget. For
+    the computationally harder third variant, we provide an algorithm to compute
+    phylogenetic diversity scores in \(\mathcal{O}^*(4^{\mathrm{nsw}})\) time. We further
+    contribute the first exact algorithms to compute node scanwidth itself. On highly
+    reticulated, simulated networks with several hundred taxa and heterogeneous costs,
+    our implementation computes phylogenetic diversity scores and optimal node scanwidth
+    in fractions of a second, and the budgeted optimization algorithms significantly
+    outperform existing benchmarks previously limited to unit-cost scenarios.<br>
 
-    We further contribute the first exact algorithms to compute node scanwidth,
-    recognizing that the utility of algorithms based on nsw depends on the ability to
-    compute nsw and its corresponding decomposition. Our approaches integrate data
-    reduction rules, dynamic programming, and an Integer Linear Programming formulation.
-
-    We validate our theoretical results through extensive experiments on highly
-    reticulated, simulated networks containing several hundred taxa, using heterogeneous
-    costs. Our implementation computes PD scores and optimal nsw in fractions of a
-    second, even on the most challenging instances. Furthermore, our budgeted
-    optimization algorithms significantly outperform existing benchmarks for computing
-    PD on networks, which were previously limited to unit-cost scenarios. The software
-    makes analyses even on networks with a thousand taxa tractable in practice.
+    <b>Conclusions:</b> Node scanwidth proves to be a small and computable parameter that
+    makes budgeted phylogenetic diversity tractable on realistic networks, scaling
+    comfortably to a thousand taxa. This narrows the gap between realistic models of
+    reticulate evolution and the computational tools available for conservation planning.
 
 - title: "Limits of Kernelization and Parametrization for Phylogenetic Diversity with Dependencies"
   id: kernelization-pd
