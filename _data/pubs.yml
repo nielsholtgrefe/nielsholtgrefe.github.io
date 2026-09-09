@@ -307,11 +307,10 @@
     networks, which capture events like hybridization, it becomes computationally hard.
     PaNDA is an interactive tool built around a new algorithm that solves this
     diversity-maximization problem efficiently for many realistic networks.
-  status_note: "Accepted at RECOMB 2026 (no formal proceedings, acceptance rate 16%)."
+  status_note: "Preliminary version accepted at RECOMB 2026 (no formal proceedings, acceptance rate 16%)."
   release-date: 2025-11-17
   authors:
     - first: Niels
-      middle:
       last: Holtgrefe
     - first: Leo
       tussenvoegsel: van
@@ -322,15 +321,15 @@
       last: Murakami
     - first: Jannik
       last: Schestag
-  year: 2025
+  year: 2026
   type: "preprint"
-  journal:
+  journal: "Journal of Computational Biology"
   volume:
   issue:
   pages:
   note:
-  doi-identifier: "10.1101/2025.11.14.688467"
-  doi-url: "https://www.biorxiv.org/content/10.1101/2025.11.14.688467"
+  doi-identifier: "10.1177/15578666261481955"
+  doi-url: "https://doi.org/10.1177/15578666261481955"
   preprint-server: "bioRxiv"
   preprint-identifier: "10.1101/2025.11.14.688467"
   preprint-url: "https://www.biorxiv.org/content/10.1101/2025.11.14.688467"
