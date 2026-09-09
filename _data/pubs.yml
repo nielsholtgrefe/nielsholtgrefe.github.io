@@ -308,7 +308,7 @@
     PaNDA is an interactive tool built around a new algorithm that solves this
     diversity-maximization problem efficiently for many realistic networks.
   status_note: "Preliminary version accepted at RECOMB 2026 (no formal proceedings, acceptance rate 16%)."
-  release-date: 2025-11-17
+  release-date: 2026-09-09
   authors:
     - first: Niels
       last: Holtgrefe
