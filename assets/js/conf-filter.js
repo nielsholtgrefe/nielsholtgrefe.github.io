@@ -2,7 +2,7 @@
 
    Mirrors the publications page: a row of pills narrows the list to the events
    where I organized, gave a talk, or presented a poster. Every kind of talk
-   (lightning, seminar, paper spotlight, ...) is bucketed as "talk" by the
+   (lightning, seminar, paper spotlight, tutorial, ...) is bucketed as "talk" by the
    conf_kinds.html include, which writes the buckets into data-contrib.
 
    Year markers with no visible event underneath are hidden too, so the timeline
