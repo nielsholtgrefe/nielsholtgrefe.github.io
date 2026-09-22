@@ -21,12 +21,28 @@
   group: "Upcoming"
   country: us
 
+- name: "Shaping the Future of Mathematics with AI"
+  url: "https://ai4math.nl/"
+  location: "Amsterdam, the Netherlands"
+  date: "December 2026"
+  group: "Upcoming"
+  country: nl
+
 - name: "Bridging Stratigraphic Palaeobiology and Phylogenetics"
   url: "https://www.lorentzcenter.nl/bridging-stratigraphic-palaeobiology-and-phylogenetics.html"
   location: "Leiden, the Netherlands"
   date: "September 2026"
   group: "Upcoming"
   country: nl
+
+- name: "Groningen Institute for Evolutionary Life Sciences"
+  location: "Groningen, the Netherlands"
+  date: "September 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Invited tutorial"
+      title: "Inferring Phylogenetic Networks with Squirrel"
 
 - name: "Uniting Phylogenetic Network Research"
   url: "https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html"
