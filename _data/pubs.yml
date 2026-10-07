@@ -147,6 +147,7 @@
   preprint-server: "bioRxiv"
   preprint-identifier: "10.64898/2026.06.09.731120"
   preprint-url: "https://www.biorxiv.org/content/10.64898/2026.06.09.731120"
+  data-url: "https://doi.org/10.5281/zenodo.22743136"
   software-url: "https://github.com/nholtgrefe/phylozoo"
   abstract: >
     Reticulate evolutionary processes (events in which lineages merge, such as
