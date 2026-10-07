@@ -14,6 +14,59 @@
 #   booktitle:   proceedings title for `type: conference` entries (the journal
 #                slot's equivalent); also becomes the BibTeX `booktitle` field.
 
+- title: "Encoding level-3 semi-directed phylogenetic networks by quarnets and quinnets"
+  id: encoding-level3
+  summary_lay: >-
+    A common way to reconstruct an evolutionary network is to first work out how each
+    small group of species is related, and then assemble those small pieces into the full
+    network. This only works if the small pieces pin the network down uniquely. For more
+    complex (level-3) networks, groups of four species are known to fall short in some
+    cases; this paper shows that groups of five always suffice, and that a single known
+    example is the only way groups of four can fail.
+  release-date: 2026-10-06
+  authors:
+    - first: Niels
+      last: Holtgrefe
+    - first: Katharina
+      middle: ["T"]
+      last: Huber
+    - first: Leo
+      tussenvoegsel: van
+      last: Iersel
+    - first: Vincent
+      last: Moulton
+  year: 2026
+  type: "preprint"
+  journal:
+  volume:
+  issue:
+  pages:
+  note:
+  doi-identifier:
+  doi-url:
+  preprint-server: "arXiv"
+  preprint-identifier: "2610.07855"
+  preprint-url: "https://arxiv.org/abs/2610.07855"
+  abstract: >
+    Phylogenetic networks generalize phylogenetic trees as models of evolutionary
+    history, allowing lineages to merge as well as to diverge. For many types of genetic
+    data the root position of such a network cannot be recovered, so that only a
+    <em>semi-directed</em> network can be inferred: a mixed graph in which only the edges
+    entering a reticulation vertex are directed. A common strategy for inferring such a
+    network is to first infer the subnetwork it induces on each set of \( k\geq 3 \) of
+    its leaves, called a <em>\( k \)-net</em>, and then to assemble these pieces. This
+    can only succeed if the \( k \)-nets determine the network, in which case that
+    network is said to be <em>encoded</em> by its \( k \)-nets. Semi-directed networks of
+    level-1 and 2, those whose biconnected components contain at most one, respectively
+    two, reticulations, are known to be encoded by their \( 4 \)-nets, or
+    <em>quarnets</em>, whereas level-3 networks are not. Even so, in this paper we show
+    that level-3 semi-directed networks are encoded by their \( 5 \)-nets, or
+    <em>quinnets</em>, and we characterize the limitation of quarnets exactly: we show
+    that a single previously reported counterexample captures the only obstruction, every
+    other level-3 network being encoded by its quarnets. Our proofs rest on a collection
+    of encoding results for individual structural features of a network, which we
+    establish for networks of arbitrary level and which are of independent interest.
+
 - title: "On Tree-Network Distinguishability and Full Identifiability of Phylogenetic Networks"
   id: full-identifiability
   summary_lay: >-
