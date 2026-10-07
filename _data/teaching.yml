@@ -74,6 +74,7 @@
       student: "Max Verton"
       note: "co-supervised with Leo van Iersel"
     - role: "MSc thesis supervision"
+      title: "Phylogenetics Networks with Gene Flow"
       years: ["2026"]
       institution: "TU Delft"
       student: "Ida Pelupessy"
