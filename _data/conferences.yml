@@ -21,6 +21,13 @@
   group: "Upcoming"
   country: us
 
+- name: "AI4Math Workshop: Shaping the Future of Mathematics with AI"
+  url: "https://ai4math.nl/"
+  location: "Amsterdam, the Netherlands"
+  date: "December 2026"
+  group: "Upcoming"
+  country: nl
+
 - name: "Bridging Stratigraphic Palaeobiology and Phylogenetics"
   url: "https://www.lorentzcenter.nl/bridging-stratigraphic-palaeobiology-and-phylogenetics.html"
   location: "Leiden, the Netherlands"
