@@ -131,19 +131,19 @@
     structures, visualization, and file handling — for working with many kinds of
     evolutionary network in one place. It makes reproducible, interoperable network
     analysis much easier to build on.
-  release-date: 2026-06-11
+  release-date: 2026-10-09
   authors:
     - first: Niels
       last: Holtgrefe
   year: 2026
-  type: "preprint"
-  journal:
+  type: "journal"
+  journal: "Bioinformatics"
   volume:
   issue:
   pages:
   note:
-  doi-identifier: "10.64898/2026.06.09.731120"
-  doi-url: "https://www.biorxiv.org/content/10.64898/2026.06.09.731120"
+  doi-identifier: "10.1093/bioinformatics/btag748"
+  doi-url: "https://doi.org/10.1093/bioinformatics/btag748"
   preprint-server: "bioRxiv"
   preprint-identifier: "10.64898/2026.06.09.731120"
   preprint-url: "https://www.biorxiv.org/content/10.64898/2026.06.09.731120"
@@ -162,7 +162,7 @@
     the field, together with dedicated visualization tools and robust I/O for all major
     phylogenetic file formats. A particular emphasis lies on semi-directed phylogenetic
     networks, which explicitly represent root uncertainty and have so far received
-    limited support in existing software. By offering a shared foundation for developing
+    limited support in existing software. By offering a shared, scalable foundation for developing
     interoperable tools and a combinatorial layer that supports computational proofs and
     theoretical exploration, PhyloZoo enables reproducible workflows for applied,
     methodological, and theoretical studies of reticulate evolution. Availability and
