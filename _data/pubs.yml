@@ -138,9 +138,9 @@
   year: 2026
   type: "journal"
   journal: "Bioinformatics"
-  volume:
-  issue:
-  pages:
+  volume: 42
+  issue: 10
+  pages: btag748
   note:
   doi-identifier: "10.1093/bioinformatics/btag748"
   doi-url: "https://doi.org/10.1093/bioinformatics/btag748"
