@@ -5,14 +5,14 @@ the /conferences/ filter: "organizer", "talk" and/or "poster".
 The data keeps the specific wording of each contribution ("Lightning talk",
 "Seminar talk", "Paper spotlight talk", "Invited tutorial", ...) because that is
 what the timeline shows; the filter buckets them, so every kind of talk
-(tutorials included) is matched by "talk".
+(tutorials and lectures included) is matched by "talk".
 Emits nothing for an event with no contributions.
 {%- endcomment -%}
 {%- assign ks = "" -%}
 {%- for c in include.conf.contributions -%}
   {%- assign ct = c.type | downcase -%}
   {%- assign k = "" -%}
-  {%- if ct contains "talk" or ct contains "tutorial" -%}{%- assign k = "talk" -%}
+  {%- if ct contains "talk" or ct contains "tutorial" or ct contains "lecture" -%}{%- assign k = "talk" -%}
   {%- elsif ct contains "poster" -%}{%- assign k = "poster" -%}
   {%- elsif ct contains "organiz" -%}{%- assign k = "organizer" -%}
   {%- endif -%}

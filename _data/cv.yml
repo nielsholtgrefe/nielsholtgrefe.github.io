@@ -31,6 +31,9 @@ experience:
     note: "semester program on Theory, Methods, and Applications of Quantitative Phylogenomics"
 
 awards:
+  - year: 2026
+    title: "TU Delft Open Science Researcher Award"
+    note: 'for the open-source PhyloZoo software suite (PhyloZoo, Squirrel, PaNDA); see the <a href="https://www.tudelft.nl/en/open-science/community/open-science-awards-1">award page</a> and <a href="https://www.youtube.com/watch?v=ldVCPUZdbfI">video</a>'
   - year: 2023
     title: "MSc Applied Mathematics — cum laude"
     note: "grade 9.2/10; thesis 9.5/10"

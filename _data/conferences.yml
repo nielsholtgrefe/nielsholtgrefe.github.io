@@ -9,7 +9,8 @@
 #   group         (required)  timeline bucket: "Upcoming" or a year like "2025"
 #   country       (optional)  ISO 3166-1 alpha-2 code for the flag outline
 #                             (an "online"/"Online" location shows a globe instead)
-#   contributions (optional)  list of { type, title } you presented there
+#   contributions (optional)  list of { type, title, url } you presented there
+#                             (url is optional and links the title, e.g. a video)
 #
 # Items are grouped by `group` in the order they first appear below, so keep
 # entries sorted newest-first.
@@ -28,6 +29,15 @@
   group: "Upcoming"
   country: nl
 
+- name: "Introduction to Programming (TW1-13), TU Delft"
+  location: "Delft, the Netherlands"
+  date: "October 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Invited guest lecture"
+      title: "PhyloZoo - Phylogenetic networks: from mathematics to software"
+
 - name: "Bridging Stratigraphic Palaeobiology and Phylogenetics"
   url: "https://www.lorentzcenter.nl/bridging-stratigraphic-palaeobiology-and-phylogenetics.html"
   location: "Leiden, the Netherlands"
@@ -43,6 +53,19 @@
   contributions:
     - type: "Invited tutorial"
       title: "Inferring Phylogenetic Networks with Squirrel"
+
+- name: "TU Delft Open Science Week 2026"
+  url: "https://www.tudelft.nl/en/open-science/community/open-science-awards-1"
+  location: "Delft, the Netherlands"
+  date: "September 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Award"
+      title: "TU Delft Open Science Researcher Award 2026 for the PhyloZoo software suite"
+    - type: "Video"
+      title: "PhyloZoo and turning mathematical research into usable software"
+      url: "https://www.youtube.com/watch?v=ldVCPUZdbfI"
 
 - name: "Uniting Phylogenetic Network Research"
   url: "https://www.lorentzcenter.nl/uniting-phylogenetic-network-research.html"

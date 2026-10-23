@@ -22,6 +22,12 @@
 
 - heading: "Teaching"
   items:
+    - role: "Invited guest lecturer"
+      title: "Introduction to Programming"
+      code: "TW1-13"
+      years: ["2026–2027"]
+      institution: "TU Delft"
+      note: "lecture: PhyloZoo - Phylogenetic networks: from mathematics to software"
     - role: "Instructor"
       title: "Discrete Mathematics"
       code: "TW1-31"
@@ -38,12 +44,12 @@
       years: ["2025–2026"]
       institution: "TU Delft"
       note: "trialling the exercises for the course's new setup"
-    - role: "Guest lecturer"
+    - role: "Replacement lecturer"
       title: "Mathematics 1"
       code: "WBMT1050"
       years: ["2023–2024"]
       institution: "TU Delft"
-      note: "for Mechanical Engineering · replacement lecturer for three lectures"
+      note: "for Mechanical Engineering · three regular lectures"
     - role: "Course grader"
       title: "Mathematics 2 — Calculus"
       code: "KT1002"

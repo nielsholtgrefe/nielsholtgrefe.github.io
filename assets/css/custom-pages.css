@@ -1265,6 +1265,28 @@ html[data-theme="dark"] .timeline-country {
   color: var(--nh-text-muted);
 }
 
+/* Award callout under the intro, styled like the conference contribution chips */
+.software-award {
+  font-size: 0.92em;
+  border-left: 3px solid var(--nh-accent, #1a5c7a);
+  background: var(--nh-accent-light, #e4f2f7);
+  border-radius: 0 6px 6px 0;
+  padding: 0.6em 0.9em;
+}
+
+.software-award-label {
+  display: inline-block;
+  font-size: 0.82em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: var(--nh-accent-solid, #1a5c7a);
+  border-radius: 4px;
+  padding: 1px 7px;
+  margin-right: 0.4em;
+}
+
 @media (max-width: 640px) {
   .software-grid { grid-template-columns: 1fr; }
 }
