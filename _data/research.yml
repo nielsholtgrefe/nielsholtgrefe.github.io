@@ -13,6 +13,7 @@
     - sequence-bounds
     - few-quarnets
     - algebraic-invariants
+    - encoding-level3
   body: >-
     The central computational problem in phylogenetics is <em>reconstruction</em>:
     given genetic sequence data from a set of species, find the network that best
@@ -32,6 +33,7 @@
     - algebraic-invariants
     - distinguishing-level2
     - invariants-level1
+    - full-identifiability
   body: >-
     Before building an inference method, there is a more basic question to settle: can
     two different networks even be told apart from DNA data at all? That property is
