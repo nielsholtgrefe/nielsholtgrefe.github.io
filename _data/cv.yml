@@ -46,6 +46,10 @@ awards:
 
 talks:
   - year: 2026
+    title: "Inferring Phylogenetic Networks with Squirrel"
+    place: "Groningen Institute for Evolutionary Life Sciences, Groningen, the Netherlands"
+    note: "invited tutorial"
+  - year: 2026
     title: "PaNDA: Efficient Optimization of Phylogenetic Diversity in Networks"
     place: "RECOMB, Thessaloniki, Greece"
     note: "contributed talk"
