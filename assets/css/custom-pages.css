@@ -6,11 +6,16 @@
 .page-hero {
   background: linear-gradient(130deg, #12384a 0%, var(--nh-accent, #1a5c7a) 55%, var(--nh-accent-mid, #4a8fa8) 100%);
   color: white;
-  padding: 2em 2em 1.8em;
+  padding: 1.6em 2em;
   margin: 0 0 2em;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  /* kicker + title on the left, the topic tags in a 2x2 block on the right */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
 }
 
 .page-hero::after {
@@ -32,9 +37,9 @@
   z-index: 0;
   pointer-events: none;
 }
-.page-hero-kicker,
-.page-hero-title,
+.page-hero-main,
 .page-hero-tags { position: relative; z-index: 2; }
+.page-hero-main { min-width: 0; }
 
 .page-hero-kicker {
   font-family: 'Inter', sans-serif;
@@ -52,14 +57,21 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  margin-bottom: 1em;
   text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
 .page-hero-tags {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
   gap: 0.45em;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* Narrow screens: tags drop back below the title as a wrapping row */
+@media (max-width: 760px) {
+  .page-hero { flex-direction: column; align-items: flex-start; gap: 1em; }
+  .page-hero-tags { display: flex; flex-wrap: wrap; text-align: left; }
 }
 
 .page-hero-tag {
