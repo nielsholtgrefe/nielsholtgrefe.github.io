@@ -14,16 +14,27 @@
   items:
     - date: 2026-08-20
       text: >-
-        Materials and Methods, \(\delta\)-heuristic, Step II: the set \(S_\lambda\) contains
-        the 4-taxa subsets whose \(\delta\)-value is <b>at most</b> \(\lambda\); the text
-        says "at least".
-    - date: 2026-08-20
+        Materials and Methods, \(\delta\)-heuristic, Steps I–III: the interpretation of the
+        \(\delta\)-value is reversed in the text. A tree-like quartet has \(\delta\) close to
+        0, so it should read as follows. In Step I, if \(\delta_{\{a,b,c,d\}}\) is
+        <b>close to 0</b>, we expect the split \(ad|bc\) (the text says "close to 1" and
+        "\(ab|cd\)"). In Step II, \(S_\lambda\) contains the 4-taxa subsets whose
+        \(\delta\)-value is <b>at most</b> \(\lambda\), and \(F_\lambda\) those whose
+        \(\delta\)-value is <b>larger</b> than \(\lambda\) (the text says "at least" and
+        "smaller"). In Step III, a 4-taxa set in \(S_\lambda\) is assigned the split
+        \(s \in \{ab|cd,\, ac|bd,\, ad|bc\}\) for which \(h_s\) is <b>smallest</b> (the text
+        says "the highest").
+    - date: 2026-10-25
       text: >-
-        Materials and Methods, \(\delta\)-heuristic, Step II: the set \(F_\lambda\) contains
-        the 4-taxa subsets whose \(\delta\)-value is <b>larger</b> than \(\lambda\); the text
-        says "smaller".
-    - date: 2026-08-20
+        Supplementary Material, proof of Lemma A.3: the words "opposite" and "neighbours"
+        are swapped. For \(i = 1\), \(y_i\) and \(y_j\) are <b>neighbours</b> in
+        \(\binom{s_{1j}}{2} + \binom{t_j}{2}\) of the 4-cycles and <b>opposite</b> in
+        \(s_{1j} \cdot t_j\) of them; for \(i \geq 2\), they are <b>neighbours</b> in
+        \(r_i + t_j\) of the 4-cycles and <b>opposite</b> in \(s_{ij}\) of them. The
+        displayed formulas are correct.
+    - date: 2026-10-25
       text: >-
-        Materials and Methods, \(\delta\)-heuristic, Step III: a 4-taxa set in \(S_\lambda\)
-        is assigned the split \(s \in \{ab|cd,\, ac|bd,\, ad|bc\}\) for which \(\delta_s\) is
-        <b>smallest</b>; the text says "the highest".
+        Supplementary Material, proof of Lemma A.5, Case 1, first condition: the expression
+        simplifies to \((k-j)\cdot(2n - k - j + 1)\), with a <b>minus</b> sign before
+        \(k\); the text says "\((k-j)\cdot(2n + k - j + 1)\)". The inequality still holds,
+        since \(k + j \leq 2n - 3\).
