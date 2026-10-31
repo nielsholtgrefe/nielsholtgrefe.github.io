@@ -59,6 +59,22 @@
     - panda
     - budgeted-pd
 
+- name: forestpd
+  language: Python
+  image: /assets/images/forestpd_icon.svg
+  # frame on the row of leaf circles near the bottom of the icon
+  image_position: "center 80%"
+  tagline: "Protect the most diversity, even when the tree is uncertain."
+  description: >-
+    forestpd (ForestPD) picks which species to protect so that as much evolutionary
+    diversity as possible is kept, measured across many possible trees at once, such as
+    bootstrap replicates, posterior samples or gene trees, rather than one summary tree.
+    It handles protection costs, a budget and extinction risks, and gives the best choice
+    for every budget in a single run. The method is exact, yet scales to tens of
+    thousands of species and thousands of trees when the trees mostly agree.
+  github: "https://github.com/nholtgrefe/forestpd"
+  docs: "https://nholtgrefe.github.io/forestpd/"
+
 - name: scanwidth
   language: Python
   image: /assets/images/scanwidth.png
