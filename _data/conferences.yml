@@ -38,6 +38,26 @@
     - type: "Organizer"
       title: "A day on PhD life at TU Delft, for the PhD candidates and postdocs of the Delft Institute of Applied Mathematics"
 
+- name: "DIAM Research Day"
+  location: "Scheveningen, the Netherlands"
+  date: "October 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Lightning talk"
+      title: "Identifiability and Reconstruction of Phylogenetic Networks from DNA"
+
+- name: "DMO Lightning Talk Seminar"
+  location: "Delft, the Netherlands"
+  date: "October 2026"
+  group: "2026"
+  country: nl
+  contributions:
+    - type: "Organizer"
+      title: "Lightning talk seminar of the Discrete Mathematics & Optimization group at TU Delft"
+    - type: "Lightning talk"
+      title: "Identifiability and Reconstruction of Phylogenetic Networks from DNA"
+
 - name: "Introduction to Programming (TW1-13), TU Delft"
   location: "Delft, the Netherlands"
   date: "October 2026"
@@ -213,11 +233,4 @@
   location: "Soesterberg, the Netherlands"
   date: "January 2024"
   group: "2024"
-  country: nl
-
-- name: "Seminar Series in Discrete Mathematics and Optimization"
-  url: "https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/applied-mathematics/discrete-mathematics-optimization/events/seminars-in-discrete-mathematics-and-optimization"
-  location: "Delft, the Netherlands"
-  date: "recurring seminar, 2023–present"
-  group: "2023"
   country: nl
